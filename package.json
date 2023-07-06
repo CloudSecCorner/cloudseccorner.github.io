@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.1.0",
+    "autoprefixer": "^9.7.5",
+    "postcss": "^7.0.36",
+    "postcss-cli": "^7.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-reporter": "^6.0.1",
+    "tailwindcss": "^1.2.0"
+  }
+}

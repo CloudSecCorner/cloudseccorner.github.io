@@ -1,0 +1,9 @@
+<div class="container flex grid self-center grid-cols-12 p-6 mb-10 bg-white">
+<h1 class="col-span-12 mb-6 text-4xl lekton">Latest News</h1>
+{{ $postsSection := where site.RegularPages "Section" "posts" }} <!-- "getting-started" and "deployment" -->
+{{ range $postsSection | first 3 }}
+    <article class="mx-4 mb-4 xs:col-span-12 lg:col-span-4 sm:mx-12">
+      {{ partial "feed-item.html" . }}
+    </article>
+{{ end }}
+</div>
