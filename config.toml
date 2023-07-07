@@ -1,5 +1,5 @@
 title = "Cloud Security Corner"
-baseURL = "cloudseccorner.github.io"
+baseURL = "cloudsecuritycorner.com"
 disableKinds = ["taxonomy", "taxonomyTerm"]
 copyright = "CloudNativeFolks"
 
