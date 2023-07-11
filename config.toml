@@ -62,24 +62,18 @@ url = "/about/overview"
 weight = 20
 
 
-[[menu.main]]
-name = "Code of conduct"
-parent = "about"
-url = "https://github.com/opencontainers/.github/blob/master/CODE_OF_CONDUCT.md"
-post = "external"
-weight = 30
 
 [[menu.main]]
 name = "Leadership"
 parent = "about"
 url = "/about/tob"
-weight = 50
+weight = 30
 
 [[menu.main]]
 name = "Security disclosure"
 parent = "about"
 url = "/about/security-disclosure"
-weight = 70
+weight = 50
 
 [[menu.main]]
 name = "Community"
