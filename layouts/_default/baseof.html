@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang='{{ site.LanguageCode }}'>
+<html lang="{{ .Site.LanguageCode | default `en-us` }}">
   <head>
-    {{ partial "head.html" . }}
+    {{ partial "head" . }}
   </head>
-  <body class="flex flex-col min-h-screen bg-lightgray">
-    {{ partial "header.html" . }}
-
-    <main class="container mx-auto">
-      {{ block "main" . }}{{ end }}
-    </main>
-
-    {{ partial "footer.html" . }}
-    {{ partial "javascript.html" . }}
+  <body>
+    {{ partial "site-header" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "site-footer" . }}
+    {{ partial "scripts" . }}
   </body>
 </html>

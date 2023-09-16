@@ -1,0 +1,11 @@
+title = 'Cloud Security Corner'
+baseURL = '/quikstart'
+
+defaultContentLanguage = 'en'
+languageCode = 'en-us'
+enableInlineShortcodes = true
+googleAnalytics = ''
+
+enableGitInfo = true
+
+markup.highlight.noClasses = false

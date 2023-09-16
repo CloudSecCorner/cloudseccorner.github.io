@@ -1,3 +1,0 @@
----
-title: "Cloud Security Corner"
----

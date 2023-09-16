@@ -1,0 +1,8 @@
+- title: Documentation
+  pages:
+  - title: Overview
+
+- title: Cloud Security Fundamentals
+  pages:
+  - title: Setup MFA for Root Account
+  - title: IAM role

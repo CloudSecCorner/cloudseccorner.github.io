@@ -1,30 +1,16 @@
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-  {{ block "title" . }}
-  {{ .Title }} - {{ site.Title }}
-  {{ end }}
-</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{{ .Page.Params.description | default .Site.Params.description | markdownify }}">
+<meta name="author" content="{{ .Site.Params.author }}">
 
-{{ with .Description }}
-<meta name="description" content="{{ . }}" />
-{{ end }}
-{{ with .Keywords }}
-<meta name="keywords" content="{{ delimit . "," }}" />
-{{ end }}
-{{ with .Params.Author }}
-<meta name="author" content="{{ . }}" />
-{{ end }}
+<title>{{ if .IsHome }}{{ .Site.Title | markdownify }} · {{ .Site.Params.description | markdownify }}{{ else }}{{ .Title | markdownify }} · {{ .Site.Title | markdownify }}{{ end }}</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Lekton:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-{{ $styles := resources.Get "css/styles.css" }}
+<link rel="canonical" href="{{ .Permalink }}">
 
-{{ if site.IsServer }}
-  {{ $style := $styles | postCSS (dict "config" "./assets/css/dev/postcss.config.js") }}
-  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-{{ else }}
-  {{ $style := $styles | postCSS (dict "config" "./assets/css/postcss.config.js") | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
-{{ end }}
+{{ with .Params.robots -}}
+<meta name="robots" content="{{ . }}">
+{{- end }}
 
-{{ hugo.Generator }}
+{{ partial "stylesheets" . }}
+{{ partial "favicons" . }}
+{{ partial "analytics" . }}

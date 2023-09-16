@@ -1,0 +1,10 @@
+name = "Cloud Security Corner"
+description = "Cloud Security Corner"
+homepage = "https://cloudsecuritycorner.com/quikstart"
+tags = ["docs", "minimal", "responsive", "light", "dark", "multilingual"]
+features = []
+min_version = "0.41.0"
+
+[author]
+  name = "Sangam Biradar"
+  homepage = "https://github.com/sangam14"
