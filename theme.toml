@@ -1,6 +1,6 @@
 name = "Cloud Security Corner"
 description = "Cloud Security Corner"
-homepage = "https://cloudsecuritycorner.com/quikstart"
+homepage = "https://cloudsecuritycorner.com/"
 tags = ["docs", "minimal", "responsive", "light", "dark", "multilingual"]
 features = []
 min_version = "0.41.0"

@@ -1,5 +1,5 @@
 title = 'Cloud Security Corner'
-baseURL = '/quikstart'
+baseURL = 'cloudsecuritycorner.com'
 
 defaultContentLanguage = 'en'
 languageCode = 'en-us'

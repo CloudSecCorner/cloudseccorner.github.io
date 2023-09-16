@@ -11,3 +11,11 @@ name = 'Documentation'
 pre = "<i class='icon icon-book'></i>"
 url = '/docs/'
 weight = 2
+
+[[main]]
+
+identifier = 'Roadmap'
+name = 'roadmap'
+pre = "<i class='icon icon-book'></i>"
+url = '/roadmap/'
+weight = 3
