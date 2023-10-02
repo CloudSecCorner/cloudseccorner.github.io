@@ -19,3 +19,12 @@ name = 'roadmap'
 pre = "<i class='icon icon-book'></i>"
 url = '/roadmap/'
 weight = 3
+
+
+[[main]]
+
+identifier = 'Quiz'
+name = 'Quiz'
+pre = "<i class='icon icon-book'></i>"
+url = '/Quiz/'
+weight = 4

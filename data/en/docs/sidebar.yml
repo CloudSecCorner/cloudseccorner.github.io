@@ -4,5 +4,9 @@
 
 - title: Cloud Security Fundamentals
   pages:
-  - title: Setup MFA for Root Account
-  - title: IAM role
+  - title: Identity And Access Management
+  - title: Compute and Configuration Management
+  - title: Data Protection and Automation
+  - title: Networking and logging
+  - title: Compliance , Incidence Response , Pentration testing
+
