@@ -9,3 +9,6 @@ googleAnalytics = ''
 enableGitInfo = true
 
 markup.highlight.noClasses = false
+
+[minify]
+  disableHTML = true
