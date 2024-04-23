@@ -1,0 +1,66 @@
+# Note: Template blocks require a 'weight' parameter so they're correctly ordered on the landing page
+
+# Hero
+hero:
+  enable: true
+  weight: 10
+  template: hero
+
+  backgroundImage:
+    path: "images/templates/hero"
+    filename:
+      desktop: "gradient-desktop.webp"
+      mobile: "gradient-mobile.webp"
+
+  badge:
+    text: v0.0.0
+    color: primary # primary, secondary, success, danger, warning, info, light, dark
+    pill: false # boolean
+    soft: true # boolean
+
+  titleLogo:
+  path: "images/logos"
+  filename: "logo.svg"
+  height: 80px
+
+  title: "CloudSecurityCorner"
+  subtitle: "Cloud Security Corner is a community-driven platform to learn about cloud security"
+
+  image:
+    path: "images" # path to image under configured assets directory. default 'images'
+    filename: 4.png" # filename of your hero image (including file extension)
+    boxShadow: true # default 'false' (excludes .svg images)
+    rounded: true # round the image corners? default 'false' (excludes .svg images)
+
+  # ctaButton:
+  # icon: rocket_launch
+  # btnText: "Get Started"
+  # url: "/docs/"
+
+  cta2Button:
+    icon: chat
+    btnText: "CloudNativeFolks Community "
+    url: "https://discord.gg/NQspwGBDVs"
+
+  info: "**Open Source** | **Community Driven** "
+
+# Feature Grid
+featureGrid:
+  enable: true
+  weight: 20
+  template: feature grid
+
+  title: Why choose CloudSecurityCorner?
+  subtitle: Learn Container Technolgy.
+
+  items:
+
+    - title: Cloud Security Fundamentals
+      description: "Learn the basics of cloud security and how to secure your cloud infrastructure."
+      icon: shield_check
+      iconColor: primary
+      iconBg: light
+      iconRounded: true
+      iconShadow: true
+      
+   
