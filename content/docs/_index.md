@@ -1,7 +1,7 @@
 ---
 weight: 520
-title: "KubeDaily Labs"
-description: "Demestifying Container and Orchestration Ecosystem"
+title: "CloudSecurityCorner"
+description: "Learn Cloud Security "
 icon: menu_book
 lead: ""
 date: 2022-10-10T02:21:15+00:00
