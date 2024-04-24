@@ -20,7 +20,7 @@ hero:
 
   titleLogo:
   path: "images/logos"
-  filename: "logo.svg"
+  filename: "logo.png"
   height: 80px
 
   title: "CloudSecurityCorner"
