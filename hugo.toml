@@ -161,13 +161,6 @@ defaultContentLanguage = 'en'
    weight = 20
 
 [[menu.primary]]
-  name  = "Tools"
-  url = ""
- identifier = "tools"
- weight = 30
-
-
-[[menu.primary]]
    name  = "meetups"
    url = "meetups/"
    identifier = "meetups"
