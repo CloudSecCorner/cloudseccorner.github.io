@@ -53,11 +53,7 @@ defaultContentLanguage = 'en'
         copyright = "© :YEAR: CloudNativeFolks Community"
         # version = true # includes git commit info
 
-    [params.social]
-        github = ""        # YOUR_GITHUB_ID or YOUR_GITHUB_URL
-        twitter = "kubedaily"       # YOUR_TWITTER_ID
-        # instagram = "colinwilson"     # YOUR_INSTAGRAM_ID
-         rss = true                    # show rss icon with link
+
 
     [params.docs] # Parameters for the /docs 'template'
         title           = "Learn Container Technology"           # default html title for documentation pages/sections
