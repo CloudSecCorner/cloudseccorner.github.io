@@ -35,7 +35,7 @@
                     {{ with .badge }}
                     <span class="badge {{ if eq .pill true }}rounded-pill{{ end }} bg-{{ if eq .soft true }}soft-{{ else }}hard-{{ end }}{{ .color }} mb-1">{{ .text }}</span>
                     {{ end }}
-                    <h4 class="heading mt-0 mb-3">
+                    <h4 class="heading mt-0 mb-3" style="color: white;">
                         {{ with .titleLogo }}
                             {{ $path := .path | default "images" }}
                             {{ $filename := .filename }}
@@ -59,7 +59,7 @@
                         {{ with .title }}{{ . }}{{ end }}
                     </h4>
                     {{ with .subtitle }}
-                    <p class="para-desc text-muted mb-0">{{ . | markdownify }}</p>
+                    <p class="para-desc text-muted mb-0" style="color: white;">{{ . | markdownify }}</p>
                     <a class="github-button" href="https://github.com/CloudSecCorner/cloudseccorner.github.io" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star CloudSecCorner/cloudseccorner.github.io on GitHub">Star</a>
 <!-- Place this tag where you want the button to render. -->
 <a class="github-button" href="https://github.com/CloudSecCorner" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Follow @CloudSecCorner on GitHub">Follow @CloudSecCorner</a>
