@@ -21,7 +21,7 @@ hero:
   titleLogo:
   path: "images/logos"
   filename: "logo.png"
-  height: 80px
+  height: 70px
 
   title: "CloudSecurityCorner"
   subtitle: "Cloud Security Corner is a community-driven platform to learn about cloud security"
