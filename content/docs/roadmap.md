@@ -15,6 +15,7 @@ categories: [""]
 ## Free Certification 
   - add free cloud security certification
   - [[101] Introduction to Open Source Security & Dependency Management](https://www.endorlabs.com/events/leanappsec-academy-intro-to-open-source-security-and-dependency-management)
+  - [[201]Implementing Open Source Security & Dependency Management](https://www.leanappsec.com/courses/implementing-open-source-security-dependency-management)
   - [Implementing Open Source Security & Dependency Management](https://www.endorlabs.com/events/leanappsec-academy-implementing-open-source-security-dependency-management)
   - [Operationalizing Cloud Security with Deepfence ThreatMapper](https://www.udacity.com/course/operationalizing-cloud-security-with-deepfence-threatmapper--cd12926) 
 

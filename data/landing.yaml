@@ -55,9 +55,9 @@ featureGrid:
 
   items:
 
-    - title: Cloud Security Fundamentals
-      description: "Learn the basics of cloud security and how to secure your cloud infrastructure."
-      icon: shield_check
+    - title: Fundamentals of Networking , Security and Cloud
+      description: "Learn the basics of Networking , Security and Protocol"
+      icon: 1️⃣
       iconColor: primary
       iconBg: light
       iconRounded: true
