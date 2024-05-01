@@ -56,11 +56,11 @@ defaultContentLanguage = 'en'
 
 
     [params.docs] # Parameters for the /docs 'template'
-        title           = "Learn Container Technology"           # default html title for documentation pages/sections
+        title           = "Cloud Security Corner"           # default html title for documentation pages/sections
 
         # pathName        = "docs"                            # path name for documentation site | default "docs"
 
-        # themeColor      = "cyan"                            # (optional) - Set theme accent colour. Options include: blue (default), green, red, yellow, emerald, cardinal, magenta, cyan
+        # themeColor      = "emerald"                            # (optional) - Set theme accent colour. Options include: blue (default), green, red, yellow, emerald, cardinal, magenta, cyan
 
         darkMode        = true                                # enable dark mode option? default false
 
