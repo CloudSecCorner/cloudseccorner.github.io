@@ -7,15 +7,15 @@
 ### Understanding Common networking protocol and ports 
 
 ## Introduction to Networking 
-  - #### [What is networking](./what-is-networking.md)
-  - #### [Network Protocol](./network-protocol.md)
-  - #### [Exploring Common Networking   Protcol and Port Numbers](./Explore-Protocol-Port.md)
+  - #### [What is networking](./content/docs/Networking/what-is-networking.md)
+  - #### [Network Protocol](./content/docs/Networking/network-protocol.md)
+  - #### [Exploring Common Networking   Protcol and Port Numbers](/content/docs/Networking/Explore-Protocol-Port.md)
 
 
 
 ## Open Source Networking 
-   - ### [History of Open Source Networking](History-Open-Source-Networking.md)
-  - ### [How Does the Cloud Impacted Networking](chapter-10/how-does-the-cloud-impact-newtork.md)
+   - ### [History of Open Source Networking]/content/docs/Networking/History-Open-Source-Networking.md)
+  - ### [How Does the Cloud Impacted Networking](/content/docs/Networking/how-does-the-cloud-impact-newtork.md)
 
 
 
