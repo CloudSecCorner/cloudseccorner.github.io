@@ -1,0 +1,32 @@
+baseURL: https://cloudsecuritycorner.com
+languages:
+  en:
+    title: CloudSecCorner
+markup:
+  _merge: shallow
+menu:
+  main:
+    - name: Search
+      params:
+        type: search
+      weight: 1
+    - name: GitHub
+      params:
+        icon: github
+      url: https://github.com/CloudSecCorner/cloudseccorner.github.io
+      weight: 2
+module:
+  hugoVersion:
+    extended: true
+    min: 0.125.0
+  imports:
+    - path: github.com/CloudSecCorner/cloudseccorner.github.io/global
+    - path: github.com/imfing/hextra
+params:
+  description: Imagine. Create.
+  editURL:
+    base: https://github.com/cloudseccorner/cloudseccorner.githu.io/edit/main/docs/content
+    enable: true
+  variables:
+    repository: github.com/cloudseccorner/cloudseccorner.githu.io
+publishDir: ../public

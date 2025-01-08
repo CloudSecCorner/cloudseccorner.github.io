@@ -1,32 +1,35 @@
-### Cloud Security Corner 
+# AXIVO
 
+Website design powered by [Hugo](https://gohugo.io) and [Hextra](https://github.com/imfing/hextra) theme.
 
+## Quick Start
 
-### Fundamentals of Networking , Security and Protocol
+Install the dependencies:
 
-### Understanding Common networking protocol and ports 
+```shell
+brew install hugo golang
+```
 
-## Introduction to Networking 
-  - #### [What is networking](./content/docs/Networking/what-is-networking.md)
-  - #### [Network Protocol](./content/docs/Networking/network-protocol.md)
-  - #### [Exploring Common Networking   Protcol and Port Numbers](/content/docs/Networking/Explore-Protocol-Port.md)
+Launch the server:
 
+```shell
+hugo server --disableFastRender -Ds ./docs
+```
 
+## Theme Update
 
-## Open Source Networking 
-   - ### [History of Open Source Networking]/content/docs/Networking/History-Open-Source-Networking.md)
-  - ### [How Does the Cloud Impacted Networking](/content/docs/Networking/how-does-the-cloud-impact-newtork.md)
+Run the following commands:
 
+```shell
+hugo mod clean --all
+hugo mod get -u ./...
+hugo mod tidy ./...
+```
 
+For Hextra `main` branch update, run:
 
-#### Contributor Note 
+```shell
+hugo mod get -u github.com/imfing/hextra@main
+```
 
-This Is Not
-- This is not a replacement for the official documentations.
-- This is not an exhaustive guide.
-
-This Is
-- This is a collaborative and personal effort.
-- This is a project that is expected to evolve and gain from others' inputs.
-
-meaningful contributions welcome 🙏
+See the [modules update](https://gohugo.io/hugo-modules/use-modules/#update-modules) documentation, for more details.

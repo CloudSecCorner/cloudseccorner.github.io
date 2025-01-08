@@ -1,5 +1,5 @@
-module github.com/colinwilson/lotusdocs
+module github.com/sangam14
 
-go 1.19
+go 1.23.4
 
-require github.com/gohugoio/hugo-mod-bootstrap-scss/v5 v5.20300.20200 // indirect
+require github.com/imfing/hextra v0.9.4-0.20250107105100-a933f464f57c // indirect
