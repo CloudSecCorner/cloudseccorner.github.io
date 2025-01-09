@@ -1,13 +1,11 @@
 ---
-title: Cloud Security Corner
 toc: false
 width: full
 ---
 
-{{< hextra/hero-container image="/assets/images/logo-page.png" 
+{{< hextra/hero-container image="/images/logo-page.png" 
  imageClass="hx-block hx-overflow-hidden hx-rounded-3xl"
   imageWidth="300" imageHeight="300">}}
-{{< /hextra/hero-container >}}
 
 
 {{< hextra/hero-badge >}}
@@ -33,6 +31,7 @@ width: full
 </div>
 
 <div class="hx-mt-6"></div>
+{{< /hextra/hero-container >}}
 
 
 ## Schedule
