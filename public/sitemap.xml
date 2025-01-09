@@ -83,25 +83,7 @@
     <loc>//localhost:1313/docs/guide/shortcodes/_index.zh-cn/</loc>
   </url><url>
     <loc>//localhost:1313/blog/</loc>
-    <lastmod>2024-03-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/</loc>
-    <lastmod>2024-03-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/markdown/</loc>
-    <lastmod>2024-03-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/</loc>
-    <lastmod>2024-03-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/%D8%B1%D8%A7%D9%87%D9%86%D9%85%D8%A7%DB%8C/</loc>
-    <lastmod>2024-03-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/blog/markdown.fa/</loc>
-    <lastmod>2024-03-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/%D9%85%D8%AB%D8%A7%D9%84/</loc>
-    <lastmod>2024-03-03T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/tags/example/</loc>
     <lastmod>2020-01-01T00:00:00+00:00</lastmod>
@@ -109,10 +91,19 @@
     <loc>//localhost:1313/tags/guide/</loc>
     <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>//localhost:1313/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/markdown/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>//localhost:1313/blog/markdown/</loc>
     <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/blog/markdown.zh-cn/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/</loc>
     <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/about/</loc>
@@ -142,8 +133,6 @@
     <loc>//localhost:1313/docs/guide/shortcodes/filetree/</loc>
   </url><url>
     <loc>//localhost:1313/_index.ja/</loc>
-  </url><url>
-    <loc>//localhost:1313/_index.zh-cn/</loc>
   </url><url>
     <loc>//localhost:1313/docs/guide/shortcodes/icon/</loc>
   </url><url>
@@ -210,8 +199,6 @@
     <loc>//localhost:1313/docs/advanced/_index.ja/</loc>
   </url><url>
     <loc>//localhost:1313/docs/guide/shortcodes/others.zh-cn/</loc>
-  </url><url>
-    <loc>//localhost:1313/blog/_index.zh-cn/</loc>
   </url><url>
     <loc>//localhost:1313/docs/guide/shortcodes/cards.zh-cn/</loc>
   </url><url>
