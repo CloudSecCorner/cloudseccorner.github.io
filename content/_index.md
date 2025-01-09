@@ -1,7 +1,14 @@
 ---
-title: Hextra Theme
-layout: hextra-home
+title: Cloud Security Corner
+toc: false
+width: full
 ---
+
+{{< hextra/hero-container image="/assets/images/logo-page.png" 
+ imageClass="hx-block hx-overflow-hidden hx-rounded-3xl"
+  imageWidth="300" imageHeight="300">}}
+{{< /hextra/hero-container >}}
+
 
 {{< hextra/hero-badge >}}
   <div class="hx-w-2 hx-h-2 hx-rounded-full hx-bg-primary-400"></div>
@@ -26,4 +33,19 @@ layout: hextra-home
 </div>
 
 <div class="hx-mt-6"></div>
+
+
+## Schedule
+
+{{% steps %}}
+
+### Kali linux  
+
+- **Lab 1**: [Kali Linux for Everyone: Install and Use It Your Way]()
+
+
+{{% /steps %}}
+
+
+
 
