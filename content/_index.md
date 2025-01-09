@@ -38,10 +38,30 @@ width: full
 
 {{% steps %}}
 
-### Kali linux  
+### Kali Linux 
 
-- **Lab 1**: [Kali Linux for Everyone: Install and Use It Your Way]()
+- **Lab 1: [Kali Linux for Everyone: Install and Use It Your Way]()**
 
+- **Lab 2: [Information Gathering]()** <br>
+&nbsp;&nbsp;1. **Nmap**   
+&nbsp;&nbsp;2. **Zenmap**  
+&nbsp;&nbsp;3. **Maltego**  
+&nbsp;&nbsp;4. **Nikto**  
+&nbsp;&nbsp;5. **Recon-ng**  
+&nbsp;&nbsp;6. **theHarvester**  
+&nbsp;&nbsp;7. **Shodan**  
+&nbsp;&nbsp;8. **DNSenum**  
+&nbsp;&nbsp;9. **dmitry (Deepmagic Information Gathering Tool)**  
+&nbsp;&nbsp;10. **Netdiscover**  
+  
+### Cloud Security AWS 
+- **Lab 1: [identity and access management ]()**
+
+ 
+
+### Cloud Security Azure 
+
+### Cloud Security GCP 
 
 {{% /steps %}}
 
