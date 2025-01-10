@@ -53,11 +53,46 @@ width: full
 &nbsp;&nbsp;8. **DNSenum**  
 &nbsp;&nbsp;9. **dmitry (Deepmagic Information Gathering Tool)**  
 &nbsp;&nbsp;10. **Netdiscover**  
+
+
+- **Lab 2: [Vulnerability Analysis]()** <br>
+&nbsp;&nbsp;1. **OpenVAS**
+&nbsp;&nbsp;2. **Nessus**
+&nbsp;&nbsp;3. **Lynis**
+&nbsp;&nbsp;4. **Nikto**
+&nbsp;&nbsp;4. **Wapiti**
+&nbsp;&nbsp;5. **SQLmap**
+&nbsp;&nbsp;6. **Legion**
+&nbsp;&nbsp;7. **WPScan**
+&nbsp;&nbsp;8. **Searchsploit**
+&nbsp;&nbsp;9. **Vega**
+
+- **Lab 3: [Exploitation Tools]()
+&nbsp;&nbsp;1. **Metasploit Framework**
+&nbsp;&nbsp;2. **Armitage**
+&nbsp;&nbsp;3. **ExploitDB**
+&nbsp;&nbsp;4. **Social-Engineer Toolkit (SET)**
+&nbsp;&nbsp;5. **Beef**
+&nbsp;&nbsp;6. **RouterSploit**
+&nbsp;&nbsp;7. **Commix**
+&nbsp;&nbsp;8. **MSFvenom**
+&nbsp;&nbsp;9. **Empire**
+&nbsp;&nbsp;10.**Shellter**
   
+- **Lab 4: [Wireless Attacks]()
+&nbsp;&nbsp;**Aircrack-ng**
+&nbsp;&nbsp;**Reaver**
+&nbsp;&nbsp;**Wifite**
+&nbsp;&nbsp;**Fern WiFi Cracker**
+&nbsp;&nbsp;**Kismet**
+&nbsp;&nbsp;**Fluxion**
+&nbsp;&nbsp;**Cowpatty**
+&nbsp;&nbsp;**PixieWPS**
+&nbsp;&nbsp;**WifiPhisher**
+&nbsp;&nbsp;**Wifresti**
+
 ### Cloud Security AWS 
 - **Lab 1: [identity and access management ]()**
-
- 
 
 ### Cloud Security Azure 
 
