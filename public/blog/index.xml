@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CloudSecCorner – Blog</title>
+    <title>CloudSecCorner – </title>
     <link>//localhost:1313/blog/</link>
-    <description>Recent content in Blog on CloudSecCorner</description>
+    <description>Recent content on CloudSecCorner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 01 Jan 2020 00:00:00 +0000</lastBuildDate>
@@ -161,7 +161,6 @@
 &lt;/div&gt;
 &lt;blockquote&gt;
   &lt;p&gt;If I have seen further it is by standing on the shoulders of Giants.&lt;/p&gt;
-
 &lt;/blockquote&gt;
 &lt;h3&gt;Inline Code&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;inline-code&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#inline-code&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;

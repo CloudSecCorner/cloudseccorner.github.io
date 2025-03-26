@@ -23,8 +23,12 @@
     <loc>//localhost:1313/tags/</loc>
     <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>//localhost:1313/docs/nmap/</loc>
+  </url><url>
     <loc>//localhost:1313/categories/</loc>
   </url><url>
-    <loc>//localhost:1313/showcase/</loc>
+    <loc>//localhost:1313/docs/</loc>
+  </url><url>
+    <loc>//localhost:1313/tools/</loc>
   </url>
 </urlset>

@@ -1,5 +1,6 @@
 ---
-title: "Blog"
+toc: false
+width: full
 ---
 
 <div style="text-align: center; margin-top: 1em;">

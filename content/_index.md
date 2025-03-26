@@ -67,7 +67,7 @@ width: full
 &nbsp;&nbsp;8. **Searchsploit**
 &nbsp;&nbsp;9. **Vega**
 
-- **Lab 3: [Exploitation Tools]()
+- **Lab 3: [Exploitation Tools]() <br>
 &nbsp;&nbsp;1. **Metasploit Framework**
 &nbsp;&nbsp;2. **Armitage**
 &nbsp;&nbsp;3. **ExploitDB**
@@ -79,7 +79,7 @@ width: full
 &nbsp;&nbsp;9. **Empire**
 &nbsp;&nbsp;10.**Shellter**
   
-- **Lab 4: [Wireless Attacks]()
+- **Lab 4: [Wireless Attacks]() <br>
 &nbsp;&nbsp;**Aircrack-ng**
 &nbsp;&nbsp;**Reaver**
 &nbsp;&nbsp;**Wifite**

@@ -21,11 +21,11 @@ menu:
     - name: Docs
       pageRef: /docs
       weight: 1
-    - name: About
-      pageRef: /about
+    - name: Blog
+      pageRef: /blog
       weight: 2
-    - name: Contact ↗
-      url: "https://github.com/sangam14"
+    - name: tools ↗
+      url: /tools
       weight: 3
     - name: Search
       weight: 4

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Nmap",
+    "description": "A powerful network scanner used for host discovery, port scanning, and service detection.  A staple for network administrators and security professionals.",
+    "url": "[https://nmap.org/](https://nmap.org/)"
+  },
+  {
+    "name": "Metasploit Framework",
+    "description": "A comprehensive framework for developing, testing, and executing exploits.  Essential for penetration testing and vulnerability research.",
+    "url": "[https://www.metasploit.com/](https://www.metasploit.com/)"
+  },
+  {
+    "name": "Wireshark",
+    "description": "A network protocol analyzer that allows you to capture and inspect network traffic.  Invaluable for network troubleshooting and security analysis.",
+    "url": "[https://www.wireshark.org/](https://www.wireshark.org/)"
+  },
+  {
+    "name": "Snort",
+    "description": "A powerful network intrusion detection and prevention system (IDS/IPS). Capable of real-time traffic analysis and packet logging.",
+    "url": "[https://www.snort.org/](https://www.snort.org/)"
+  },
+  {
+    "name": "OpenVAS",
+    "description": "A vulnerability scanner that helps you identify security weaknesses in your systems and applications. Provides comprehensive vulnerability scanning.",
+    "url": "[http://www.openvas.org/](http://www.openvas.org/)"
+  },
+  {
+    "name": "OWASP ZAP",
+    "description": "The OWASP Zed Attack Proxy (ZAP) is a web application security scanner. Helps find vulnerabilities in web applications during development and testing.",
+    "url": "[https://www.zaproxy.org/](https://www.zaproxy.org/)"
+  }
+]
