@@ -101,5 +101,8 @@ width: full
 {{% /steps %}}
 
 
+<center> <h1> Our Sponsors </h1> </center>
+
+This website is completely open source. To fund our work, we fully rely on sponsors. Thanks to them, we can keep the site free for everybody. Please check out their offers below.
 
 

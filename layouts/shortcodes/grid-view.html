@@ -1,13 +1,59 @@
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  {{ range $index, $element := .Site.Data.tools }}
-  <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-    <div class="p-6">
-      <h2 class="text-xl font-bold text-gray-800 mb-3">{{ $element.name }}</h2>
-      <p class="text-gray-600 mb-4">{{ $element.description }}</p>
-      <a href="{{ $element.url }}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition-colors duration-200" target="_blank" rel="noopener noreferrer">
-        Learn More
-      </a>
-    </div>
-  </div>
-  {{ end }}
+{{- $githubApiBase := "https://api.github.com/repos/" -}}
+<div class="mb-8">
+  <input type="text" id="categorySearch" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Search by category...">
 </div>
+<div id="categoryGrid">
+{{- range $index, $categoryData := .Site.Data.tools }}
+  <h2 class="text-2xl font-bold mt-8 mb-4 category-title">{{ $categoryData.category }}</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 category-grid">
+    {{ range $index, $element := $categoryData.tools }}
+      {{- $isGithubRepo := false -}}
+      {{- $stars := 0 -}}
+      {{- $repoPath := "" -}}
+
+      {{- if strings.Contains $element.url "github.com" -}}
+        {{- $isGithubRepo = true -}}
+        {{- $repoPath = replace $element.url "https://github.com/" "" -}}
+        {{- if strings.Contains $repoPath "/" -}}
+          {{- $apiURL := printf "%s%s" $githubApiBase $repoPath -}}
+          {{- $tryResponse := try (resources.GetRemote $apiURL) -}}
+          {{- if $tryResponse -}}
+            {{- $response := $tryResponse.Value -}}
+            {{- if eq $response.MediaType.SubType "json" -}}
+              {{- $jsonData := $response | transform.Unmarshal -}}
+              {{- $stars = $jsonData.stargazers_count -}}
+            {{- end -}}
+          {{- end -}}
+        {{- else -}}
+          {{- $isGithubRepo = false -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{- $cardParams := dict "link" $element.url "title" $element.name "subtitle" $element.description "isGithubRepo" $isGithubRepo "stars" $stars -}}
+      {{- partial "shortcodes/card.html" $cardParams -}}
+    {{ end }}
+  </div>
+{{ end }}
+</div>
+<script>
+  const searchInput = document.getElementById('categorySearch');
+  const categoryTitles = document.querySelectorAll('.category-title');
+  const categoryGrids = document.querySelectorAll('.category-grid');
+
+  searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    categoryTitles.forEach((title, index) => {
+      const categoryName = title.textContent.toLowerCase();
+      const grid = categoryGrids[index];
+
+      if (categoryName.includes(searchTerm)) {
+        title.style.display = 'block';
+        grid.style.display = 'grid';
+      } else {
+        title.style.display = 'none';
+        grid.style.display = 'none';
+      }
+    });
+  });
+</script>
