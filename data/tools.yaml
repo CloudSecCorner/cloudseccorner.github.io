@@ -1,4 +1,4 @@
-- category: Static Analysis
+- category: Dynamic Analysis
   tools: 
     - name: Black
       description: The uncompromising Python code formatter
@@ -150,14 +150,15 @@
     - name: mythril 
       description: Security analysis tool for Ethereum smart contracts.
       url: https://github.com/ConsenSysDiligence/mythril
-
-     
+- category: Static Analysis
+  tools: 
+    - name: Microsoft IntelliTest 
+      description: Generate a candidate suite of tests for your .NET code.
+      url: https://black.readthedocs.io/en/stable
 
     
 
 
-      
-    
     
     
     
