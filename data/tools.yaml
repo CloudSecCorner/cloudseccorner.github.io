@@ -154,11 +154,40 @@
   tools: 
     - name: Microsoft IntelliTest 
       description: Generate a candidate suite of tests for your .NET code.
-      url: https://black.readthedocs.io/en/stable
-
-    
-
-
+      url: https://black.readthedocs.io/en/stable 
+    - name: Pex and Moles
+      description: Pex automatically generates test suites with high code coverage using automated white box analysis.
+      url: https://www.microsoft.com/en-us/research/project/pex-and-moles-isolation-and-white-box-unit-testing-for-net/
+    - name: chap
+      description: Analyzes un-instrumented ELF core files for leaks, memory growth, and corruption. It helps explain memory growth, can identify some forms of corruption, and  supplements a debugger by giving the status of various memory locations
+      url: https://github.com/vmware/chap
+    - name: KLEE
+      description: Symbolic virtual machine built on top of the LLVM compiler infrastructure.
+      url: https://github.com/klee/klee
+    - name: LDRA
+      description: LDRA Testbed is a software analysis and testing tool suite that provides static and dynamic analysis, and unit testing for embedded applications.
+      url: https://ldra.com
+    - name: LLVM/Clang 
+      description: A collection of modular and reusable compiler and toolchain technologies.
+      url: https://clang.llvm.org/
+    - name: Valgrind 
+      description: A programming tool for memory debugging, memory leak detection, and profiling.
+      url: https://www.valgrind.org/
+    - name: statsviz 
+      description: A runtime statistics visualization tool for Go.
+      url: https://github.com/arl/statsviz 
+    - name: JAVA PathFinder 
+      description: A model checker for Java bytecode programs.
+      url: https://github.com/javapathfinder/jpf-core)
+    - name: Parasoft Jtest
+      description: Automated Java software testing and static analysis tool.
+      url: https://www.parasoft.com/products/jtest/
+    - name: Iroh.js 
+      description: A dynamic code analysis tool for JavaScript. Iroh allows to record your code flow in realtime, intercept runtime informations and manipulate program behaviour on the fly.
+      url: https://github.com/maierfelix/Iroh
+    - name: Jalang12 
+      description: Jalangi2 is a popular framework for writing dynamic analyses for JavaScript.
+      url: https://github.com/Samsung/jalangi2
     
     
     
