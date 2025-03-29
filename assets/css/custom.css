@@ -75,4 +75,8 @@
   .dark .hextra-card-subtitle {
     color: #a0aec0;
   }
-  
+    .hextra-card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2d3748;
+    }  
