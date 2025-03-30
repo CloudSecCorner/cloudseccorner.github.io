@@ -17,8 +17,6 @@ width: full
 {{< rss-feeds url="https://aws.amazon.com/security/security-bulletins/feed/" >}}
 {{< rss-feeds url="https://www.paloaltonetworks.com/blog/feed/" >}}
 {{< rss-feeds url="https://www.darkreading.com/rss.xml" >}}
-{{< rss-feeds url="https://www.sans.org/blog/feed/" >}}
-{{< rss-feeds url="https://www.csoonline.com/index.rss" >}}
 {{< rss-feeds url="https://threatpost.com/feed/" >}}
 {{< rss-feeds url="https://www.zdnet.com/topic/security/rss.xml" >}}
 {{< rss-feeds url="https://www.cyberscoop.com/feed/" >}}
