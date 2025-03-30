@@ -9,3 +9,7 @@ width: full
   {{< icon name="rss" attributes="height=14" >}}
 {{< /hextra/hero-badge >}}
 </div>
+
+
+{{< rss-feeds url="https://feeds.feedburner.com/TheHackersNews"   >}}
+{{< rss-feeds url="https://krebsonsecurity.com/feed/"   >}}
