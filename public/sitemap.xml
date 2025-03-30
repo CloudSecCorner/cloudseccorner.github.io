@@ -3,31 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>//localhost:1313/</loc>
-    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/blog/</loc>
-    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/example/</loc>
-    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/guide/</loc>
-    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/markdown/</loc>
-    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/blog/markdown/</loc>
-    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/</loc>
-    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/docs/nmap/</loc>
   </url><url>
     <loc>//localhost:1313/categories/</loc>
   </url><url>
     <loc>//localhost:1313/docs/</loc>
+  </url><url>
+    <loc>//localhost:1313/tags/</loc>
   </url><url>
     <loc>//localhost:1313/tools/</loc>
   </url>

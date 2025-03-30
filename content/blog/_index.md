@@ -13,3 +13,7 @@ width: full
 
 {{< rss-feeds url="https://feeds.feedburner.com/TheHackersNews"   >}}
 {{< rss-feeds url="https://krebsonsecurity.com/feed/"   >}}
+{{< rss-feeds url="http://www.blackhillsinfosec.com/?feed=rss2" >}}
+{{< rss-feeds url="https://aws.amazon.com/security/security-bulletins/feed/" >}}
+{{< rss-feeds url="https://www.paloaltonetworks.com/blog/feed/" >}}
+
