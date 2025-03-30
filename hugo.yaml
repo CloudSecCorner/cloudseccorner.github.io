@@ -21,8 +21,8 @@ menu:
     - name: Docs
       pageRef: /docs
       weight: 1
-    - name: Blog
-      pageRef: /blog
+    - name: News
+      pageRef: /news
       weight: 2
     - name: tools ↗
       url: /tools

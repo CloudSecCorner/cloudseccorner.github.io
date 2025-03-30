@@ -4,9 +4,9 @@
   <url>
     <loc>//localhost:1313/</loc>
   </url><url>
-    <loc>//localhost:1313/blog/</loc>
-  </url><url>
     <loc>//localhost:1313/docs/nmap/</loc>
+  </url><url>
+    <loc>//localhost:1313/news/</loc>
   </url><url>
     <loc>//localhost:1313/categories/</loc>
   </url><url>
