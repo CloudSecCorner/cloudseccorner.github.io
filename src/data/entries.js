@@ -11,9 +11,13 @@
  * }
  */
 
-import { llmEntries } from './llm-entries';
-import { aiEntries } from './ai-entries';
-import { mcpEntries } from './mcp-entries';
+import { securityEntries } from './security-entries';
 
-// Combine all entries
-export const entries = [...aiEntries, ...llmEntries, ...mcpEntries];
+export const entries = [
+
+ 
+  ...securityEntries
+
+];
+
+

@@ -65,16 +65,15 @@ function Blog() {
         // Fallback to hardcoded data if all fetch attempts fail
         const fallbackData = [
           {
-              "id": "Qwen-Coder-Models",
-              "title": "Qwen Coder Models: Breakthrough AI at Your Fingertips",
-              "date": "April 23, 2025",
-              "excerpt": "Qwen Coder Models are a new generation of AI models that are designed to be more efficient and effective than traditional LLM models.",
-              "author": "Sangam Biradar",
-              "file": "/blog/Qwen-Coder-Models.md",
-              "category": "LLM",
-              "tags": ["Qwen Coder Models", "AI", "LLM", "LLM Models", "LLM Framework", "LLM Model", "LLM Vector Database", "LLM Tool", "MCP Core", "MCP Database", "MCP Finance", "MCP Web", "MCP Developer", "MCP AI", "MCP AI Tools", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks"]
+            id: "Safeguarding-the-AI-Frontier",
+            title: "Safeguarding the AI Frontier: An In-Depth Analysis of Straiker's Revolutionary Security Solutions",
+            date: "April 23, 2025",
+            excerpt: "Straiker secure enterprise AI applications",
+            author: "Sangam Biradar",
+            file: "/blog/Straikers-Revouktionary-solution.md",
+            category: "Agentic Security",
+            tags: ["Straiker", "AI", "Security"]
           }
-     
         ]
         
         console.log('Using fallback blog data');
@@ -94,15 +93,15 @@ function Blog() {
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "Blog",
-      "name": "AI Data Foundation Blog",
-      "url": "https://aidatafoundation.github.io/blog",
-      "description": "Stay updated with the latest AI research, tools, and insights from our team and community contributors.",
+      "name": "Cloud Security Corner Blog",
+      "url": "https://cloudseccorner.github.io/blog",
+      "description": "Stay updated with the latest cybersecurity research, tools, and insights from our team and community contributors.",
       "publisher": {
         "@type": "Organization",
-        "name": "AI Data Foundation",
+        "name": "Cloud Security Corner",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://aidatafoundation.github.io/android-icon-192x192.png"
+          "url": "https://cloudseccorner.github.io/android-icon-192x192.png"
         }
       },
       "blogPost": blogPosts.map(post => ({
@@ -112,9 +111,9 @@ function Blog() {
         "datePublished": new Date(post.date).toISOString(),
         "author": {
           "@type": "Person",
-          "name": post.author || "AI Data Foundation"
+          "name": post.author || "Cloud Security Corner"
         },
-        "url": `https://aidatafoundation.github.io/blog/${post.id}`
+        "url": `https://cloudseccorner.github.io/blog/${post.id}`
       }))
     };
 
@@ -138,26 +137,26 @@ function Blog() {
       "@type": "BlogPosting",
       "headline": currentPost.title,
       "description": currentPost.excerpt,
-      "image": "https://aidatafoundation.github.io/og-image.png",
+      "image": "https://cloudseccorner.github.io/og-image.png",
       "datePublished": new Date(currentPost.date).toISOString(),
       "dateModified": new Date(currentPost.date).toISOString(),
       "author": {
         "@type": "Person",
-        "name": currentPost.author || "AI Data Foundation"
+        "name": currentPost.author || "Cloud Security Corner"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "AI Data Foundation",
+        "name": "Cloud Security Corner",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://aidatafoundation.github.io/android-icon-192x192.png"
+          "url": "https://cloudseccorner.github.io/android-icon-192x192.png"
         }
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": `https://aidatafoundation.github.io/blog/${currentPost.id}`
+        "@id": `https://cloudseccorner.github.io/blog/${currentPost.id}`
       },
-      "keywords": "AI, artificial intelligence, machine learning, data science, AI tools, AI research"
+      "keywords": "Cloud Security, Cybersecurity, Application Security, Network Security, Cloud Security Posture Management, DevSecOps"
     };
 
     // Add structured data to head
@@ -318,9 +317,9 @@ function Blog() {
   return (
     <div className="w-full mx-auto px-4 py-8 blog-content-container">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-center text-primary mb-2">AI Data Foundation Blog</h1>
+        <h1 className="text-3xl font-bold text-center text-primary mb-2">Cloud Security Corner Blog</h1>
         <p className="text-grayFill text-center max-w-[800px] mx-auto">
-          Stay updated with the latest AI research, tools, and insights from our team and community contributors.
+          Stay updated with the latest cybersecurity research, tools, and insights from our team and community contributors.
         </p>
         
         {/* Debug toggle button */}
@@ -339,7 +338,7 @@ function Blog() {
           <h2 className="text-xl font-semibold text-primary">Latest Posts</h2>
           <Button 
             variant="outline" 
-            onClick={() => window.open('https://github.com/aidatafoundation/aidatafoundation.github.io/tree/main/public/blog', '_blank')}
+            onClick={() => window.open('https://github.com/cloudseccorner/cloudseccorner.github.io/tree/main/public/blog', '_blank')}
             className="text-sm"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -358,7 +357,7 @@ function Blog() {
       <div className="bg-bgGray rounded-xl p-8 border border-gray-800">
         <h2 className="text-xl font-semibold text-primary mb-4">Want to Contribute?</h2>
         <p className="text-grayFill mb-6">
-          We welcome blog post contributions from the community. Share your knowledge, insights, and experiences related to AI data, tools, and methodologies.
+          We welcome blog post contributions from the security community. Share your knowledge, insights, and experiences related to cloud security, application security, and cybersecurity best practices.
         </p>
         <div className="space-y-4">
           <div className="flex items-start">
@@ -391,7 +390,7 @@ function Blog() {
           </div>
         </div>
         <Button 
-          onClick={() => window.open('https://github.com/aidatafoundation/aidatafoundation.github.io/blob/main/public/blog/3-categories-and-contributing.md', '_blank')}
+          onClick={() => window.open('https://github.com/cloudseccorner/cloudseccorner.github.io/blob/main/public/blog/3-categories-and-contributing.md', '_blank')}
           className="mt-6"
         >
           View Contribution Guidelines
@@ -411,7 +410,7 @@ function BlogPostDetail({ post }) {
   return (
     <div className="bg-slate-50/50 dark:bg-slate-900 p-8 rounded-xl shadow-md w-full">
       <OpenGraph
-        title={`${post.title} | AI Data Foundation Blog`}
+        title={`${post.title} | Cloud Security Corner Blog`}
         description={post.excerpt}
         url={`/blog/${post.id}`}
         image={post.image || "/og-image.png"}
@@ -475,7 +474,7 @@ function BlogPostDetail({ post }) {
             </button>
           </div>
           <a 
-            href={`https://github.com/aidatafoundation/aidatafoundation.github.io/edit/main/public${(post.path || post.file)}`} 
+            href={`https://github.com/cloudseccorner/cloudseccorner.github.io/edit/main/public${(post.path || post.file)}`} 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-sm text-indigo-500 hover:underline flex items-center"

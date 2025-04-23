@@ -6,35 +6,51 @@ function ToolsSection() {
   const [search, setSearch] = useState("");
   const [selectVal, setSelectVal] = useState("");
   const [sortBy, setSortBy] = useState("default");
-  const [categoryType, setCategoryType] = useState("all"); // "all", "ai", "llm", "mcp"
+  const [categoryType, setCategoryType] = useState("all"); // "all", "app", "network", "cloud", "agentic"
   const [showContributeModal, setShowContributeModal] = useState(false);
 
   // Extract unique tags from entries
   let allTags = Array.from(new Set(entries.map((entry) => entry.tag))).sort();
   
-  // Separate AI, LLM, and MCP tags
-  const aiTags = allTags.filter(tag => 
-    tag.includes("Machine Learning") || 
-    tag.includes("Deep Learning") || 
-    tag.includes("Data") || 
-    tag.includes("Reinforcement") || 
-    tag === "Programming" ||
-    tag.includes("Artificial Intelligence")
+  // Separate security tag categories
+  const appSecurityTags = allTags.filter(tag => 
+    tag.includes("Application Security") || 
+    tag.includes("Web Security") || 
+    tag.includes("Web Application Firewall") ||
+    tag.includes("Vulnerability") ||
+    tag.includes("Scanner") ||
+    tag === "Penetration Testing"
   );
   
-  const llmTags = allTags.filter(tag => 
-    tag.includes("LLM") || 
-    tag.includes("Vector Database")
+  const networkSecurityTags = allTags.filter(tag => 
+    tag.includes("Network Security") || 
+    tag.includes("Network Analysis") ||
+    tag.includes("Intrusion Detection") ||
+    tag.includes("Wireless Security")
   );
   
-  const mcpTags = allTags.filter(tag => 
-    tag.includes("MCP")
+  const cloudSecurityTags = allTags.filter(tag => 
+    tag.includes("Cloud Security") ||
+    tag.includes("Container Security") ||
+    tag.includes("System Auditing")
+  );
+  
+  const agenticSecurityTags = allTags.filter(tag => 
+    tag.includes("AI Security") || 
+    tag.includes("LLM Security") ||
+    tag.includes("Autonomous Security") ||
+    tag.includes("Agent Security") ||
+    tag.includes("Agentic Security") ||
+    tag.includes("AI Agent") 
+   
   );
   
   // Select which tags to display based on categoryType
   let dropdownTags = categoryType === "all" ? allTags : 
-                     categoryType === "ai" ? aiTags : 
-                     categoryType === "llm" ? llmTags : mcpTags;
+                     categoryType === "app" ? appSecurityTags : 
+                     categoryType === "network" ? networkSecurityTags : 
+                     categoryType === "cloud" ? cloudSecurityTags :
+                     agenticSecurityTags;
 
   // Function to sort tools based on selected criteria
   const sortTools = (filteredEntries) => {
@@ -62,12 +78,14 @@ function ToolsSection() {
     
     // Check if tag belongs to the selected category type
     let categoryMatches = true;
-    if (categoryType === "ai") {
-      categoryMatches = aiTags.includes(entry.tag);
-    } else if (categoryType === "llm") {
-      categoryMatches = llmTags.includes(entry.tag);
-    } else if (categoryType === "mcp") {
-      categoryMatches = mcpTags.includes(entry.tag);
+    if (categoryType === "app") {
+      categoryMatches = appSecurityTags.includes(entry.tag);
+    } else if (categoryType === "network") {
+      categoryMatches = networkSecurityTags.includes(entry.tag);
+    } else if (categoryType === "cloud") {
+      categoryMatches = cloudSecurityTags.includes(entry.tag);
+    } else if (categoryType === "agentic") {
+      categoryMatches = agenticSecurityTags.includes(entry.tag);
     }
     
     return (titleMatches || descriptionMatches) && tagMatches && categoryMatches;
@@ -78,11 +96,11 @@ function ToolsSection() {
 
   // Sample entry for contribution example
   const sampleEntry = {
-    title: "Your Tool Name",
+    title: "Your Security Tool Name",
     link: "https://your-tool-website.com",
-    description: "A brief description of your tool and what it does",
+    description: "A brief description of your security tool and what it does",
     github: "yourusername/repo-name",
-    tag: "Machine Learning - Framework"
+    tag: "Application Security"
   };
 
   return (
@@ -91,10 +109,10 @@ function ToolsSection() {
         <div className="w-full flex flex-col md:flex-row items-center justify-between">
           <div className="flex flex-col items-center md:items-start">
             <h2 className="text-3xl font-semibold text-slate-900 dark:text-white mb-2">
-            AI Data Tools
+            Security Tools Collection
           </h2>
             <p className="text-base text-slate-600 dark:text-slate-300 max-w-2xl text-center md:text-left mb-6">
-            Discover and explore the best tools for AI, Machine Learning, and Data Science
+            Discover and explore the best tools for application, network, cloud, and agentic security
           </p>
           </div>
           <button
@@ -109,7 +127,7 @@ function ToolsSection() {
         </div>
 
         {/* Category Type Selector */}
-        <div className="w-full flex justify-center mb-4">
+        <div className="w-full flex justify-center mb-4 overflow-x-auto">
           <div className="inline-flex rounded-md shadow-sm" role="group">
             <button
               type="button"
@@ -123,49 +141,63 @@ function ToolsSection() {
                 setSelectVal("");
               }}
             >
-              All Tools
+              All Security Tools
             </button>
             <button
               type="button"
               className={`px-4 py-2 text-sm font-medium ${
-                categoryType === "ai" 
+                categoryType === "app" 
                   ? "bg-indigo-600 text-white hover:bg-indigo-700" 
                   : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border-t border-b border-slate-200 dark:border-slate-700"
               }`}
               onClick={() => {
-                setCategoryType("ai");
+                setCategoryType("app");
                 setSelectVal("");
               }}
             >
-              AI & ML Tools
+              Application Security
             </button>
             <button
               type="button"
               className={`px-4 py-2 text-sm font-medium ${
-                categoryType === "llm" 
+                categoryType === "network" 
                   ? "bg-indigo-600 text-white hover:bg-indigo-700" 
                   : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border-t border-b border-slate-200 dark:border-slate-700"
               }`}
               onClick={() => {
-                setCategoryType("llm");
+                setCategoryType("network");
                 setSelectVal("");
               }}
             >
-              LLMs
+              Network Security
+            </button>
+            <button
+              type="button"
+              className={`px-4 py-2 text-sm font-medium ${
+                categoryType === "cloud" 
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
+                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border-t border-b border-slate-200 dark:border-slate-700"
+              }`}
+              onClick={() => {
+                setCategoryType("cloud");
+                setSelectVal("");
+              }}
+            >
+              Cloud Security
             </button>
             <button
               type="button"
               className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
-                categoryType === "mcp" 
+                categoryType === "agentic" 
                   ? "bg-indigo-600 text-white hover:bg-indigo-700" 
                   : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700"
               }`}
               onClick={() => {
-                setCategoryType("mcp");
+                setCategoryType("agentic");
                 setSelectVal("");
               }}
             >
-              MCP Servers
+              Agentic Security
             </button>
           </div>
         </div>
@@ -181,7 +213,7 @@ function ToolsSection() {
             <input
               type="search"
               className="w-full pl-10 pr-4 py-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 placeholder-slate-500 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Search tools..."
+              placeholder="Search security tools..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -219,9 +251,10 @@ function ToolsSection() {
         
         {/* Results count */}
         <div className="w-full text-left text-slate-500 dark:text-slate-300 pb-4">
-          Found {sortedEntries.length} {categoryType === "all" ? "tools" : 
-          categoryType === "ai" ? "AI tools" : 
-          categoryType === "llm" ? "LLM tools" : "MCP servers"}
+          Found {sortedEntries.length} {categoryType === "all" ? "security tools" : 
+          categoryType === "app" ? "application security tools" : 
+          categoryType === "network" ? "network security tools" : 
+          categoryType === "cloud" ? "cloud security tools" : "agentic security tools"}
         </div>
         
         {/* Display message if no results */}
@@ -256,7 +289,7 @@ function ToolsSection() {
           <div className="bg-white dark:bg-slate-800 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Contribute a Tool
+                Contribute a Security Tool
               </h3>
               <button 
                 onClick={() => setShowContributeModal(false)}
@@ -271,16 +304,14 @@ function ToolsSection() {
               <div className="mb-6">
                 <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">How to Contribute</h4>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  You can contribute to our tools collection by submitting a pull request to our GitHub repository. 
+                  You can contribute to our security tools collection by submitting a pull request to our GitHub repository. 
                   Follow these steps to add your tool:
                 </p>
                 <ol className="list-decimal pl-6 text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>Fork the <a href="https://github.com/aidatafoundation/aidatafoundation.github.io" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">repository</a></li>
+                  <li>Fork the <a href="https://github.com/cloudseccorner/cloudseccorner.github.io" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">repository</a></li>
                   <li>Edit the appropriate entries file in <code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">src/data/</code> based on your tool category:
                     <ul className="list-disc pl-6 mt-1 space-y-1">
-                      <li><code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">ai-entries.js</code> for AI tools</li>
-                      <li><code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">llm-entries.js</code> for LLM tools</li>
-                      <li><code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">mcp-entries.js</code> for MCP servers</li>
+                      <li><code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">security-entries.js</code> for security tools</li>
                     </ul>
                   </li>
                   <li>Add your tool entry in the appropriate section following the format below</li>
@@ -323,7 +354,7 @@ function ToolsSection() {
               
               <div className="flex justify-between items-center pt-4 border-t border-gray-200 dark:border-gray-700">
                 <a 
-                  href="https://github.com/aidatafoundation/aidatafoundation.github.io/blob/main/CONTRIBUTING.md" 
+                  href="https://github.com/cloudseccorner/cloudseccorner.github.io/blob/main/CONTRIBUTING.md" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-blue-600 dark:text-blue-400 hover:underline flex items-center"
@@ -341,7 +372,7 @@ function ToolsSection() {
                     Close
                   </button>
                   <a 
-                    href="https://github.com/aidatafoundation/aidatafoundation.github.io/tree/main/src/data" 
+                    href="https://github.com/cloudseccorner/cloudseccorner.github.io/tree/main/src/data" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"

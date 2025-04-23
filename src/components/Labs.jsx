@@ -12,41 +12,13 @@ import OpenGraph from "./OpenGraph";
 // Fallback data in case the fetch fails
 const fallbackLabsData = [
   {
-    id: "LangChain-Practical-Labs",
-    title: "LangChain Practical Labs",
-    description: "LangChain is a framework for building LLM applications. It provides a way to connect LLMs to other tools and data sources.",
-    category: "LLM",
-    path: "/labs/LangChain-Practical-Labs.md",
+    id: "NMAP-Practical-Labs",
+    title: "NMAP Practical Labs",
+    description: "NMAP is a network scanner that can be used to scan networks and identify open ports, services, and other information.",
+    category: "Network Security",
+    path: "/labs/NMAP-Practical-Labs.md",
     contributors: ["Sangam Biradar"],
-    tags: ["LLM", "LangChain"],
-    image: "/images/LangChain.svg"
-  },
-  {
-    id: "ethical-synthetic-data",
-    title: "Ethical Considerations in Synthetic Data Generation",
-    description: "Addressing privacy, bias, and fairness concerns in the creation and use of synthetic datasets for AI training.",
-    category: "Ethics",
-    path: "/labs/ethical-synthetic-data.md",
-    contributors: ["james.wilson", "aisha.patel"],
-    tags: ["ethics", "synthetic data", "privacy", "bias", "fairness"]
-  },
-  {
-    id: "llm-evaluation",
-    title: "LLM Evaluation Framework",
-    description: "Open source methodology for evaluating large language models across multiple dimensions.",
-    category: "Evaluation",
-    path: "/labs/llm-evaluation.md",
-    contributors: ["robin.zhang"],
-    tags: ["evaluation", "LLM", "benchmarks", "methodology"]
-  },
-  {
-    id: "reinforcement-learning",
-    title: "Reinforcement Learning Lab",
-    description: "Developing intelligent agents that learn optimal decision-making strategies through interaction with their environment.",
-    category: "Reinforcement Learning",
-    path: "/labs/reinforcement-learning.md",
-    contributors: ["alex-kumar", "olivia-chen"],
-    tags: ["reinforcement learning", "RL", "agents", "decision-making"]
+    tags: ["Network Security"],
   }
 ];
 
@@ -242,14 +214,14 @@ function LabsList() {
             </div>
           </div>
           <div className="text-center md:text-left flex-grow">
-            <h3 className="text-xl font-semibold mb-2">Propose a New Lab</h3>
+            <h3 className="text-xl font-semibold mb-2">Propose a New Security Lab</h3>
             <p className="text-slate-400 mb-6 max-w-2xl">
-              Have an idea for a new AI research project? Propose a new lab and invite others to collaborate on cutting-edge AI research and development.
+              Have an idea for a new cybersecurity lab? Propose a new security lab and invite others to collaborate on cutting-edge security research, testing, and defense mechanisms.
             </p>
           </div>
           <div>
             <a 
-              href="https://github.com/AIDataFoundation/aidatafoundation.github.io/issues/new?labels=new-lab&template=new-lab-proposal.md&title=Lab Proposal: [Your Lab Title]" 
+              href="https://github.com/cloudseccorner/cloudseccorner.github.io/issues/new?labels=new-lab&template=new-lab-proposal.md&title=Lab Proposal: [Your Lab Title]" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition"
@@ -285,7 +257,7 @@ function LabsList() {
               </div>
               <h3 className="text-lg font-semibold mb-2">Create or Edit Markdown</h3>
               <p className="text-slate-400">
-                Add your content in markdown format following our templates and guidelines for structure.
+                Add your security lab content in markdown format following our templates and guidelines for structure.
               </p>
             </CardContent>
           </Card>
@@ -311,24 +283,24 @@ function LabsList() {
             Markdown Format
           </h3>
           <p className="text-slate-400 mb-4">
-            Each lab project uses markdown files to store content. Here's our basic structure:
+            Each security lab uses markdown files to store content. Here's our basic structure:
           </p>
           <pre className="bg-slate-950 p-4 rounded-md overflow-x-auto text-sm">
             <code>{
-`# Lab Title
+`# Security Lab Title
 
 ## Overview
-Brief description of the lab project
+Brief description of the security lab and its purpose
 
 ## Goals
 - Goal 1
 - Goal 2
 
 ## Methodology
-Detailed explanation...
+Detailed explanation of security testing approach...
 
 ## Current Progress
-Ongoing work and achievements...
+Ongoing security research and findings...
 
 ## How to Contribute
 Specific guidelines for this lab...`
@@ -495,13 +467,13 @@ ${selectedLab.contributors.join(', ')}
     return <div>Loading...</div>;
   }
 
-  const siteUrl = "https://aidatafoundation.github.io";
+  const siteUrl = "https://cloudseccorner.github.io";
   const imageUrl = lab.image ? `${siteUrl}${lab.image}` : `${siteUrl}/og-image.png`;
 
   return (
     <div className="bg-slate-900 p-8 rounded-xl shadow-md w-full">
       <OpenGraph
-        title={`${lab.title} | AI Data Foundation Labs`}
+        title={`${lab.title} | Cloud Security Corner Labs`}
         description={lab.description}
         url={`/labs/${lab.id}`}
         image={imageUrl}
@@ -555,7 +527,7 @@ ${selectedLab.contributors.join(', ')}
         <h3 className="text-xl font-semibold mb-4">Want to contribute to this lab?</h3>
         <div className="flex flex-wrap gap-4">
           <a 
-            href={`https://github.com/AIDataFoundation/aidatafoundation.github.io/edit/main${lab.path}`}
+            href={`https://github.com/cloudseccorner/cloudseccorner.github.io/edit/main${lab.path}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition"
@@ -566,7 +538,7 @@ ${selectedLab.contributors.join(', ')}
             Edit this page
           </a>
           <a 
-            href={`https://github.com/AIDataFoundation/aidatafoundation.github.io/issues/new?title=Feedback on lab: ${lab.title}`}
+            href={`https://github.com/cloudseccorner/cloudseccorner.github.io/issues/new?title=Feedback on lab: ${lab.title}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-4 py-2 bg-indigo-600/70 hover:bg-indigo-700 text-white rounded-md transition"
@@ -596,15 +568,22 @@ ${selectedLab.contributors.join(', ')}
 // Helper function to get badge variant based on category
 const getCategoryVariant = (category) => {
   const categoryMap = {
-    "Data Quality": "data",
-    "Ethics": "mcpAI",
-    "Evaluation": "ml",
-    "NLP": "llmFramework",
-    "Reinforcement Learning": "reinforcement",
-    "Computer Vision": "llmVector",
-    "Multimodal": "llmModel",
-    "Tools": "llmTool",
-    "Infrastructure": "mcpCore",
+    "Application Security": "appSecurity",
+    "Web Security": "webSecurity", 
+    "Network Security": "networkSecurity",
+    "Cloud Security": "cloudSecurity",
+    "Container Security": "containerSecurity",
+    "Penetration Testing": "pentest",
+    "Vulnerability Scanner": "vulnScan",
+    "Intrusion Detection": "intrusion",
+    "System Auditing": "sysAudit",
+    "Threat Intelligence": "threatIntel",
+    "Security Distribution": "secDistro",
+    "Wireless Security": "wirelessSec",
+    "Password Cracking": "password",
+    "Reconnaissance": "recon",
+    "Agentic Security": "appSecurity",
+    "AI Security": "appSecurity"
   };
   
   return categoryMap[category] || "default";
@@ -613,40 +592,40 @@ const getCategoryVariant = (category) => {
 // Main Labs component
 function Labs() {
   const { labId } = useParams();
-  const siteUrl = "https://aidatafoundation.github.io";
+  const siteUrl = "https://cloudseccorner.github.io";
 
   return (
     <div className="text-white w-full mx-auto px-4 py-8 lab-content-container">
       {!labId && (
         <Helmet>
-          <title>AI Data Foundation Labs | Research Projects & Experiments</title>
-          <meta name="description" content="Explore AI Data Foundation's experimental labs where we test new ideas, methodologies, and technologies in artificial intelligence." />
+          <title>Cloud Security Corner Labs | Security Projects & Experiments</title>
+          <meta name="description" content="Explore Cloud Security Corner's experimental labs where we test new ideas, methodologies, and technologies in cybersecurity." />
           
           {/* Open Graph / Facebook */}
           <meta property="og:type" content="website" />
           <meta property="og:url" content={`${siteUrl}/labs`} />
-          <meta property="og:title" content="AI Data Foundation Labs | Research Projects & Experiments" />
-          <meta property="og:description" content="Explore AI Data Foundation's experimental labs where we test new ideas, methodologies, and technologies in artificial intelligence." />
+          <meta property="og:title" content="Cloud Security Corner Labs | Security Projects & Experiments" />
+          <meta property="og:description" content="Explore Cloud Security Corner's experimental labs where we test new ideas, methodologies, and technologies in cybersecurity." />
           <meta property="og:image" content={`${siteUrl}/og-image.png`} />
           
           {/* Twitter */}
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:url" content={`${siteUrl}/labs`} />
-          <meta property="twitter:title" content="AI Data Foundation Labs | Research Projects & Experiments" />
-          <meta property="twitter:description" content="Explore AI Data Foundation's experimental labs where we test new ideas, methodologies, and technologies in artificial intelligence." />
+          <meta property="twitter:title" content="Cloud Security Corner Labs | Security Projects & Experiments" />
+          <meta property="twitter:description" content="Explore Cloud Security Corner's experimental labs where we test new ideas, methodologies, and technologies in cybersecurity." />
           <meta property="twitter:image" content={`${siteUrl}/og-image.png`} />
         </Helmet>
       )}
 
-      <h1 className="text-3xl font-bold mb-4 text-center">AI Data Foundation Labs</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">Cloud Security Corner Labs</h1>
       <p className="text-slate-400 text-lg mb-8 text-center max-w-3xl mx-auto">
-        Explore our experimental AI labs where we test new ideas, methodologies, and technologies.
-        Anyone can contribute to these projects through markdown files.
+        Explore our cybersecurity labs where we test defensive and offensive techniques, methodologies, and technologies.
+        Anyone can contribute to these security projects through markdown files.
       </p>
       
       <div className="mb-8 text-center">
         <a 
-          href="https://github.com/AIDataFoundation/aidatafoundation.github.io" 
+          href="https://github.com/cloudseccorner/cloudseccorner.github.io" 
           target="_blank" 
           rel="noopener noreferrer"
           className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition"

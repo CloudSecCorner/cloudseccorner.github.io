@@ -7,36 +7,35 @@ import GitHubButton from 'react-github-btn';
 function ToolCard({ title, link, description, github, tag }) {
   // Helper function to get a badge variant based on the tag
   const getBadgeVariant = (tag) => {
-    if (tag.includes("Machine Learning") || tag.includes("Deep Learning")) {
-      return "ml";
-    } else if (tag.includes("Data")) {
-      return "data";
-    } else if (tag.includes("Reinforcement")) {
-      return "reinforcement";
-    } else if (tag === "Programming") {
-      return "programming";
-    } else if (tag.includes("LLM Framework")) {
-      return "llmFramework";
-    } else if (tag.includes("LLM Model")) {
-      return "llmModel";
-    } else if (tag.includes("LLM Vector Database")) {
-      return "llmVector";
-    } else if (tag.includes("LLM Tool")) {
-      return "llmTool";
-    } else if (tag.includes("MCP Core")) {
-      return "mcpCore";
-    } else if (tag.includes("MCP Database")) {
-      return "mcpDatabase";
-    } else if (tag.includes("MCP Finance")) {
-      return "mcpFinance";
-    } else if (tag.includes("MCP Web")) {
-      return "mcpWeb";
-    } else if (tag.includes("MCP Developer")) {
-      return "mcpDeveloper";
-    } else if (tag.includes("MCP AI")) {
-      return "mcpAI";
-    } else if (tag.includes("MCP Productivity")) {
-      return "mcpProductivity";
+
+    if (tag.includes("Application Security")) {
+      return "appSecurity";
+    } else if (tag.includes("Web Security") || tag.includes("Web Application Firewall")) {
+      return "webSecurity";
+    } else if (tag.includes("Network Security") || tag.includes("Network Analysis")) {
+      return "networkSecurity";
+    } else if (tag.includes("Cloud Security")) {
+      return "cloudSecurity";
+    } else if (tag.includes("Container Security")) {
+      return "containerSecurity";
+    } else if (tag.includes("Penetration Testing")) {
+      return "pentest";
+    } else if (tag.includes("Vulnerability") || tag.includes("Scanner")) {
+      return "vulnScan";
+    } else if (tag.includes("Intrusion Detection")) {
+      return "intrusion";
+    } else if (tag.includes("System Auditing")) {
+      return "sysAudit";
+    } else if (tag.includes("Threat Intelligence")) {
+      return "threatIntel";
+    } else if (tag.includes("Security Distribution")) {
+      return "secDistro";
+    } else if (tag.includes("Wireless Security")) {
+      return "wirelessSec";
+    } else if (tag.includes("Password")) {
+      return "password";
+    } else if (tag.includes("Reconnaissance")) {
+      return "recon";
     } else {
       return "default";
     }

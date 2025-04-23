@@ -7,28 +7,55 @@ import ModelLeaderboard from "./ModelLeaderboard";
 import logoSvg from "../assets/logo-page.png";
 
 function LandingPage() {
-  // Sample featured tools
+  // Sample featured tools data
   const featuredTools = [
     {
-      id: 1,
-      title: "AWS Security",
-      description: "Resources and tools for securing your AWS cloud infrastructure with best practices and compliance frameworks.",
+      id: "wiz",
+      title: "Wiz",
+      description: "Cloud security platform providing visibility and risk assessment across multi-cloud environments.",
       category: "Cloud Security",
-      stars: 5720
+      rating: 5,
+      logo: "https://wiz.io/wp-content/uploads/2021/12/wiz-logo.svg"
     },
     {
-      id: 2,
-      title: "Azure Defender",
-      description: "Comprehensive security monitoring and threat protection for your Azure cloud environments.",
-      category: "Cloud Protection",
-      stars: 4350
+      id: "crowdstrike",
+      title: "CrowdStrike Falcon",
+      description: "Next-generation endpoint protection platform with advanced threat detection and response capabilities.",
+      category: "Endpoint Security",
+      rating: 5,
+      logo: "https://www.crowdstrike.com/wp-content/uploads/2021/05/crowdstrike-logo.svg"
     },
     {
-      id: 3,
-      title: "GCP Security Command Center",
-      description: "Unified security management system providing visibility into your Google Cloud Platform resources.",
-      category: "Security Management",
-      stars: 3800
+      id: "palo-alto",
+      title: "Palo Alto Networks",
+      description: "Comprehensive security platform offering firewall, cloud security, and threat prevention solutions.",
+      category: "Network Security",
+      rating: 5,
+      logo: "https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/brand/primary-company-logo.svg"
+    },
+    {
+      id: "tenable",
+      title: "Tenable.io",
+      description: "Vulnerability management platform for identifying and prioritizing security risks across your attack surface.",
+      category: "Vulnerability Management",
+      rating: 4,
+      logo: "https://www.tenable.com/sites/all/themes/tenable/images/tenable-logo.svg"
+    },
+    {
+      id: "splunk",
+      title: "Splunk Enterprise Security",
+      description: "SIEM solution providing security monitoring, analytics, and incident response capabilities.",
+      category: "SIEM",
+      rating: 4,
+      logo: "https://www.splunk.com/content/dam/splunk2/images/logos/splunk-logo.svg"
+    },
+    {
+      id: "darktrace",
+      title: "Darktrace",
+      description: "AI-powered cyber defense platform for detecting and responding to cyber threats in real-time.",
+      category: "AI Security",
+      rating: 5,
+      logo: "https://www.darktrace.com/wp-content/uploads/2021/05/darktrace-logo.svg"
     }
   ];
 
@@ -224,11 +251,10 @@ function LandingPage() {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-16 relative z-10">
-            <span className="inline-block text-blue-600 dark:text-blue-400 font-semibold tracking-wider text-sm uppercase mb-3">FEATURED RESOURCES</span>
-            <h2 className="text-slate-900 dark:text-white text-3xl lg:text-4xl font-bold mb-4 leading-tight">Discover Cloud Security Tools</h2>
-            <p className="text-slate-600 dark:text-slate-300 text-xl max-w-3xl mx-auto">
-              Browse through our curated collection of notable cloud security resources that are enhancing security across major cloud platforms.
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Featured Cybersecurity Tools</h2>
+            <p className="text-xl text-muted-foreground">
+              Discover leading cybersecurity solutions for comprehensive protection
             </p>
           </div>
           
@@ -247,31 +273,38 @@ function LandingPage() {
                       <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
-                      {tool.stars.toLocaleString()}
+                      {tool.rating.toLocaleString()}
                     </div>
                   </div>
                   <div className="flex items-center gap-3 mb-3">
-                    {tool.id === 1 && (
+                    {tool.id === "wiz" && (
                       <div className="w-10 h-10 flex items-center justify-center bg-[#FF9900]/10 rounded-md">
-                        <svg width="30" height="30" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
-                          <path d="M72.4 0c-4.3.6-8.5 1.4-12.6 2.3-4.8 1.2-9.5 2.9-13.9 5.2-12.8 6.7-21.7 20.1-21.7 35.6v15.7l-.9-.1c-2.4-.3-4.9.2-7 1.3-5 2.9-5.5 10.5-1 14.1 1.5 1.3 3.4 2 5.3 2.2l3.6.2V114l-3.6.2c-1.9.2-3.7 1-5.3 2.2-4.4 3.6-4 11.2 1 14.1 2.1 1.1 4.6 1.6 7 1.3l.9-.1v15.7c0 15.5 8.9 28.9 21.7 35.6 4.4 2.2 9.1 4 13.9 5.2 4.1 1 8.3 1.7 12.6 2.3 6.8.9 14.4 1.4 22 1.4v-.9c-9.7-1.2-15.9-2.9-15.9-4.9 0-2 6.2-3.7 15.9-4.9V42.8c-9.7-1.2-15.9-2.9-15.9-4.9 0-2 6.2-3.7 15.9-4.9V.1c-7.6 0-15.2.5-22 1.4zm96.7 0c4.3.6 8.5 1.4 12.6 2.3 4.8 1.2 9.5 2.9 13.9 5.2 12.8 6.7 21.7 20.1 21.7 35.6v15.7l.9-.1c2.4-.3 4.9.2 7 1.3 5 2.9 5.5 10.5 1 14.1-1.5 1.3-3.4 2-5.3 2.2l-3.6.2V114l3.6.2c1.9.2 3.7 1 5.3 2.2 4.4 3.6 4 11.2-1 14.1-2.1 1.1-4.6 1.6-7 1.3l-.9-.1v15.7c0 15.5-8.9 28.9-21.7 35.6-4.4 2.2-9.1 4-13.9 5.2-4.1 1-8.3 1.7-12.6 2.3-6.8.9-14.4 1.4-22 1.4v-.9c9.7-1.2 15.9-2.9 15.9-4.9 0-2-6.2-3.7-15.9-4.9V42.8c9.7-1.2 15.9-2.9 15.9-4.9 0-2-6.2-3.7-15.9-4.9V.1c7.6 0 15.2.5 22 1.4zM120 195.2l.7.1c15.6 2 27.5 6 27.5 10.6 0 6.6-21.8 12-48.1 12-26.3 0-48.1-5.4-48.1-12 0-4.7 11.9-8.6 27.5-10.7l.7-.1v-6.1c-23.6 2.5-41.5 9.5-41.5 17.8 0 10.5 27.7 19.1 61.9 19.1 34.2 0 61.9-8.6 61.9-19.1 0-8.3-17.9-15.3-41.4-17.8v6.2zM64.8 52.6l-.7-.1c-15.6-1.9-27.5-5.9-27.5-10.6 0-6.6 21.8-12 48.1-12 26.3 0 48.1 5.4 48.1 12 0 4.7-11.9 8.7-27.5 10.7l-.7.1v6.1c23.6-2.5 41.5-9.5 41.5-17.8 0-10.5-27.7-19.1-61.9-19.1-34.2 0-61.9 8.6-61.9 19.1 0 8.3 17.9 15.3 41.4 17.8v-6.2z" fill="#FF9900"/>
-                        </svg>
+                        <img src={tool.logo} alt={tool.title} className="w-10 h-10 object-contain" />
                       </div>
                     )}
-                    {tool.id === 2 && (
+                    {tool.id === "crowdstrike" && (
                       <div className="w-10 h-10 flex items-center justify-center bg-[#0078D4]/10 rounded-md">
-                        <svg width="30" height="30" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M31 30H6.6a3.2 3.2 0 00-3.3 3.3v89.9a7.5 7.5 0 007.4 7.4h58a3.2 3.2 0 003.3-3.3V102H31z" fill="#0078D4"/>
-                          <path d="M87.3 30h90.9a3.2 3.2 0 013.3 3.3v89.9a7.5 7.5 0 01-7.4 7.4H90a3.2 3.2 0 01-3.3-3.3V30.6a.6.6 0 01.5-.6z" fill="#0078D4"/>
-                          <path d="M71 42.7h31.6v31.6H71zm43.3 0h31.6v31.6h-31.6zm-43.3 43.4h31.6v31.6H71zm43.3 0h31.6v31.6h-31.6z" fill="#0078D4"/>
-                        </svg>
+                        <img src={tool.logo} alt={tool.title} className="w-10 h-10 object-contain" />
                       </div>
                     )}
-                    {tool.id === 3 && (
+                    {tool.id === "palo-alto" && (
                       <div className="w-10 h-10 flex items-center justify-center bg-[#4285F4]/10 rounded-md">
-                        <svg width="30" height="30" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
-                          <path d="M170.2 64.2H85.8L64.2 85.8V128l42.7 21.3H93l-7.1 7.1v21.4l21.4 21.3h42.4l21.3-21.3v-21.4l-7-7.1h-14.1l42.7-21.3V85.8l-21.4-21.6zm0 63.8h42.7v-42.5H192v42.5l-21.3 21.3h-21.4l21.4-21.3h-42.7l42.7-21.3-21.4-21.2h-42.6L85.8 85.8v42.5l42.7 21.3H85.8L107 128V85.8h-21.2V128l21.3 21.3h42.5L128 170.6v21.4h21.4l21.3-21.4v-42.4l-42.5-21.3h42.5l-42.5-21.3h42.5l-21.3-21.3h-42.5l-21.3 21.3h42.5l21.3 21.3z" fill="#4285F4"/>
-                        </svg>
+                        <img src={tool.logo} alt={tool.title} className="w-10 h-10 object-contain" />
+                      </div>
+                    )}
+                    {tool.id === "tenable" && (
+                      <div className="w-10 h-10 flex items-center justify-center bg-[#0078D4]/10 rounded-md">
+                        <img src={tool.logo} alt={tool.title} className="w-10 h-10 object-contain" />
+                      </div>
+                    )}
+                    {tool.id === "splunk" && (
+                      <div className="w-10 h-10 flex items-center justify-center bg-[#4285F4]/10 rounded-md">
+                        <img src={tool.logo} alt={tool.title} className="w-10 h-10 object-contain" />
+                      </div>
+                    )}
+                    {tool.id === "darktrace" && (
+                      <div className="w-10 h-10 flex items-center justify-center bg-[#0078D4]/10 rounded-md">
+                        <img src={tool.logo} alt={tool.title} className="w-10 h-10 object-contain" />
                       </div>
                     )}
                     <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">{tool.title}</CardTitle>
@@ -285,21 +318,40 @@ function LandingPage() {
                 <CardFooter className="p-8 pt-6">
                   {/* Add tool-specific cloud security illustrations */}
                   <div className="w-12 h-12 opacity-70">
-                    {tool.id === 1 && (
+                    {tool.id === "wiz" && (
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#FF9900]">
                         <path d="M21.721 12.752a9.711 9.711 0 00-.945-5.003 12.754 12.754 0 01-4.339 2.708 18.991 18.991 0 01-.214 4.772 17.165 17.165 0 005.498-2.477zM14.634 15.55a17.324 17.324 0 00.332-4.647c-.952.227-1.945.347-2.966.347-1.021 0-2.014-.12-2.966-.347a17.515 17.515 0 00.332 4.647 17.385 17.385 0 005.268 0zM9.772 17.119a18.963 18.963 0 004.456 0A17.182 17.182 0 0112 21.724a17.18 17.18 0 01-2.228-4.605zM7.777 15.23a18.87 18.87 0 01-.214-4.774 12.753 12.753 0 01-4.34-2.708 9.711 9.711 0 00-.944 5.004 17.165 17.165 0 005.498 2.477zM21.356 14.752a9.765 9.765 0 01-7.478 6.817 18.64 18.64 0 001.988-4.718 18.627 18.627 0 005.49-2.098zM2.644 14.752c1.682.971 3.53 1.688 5.49 2.099a18.64 18.64 0 001.988 4.718 9.765 9.765 0 01-7.478-6.816zM13.878 2.43a9.755 9.755 0 016.116 3.986 11.267 11.267 0 01-3.746 2.504 18.63 18.63 0 00-2.37-6.49zM12 2.276a17.152 17.152 0 012.805 7.121c-.897.23-1.837.353-2.805.353-.968 0-1.908-.122-2.805-.353A17.151 17.151 0 0112 2.276zM10.122 2.43a18.629 18.629 0 00-2.37 6.49 11.266 11.266 0 01-3.746-2.504 9.754 9.754 0 016.116-3.985z" />
                       </svg>
                     )}
-                    {tool.id === 2 && (
+                    {tool.id === "crowdstrike" && (
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#0078D4]">
                         <path d="M11.584 2.376a.75.75 0 01.832 0l9 6a.75.75 0 11-.832 1.248L12 3.901 3.416 9.624a.75.75 0 01-.832-1.248l9-6z" />
                         <path fillRule="evenodd" d="M20.25 10.332v9.918H21a.75.75 0 010 1.5H3a.75.75 0 010-1.5h.75v-9.918a.75.75 0 01.634-.74A49.109 49.109 0 0112 9c2.59 0 5.134.202 7.616.592a.75.75 0 01.634.74zm-7.5 2.418a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75zm3-.75a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0v-6.75a.75.75 0 01.75-.75zM9 12.75a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75z" clipRule="evenodd" />
                         <path d="M12 7.875a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" />
                       </svg>
                     )}
-                    {tool.id === 3 && (
+                    {tool.id === "palo-alto" && (
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#4285F4]">
                         <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.75.75 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    {tool.id === "tenable" && (
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#0078D4]">
+                        <path d="M11.584 2.376a.75.75 0 01.832 0l9 6a.75.75 0 11-.832 1.248L12 3.901 3.416 9.624a.75.75 0 01-.832-1.248l9-6z" />
+                        <path fillRule="evenodd" d="M20.25 10.332v9.918H21a.75.75 0 010 1.5H3a.75.75 0 010-1.5h.75v-9.918a.75.75 0 01.634-.74A49.109 49.109 0 0112 9c2.59 0 5.134.202 7.616.592a.75.75 0 01.634.74zm-7.5 2.418a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75zm3-.75a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0v-6.75a.75.75 0 01.75-.75zM9 12.75a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75z" clipRule="evenodd" />
+                        <path d="M12 7.875a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" />
+                      </svg>
+                    )}
+                    {tool.id === "splunk" && (
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#4285F4]">
+                        <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.75.75 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    {tool.id === "darktrace" && (
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#0078D4]">
+                        <path d="M11.584 2.376a.75.75 0 01.832 0l9 6a.75.75 0 11-.832 1.248L12 3.901 3.416 9.624a.75.75 0 01-.832-1.248l9-6z" />
+                        <path fillRule="evenodd" d="M20.25 10.332v9.918H21a.75.75 0 010 1.5H3a.75.75 0 010-1.5h.75v-9.918a.75.75 0 01.634-.74A49.109 49.109 0 0112 9c2.59 0 5.134.202 7.616.592a.75.75 0 01.634.74zm-7.5 2.418a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75zm3-.75a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0v-6.75a.75.75 0 01.75-.75zM9 12.75a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75z" clipRule="evenodd" />
+                        <path d="M12 7.875a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" />
                       </svg>
                     )}
                   </div>
@@ -477,7 +529,7 @@ function LandingPage() {
                 <div className="w-14 h-14 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:shadow transition-shadow">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
                     <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.75.75 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
-                  </svg>
+                </svg>
               </div>
                 <CardTitle className="text-xl font-bold text-slate-900 dark:text-white mb-4">Security Frameworks</CardTitle>
                 <CardDescription className="text-slate-600 dark:text-slate-300 text-base">
@@ -492,7 +544,7 @@ function LandingPage() {
                 <div className="w-14 h-14 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:shadow transition-shadow">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
                     <path fillRule="evenodd" d="M4.5 9.75a6 6 0 0111.573-2.226 3.75 3.75 0 014.133 4.303A4.5 4.5 0 0118 20.25H6.75a5.25 5.25 0 01-2.23-10.004 6.072 6.072 0 01-.02-.496z" clipRule="evenodd" />
-                  </svg>
+                </svg>
               </div>
                 <CardTitle className="text-xl font-bold text-slate-900 dark:text-white mb-4">Cloud Security Tools</CardTitle>
                 <CardDescription className="text-slate-600 dark:text-slate-300 text-base">
@@ -508,7 +560,7 @@ function LandingPage() {
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
                     <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 00-1.032-.211 50.89 50.89 0 00-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 002.433 3.984L7.28 21.53A.75.75 0 016 21v-4.03a48.527 48.527 0 01-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979z" />
                     <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 001.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0015.75 7.5z" />
-                  </svg>
+                </svg>
               </div>
                 <CardTitle className="text-xl font-bold text-slate-900 dark:text-white mb-4">Security Community</CardTitle>
                 <CardDescription className="text-slate-600 dark:text-slate-300 text-base">
@@ -519,7 +571,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
-
+      
       {/* Call to Action - Professional gradient with enhanced design */}
       <div id="community" className="bg-white dark:bg-slate-900 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
