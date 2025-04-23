@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import ModelLeaderboard from "./ModelLeaderboard";
-import logoSvg from "../assets/logo.svg";
+import logoSvg from "../assets/logo-page.png";
 
 function LandingPage() {
   // Sample featured tools
@@ -250,7 +250,32 @@ function LandingPage() {
                       {tool.stars.toLocaleString()}
                     </div>
                   </div>
-                  <CardTitle className="text-xl font-bold text-slate-900 dark:text-white mb-2">{tool.title}</CardTitle>
+                  <div className="flex items-center gap-3 mb-3">
+                    {tool.id === 1 && (
+                      <div className="w-10 h-10 flex items-center justify-center bg-[#FF9900]/10 rounded-md">
+                        <svg width="30" height="30" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+                          <path d="M72.4 0c-4.3.6-8.5 1.4-12.6 2.3-4.8 1.2-9.5 2.9-13.9 5.2-12.8 6.7-21.7 20.1-21.7 35.6v15.7l-.9-.1c-2.4-.3-4.9.2-7 1.3-5 2.9-5.5 10.5-1 14.1 1.5 1.3 3.4 2 5.3 2.2l3.6.2V114l-3.6.2c-1.9.2-3.7 1-5.3 2.2-4.4 3.6-4 11.2 1 14.1 2.1 1.1 4.6 1.6 7 1.3l.9-.1v15.7c0 15.5 8.9 28.9 21.7 35.6 4.4 2.2 9.1 4 13.9 5.2 4.1 1 8.3 1.7 12.6 2.3 6.8.9 14.4 1.4 22 1.4v-.9c-9.7-1.2-15.9-2.9-15.9-4.9 0-2 6.2-3.7 15.9-4.9V42.8c-9.7-1.2-15.9-2.9-15.9-4.9 0-2 6.2-3.7 15.9-4.9V.1c-7.6 0-15.2.5-22 1.4zm96.7 0c4.3.6 8.5 1.4 12.6 2.3 4.8 1.2 9.5 2.9 13.9 5.2 12.8 6.7 21.7 20.1 21.7 35.6v15.7l.9-.1c2.4-.3 4.9.2 7 1.3 5 2.9 5.5 10.5 1 14.1-1.5 1.3-3.4 2-5.3 2.2l-3.6.2V114l3.6.2c1.9.2 3.7 1 5.3 2.2 4.4 3.6 4 11.2-1 14.1-2.1 1.1-4.6 1.6-7 1.3l-.9-.1v15.7c0 15.5-8.9 28.9-21.7 35.6-4.4 2.2-9.1 4-13.9 5.2-4.1 1-8.3 1.7-12.6 2.3-6.8.9-14.4 1.4-22 1.4v-.9c9.7-1.2 15.9-2.9 15.9-4.9 0-2-6.2-3.7-15.9-4.9V42.8c9.7-1.2 15.9-2.9 15.9-4.9 0-2-6.2-3.7-15.9-4.9V.1c7.6 0 15.2.5 22 1.4zM120 195.2l.7.1c15.6 2 27.5 6 27.5 10.6 0 6.6-21.8 12-48.1 12-26.3 0-48.1-5.4-48.1-12 0-4.7 11.9-8.6 27.5-10.7l.7-.1v-6.1c-23.6 2.5-41.5 9.5-41.5 17.8 0 10.5 27.7 19.1 61.9 19.1 34.2 0 61.9-8.6 61.9-19.1 0-8.3-17.9-15.3-41.4-17.8v6.2zM64.8 52.6l-.7-.1c-15.6-1.9-27.5-5.9-27.5-10.6 0-6.6 21.8-12 48.1-12 26.3 0 48.1 5.4 48.1 12 0 4.7-11.9 8.7-27.5 10.7l-.7.1v6.1c23.6-2.5 41.5-9.5 41.5-17.8 0-10.5-27.7-19.1-61.9-19.1-34.2 0-61.9 8.6-61.9 19.1 0 8.3 17.9 15.3 41.4 17.8v-6.2z" fill="#FF9900"/>
+                        </svg>
+                      </div>
+                    )}
+                    {tool.id === 2 && (
+                      <div className="w-10 h-10 flex items-center justify-center bg-[#0078D4]/10 rounded-md">
+                        <svg width="30" height="30" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M31 30H6.6a3.2 3.2 0 00-3.3 3.3v89.9a7.5 7.5 0 007.4 7.4h58a3.2 3.2 0 003.3-3.3V102H31z" fill="#0078D4"/>
+                          <path d="M87.3 30h90.9a3.2 3.2 0 013.3 3.3v89.9a7.5 7.5 0 01-7.4 7.4H90a3.2 3.2 0 01-3.3-3.3V30.6a.6.6 0 01.5-.6z" fill="#0078D4"/>
+                          <path d="M71 42.7h31.6v31.6H71zm43.3 0h31.6v31.6h-31.6zm-43.3 43.4h31.6v31.6H71zm43.3 0h31.6v31.6h-31.6z" fill="#0078D4"/>
+                        </svg>
+                      </div>
+                    )}
+                    {tool.id === 3 && (
+                      <div className="w-10 h-10 flex items-center justify-center bg-[#4285F4]/10 rounded-md">
+                        <svg width="30" height="30" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+                          <path d="M170.2 64.2H85.8L64.2 85.8V128l42.7 21.3H93l-7.1 7.1v21.4l21.4 21.3h42.4l21.3-21.3v-21.4l-7-7.1h-14.1l42.7-21.3V85.8l-21.4-21.6zm0 63.8h42.7v-42.5H192v42.5l-21.3 21.3h-21.4l21.4-21.3h-42.7l42.7-21.3-21.4-21.2h-42.6L85.8 85.8v42.5l42.7 21.3H85.8L107 128V85.8h-21.2V128l21.3 21.3h42.5L128 170.6v21.4h21.4l21.3-21.4v-42.4l-42.5-21.3h42.5l-42.5-21.3h42.5l-21.3-21.3h-42.5l-21.3 21.3h42.5l21.3 21.3z" fill="#4285F4"/>
+                        </svg>
+                      </div>
+                    )}
+                    <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">{tool.title}</CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent className="px-8 py-2">
                   <CardDescription className="text-slate-600 dark:text-slate-300 text-base">
@@ -261,19 +286,19 @@ function LandingPage() {
                   {/* Add tool-specific cloud security illustrations */}
                   <div className="w-12 h-12 opacity-70">
                     {tool.id === 1 && (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-blue-500">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#FF9900]">
                         <path d="M21.721 12.752a9.711 9.711 0 00-.945-5.003 12.754 12.754 0 01-4.339 2.708 18.991 18.991 0 01-.214 4.772 17.165 17.165 0 005.498-2.477zM14.634 15.55a17.324 17.324 0 00.332-4.647c-.952.227-1.945.347-2.966.347-1.021 0-2.014-.12-2.966-.347a17.515 17.515 0 00.332 4.647 17.385 17.385 0 005.268 0zM9.772 17.119a18.963 18.963 0 004.456 0A17.182 17.182 0 0112 21.724a17.18 17.18 0 01-2.228-4.605zM7.777 15.23a18.87 18.87 0 01-.214-4.774 12.753 12.753 0 01-4.34-2.708 9.711 9.711 0 00-.944 5.004 17.165 17.165 0 005.498 2.477zM21.356 14.752a9.765 9.765 0 01-7.478 6.817 18.64 18.64 0 001.988-4.718 18.627 18.627 0 005.49-2.098zM2.644 14.752c1.682.971 3.53 1.688 5.49 2.099a18.64 18.64 0 001.988 4.718 9.765 9.765 0 01-7.478-6.816zM13.878 2.43a9.755 9.755 0 016.116 3.986 11.267 11.267 0 01-3.746 2.504 18.63 18.63 0 00-2.37-6.49zM12 2.276a17.152 17.152 0 012.805 7.121c-.897.23-1.837.353-2.805.353-.968 0-1.908-.122-2.805-.353A17.151 17.151 0 0112 2.276zM10.122 2.43a18.629 18.629 0 00-2.37 6.49 11.266 11.266 0 01-3.746-2.504 9.754 9.754 0 016.116-3.985z" />
                       </svg>
                     )}
                     {tool.id === 2 && (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-blue-500">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#0078D4]">
                         <path d="M11.584 2.376a.75.75 0 01.832 0l9 6a.75.75 0 11-.832 1.248L12 3.901 3.416 9.624a.75.75 0 01-.832-1.248l9-6z" />
                         <path fillRule="evenodd" d="M20.25 10.332v9.918H21a.75.75 0 010 1.5H3a.75.75 0 010-1.5h.75v-9.918a.75.75 0 01.634-.74A49.109 49.109 0 0112 9c2.59 0 5.134.202 7.616.592a.75.75 0 01.634.74zm-7.5 2.418a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75zm3-.75a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0v-6.75a.75.75 0 01.75-.75zM9 12.75a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75z" clipRule="evenodd" />
                         <path d="M12 7.875a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" />
                       </svg>
                     )}
                     {tool.id === 3 && (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-blue-500">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-[#4285F4]">
                         <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.75.75 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
                       </svg>
                     )}
@@ -494,7 +519,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      
+
       {/* Call to Action - Professional gradient with enhanced design */}
       <div id="community" className="bg-white dark:bg-slate-900 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
