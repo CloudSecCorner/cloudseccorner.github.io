@@ -1,0 +1,44 @@
+{
+  "blogs": [
+    {
+      "id": "Qwen-Coder-Models",
+      "title": "Qwen Coder Models: Breakthrough AI at Your Fingertips",
+      "date": "April 23, 2025",
+      "excerpt": "Qwen Coder Models are a new generation of AI models that are designed to be more efficient and effective than traditional LLM models.",
+      "author": "Sangam Biradar",
+      "file": "/blog/Qwen-Coder-Models.md",
+      "category": "LLM",
+      "tags": ["Qwen Coder Models", "AI", "LLM", "LLM Models", "LLM Framework", "LLM Model", "LLM Vector Database", "LLM Tool", "MCP Core", "MCP Database", "MCP Finance", "MCP Web", "MCP Developer", "MCP AI", "MCP AI Tools", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks"]
+    },
+    {
+      "id": "2",
+      "title": "Quick Start Guide",
+      "date": "June 15, 2023",
+      "excerpt": "Get started with our platform quickly and easily with this comprehensive guide.",
+      "author": "AI Data Foundation",
+      "file": "/blog/quick-start-guide.md",
+      "category": "Guides",
+      "tags": ["quick start", "guide", "tutorial", "getting started"]
+    },
+    {
+      "id": "3",
+      "title": "Categories and Contributing",
+      "date": "July 23, 2023", 
+      "excerpt": "Explore our tool categories and learn how to contribute to the project.",
+      "author": "AI Data Foundation",
+      "path": "/blog/categories-and-contributing.md",
+      "category": "Community",
+      "tags": ["contributing", "open source", "community", "guidelines"]
+    },
+    {
+      "id": "markdown-showcase",
+      "title": "Markdown Styling Showcase",
+      "date": "June 4, 2024",
+      "excerpt": "A showcase of all markdown styling elements with syntax highlighting",
+      "author": "AI Data Foundation",
+      "file": "/blog/markdown-showcase.md",
+      "category": "Documentation",
+      "tags": ["markdown", "styling", "code", "documentation"]
+    }
+  ]
+} 
