@@ -19,7 +19,16 @@ const fallbackLabsData = [
     path: "/labs/NMAP-Practical-Labs.md",
     contributors: ["Sangam Biradar"],
     tags: ["Network Security"],
-  }
+  },
+  {
+    id: "Security Engineering Fundamentals",
+    title: "Security Engineering Fundamentals",
+    description: " Understanding the core principles of security engineering and how to apply them to real-world scenarios.",
+    category: "Security Engineering",
+    path: "/labs/Security-Engineering-Fundamentals.md",
+    contributors: ["Sangam Biradar"],
+    tags: ["Security Engineering"]
+  },
 ];
 
 // Lab list component
