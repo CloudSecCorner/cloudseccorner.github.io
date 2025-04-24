@@ -5,26 +5,16 @@ const JoinCommunityPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   
   useEffect(() => {
-    // Check if the user has previously closed the popup
-    const hasClosedPopup = localStorage.getItem('communityPopupClosed');
+    // Show popup after 5 seconds on every visit
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 5000);
     
-    // Show popup after 5 seconds if they haven't closed it before
-    if (!hasClosedPopup) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 5000);
-      
-      return () => clearTimeout(timer);
-    }
+    return () => clearTimeout(timer);
   }, []);
   
   const closePopup = () => {
     setIsOpen(false);
-    // Remember that user closed the popup for 7 days
-    localStorage.setItem('communityPopupClosed', 'true');
-    setTimeout(() => {
-      localStorage.removeItem('communityPopupClosed');
-    }, 7 * 24 * 60 * 60 * 1000); // 7 days in milliseconds
   };
   
   const joinDiscord = () => {
