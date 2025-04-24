@@ -1,7 +1,7 @@
 {
   "labs": [
     {
-      "id": "NIST-Practical-Labs",
+      "id": "Nmap-Practical-Labs",
       "title": "NMAP Practical Labs",
       "description": "NMAP is a network scanner that can be used to scan networks and identify open ports, services, and other information.",
       "category": "Network Security",
@@ -20,3 +20,4 @@
     }
   ]
 } 
+

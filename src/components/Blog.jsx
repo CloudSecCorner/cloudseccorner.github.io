@@ -3,7 +3,6 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Helmet } from "react-helmet";
 import MarkdownRenderer from "./MarkdownRenderer";
-import DebugInfo from "./DebugInfo";
 import OpenGraph from "./OpenGraph";
 
 function Blog() {
@@ -13,7 +12,6 @@ function Blog() {
   const [currentPost, setCurrentPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showDebug, setShowDebug] = useState(false);
 
   // Load blog index
   useEffect(() => {
@@ -321,16 +319,6 @@ function Blog() {
         <p className="text-grayFill text-center max-w-[800px] mx-auto">
           Stay updated with the latest cybersecurity research, tools, and insights from our team and community contributors.
         </p>
-        
-        {/* Debug toggle button */}
-        <div className="flex justify-center mt-2">
-          <button 
-            onClick={() => setShowDebug(!showDebug)}
-            className="text-xs text-gray-500 hover:text-gray-400 px-2 py-1 rounded"
-          >
-            {showDebug ? 'Hide Debug Info' : 'Show Debug Info'}
-          </button>
-        </div>
       </div>
       
       <div className="mb-12">
@@ -350,9 +338,6 @@ function Blog() {
         
         <BlogList blogPosts={blogPosts} />
       </div>
-      
-      {/* Debug information panel */}
-      <DebugInfo show={showDebug} />
       
       <div className="bg-bgGray rounded-xl p-8 border border-gray-800">
         <h2 className="text-xl font-semibold text-primary mb-4">Want to Contribute?</h2>
