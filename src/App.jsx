@@ -7,6 +7,7 @@ import Blog from "./components/Blog";
 import Footer from "./components/Footer";
 import Labs from "./components/Labs";
 import OpenGraph from "./components/OpenGraph";
+import JoinCommunityPopup from "./components/JoinCommunityPopup";
 
 function App() {
   return (
@@ -80,6 +81,7 @@ function App() {
           </Routes>
         </div>
         <Footer />
+        <JoinCommunityPopup />
       </div>
     </Router>
   );
