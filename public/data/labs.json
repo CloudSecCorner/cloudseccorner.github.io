@@ -17,7 +17,15 @@
       "path": "/labs/Security-Engineering-Fundamentals.md",
       "contributors": ["Sangam Biradar"],
       "tags": ["Security Engineering"]
+    },
+    {
+      "id": "Zero-Trust-Architecture",
+      "title": "Zero-Trust Architecture",
+      "description": "Zero-Trust Architecture is a security model that assumes that all users, devices, and applications are potentially hostile and must be verified and authenticated.",
+      "category": "Security Engineering",
+      "path": "/labs/Zero-Trust-Architecture.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Security Engineering"]
     }
   ]
 } 
-

@@ -1,6 +1,22 @@
-# Allow all web crawlers
+# Allow all legitimate web crawlers
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*.xml$
+Allow: /sitemap.xml
+
+# Block specific problematic crawlers
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# Crawl delay to prevent overloading the server
+Crawl-delay: 10
 
 # Sitemap location
-Sitemap: https://aidatafoundation.github.io/sitemap.xml 
+Sitemap: https://cloudseccorner.github.io/sitemap.xml 
