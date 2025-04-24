@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Labs from "./components/Labs";
 import OpenGraph from "./components/OpenGraph";
 import JoinCommunityPopup from "./components/JoinCommunityPopup";
+import SocialSharingTest from "./components/SocialSharingTest";
 
 function App() {
   return (
@@ -76,6 +77,11 @@ function App() {
                 <p className="text-grayFill text-lg">
                   Founded in 2023, we collaborate with security practitioners, cloud engineers, and compliance experts to build a more secure cloud ecosystem.
                 </p>
+              </div>
+            } />
+            <Route path="/social-sharing-test" element={
+              <div className="py-8">
+                <SocialSharingTest />
               </div>
             } />
           </Routes>

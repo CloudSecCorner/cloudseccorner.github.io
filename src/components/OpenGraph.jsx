@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
+import { getAbsoluteUrl, getImageUrl, formatTags, getDefaultMetadata } from '../utils/socialSharing';
 
 /**
  * Dynamic OpenGraph component that sets metadata for social sharing
@@ -13,20 +14,27 @@ import { Helmet } from 'react-helmet';
  * @param {string} props.siteName - Site name
  * @param {string[]} props.tags - Array of relevant keywords/tags
  */
-const OpenGraph = ({
-  title = "AI Data Foundation | AI Tools, Research & Resources",
-  description = "A comprehensive resource for AI tools, frameworks, datasets, and methodologies. Explore the latest in machine learning, natural language processing, computer vision, and more.",
-  image = "https://aidatafoundation.github.io/og-image.png",
-  type = "website",
-  url,
-  siteName = "AI Data Foundation",
-  tags = []
-}) => {
+const OpenGraph = (props) => {
+  // Use default metadata and override with provided props
+  const defaults = getDefaultMetadata();
+  const {
+    title = defaults.title,
+    description = defaults.description,
+    image = defaults.image,
+    type = defaults.type,
+    url,
+    siteName = defaults.siteName,
+    tags = defaults.tags
+  } = props;
+  
   // Format tags as a comma-separated string
-  const keywordsString = tags.join(', ');
+  const keywordsString = formatTags(tags);
   
   // Ensure URL is absolute
-  const currentUrl = url || window.location.href;
+  const currentUrl = url ? getAbsoluteUrl(url) : (typeof window !== 'undefined' ? window.location.href : getAbsoluteUrl());
+  
+  // Make sure image URL is absolute
+  const absoluteImageUrl = getImageUrl(image);
   
   return (
     <Helmet>
@@ -41,7 +49,9 @@ const OpenGraph = ({
       <meta property="og:url" content={currentUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={absoluteImageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       {siteName && <meta property="og:site_name" content={siteName} />}
       
       {/* Twitter */}
@@ -49,7 +59,7 @@ const OpenGraph = ({
       <meta property="twitter:url" content={currentUrl} />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={image} />
+      <meta property="twitter:image" content={absoluteImageUrl} />
       
       {/* Canonical URL */}
       <link rel="canonical" href={currentUrl} />
