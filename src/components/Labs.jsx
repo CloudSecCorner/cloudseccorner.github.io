@@ -13,22 +13,22 @@ import OpenGraph from "./OpenGraph";
 const fallbackLabsData = [
 
   {
-     id : "Ethical-Hacker-Easy-Way",
-    title : "Ethical Hacker Easy Way",
+    id: "Ethical-Hacker-Easy-Way",
+    title: "Ethical Hacker Easy Way",
     description: "Learn how to become an ethical hacker with ChatGPT",
-    category : "Ethical Hacking",
-    path : "/labs/ethical-hacker-easy-way.md",
+    category: "Ethical Hacking",
+    path: "/labs/ethical-hacker-easy-way.md",
     contributors: ["Sangam Biradar"],
-    tags : ["Ethical Hacking"]
+    tags: ["Ethical Hacking"]
   },
   {
     id: "Threat Modeling",
-    title : "Threat Modeling",
-    description : "Learn how to create a threat model for a given system",
+    title: "Threat Modeling",
+    description: "Learn how to create a threat model for a given system",
     category : "Security Engineering",
-    path : "/labs/threat-modeling.md",
+    path: "/labs/threat-modeling.md",
     contributors : ["Sangam Biradar"],
-    tags : ["Security Engineering"]
+    tags: ["Security Engineering"]
   },
   {
     id: "NMAP-Practical-Labs",
