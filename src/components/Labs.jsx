@@ -15,7 +15,7 @@ const fallbackLabsData = [
   {
     id: "ethical-hacker-easy-way",
     title: "Ethical Hacker Easy Way",
-    description: "Learn how to become an ethical hacker with ChatGPT",
+    description: "Ethical Hacker Easy Way",
     category: "Ethical Hacking",
     path: "/labs/ethical-hacker-easy-way.md",
     contributors: ["Sangam Biradar"],
