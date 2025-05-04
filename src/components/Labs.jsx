@@ -13,7 +13,7 @@ import OpenGraph from "./OpenGraph";
 const fallbackLabsData = [
 
   {
-    id: "Ethical-Hacker-Easy-Way",
+    id: "ethical-hacker-easy-way",
     title: "Ethical Hacker Easy Way",
     description: "Learn how to become an ethical hacker with ChatGPT",
     category: "Ethical Hacking",
