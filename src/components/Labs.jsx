@@ -13,7 +13,7 @@ import OpenGraph from "./OpenGraph";
 const fallbackLabsData = [
 
   {
-    id: "ethical-hacker-easy-way",
+    id: "Ethical-Hacker-Easy-Way",
     title: "Ethical Hacker Easy Way",
     description: "Ethical Hacker Easy Way",
     category: "Ethical Hacking",
