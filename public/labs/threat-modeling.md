@@ -141,4 +141,94 @@ configuration files , database records , or data sent between systems
 6. Elevation of Privilege - Occurs when an attacker agains unauthorized access to higher [vertical](https://en.wikipedia.org/wiki/Privilege_escalation#Vertical) or [horizontal](https://en.wikipedia.org/wiki/Privilege_escalation#Horizontal) level of privilege within a system 
 
 
-MITRE ATT&CK - 
+- [MITRE ATT&CK](https://attack.mitre.org) - The Gold standard in terms of attack taxonomy . Consists of 14 tactics (What the attacker is trying to achieve) with a set of corresponding 
+techniques (how the attacker achieves it) for each . it also contains recommended mitigations for each technique , providing a robust vocabulary for any threat modeling efforts 
+
+
+- [CIA] - Categorizing attacks based on their threat to onne of the three information security pillars : Confidentaiality , Integrity and Availability . Not 
+very descriptive , though 
+
+## Risk Assessment Models 
+
+these frameworks help to assess the severity and likehood of potential threats , allowing organization to priorize and manage risk effectively 
+
+[DREAD](https://en.wikipedia.org/wiki/DREAD_(risk_assessment_model) Damage potential , Reproducibility , Exploitability ,Affected users , Discoverability -
+used to prioritize identified threats .   Really, a risk assessment/threat classification methodology. Some call it DREAD-D (DREAD minus D), because including Discoverability rewards Security through Obscurity
+
+[NIST CVSS (Common Vulnerability Scoring System)](https://www.first.org/cvss/) - Used for scoring vulnerabilities in order to reflect severity. They don’t reflect the risk of these vulnerabilities to your application, but they can help you determine that and prioritize accordingly.
+
+
+## Vulnerability Catalogs
+
+These are comprehensive databases of known vulnerabilities and weaknesses, facilitating the identification and management of security flaws.
+
+[MITRE CVE (Common VulnerabilitIes and Exposures)](https://cve.mitre.org) - Community catalog of publicly-disclosed vulnerabilities and exposures
+
+[NIST NVD (National Vulnerability Database)](https://nvd.nist.gov) - Database of vulnerabilities maintained by NIST; fully synchronized with the MITRE CVE database above.
+
+[MITRE CWE (Common Weakness Enumeration)](https://cwe.mitre.org) - a community catalog of common weakness types.
+
+
+
+## Compliance Frameworks
+
+These provide guidelines and standards to ensure organizations meet regulatory, legal, and security requirements, aligning their operations with industry best practices and statutory obligations.
+
+
+[GDPR](https://gdpr-info.eu) - for privacy in the EU.
+[HIPAA](https://www.hhs.gov) - for medical information.
+[PCI-DSS](https://www.pcisecuritystandards.org) - for payment information.
+[Sarbanes-Oxley Act (SOA)](https://en.wikipedia.org/wiki/Sarbanes–Oxley_Act) - for financial record-keeping and reporting.
+[SOC2](https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2) - a voluntary examination to provide assurance of security, availability, confidentiality, privacy, and processing integrity.
+
+
+## Security Control Frameworks
+
+These are structured sets of guidelines and practices that organizations use to manage security controls and protect against threats.
+
+
+- [NIST SP 800-53](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final) - organization-wide security and privacy controls
+- [MITRE D3FEND](https://d3fend.mitre.org) - a matrix of countermeasures for various threats. Pairs nicely with MITRE ATT&CK.
+- [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) - concerns securing web applications and testing those controls. Their associated [cheatsheet](https://owasp.org/www-project-cheat-sheets/) series is instrumental in securing web applications throughout the SDL.
+- [OWASP MASVS](https://mas.owasp.org/MASVS/) - the mobile application version of the above.
+
+
+# Tools
+
+These are software (and paper-based) tools that can be used to support threat modeling efforts.
+
+- OWASP Threat Dragon https://github.com/OWASP/threat-dragon - supports several attack libraries, including the popular STRIDE.
+- Microsoft Threat Modeling Tool  https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool - also uses Stride
+- OWASP pytm (pythonic threat modeling) https://owasp.org/www-project-pytm/ - can generate DFDs, Sequence Diagrams.
+- StrideGPT: AI-Powered Threat Modeling  https://github.com/mrwadams/stride-gpt - provide a picture or description of the architecture and it will spit out 
+threat models and attack trees.
+
+
+## Diagrams-as-code
+
+- Mermaid https://mermaid.live/
+- PlantUML https://www.plantuml.com/
+
+## Attack-Tree Tools
+
+- ADTool https://satoss.uni.lu/members/piotr/adtool/
+- RiskTree https://risktree.2t-security.co.uk/
+
+## Card Games for tabletop threat modeling sessions
+
+Fun and good substrates for Threat Modeling sessions, since Threat Modeling should be a group activity. 
+
+- Elevation of Privilege https://shostack.org/games/elevation-of-privilege
+- OWASP Cornucopia  https://owasp.org/www-project-cornucopia/
+- Security Cards (University of Washington) - http://securitycards.cs.washington.edu/index.html
+
+Here’s some loot for you (additional resources to help inform your threat modeling process).
+
+- ShellSharks: Threat Modeling Field Guide https://shellsharks.com/threat-modeling
+- OWASP - Threat Model Project - https://owasp.org/www-project-threat-model/
+- OWASP - Threat Model CookbookOWASP - Threat Modeling Cheatsheet https://github.com/OWASP/threat-model-cookbook https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
+- HackTricks Threat Modeling - https://book.hacktricks.xyz/generic-methodologies-and-resources/threat-modeling
+- Awesome-Threat-Modeling - https://github.com/hysnsec/awesome-threat-modelling
+- Invicti’s guide to SDLC, SSDLC, and SDL. - https://www.invicti.com/blog/web-security/how-to-tell-apart-ssdlc-sdlc-sdl-security-life-cycle/
+- Drawio Threat Modeling - https://github.com/michenriksen/drawio-threatmodeling
+- White Paper: Summary of Available Threat Modeling Methods (Carnegie Melon, 2018) - https://insights.sei.cmu.edu/documents/569/2018_019_001_524597.pdf
