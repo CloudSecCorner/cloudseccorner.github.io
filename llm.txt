@@ -1,0 +1,34 @@
+Cloud Security Corner Project Overview
+=====================================
+
+This project is a community-driven collection of cloud security resources, including:
+- Hands-on Labs
+- Security Blogs
+- Curated Tools Directory
+
+---
+
+Labs
+----
+- Ethical Hacker Easy Way: Introduction to ethical hacking principles and methodologies. [Link](https://cloudseccorner.github.io/labs/ethical-hacker-easy-way)
+- Threat Modeling: Learn how to create a threat model for a given system. [Link](https://cloudseccorner.github.io/labs/Threat-Modeling)
+- NMAP Practical Labs: Network scanner to identify open ports, services, and other network information. [Link](https://cloudseccorner.github.io/labs/Nmap-Practical-Labs)
+- Security Engineering Fundamentals: Understanding the core principles of security engineering and how to apply them to real-world scenarios. [Link](https://cloudseccorner.github.io/labs/Security-Engineering-Fundamentals)
+- Zero Trust Architecture: Exploring security model that assumes all users, devices, and applications are potentially hostile and must be verified. [Link](https://cloudseccorner.github.io/labs/Zero-Trust-Architecture)
+
+---
+
+Blogs
+-----
+- Safeguarding the AI Frontier: An In-Depth Analysis of Straiker's Revolutionary Security Solutions. [Link](https://cloudseccorner.github.io/blog/Safeguarding-the-AI-Frontier)
+
+---
+
+Tools
+-----
+- Comprehensive, categorized list of security tools for Application Security, Penetration Testing, Network Security, Web Security, Vulnerability Management, and more.
+- See readme.md for the full categorized list with descriptions and links.
+
+---
+
+For more details, see the README.md file or visit the project website. 
