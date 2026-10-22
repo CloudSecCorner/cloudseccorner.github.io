@@ -1,12 +1,19 @@
-assets/images/templates/.DS_Store
-node_modules
+# The directory Mix will write compiled artifacts to.
+/_build/
+
+# If you run "mix test --cover", coverage assets end up here.
+/cover/
+
+# The directory Mix downloads your dependencies to.
+/deps/
+
+# Exported static site for GitHub Pages
+/_site/
+
+# Temporary / scratch / OS files
 .DS_Store
-_site/
-_build/
-deps/
 *.ez
 erl_crash.dump
-/phoenix/_build/
-/phoenix/deps/
-/phoenix/_site/
-
+.elixir_ls/
+node_modules/
+dist/

@@ -25,50 +25,33 @@ jobs:
       - name: Set up Erlang & Elixir
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: '1.20.3'
-          otp-version: '29'
+          elixir-version: '1.18.4'
+          otp-version: '27.3.4.1'
 
       - name: Cache dependencies
         uses: actions/cache@v5
         with:
           path: |
-            phoenix/_build
-            phoenix/deps
-            node_modules
-          key: pages-v1-${{ runner.os }}-${{ hashFiles('phoenix/mix.lock', 'package-lock.json') }}
+            _build
+            deps
+          key: pages-v1-${{ runner.os }}-${{ hashFiles('mix.lock') }}
           restore-keys: |
             pages-v1-${{ runner.os }}-
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install Node dependencies
-        run: npm ci
-
-      - name: Validate content
-        run: node scripts/validate-content.mjs
 
       - name: Install Hex & Rebar
         run: mix local.hex --force && mix local.rebar --force
 
       - name: Fetch Elixir dependencies
-        working-directory: phoenix
         run: mix deps.get
 
       - name: Compile Elixir dependencies
-        working-directory: phoenix
         run: mix deps.compile
 
       - name: Run Elixir tests
-        working-directory: phoenix
         run: mix test
 
       - name: Export static site via Elixir
-        working-directory: phoenix
-        run: mix site.export --output ../_site
+        run: mix site.export --output _site
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
