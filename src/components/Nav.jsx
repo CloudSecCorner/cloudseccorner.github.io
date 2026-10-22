@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logoSvg from "../assets/logo.svg";
 
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,9 +38,19 @@ function Nav() {
       <div className="max-w-[1280px] mx-auto flex justify-between items-center p-4">
         <div className="flex items-center">
           <Link to="/" className="flex items-center gap-2">
-            {/* Cloud Security Corner Logo */}
-            <img src={logoSvg} alt="Cloud Security Corner" className="h-10 w-auto" />
-            <span className="text-primary font-bold text-lg leading-tight">Cloud Security Corner</span>
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 text-white shadow-lg shadow-blue-500/20" aria-hidden="true">
+              <svg className="h-7 w-7" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+                <path d="M16 3.5l10 4.2v7.1c0 6.2-3.9 11-10 13.7-6.1-2.7-10-7.5-10-13.7V7.7L16 3.5z" strokeWidth="1.8" strokeLinejoin="round" />
+                <circle cx="16" cy="11" r="2" fill="currentColor" stroke="none" />
+                <circle cx="11" cy="18" r="1.7" fill="currentColor" stroke="none" />
+                <circle cx="21" cy="18" r="1.7" fill="currentColor" stroke="none" />
+                <path d="M16 13v2.5m-1.5 1L12.4 17.5m5.1-1l2.1 1" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+            </span>
+            <span className="leading-tight">
+              <span className="block text-primary font-bold text-lg">Cloud Security Corner</span>
+              <span className="hidden text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-400 sm:block">Agentic cloud security</span>
+            </span>
           </Link>
         </div>
         
@@ -84,7 +93,7 @@ function Nav() {
             </Link>
           ))}
           <a 
-            href="https://github.com/aidatafoundation" 
+            href="https://github.com/CloudSecCorner"
             target="_blank" 
             rel="noopener noreferrer" 
             className="ml-2 p-2 text-gray-300 hover:text-primary transition-colors"
@@ -124,7 +133,7 @@ function Nav() {
             </Link>
           ))}
           <a 
-            href="https://github.com/aidatafoundation" 
+            href="https://github.com/CloudSecCorner"
             target="_blank" 
             rel="noopener noreferrer" 
             className="flex items-center gap-2 px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700/30 hover:text-primary transition-colors"
@@ -140,4 +149,4 @@ function Nav() {
   );
 }
 
-export default Nav; 
+export default Nav;

@@ -1,7 +1,7 @@
 ---
 title: "Markdown Styling Showcase"
 date: "2024-06-04"
-author: "AI Data Foundation"
+author: "Cloud Security Corner"
 category: "Documentation"
 excerpt: "A showcase of all markdown styling elements with syntax highlighting"
 tags: ["markdown", "styling", "code", "documentation"]
@@ -9,7 +9,7 @@ tags: ["markdown", "styling", "code", "documentation"]
 
 # Markdown Styling Showcase
 
-This page demonstrates all the markdown styling features available in the AI Data Foundation website.
+This page demonstrates all the markdown styling features available in the Cloud Security Corner website.
 
 ## Text Formatting
 
@@ -19,7 +19,7 @@ You can also use ~~strikethrough~~ text when needed.
 
 ## Links and References
 
-You can add [links to external websites](https://aidatafoundation.github.io) or reference [internal pages](/tools).
+You can add [links to external websites](https://cloudsecuritycorner.com) or reference [internal pages](/tools).
 
 ## Lists
 
@@ -114,7 +114,7 @@ export default Button;
 
 ## Images
 
-![AI Data Foundation Logo](/logo.png)
+![Cloud Security Corner Logo](/android-icon-192x192.png)
 
 ## Horizontal Rule
 
@@ -151,4 +151,4 @@ $$
 
 ## Conclusion
 
-This document showcases the various markdown styling elements available in the AI Data Foundation website. Use this as a reference when creating new content. 
+This document showcases the various markdown styling elements available in the Cloud Security Corner website. Use this as a reference when creating new content.

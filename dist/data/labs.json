@@ -1,6 +1,33 @@
 {
   "labs": [
     {
+      "id": "Agentic-Cloud-Security",
+      "title": "Agentic Cloud Security Essentials",
+      "description": "Threat-model an AI agent with cloud access and design controls for identity, tools, approvals, isolation, observability, and response.",
+      "category": "Agentic Security",
+      "path": "/labs/agentic-cloud-security.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Cloud Security", "AI Security"]
+    },
+    {
+      "id": "ethical-hacker-easy-way",
+      "title": "Ethical Hacker Easy Way",
+      "description": "Ethical Hacker Easy Way",
+      "category": "Ethical Hacking",
+      "path": "/labs/ethical-hacker-easy-way.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Ethical Hacking"]
+    },
+    {
+      "id": "Threat-Modeling",
+      "title": "Threat Modeling",
+      "description": "Learn how to create a threat model for a given system",
+      "category": "Security Engineering",
+      "path": "/labs/threat-modeling.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Security Engineering"]
+    },
+    {
       "id": "Nmap-Practical-Labs",
       "title": "NMAP Practical Labs",
       "description": "NMAP is a network scanner that can be used to scan networks and identify open ports, services, and other information.",
@@ -10,14 +37,22 @@
       "tags": ["Network Security"]
     }, 
     {
-      "id": "Security Engineering Fundamentals",
+      "id": "Security-Engineering-Fundamentals",
       "title": "Security Engineering Fundamentals",
       "description": " Understanding the core principles of security engineering and how to apply them to real-world scenarios.",
       "category": "Security Engineering",
       "path": "/labs/Security-Engineering-Fundamentals.md",
       "contributors": ["Sangam Biradar"],
       "tags": ["Security Engineering"]
+    },
+    {
+      "id": "Zero-Trust-Architecture",
+      "title": "Zero-Trust Architecture",
+      "description": "Zero-Trust Architecture is a security model that assumes that all users, devices, and applications are potentially hostile and must be verified and authenticated.",
+      "category": "Security Engineering",
+      "path": "/labs/Zero-Trust-Architecture.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Security Engineering"]
     }
   ]
 } 
-

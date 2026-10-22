@@ -2,15 +2,21 @@
  * Utility functions for handling social sharing and OpenGraph metadata
  */
 
+export const SITE_URL = 'https://cloudsecuritycorner.com';
+export const REPOSITORY_URL = 'https://github.com/CloudSecCorner/cloudseccorner.github.io';
+
 /**
  * Get the absolute URL for the current page or a specific path
  * @param {string} path - Optional path to append to the base URL
  * @returns {string} Absolute URL
  */
 export const getAbsoluteUrl = (path = '') => {
-  const baseUrl = 'https://cloudseccorner.github.io';
+  if (/^https?:\/\//i.test(path)) {
+    return path;
+  }
+
   const relativePath = path.startsWith('/') ? path : `/${path}`;
-  return `${baseUrl}${relativePath}`;
+  return `${SITE_URL}${relativePath}`;
 };
 
 /**
@@ -43,11 +49,11 @@ export const formatTags = (tags = []) => {
  */
 export const getDefaultMetadata = () => {
   return {
-    title: 'Cloud Security Corner | Cloud Security Resources & Best Practices',
-    description: 'A comprehensive resource for cloud security tools, frameworks, best practices, and methodologies. Explore the latest in AWS, Azure, GCP security, DevSecOps, and compliance.',
+    title: 'Cloud Security Corner | Agentic AI & Cloud Security',
+    description: 'Practical tools, labs, and guidance for securing AI agents, autonomous cloud workloads, identities, toolchains, and runtime behavior.',
     image: getImageUrl('og-image.png'),
     siteName: 'Cloud Security Corner',
     type: 'website',
-    tags: ['Cloud Security', 'AWS Security', 'Azure Security', 'GCP Security', 'DevSecOps']
+    tags: ['Agentic AI Security', 'AI Agent Security', 'Cloud Security', 'Runtime Security', 'AI Governance']
   };
-}; 
+};

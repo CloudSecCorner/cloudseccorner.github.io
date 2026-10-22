@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { entries } from "../data/entries";
 import ToolCard from "./ToolCard";
+import { REPOSITORY_URL } from "../utils/socialSharing";
 
 function ToolsSection() {
   const [search, setSearch] = useState("");
   const [selectVal, setSelectVal] = useState("");
   const [sortBy, setSortBy] = useState("default");
-  const [categoryType, setCategoryType] = useState("all"); // "all", "app", "network", "cloud", "agentic"
+  const [categoryType, setCategoryType] = useState("agentic"); // "all", "app", "network", "cloud", "agentic", "identity"
   const [showContributeModal, setShowContributeModal] = useState(false);
 
   // Extract unique tags from entries
@@ -41,8 +42,17 @@ function ToolsSection() {
     tag.includes("Autonomous Security") ||
     tag.includes("Agent Security") ||
     tag.includes("Agentic Security") ||
+    tag.includes("Agent Sandbox") ||
     tag.includes("AI Agent") 
    
+  );
+
+  const identitySecurityTags = allTags.filter(tag =>
+    tag.includes("Identity") ||
+    tag.includes("Access Management") ||
+    tag.includes("Authentication") ||
+    tag.includes("Authorization") ||
+    tag.includes("Secret")
   );
   
   // Select which tags to display based on categoryType
@@ -50,7 +60,8 @@ function ToolsSection() {
                      categoryType === "app" ? appSecurityTags : 
                      categoryType === "network" ? networkSecurityTags : 
                      categoryType === "cloud" ? cloudSecurityTags :
-                     agenticSecurityTags;
+                     categoryType === "agentic" ? agenticSecurityTags :
+                     identitySecurityTags;
 
   // Function to sort tools based on selected criteria
   const sortTools = (filteredEntries) => {
@@ -86,6 +97,8 @@ function ToolsSection() {
       categoryMatches = cloudSecurityTags.includes(entry.tag);
     } else if (categoryType === "agentic") {
       categoryMatches = agenticSecurityTags.includes(entry.tag);
+    } else if (categoryType === "identity") {
+      categoryMatches = identitySecurityTags.includes(entry.tag);
     }
     
     return (titleMatches || descriptionMatches) && tagMatches && categoryMatches;
@@ -109,10 +122,10 @@ function ToolsSection() {
         <div className="w-full flex flex-col md:flex-row items-center justify-between">
           <div className="flex flex-col items-center md:items-start">
             <h2 className="text-3xl font-semibold text-slate-900 dark:text-white mb-2">
-            Security Tools Collection
+            Security Tools Directory
           </h2>
             <p className="text-base text-slate-600 dark:text-slate-300 max-w-2xl text-center md:text-left mb-6">
-            Discover and explore the best tools for application, network, cloud, and agentic security
+            Start with agentic security, then explore the cloud, application, and network controls that support it.
           </p>
           </div>
           <button
@@ -187,7 +200,7 @@ function ToolsSection() {
             </button>
             <button
               type="button"
-              className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
+              className={`px-4 py-2 text-sm font-medium ${
                 categoryType === "agentic" 
                   ? "bg-indigo-600 text-white hover:bg-indigo-700" 
                   : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700"
@@ -198,6 +211,20 @@ function ToolsSection() {
               }}
             >
               Agentic Security
+            </button>
+            <button
+              type="button"
+              className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
+                categoryType === "identity"
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700"
+              }`}
+              onClick={() => {
+                setCategoryType("identity");
+                setSelectVal("");
+              }}
+            >
+              Identity & Secrets
             </button>
           </div>
         </div>
@@ -254,7 +281,8 @@ function ToolsSection() {
           Found {sortedEntries.length} {categoryType === "all" ? "security tools" : 
           categoryType === "app" ? "application security tools" : 
           categoryType === "network" ? "network security tools" : 
-          categoryType === "cloud" ? "cloud security tools" : "agentic security tools"}
+          categoryType === "cloud" ? "cloud security tools" :
+          categoryType === "agentic" ? "agentic security tools" : "identity and secrets tools"}
         </div>
         
         {/* Display message if no results */}
@@ -308,7 +336,7 @@ function ToolsSection() {
                   Follow these steps to add your tool:
                 </p>
                 <ol className="list-decimal pl-6 text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>Fork the <a href="https://github.com/cloudseccorner/cloudseccorner.github.io" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">repository</a></li>
+                  <li>Fork the <a href={REPOSITORY_URL} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">repository</a></li>
                   <li>Edit the appropriate entries file in <code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">src/data/</code> based on your tool category:
                     <ul className="list-disc pl-6 mt-1 space-y-1">
                       <li><code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">security-entries.js</code> for security tools</li>
@@ -354,7 +382,7 @@ function ToolsSection() {
               
               <div className="flex justify-between items-center pt-4 border-t border-gray-200 dark:border-gray-700">
                 <a 
-                  href="https://github.com/cloudseccorner/cloudseccorner.github.io/blob/main/CONTRIBUTING.md" 
+                  href={`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-blue-600 dark:text-blue-400 hover:underline flex items-center"
@@ -372,7 +400,7 @@ function ToolsSection() {
                     Close
                   </button>
                   <a 
-                    href="https://github.com/cloudseccorner/cloudseccorner.github.io/tree/main/src/data" 
+                    href={`${REPOSITORY_URL}/tree/main/src/data`}
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"

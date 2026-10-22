@@ -1,6 +1,6 @@
-# Contributing to AIData Foundation Labs
+# Contributing to Cloud Security Corner Labs
 
-We love your input! We want to make contributing to AIData Foundation labs as easy and transparent as possible, whether it's:
+We welcome your input. We want to make contributing to Cloud Security Corner labs as easy and transparent as possible, whether it is:
 
 - Reporting a bug
 - Discussing the current state of the code
@@ -87,4 +87,4 @@ To create a positive environment for everyone:
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the project's MIT License. 
+By contributing, you agree that your contributions will be licensed under the project's MIT License.

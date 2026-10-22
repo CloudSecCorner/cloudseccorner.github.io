@@ -1,6 +1,6 @@
 # Using GitHub Tokens Securely in GitHub Actions
 
-This guide explains how GitHub tokens are used securely in our GitHub Actions workflows for the AI Data Foundation website.
+This guide explains how GitHub tokens are used securely in our GitHub Actions workflows for the Cloud Security Corner website.
 
 ## How It Works
 
@@ -59,4 +59,4 @@ If you encounter issues with the GitHub token in GitHub Actions:
 - Don't modify the token handling in the workflow without understanding the security implications
 - If using a custom token, store it as a repository secret, not in code
 
-For more information on GitHub Actions security, see the [GitHub Actions documentation](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions). 
+For more information on GitHub Actions security, see the [GitHub Actions documentation](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions).

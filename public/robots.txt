@@ -19,4 +19,4 @@ Disallow: /
 Crawl-delay: 10
 
 # Sitemap location
-Sitemap: https://cloudseccorner.github.io/sitemap.xml 
+Sitemap: https://cloudsecuritycorner.com/sitemap.xml
