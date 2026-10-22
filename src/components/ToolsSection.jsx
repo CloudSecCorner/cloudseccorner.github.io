@@ -1,414 +1,459 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { entries } from "../data/entries";
-import ToolCard from "./ToolCard";
+import OpenGraph from "./OpenGraph";
 import { REPOSITORY_URL } from "../utils/socialSharing";
 
+const PAGE_SIZE = 30;
+
+function escapeUrl(value) {
+  try {
+    const url = new URL(value);
+    return ["https:", "http:"].includes(url.protocol) ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
+function getGitHubStarsBadge(link, github) {
+  if (link && link.includes("github.com")) {
+    try {
+      const url = new URL(link);
+      if (url.hostname === "github.com") {
+        const parts = url.pathname.split("/").filter(Boolean);
+        if (parts.length >= 2) {
+          return `https://img.shields.io/github/stars/${encodeURIComponent(parts[0])}/${encodeURIComponent(parts[1].replace(/\.git$/, ""))}.svg?style=flat&label=stars&color=7c3aed`;
+        }
+      }
+    } catch {}
+  }
+
+  if (github) {
+    const trimmed = github.replace(/^https?:\/\/github\.com\//, "").replace(/\/$/, "");
+    const parts = trimmed.split("/").filter(Boolean);
+    if (parts.length >= 2) {
+      return `https://img.shields.io/github/stars/${encodeURIComponent(parts[0])}/${encodeURIComponent(parts[1])}.svg?style=flat&label=stars&color=7c3aed`;
+    }
+  }
+
+  return null;
+}
+
 function ToolsSection() {
-  const [search, setSearch] = useState("");
-  const [selectVal, setSelectVal] = useState("");
-  const [sortBy, setSortBy] = useState("default");
-  const [categoryType, setCategoryType] = useState("agentic"); // "all", "app", "network", "cloud", "agentic", "identity"
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlQuery = searchParams.get("q") || "";
+  const urlCategory = searchParams.get("category") || "";
+  const urlSort = searchParams.get("sort") === "za" ? "za" : "az";
+
+  const [query, setQuery] = useState(urlQuery);
+  const [category, setCategory] = useState(urlCategory);
+  const [sort, setSort] = useState(urlSort);
+  const [page, setPage] = useState(1);
+  const [githubStars, setGithubStars] = useState(null);
   const [showContributeModal, setShowContributeModal] = useState(false);
 
-  // Extract unique tags from entries
-  let allTags = Array.from(new Set(entries.map((entry) => entry.tag))).sort();
-  
-  // Separate security tag categories
-  const appSecurityTags = allTags.filter(tag => 
-    tag.includes("Application Security") || 
-    tag.includes("Web Security") || 
-    tag.includes("Web Application Firewall") ||
-    tag.includes("Vulnerability") ||
-    tag.includes("Scanner") ||
-    tag === "Penetration Testing"
-  );
-  
-  const networkSecurityTags = allTags.filter(tag => 
-    tag.includes("Network Security") || 
-    tag.includes("Network Analysis") ||
-    tag.includes("Intrusion Detection") ||
-    tag.includes("Wireless Security")
-  );
-  
-  const cloudSecurityTags = allTags.filter(tag => 
-    tag.includes("Cloud Security") ||
-    tag.includes("Container Security") ||
-    tag.includes("System Auditing")
-  );
-  
-  const agenticSecurityTags = allTags.filter(tag => 
-    tag.includes("AI Security") || 
-    tag.includes("LLM Security") ||
-    tag.includes("Autonomous Security") ||
-    tag.includes("Agent Security") ||
-    tag.includes("Agentic Security") ||
-    tag.includes("Agent Sandbox") ||
-    tag.includes("AI Agent") 
-   
-  );
+  // Sync state when URL params change (e.g. browser back/forward)
+  useEffect(() => {
+    const q = searchParams.get("q") || "";
+    const cat = searchParams.get("category") || "";
+    const s = searchParams.get("sort") === "za" ? "za" : "az";
+    setQuery(q);
+    setCategory(cat);
+    setSort(s);
+  }, [searchParams]);
 
-  const identitySecurityTags = allTags.filter(tag =>
-    tag.includes("Identity") ||
-    tag.includes("Access Management") ||
-    tag.includes("Authentication") ||
-    tag.includes("Authorization") ||
-    tag.includes("Secret")
-  );
-  
-  // Select which tags to display based on categoryType
-  let dropdownTags = categoryType === "all" ? allTags : 
-                     categoryType === "app" ? appSecurityTags : 
-                     categoryType === "network" ? networkSecurityTags : 
-                     categoryType === "cloud" ? cloudSecurityTags :
-                     categoryType === "agentic" ? agenticSecurityTags :
-                     identitySecurityTags;
+  // Fetch GitHub stars for repository badge
+  useEffect(() => {
+    fetch("https://api.github.com/repos/CloudSecCorner/cloudseccorner.github.io", {
+      signal: AbortSignal.timeout(5000),
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((repo) => {
+        if (Number.isFinite(repo?.stargazers_count)) {
+          setGithubStars(repo.stargazers_count);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
-  // Function to sort tools based on selected criteria
-  const sortTools = (filteredEntries) => {
-    switch (sortBy) {
-      case 'az':
-        return [...filteredEntries].sort((a, b) => 
-          a.title.localeCompare(b.title)
-        );
-      case 'za':
-        return [...filteredEntries].sort((a, b) => 
-          b.title.localeCompare(a.title)
-        );
-      default:
-        return filteredEntries;
-    }
+  // Compute unique categories/tags
+  const uniqueTags = useMemo(() => {
+    return Array.from(new Set(entries.map((e) => e.tag).filter(Boolean))).sort();
+  }, []);
+
+  // Update URL params
+  const updateUrl = (newQuery, newCategory, newSort) => {
+    const params = new URLSearchParams();
+    if (newQuery) params.set("q", newQuery);
+    if (newCategory) params.set("category", newCategory);
+    if (newSort === "za") params.set("sort", "za");
+    setSearchParams(params, { replace: true });
   };
 
-  // Filter entries based on search, tag selection, and category type
-  const filteredEntries = entries.filter((entry) => {
-    const searchTerm = search.toLowerCase();
-    const selectedTag = selectVal.toLowerCase();
-    const titleMatches = entry.title.toLowerCase().includes(searchTerm);
-    const descriptionMatches = entry.description && entry.description.toLowerCase().includes(searchTerm);
-    const tagMatches = selectedTag === "" || entry.tag.toLowerCase().includes(selectedTag);
-    
-    // Check if tag belongs to the selected category type
-    let categoryMatches = true;
-    if (categoryType === "app") {
-      categoryMatches = appSecurityTags.includes(entry.tag);
-    } else if (categoryType === "network") {
-      categoryMatches = networkSecurityTags.includes(entry.tag);
-    } else if (categoryType === "cloud") {
-      categoryMatches = cloudSecurityTags.includes(entry.tag);
-    } else if (categoryType === "agentic") {
-      categoryMatches = agenticSecurityTags.includes(entry.tag);
-    } else if (categoryType === "identity") {
-      categoryMatches = identitySecurityTags.includes(entry.tag);
-    }
-    
-    return (titleMatches || descriptionMatches) && tagMatches && categoryMatches;
-  });
-
-  // Sort the filtered entries
-  const sortedEntries = sortTools(filteredEntries);
-
-  // Sample entry for contribution example
-  const sampleEntry = {
-    title: "Your Security Tool Name",
-    link: "https://your-tool-website.com",
-    description: "A brief description of your security tool and what it does",
-    github: "yourusername/repo-name",
-    tag: "Application Security"
+  const handleQueryChange = (e) => {
+    const val = e.target.value;
+    setQuery(val);
+    setPage(1);
+    updateUrl(val, category, sort);
   };
+
+  const handleCategoryChange = (e) => {
+    const val = e.target.value;
+    setCategory(val);
+    setPage(1);
+    updateUrl(query, val, sort);
+  };
+
+  const handleSortChange = (e) => {
+    const val = e.target.value;
+    setSort(val);
+    setPage(1);
+    updateUrl(query, category, val);
+  };
+
+  const handleClearFilters = () => {
+    setQuery("");
+    setCategory("");
+    setSort("az");
+    setPage(1);
+    setSearchParams({}, { replace: true });
+  };
+
+  // Quick filter presets
+  const quickFilters = [
+    { label: "All Tools", value: "" },
+    { label: "Agentic Security", value: "AI Security" },
+    { label: "Cloud Security", value: "Cloud Security" },
+    { label: "Application Security", value: "Application Security" },
+    { label: "Network Security", value: "Network Security" },
+    { label: "Identity & Access", value: "Identity" },
+  ];
+
+  // Filter and sort entries
+  const filteredEntries = useMemo(() => {
+    const words = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    const catLower = category.toLowerCase().trim();
+
+    return entries
+      .filter((entry) => {
+        const title = entry.title || "";
+        const desc = entry.description || "";
+        const tag = entry.tag || "";
+        const haystack = `${title} ${desc} ${tag}`.toLowerCase();
+
+        const matchesCategory =
+          !catLower ||
+          tag.toLowerCase() === catLower ||
+          tag.toLowerCase().includes(catLower);
+
+        const matchesWords =
+          words.length === 0 || words.every((word) => haystack.includes(word));
+
+        return matchesCategory && matchesWords;
+      })
+      .sort((a, b) => {
+        const order = sort === "za" ? -1 : 1;
+        return order * (a.title || "").localeCompare(b.title || "");
+      });
+  }, [query, category, sort]);
+
+  const visibleLimit = Math.min(page * PAGE_SIZE, filteredEntries.length);
+  const visibleEntries = filteredEntries.slice(0, visibleLimit);
+  const hasMore = visibleLimit < filteredEntries.length;
+  const isFiltering = Boolean(query || category || sort === "za");
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-950 w-full px-6 py-8 max-w-7xl mx-auto">
-      <div className="flex flex-col w-full justify-center items-center gap-6 mx-auto rounded-xl">
-        <div className="w-full flex flex-col md:flex-row items-center justify-between">
-          <div className="flex flex-col items-center md:items-start">
-            <h2 className="text-3xl font-semibold text-slate-900 dark:text-white mb-2">
-            Security Tools Directory
-          </h2>
-            <p className="text-base text-slate-600 dark:text-slate-300 max-w-2xl text-center md:text-left mb-6">
-            Start with agentic security, then explore the cloud, application, and network controls that support it.
-          </p>
+    <div className="w-full">
+      <OpenGraph
+        title="Security & Agentic Tools Directory | Cloud Security Corner"
+        description="Search CloudSecCorner's curated collection of 37,000+ open-source tools across AI agent security, cloud defense, identity, runtime monitoring, and governance."
+        tags={["AI Agent Security Tools", "Cloud Security Tools", "Runtime Security", "Zero Trust"]}
+      />
+
+      {/* KubeDaily Tools Hero */}
+      <section className="kube-tools-hero">
+        <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
+          <div className="kube-tools-hero-copy">
+            <p className="kube-label">Security &amp; Agentic Ecosystem Directory</p>
+            <h1>
+              Find the tools that help teams <span>secure cloud and AI agents.</span>
+            </h1>
+            <p>
+              Search CloudSecCorner’s curated collection of 37,000+ projects across AI agent security, cloud defense, identity, runtime monitoring, and governance.
+            </p>
+            <a className="kube-tools-star" href={REPOSITORY_URL} target="_blank" rel="noreferrer">
+              <span aria-hidden="true">★</span>
+              <strong>
+                {githubStars !== null ? `${githubStars.toLocaleString()} GitHub stars` : "GitHub"}
+              </strong>
+              <small>Star CloudSecCorner on GitHub ↗</small>
+            </a>
           </div>
+        </div>
+      </section>
+
+      {/* Main Directory Container */}
+      <section className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+        {/* Directory Heading */}
+        <div className="kube-tools-directory-heading">
+          <div>
+            <p className="kube-label">Explore the directory</p>
+            <h2>Search by project or category.</h2>
+          </div>
+          <p>
+            Filter by category, sort by name, and share the URL to keep your selection. Every result links to the project; GitHub stars are informational, not a quality ranking.
+          </p>
+        </div>
+
+        {/* Quick Filter Buttons */}
+        <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Quick category filters">
+          {quickFilters.map((qf) => {
+            const isActive =
+              qf.value === ""
+                ? category === ""
+                : category.toLowerCase().includes(qf.value.toLowerCase());
+            return (
+              <button
+                key={qf.label}
+                type="button"
+                onClick={() => {
+                  setCategory(qf.value);
+                  setPage(1);
+                  updateUrl(query, qf.value, sort);
+                }}
+                className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition ${
+                  isActive
+                    ? "bg-purple text-white shadow-sm"
+                    : "bg-slate-100 dark:bg-[#31373b] text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[#3d4449]"
+                }`}
+              >
+                {qf.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Tool Controls Form */}
+        <form
+          className="kube-tool-controls mt-6"
+          role="search"
+          aria-label="Find security tools"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <label htmlFor="tool-query">
+            Search tools
+            <input
+              id="tool-query"
+              name="q"
+              type="search"
+              placeholder="Try Agentic, Zero-Trust, Falco, IAM…"
+              autoComplete="off"
+              value={query}
+              onChange={handleQueryChange}
+            />
+          </label>
+
+          <label htmlFor="tool-category">
+            Category
+            <select
+              id="tool-category"
+              name="category"
+              value={category}
+              onChange={handleCategoryChange}
+            >
+              <option value="">All categories ({uniqueTags.length})</option>
+              {uniqueTags.map((tag) => (
+                <option key={tag} value={tag}>
+                  {tag}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label htmlFor="tool-sort">
+            Sort by
+            <select
+              id="tool-sort"
+              name="sort"
+              value={sort}
+              onChange={handleSortChange}
+            >
+              <option value="az">Name: A–Z</option>
+              <option value="za">Name: Z–A</option>
+            </select>
+          </label>
+        </form>
+
+        {/* Results Toolbar */}
+        <div className="kube-results-toolbar">
+          <p className="kube-tool-count" role="status" aria-live="polite" aria-atomic="true">
+            Showing <strong>{visibleLimit.toLocaleString()}</strong> of{" "}
+            <strong>{filteredEntries.length.toLocaleString()}</strong> matching tools ·{" "}
+            {entries.length.toLocaleString()} in the directory
+          </p>
           <button
-            onClick={() => setShowContributeModal(true)}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-md flex items-center hover:bg-indigo-700 transition-colors mt-4 md:mt-0"
+            type="button"
+            className="kube-filter-reset"
+            onClick={handleClearFilters}
+            disabled={!isFiltering}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            Contribute a Tool
+            Clear filters
           </button>
         </div>
 
-        {/* Category Type Selector */}
-        <div className="w-full flex justify-center mb-4 overflow-x-auto">
-          <div className="inline-flex rounded-md shadow-sm" role="group">
-            <button
-              type="button"
-              className={`px-4 py-2 text-sm font-medium rounded-l-lg ${
-                categoryType === "all" 
-                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
-                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700"
-              }`}
-              onClick={() => {
-                setCategoryType("all");
-                setSelectVal("");
-              }}
-            >
-              All Security Tools
-            </button>
-            <button
-              type="button"
-              className={`px-4 py-2 text-sm font-medium ${
-                categoryType === "app" 
-                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
-                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border-t border-b border-slate-200 dark:border-slate-700"
-              }`}
-              onClick={() => {
-                setCategoryType("app");
-                setSelectVal("");
-              }}
-            >
-              Application Security
-            </button>
-            <button
-              type="button"
-              className={`px-4 py-2 text-sm font-medium ${
-                categoryType === "network" 
-                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
-                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border-t border-b border-slate-200 dark:border-slate-700"
-              }`}
-              onClick={() => {
-                setCategoryType("network");
-                setSelectVal("");
-              }}
-            >
-              Network Security
-            </button>
-            <button
-              type="button"
-              className={`px-4 py-2 text-sm font-medium ${
-                categoryType === "cloud" 
-                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
-                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border-t border-b border-slate-200 dark:border-slate-700"
-              }`}
-              onClick={() => {
-                setCategoryType("cloud");
-                setSelectVal("");
-              }}
-            >
-              Cloud Security
-            </button>
-            <button
-              type="button"
-              className={`px-4 py-2 text-sm font-medium ${
-                categoryType === "agentic" 
-                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
-                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700"
-              }`}
-              onClick={() => {
-                setCategoryType("agentic");
-                setSelectVal("");
-              }}
-            >
-              Agentic Security
-            </button>
-            <button
-              type="button"
-              className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
-                categoryType === "identity"
-                  ? "bg-indigo-600 text-white hover:bg-indigo-700"
-                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700"
-              }`}
-              onClick={() => {
-                setCategoryType("identity");
-                setSelectVal("");
-              }}
-            >
-              Identity & Secrets
-            </button>
-          </div>
+        {/* Tool Grid */}
+        <div className="kube-tool-grid" id="tool-results">
+          {visibleEntries.length === 0 ? (
+            <div className="col-span-full kube-tool-empty">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">No matching tools</h2>
+              <p className="text-slate-600 dark:text-slate-400">
+                Try a broader keyword or use Clear filters to start again.
+              </p>
+            </div>
+          ) : (
+            visibleEntries.map((entry, idx) => {
+              const link = escapeUrl(entry.link);
+              const badgeUrl = getGitHubStarsBadge(entry.link, entry.github);
+
+              return (
+                <article key={`${entry.title}-${idx}`} className="kube-tool-card">
+                  <div className="kube-tool-card-meta">
+                    <p className="kube-label">{entry.tag || "Security Tool"}</p>
+                    {badgeUrl && (
+                      <span className="kube-tool-stars">
+                        <img
+                          className="kube-stars-image"
+                          loading="lazy"
+                          width="95"
+                          height="20"
+                          src={badgeUrl}
+                          alt="GitHub stars"
+                        />
+                      </span>
+                    )}
+                  </div>
+                  <h2>{entry.title}</h2>
+                  <p>{entry.description || "Explore this project's official documentation and source."}</p>
+                  {link ? (
+                    <a href={link} target="_blank" rel="noopener noreferrer">
+                      Visit official project <span aria-hidden="true">↗</span>
+                    </a>
+                  ) : (
+                    <span className="mt-auto pt-7 text-xs text-slate-400">Documentation link pending</span>
+                  )}
+                </article>
+              );
+            })
+          )}
         </div>
 
-        <div className="w-full flex flex-col md:flex-row justify-center items-center gap-4">
-          {/* Search Bar */}
-          <div className="relative w-full md:w-1/2">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-              </svg>
-            </div>
-            <input
-              type="search"
-              className="w-full pl-10 pr-4 py-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 placeholder-slate-500 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Search security tools..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
-          
-          <div className="flex flex-col sm:flex-row w-full md:w-1/2 gap-4">
-            {/* Category Dropdown */}
-            <div className="w-full sm:w-2/3">
-              <select
-                className="w-full py-3 px-4 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                value={selectVal}
-                onChange={(e) => setSelectVal(e.target.value)}
-              >
-                <option value="">All Categories</option>
-                {dropdownTags.map((tag, index) => (
-                  <option key={index} value={tag}>{tag}</option>
-                ))}
-              </select>
-            </div>
-            
-            {/* Sort Dropdown */}
-            <div className="w-full sm:w-1/3">
-              <select
-                className="w-full py-3 px-4 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-              >
-                <option value="default">Sort by</option>
-                <option value="az">A-Z</option>
-                <option value="za">Z-A</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        
-        {/* Results count */}
-        <div className="w-full text-left text-slate-500 dark:text-slate-300 pb-4">
-          Found {sortedEntries.length} {categoryType === "all" ? "security tools" : 
-          categoryType === "app" ? "application security tools" : 
-          categoryType === "network" ? "network security tools" : 
-          categoryType === "cloud" ? "cloud security tools" :
-          categoryType === "agentic" ? "agentic security tools" : "identity and secrets tools"}
-        </div>
-        
-        {/* Display message if no results */}
-        {sortedEntries.length === 0 && (
-          <div className="w-full flex flex-col items-center py-10 bg-white dark:bg-slate-900 rounded-md border border-slate-200 dark:border-slate-700 p-8">
-            <svg className="w-16 h-16 text-slate-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <p className="text-slate-700 dark:text-slate-300 text-xl font-medium">No results found</p>
-            <p className="text-slate-500 text-base text-center mt-2">Try adjusting your search or filter to find what you're looking for.</p>
+        {/* Show More Tools Button */}
+        {hasMore && (
+          <div className="kube-directory-more">
+            <button
+              type="button"
+              className="kube-button"
+              id="tool-more"
+              onClick={() => setPage((prev) => prev + 1)}
+            >
+              Show more tools ({filteredEntries.length - visibleLimit} remaining)
+            </button>
           </div>
         )}
-        
-        {/* Tools Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-          {sortedEntries.map((entry, index) => (
-            <ToolCard 
-              key={index} 
-              title={entry.title} 
-              link={entry.link} 
-              description={entry.description} 
-              github={entry.github} 
-              tag={entry.tag}
-            />
-          ))}
+      </section>
+
+      {/* Contribute Callout Banner */}
+      <section className="kube-contribute">
+        <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-10 lg:py-14">
+          <div className="kube-contribute-copy">
+            <p className="kube-label">Grow the directory</p>
+            <h2>Know a tool the security community should discover?</h2>
+            <p>
+              Recommend a maintained project, improve a description, or help keep links and categories useful for people evaluating their cloud &amp; agentic stack.
+            </p>
+          </div>
+          <div className="kube-contribute-actions">
+            <a
+              className="kube-contribute-primary"
+              href={`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Contribution guide ↗
+            </a>
+            <button
+              type="button"
+              onClick={() => setShowContributeModal(true)}
+              className="rounded-lg border border-slate-300 dark:border-brand-gray-700 bg-white dark:bg-brand-gray-800 px-4 py-2.5 text-sm font-bold text-slate-900 dark:text-white transition hover:border-brand-purple-300"
+            >
+              Recommend a tool ↗
+            </button>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Contribute Modal */}
       {showContributeModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Contribute a Security Tool
-              </h3>
-              <button 
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="w-full max-w-2xl rounded-2xl border border-slate-200 dark:border-[#3d4449] bg-white dark:bg-[#22272e] p-6 sm:p-8 shadow-2xl text-slate-900 dark:text-white">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#3d4449] pb-4">
+              <div>
+                <p className="kube-label">Open Source Submission</p>
+                <h3 className="text-xl font-bold">Contribute a Security Tool</h3>
+              </div>
+              <button
+                type="button"
                 onClick={() => setShowContributeModal(false)}
-                className="text-gray-400 hover:text-gray-500"
+                className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 dark:hover:bg-[#31373b] hover:text-slate-900 dark:hover:text-white"
+                aria-label="Close modal"
               >
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                ✕
               </button>
             </div>
-            <div className="p-6">
-              <div className="mb-6">
-                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">How to Contribute</h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  You can contribute to our security tools collection by submitting a pull request to our GitHub repository. 
-                  Follow these steps to add your tool:
-                </p>
-                <ol className="list-decimal pl-6 text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>Fork the <a href={REPOSITORY_URL} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">repository</a></li>
-                  <li>Edit the appropriate entries file in <code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">src/data/</code> based on your tool category:
-                    <ul className="list-disc pl-6 mt-1 space-y-1">
-                      <li><code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">security-entries.js</code> for security tools</li>
-                    </ul>
-                  </li>
-                  <li>Add your tool entry in the appropriate section following the format below</li>
-                  <li>Submit a pull request</li>
-                </ol>
+
+            <div className="mt-6 space-y-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p>
+                CloudSecCorner maintains an index of over 37,000 security and AI agent projects. We welcome community additions and corrections!
+              </p>
+              <h4 className="font-bold text-slate-900 dark:text-white">How to submit:</h4>
+              <ol className="list-decimal pl-5 space-y-2">
+                <li>Fork the repository on GitHub.</li>
+                <li>Add your project entry into <code className="rounded bg-slate-100 dark:bg-[#31373b] px-1.5 py-0.5 font-mono text-purple-600 dark:text-purple-400">src/data/entries.js</code>.</li>
+                <li>Ensure it includes a title, valid project URL, category tag, and concise description.</li>
+                <li>Open a Pull Request with our PR template.</li>
+              </ol>
+
+              <div className="rounded-xl border border-slate-200 dark:border-[#3d4449] bg-slate-50 dark:bg-[#18131f] p-4 font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto">
+{`{
+  title: "Your Tool Name",
+  link: "https://your-tool.example.com",
+  description: "Precise summary of what this security tool does.",
+  github: "owner/repo",
+  tag: "Agentic Security"
+}`}
               </div>
-              
-              <div className="mb-6">
-                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Entry Format</h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Each tool entry should follow this format:
-                </p>
-                <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-md overflow-x-auto mb-4">
-                  <pre className="text-sm font-mono text-gray-800 dark:text-gray-200">{`{
-  title: "Tool Name",
-  link: "https://tool-website.com",
-  description: "Brief description of the tool",
-  github: "username/repo",  // or just "username" if the repo matches the username
-  tag: "Category Name"
-}`}</pre>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 mb-2">
-                  <span className="font-medium">All available categories:</span>
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-                  {allTags.map((tag, index) => (
-                    <div key={index} className="bg-gray-100 dark:bg-gray-700 py-1 px-2 rounded-md text-sm text-gray-800 dark:text-gray-200">
-                      {tag}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="mb-6">
-                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Example Entry</h4>
-                <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-md overflow-x-auto">
-                  <pre className="text-sm font-mono text-gray-800 dark:text-gray-200">{JSON.stringify(sampleEntry, null, 2)}</pre>
-                </div>
-              </div>
-              
-              <div className="flex justify-between items-center pt-4 border-t border-gray-200 dark:border-gray-700">
-                <a 
-                  href={`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline flex items-center"
-                >
-                  <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
-                  </svg>
-                  View full contribution guidelines
-                </a>
-                <div className="flex space-x-2">
-                  <button 
-                    onClick={() => setShowContributeModal(false)}
-                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
-                  >
-                    Close
-                  </button>
-                  <a 
-                    href={`${REPOSITORY_URL}/tree/main/src/data`}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                  >
-                    View Data Files
-                  </a>
-                </div>
-              </div>
+            </div>
+
+            <div className="mt-8 flex flex-wrap justify-end gap-3 border-t border-slate-200 dark:border-[#3d4449] pt-4">
+              <button
+                type="button"
+                onClick={() => setShowContributeModal(false)}
+                className="rounded-lg border border-slate-300 dark:border-[#3d4449] px-4 py-2 text-sm font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#31373b]"
+              >
+                Close
+              </button>
+              <a
+                href={`${REPOSITORY_URL}/issues/new?title=Tool+Recommendation&labels=tool-submission`}
+                target="_blank"
+                rel="noreferrer"
+                className="kube-button"
+              >
+                Submit on GitHub ↗
+              </a>
             </div>
           </div>
         </div>

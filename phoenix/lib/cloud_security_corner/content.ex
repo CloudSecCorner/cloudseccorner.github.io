@@ -109,13 +109,21 @@ defmodule CloudSecurityCorner.Content do
     path =
       Application.app_dir(:cloud_security_corner, Path.join(["priv/static", directory, filename]))
 
-    with {:ok, markdown} <- File.read(path),
-         {:ok, html, _messages} <- Earmark.as_html(markdown, escape: true) do
+    with {:ok, markdown} <- File.read(path) do
+      html =
+        case Earmark.as_html(markdown, escape: false) do
+          {:ok, html, _messages} ->
+            html
+
+          {:error, html, _errors} when is_binary(html) and byte_size(html) > 0 ->
+            html
+
+          other ->
+            raise "Unable to render #{directory}/#{filename}: #{inspect(other)}"
+        end
+
       {:ok, entry, html}
     else
-      {:error, _html, errors} ->
-        raise "Unable to render #{directory}/#{filename}: #{inspect(errors)}"
-
       {:error, reason} ->
         raise "Unable to read #{directory}/#{filename}: #{inspect(reason)}"
     end

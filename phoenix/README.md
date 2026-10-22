@@ -26,6 +26,11 @@ Open <http://localhost:4000>. In production, set `SECRET_KEY_BASE` (generate one
 
 The source data is kept under `priv/data`, and static article, lab, and image files are under `priv/static`. The tool catalogue is exported from `src/data/security-entries.js` to `priv/data/security-entries.json`.
 
-## Deployment status
+## Deployment (GitHub Pages via Elixir Export)
 
-The existing GitHub Pages workflow still builds and publishes the current static site. GitHub Pages cannot run a Phoenix server, so this app is staged separately in `phoenix/` until a server host is selected. Switching the live site to Phoenix requires configuring that host and replacing the Pages deployment workflow.
+Following KubeDaily's architecture (`kubernetesdaily/kubernetesdaily.github.io`), Cloud Security Corner uses Phoenix and exports to static HTML for GitHub Pages:
+
+1. **Static Export Task**: `mix site.export --output _site` renders all public routes (`/`, `/tools`, `/labs`, `/labs/:id`, `/blog`, `/blog/:id`, `/about`, `404.html`) and bundles static assets, `robots.txt`, `sitemap.xml`, and `.nojekyll`.
+2. **GitHub Actions Workflow**: `.github/workflows/pages.yml` uses `erlef/setup-beam` with Elixir 1.20 and OTP 29, runs `mix site.export`, and publishes the resulting `_site` to GitHub Pages via `actions/deploy-pages@v4`.
+3. **Continuous Integration**: `.github/workflows/ci.yml` runs formatting checks (`mix format --check-formatted`), compilation, test suites (`mix test`), and content verification.
+

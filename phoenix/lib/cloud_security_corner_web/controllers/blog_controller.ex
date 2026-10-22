@@ -23,7 +23,8 @@ defmodule CloudSecurityCornerWeb.BlogController do
       :error ->
         conn
         |> put_status(:not_found)
-        |> render(CloudSecurityCornerWeb.NotFoundHTML, :not_found,
+        |> put_view(html: CloudSecurityCornerWeb.NotFoundHTML)
+        |> render(:not_found,
           page_title: "Post not found",
           description: "The requested post could not be found."
         )

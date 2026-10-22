@@ -25,7 +25,8 @@ defmodule CloudSecurityCorner.MixProject do
       {:earmark, "~> 1.4"},
       {:jason, "~> 1.4"},
       {:phoenix, "~> 1.7"},
-      {:phoenix_html, "~> 4.1"}
+      {:phoenix_html, "~> 4.1"},
+      {:phoenix_live_view, "~> 1.0"}
     ]
   end
 

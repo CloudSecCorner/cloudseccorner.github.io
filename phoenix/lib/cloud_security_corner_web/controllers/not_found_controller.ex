@@ -4,7 +4,8 @@ defmodule CloudSecurityCornerWeb.NotFoundController do
   def show(conn, _params) do
     conn
     |> put_status(:not_found)
-    |> render(CloudSecurityCornerWeb.NotFoundHTML, :not_found,
+    |> put_view(html: CloudSecurityCornerWeb.NotFoundHTML)
+    |> render(:not_found,
       page_title: "Page not found",
       description: "The requested page could not be found."
     )

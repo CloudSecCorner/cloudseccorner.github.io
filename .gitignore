@@ -1,3 +1,12 @@
 assets/images/templates/.DS_Store
 node_modules
 .DS_Store
+_site/
+_build/
+deps/
+*.ez
+erl_crash.dump
+/phoenix/_build/
+/phoenix/deps/
+/phoenix/_site/
+

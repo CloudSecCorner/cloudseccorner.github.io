@@ -7,6 +7,30 @@ export default {
   theme: {
     extend: {
       colors:{
+        // KubeDaily Brand Tokens from https://github.com/kubernetesdaily/kubernetesdaily.github.io
+        'brand-purple-100': '#caa2f5',
+        'brand-purple-200': '#cfbae6',
+        'brand-purple-300': '#967ab4',
+        'brand-purple-800': '#7c6f89',
+        purple: {
+          DEFAULT: '#7c6f89',
+          dark: '#caa2f5',
+        },
+        'brand-gray-100': '#f9fafb',
+        'brand-gray-200': '#f5f6f7',
+        'brand-gray-300': '#f4f6f7',
+        'brand-gray-400': '#A1A1AA',
+        'brand-gray-500': '#9fa3a6',
+        'brand-gray-550': '#717171',
+        'brand-gray-600': '#666666',
+        'brand-gray-650': '#4a4a4a',
+        'brand-gray-700': '#3d4449',
+        'brand-gray-750': '#3c4349',
+        'brand-gray-800': '#31373b',
+        'brand-gray-900': '#22272e',
+        'brand-red-300': '#f56a6a',
+        'brand-red-500': '#c0394d',
+
         primary: '#f8f8f2',
         bgGray : '#282a36',
         bgPrimary : '#191a21',

@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import OpenGraph from "./components/OpenGraph";
 import JoinCommunityPopup from "./components/JoinCommunityPopup";
+import { REPOSITORY_URL } from "./utils/socialSharing";
 
 const LandingPage = lazy(() => import("./components/LandingPage"));
 const ToolsSection = lazy(() => import("./components/ToolsSection"));
@@ -14,7 +15,7 @@ const Labs = lazy(() => import("./components/Labs"));
 function RouteFallback() {
   return (
     <div className="flex min-h-[50vh] items-center justify-center" role="status">
-      <div className="h-10 w-10 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+      <div className="h-10 w-10 animate-spin rounded-full border-2 border-purple-500 border-t-transparent" />
       <span className="sr-only">Loading page</span>
     </div>
   );
@@ -22,15 +23,15 @@ function RouteFallback() {
 
 function NotFound() {
   return (
-    <main className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center px-4 text-center text-primary">
+    <main className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center px-4 text-center">
       <OpenGraph
         title="Page not found | Cloud Security Corner"
         description="The requested Cloud Security Corner page could not be found."
       />
-      <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-blue-500">404</p>
-      <h1 className="mb-4 text-4xl font-bold">Page not found</h1>
-      <p className="mb-8 text-grayFill">The page may have moved or the address may be incorrect.</p>
-      <Link className="rounded-md bg-blue-600 px-5 py-3 font-medium text-white hover:bg-blue-700" to="/">
+      <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-purple-600 dark:text-purple-400">404</p>
+      <h1 className="mb-4 text-4xl font-extrabold text-slate-900 dark:text-white">Page not found</h1>
+      <p className="mb-8 text-slate-600 dark:text-slate-400">The page may have moved or the address may be incorrect.</p>
+      <Link className="kube-button" to="/">
         Return home
       </Link>
     </main>
@@ -40,71 +41,63 @@ function NotFound() {
 function App() {
   return (
     <Router>
-      <div className="bg-bgPrimary min-h-screen">
+      <div className="min-h-screen bg-white dark:bg-[#18131f] text-slate-900 dark:text-white flex flex-col transition-colors duration-200">
         <Nav />
-        <div className="pt-16">
+        <div className="flex-1">
           <Suspense fallback={<RouteFallback />}>
             <Routes>
-            <Route path="/" element={
-              <>
-                <OpenGraph 
-                  title="Cloud Security Corner | Agentic AI & Cloud Security"
-                  description="Practical tools, labs, and guidance for securing AI agents, autonomous cloud workloads, identities, toolchains, and runtime behavior."
-                  tags={["Agentic AI Security", "AI Agent Security", "Cloud Security", "Runtime Security", "AI Governance"]}
-                />
-                <LandingPage />
-              </>
-            } />
-            <Route path="/tools" element={
-              <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
-                <OpenGraph 
-                  title="Agentic AI & Cloud Security Tools | Cloud Security Corner"
-                  description="Explore tools for AI agent security, cloud defense, identity, policy enforcement, runtime monitoring, testing, and governance."
-                  tags={["AI Agent Security Tools", "Cloud Security Tools", "Agent Runtime Security", "AI Governance"]}
-                />
-                <h1 className="text-3xl font-bold mb-3 text-center">Agentic AI & Cloud Security Tools</h1>
-                <p className="mx-auto mb-8 max-w-3xl text-center text-grayFill">Curated tools for protecting AI agents, cloud workloads, identities, data, and the systems that connect them.</p>
-                <ToolsSection />
-              </div>
-            } />
-            <Route path="/labs" element={
-              <>
-                <OpenGraph 
-                  title="Security Labs | Cloud Security Corner"
-                  description="Hands-on labs for agentic AI security, threat modeling, zero trust, cloud defense, and security engineering."
-                  tags={["Agentic Security Labs", "Cloud Security Practice", "Threat Modeling", "Zero Trust"]}
-                />
-                <Labs />
-              </>
-            } />
-            <Route path="/labs/:labId" element={<Labs />} />
-            <Route path="/blog" element={
-              <>
-                <OpenGraph 
-                  title="Agentic Cloud Security Blog | Cloud Security Corner"
-                  description="Research and practical guidance for securing AI agents, autonomous workloads, and cloud infrastructure."
-                  tags={["Agentic AI Security", "Cloud Security Blog", "AI Governance", "Security Research"]}
-                />
-                <Blog />
-              </>
-            } />
-            <Route path="/blog/:postId" element={<Blog />} />
-            <Route path="/about" element={
-              <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
-                <OpenGraph 
-                  title="About Cloud Security Corner"
-                  description="Cloud Security Corner is an open community focused on securing AI agents and the cloud systems they can access."
-                  tags={["About", "Agentic AI Security", "Cloud Security Community", "Mission"]}
-                />
-                <h1 className="text-3xl font-bold mb-8 text-center">About Cloud Security Corner</h1>
-                <div className="mx-auto max-w-3xl space-y-6 text-grayFill text-lg leading-8">
-                  <p>Cloud Security Corner is an open community focused on a fast-growing security problem: AI agents can now use credentials, call tools, access sensitive data, and change cloud infrastructure.</p>
-                  <p>Our mission is to make agentic cloud security practical. We create and curate guidance for identity, authorization, tool isolation, runtime defense, threat modeling, evaluations, governance, and incident response.</p>
-                  <p>We bring together security practitioners, cloud engineers, AI builders, and governance teams to develop controls that keep autonomous systems useful, observable, and bounded.</p>
+              <Route path="/" element={
+                <>
+                  <OpenGraph 
+                    title="Cloud Security Corner | Agentic AI & Cloud Security"
+                    description="Practical tools, labs, and guidance for securing AI agents, autonomous cloud workloads, identities, toolchains, and runtime behavior."
+                    tags={["Agentic AI Security", "AI Agent Security", "Cloud Security", "Runtime Security", "AI Governance"]}
+                  />
+                  <LandingPage />
+                </>
+              } />
+              <Route path="/tools" element={<ToolsSection />} />
+              <Route path="/labs" element={<Labs />} />
+              <Route path="/labs/:labId" element={<Labs />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:postId" element={<Blog />} />
+              <Route path="/about" element={
+                <div className="w-full">
+                  <OpenGraph 
+                    title="About Cloud Security Corner"
+                    description="Cloud Security Corner is an open community focused on securing AI agents and the cloud systems they can access."
+                    tags={["About", "Agentic AI Security", "Cloud Security Community", "Mission"]}
+                  />
+                  <section className="container kube-reading mx-auto px-5 py-16">
+                    <p className="kube-label">About CloudSecCorner</p>
+                    <h1>Making agentic cloud security practical and bounded</h1>
+                    <p className="kube-dek">
+                      CloudSecCorner is an open community focused on a fast-growing challenge: AI agents can now use credentials, invoke tools, inspect sensitive data, and modify cloud infrastructure.
+                    </p>
+                    <p>
+                      Our mission is to make agentic cloud security practical. We create and curate guidance for identity, authorization, tool isolation, runtime defense, threat modeling, evaluations, governance, and incident response.
+                    </p>
+                    <p>
+                      We bring together security practitioners, cloud engineers, AI builders, and governance teams to develop controls that keep autonomous systems useful, observable, and bounded.
+                    </p>
+                    <div className="mt-12 grid gap-6 sm:grid-cols-3">
+                      <div className="rounded-xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-brand-gray-800 p-6 text-center shadow-sm">
+                        <strong className="block text-3xl font-extrabold text-purple-600 dark:text-brand-purple-100">37,000+</strong>
+                        <span className="text-xs font-bold text-slate-500 dark:text-brand-gray-400 uppercase tracking-wider mt-1 block">Curated Security Tools</span>
+                      </div>
+                      <div className="rounded-xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-brand-gray-800 p-6 text-center shadow-sm">
+                        <strong className="block text-3xl font-extrabold text-purple-600 dark:text-brand-purple-100">6</strong>
+                        <span className="text-xs font-bold text-slate-500 dark:text-brand-gray-400 uppercase tracking-wider mt-1 block">Hands-on Defense Labs</span>
+                      </div>
+                      <div className="rounded-xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-brand-gray-800 p-6 text-center shadow-sm">
+                        <strong className="block text-3xl font-extrabold text-purple-600 dark:text-brand-purple-100">100%</strong>
+                        <span className="text-xs font-bold text-slate-500 dark:text-brand-gray-400 uppercase tracking-wider mt-1 block">Open Source &amp; Free</span>
+                      </div>
+                    </div>
+                  </section>
                 </div>
-              </div>
-            } />
-            <Route path="*" element={<NotFound />} />
+              } />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </div>

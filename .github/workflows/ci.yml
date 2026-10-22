@@ -1,0 +1,75 @@
+---
+name: Continuous Integration
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+env:
+  CACHE_VERSION: v1
+  ELIXIR_VERSION: '1.20.3'
+  MIX_ENV: test
+  OTP_VERSION: '29'
+
+concurrency:
+  group: ci-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  Format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{ env.OTP_VERSION }}
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+      - run: mix local.hex --force && mix local.rebar --force
+      - run: mix deps.get
+        working-directory: phoenix
+      - run: mix format --check-formatted
+        working-directory: phoenix
+
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{ env.OTP_VERSION }}
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+      - uses: actions/cache@v5
+        with:
+          path: |
+            phoenix/_build
+            phoenix/deps
+          key: ${{ env.CACHE_VERSION }}-${{ env.ELIXIR_VERSION }}-${{ env.OTP_VERSION }}-${{ hashFiles('phoenix/mix.lock') }}
+          restore-keys: |
+            ${{ env.CACHE_VERSION }}-${{ env.ELIXIR_VERSION }}-${{ env.OTP_VERSION }}-
+      - run: mix local.hex --force && mix local.rebar --force
+      - run: mix deps.get
+        working-directory: phoenix
+      - run: mix compile --warnings-as-errors
+        working-directory: phoenix
+      - run: mix test
+        working-directory: phoenix
+
+  Validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: node scripts/validate-content.mjs

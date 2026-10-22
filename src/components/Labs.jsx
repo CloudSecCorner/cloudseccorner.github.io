@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import MarkdownRenderer from "./MarkdownRenderer";
 import OpenGraph from "./OpenGraph";
@@ -19,80 +14,73 @@ const fallbackLabsData = [
     category: "Agentic Security",
     path: "/labs/agentic-cloud-security.md",
     contributors: ["Sangam Biradar"],
-    tags: ["Cloud Security", "AI Security"]
-  },
-  {
-    id: "Ethical-Hacker-Easy-Way",
-    title: "Ethical Hacker Easy Way",
-    description: "Ethical Hacker Easy Way",
-    category: "Ethical Hacking",
-    path: "/labs/ethical-hacker-easy-way.md",
-    contributors: ["Sangam Biradar"],
-    tags: ["Ethical Hacking"]
-  },
-  {
-    id: "Threat-Modeling",
-    title: "Threat Modeling",
-    description: "Learn how to create a threat model for a given system",
-    category : "Security Engineering",
-    path: "/labs/threat-modeling.md",
-    contributors : ["Sangam Biradar"],
-    tags: ["Security Engineering"]
-  },
-  {
-    id: "NMAP-Practical-Labs",
-    title: "NMAP Practical Labs",
-    description: "NMAP is a network scanner that can be used to scan networks and identify open ports, services, and other information.",
-    category: "Network Security",
-    path: "/labs/NMAP-Practical-Labs.md",
-    contributors: ["Sangam Biradar"],
-    tags: ["Network Security"],
+    tags: ["Cloud Security", "AI Security", "Agentic Defense"]
   },
   {
     id: "Security-Engineering-Fundamentals",
     title: "Security Engineering Fundamentals",
-    description: " Understanding the core principles of security engineering and how to apply them to real-world scenarios.",
+    description: "Understand the core principles of security engineering and how to apply them to modern infrastructure and workload boundaries.",
     category: "Security Engineering",
     path: "/labs/Security-Engineering-Fundamentals.md",
     contributors: ["Sangam Biradar"],
-    tags: ["Security Engineering"]
+    tags: ["Security Engineering", "Defense In Depth", "Identity"]
   },
   {
     id: "Zero-Trust-Architecture",
     title: "Zero-Trust Architecture",
-    description: "Zero-Trust Architecture is a security model that assumes that all users, devices, and applications are potentially hostile and must be verified and authenticated.",
+    description: "A security model assuming all users, devices, and agents are hostile. Enforce mutual attestation, least privilege, and continuous verification.",
     category: "Security Engineering",
     path: "/labs/Zero-Trust-Architecture.md",
     contributors: ["Sangam Biradar"],
-    tags: ["Security Engineering"]
+    tags: ["Zero Trust", "Cloud Architecture", "IAM"]
+  },
+  {
+    id: "Threat-Modeling",
+    title: "Threat Modeling Practical Guide",
+    description: "Learn how to systematically create a threat model, map trust boundaries, and evaluate attack surfaces for real-world cloud architectures.",
+    category: "Security Engineering",
+    path: "/labs/threat-modeling.md",
+    contributors: ["Sangam Biradar"],
+    tags: ["Threat Modeling", "Architecture", "STRIDE"]
+  },
+  {
+    id: "Nmap-Practical-Labs",
+    title: "NMAP Practical Auditing Labs",
+    description: "Network reconnaissance, service discovery, open port auditing, and banner grabbing techniques for security engineers.",
+    category: "Network Security",
+    path: "/labs/NMAP-Practical-Labs.md",
+    contributors: ["Sangam Biradar"],
+    tags: ["Network Security", "Reconnaissance", "Auditing"]
+  },
+  {
+    id: "ethical-hacker-easy-way",
+    title: "Ethical Hacker Practical Lab",
+    description: "Hands-on fundamentals of ethical hacking, penetration testing workflows, vulnerability assessment, and defense validation.",
+    category: "Ethical Hacking",
+    path: "/labs/ethical-hacker-easy-way.md",
+    contributors: ["Sangam Biradar"],
+    tags: ["Ethical Hacking", "Penetration Testing"]
   }
 ];
 
-// Lab list component
+// 1. Labs Library Listing Component (matching KubeDaily's labs.html.heex)
 function LabsList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [labsData, setLabsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
-  
+
   useEffect(() => {
-    // Fetch labs data from the JSON file
     const fetchLabsData = async () => {
       try {
         setLoading(true);
-        
-        // Try multiple potential locations for the data
         const potentialUrls = [
           '/data/labs.json',
-          '/labs/index.json', // Original location
-          `${window.location.origin}/data/labs.json`,
-          `${window.location.origin}/labs/index.json`
+          '/labs/index.json',
+          `${window.location.origin}/data/labs.json`
         ];
-        
+
         let fetchSuccess = false;
-        
-        // Try each URL in sequence
         for (const url of potentialUrls) {
           try {
             const response = await fetch(url);
@@ -104,13 +92,10 @@ function LabsList() {
             }
           } catch (err) {
             console.log(`Failed to fetch from ${url}:`, err);
-            // Continue to next URL
           }
         }
-        
-        // If all fetches fail, use the fallback data
+
         if (!fetchSuccess) {
-          console.warn("All fetch attempts failed, using fallback data");
           setLabsData(fallbackLabsData);
         }
       } catch (error) {
@@ -120,258 +105,143 @@ function LabsList() {
         setLoading(false);
       }
     };
-    
+
     fetchLabsData();
   }, []);
-  
-  // Get all unique categories
+
   const categories = ["all", ...new Set(labsData.map(lab => lab.category))];
 
-  // Filter labs based on search query and active category
   const filteredLabs = labsData.filter(lab => {
-    const matchesSearch = 
-      searchQuery === "" || 
+    const matchesSearch =
+      searchQuery === "" ||
       lab.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       lab.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (lab.tags && lab.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
-    
+
     const matchesCategory = activeCategory === "all" || lab.category === activeCategory;
-    
     return matchesSearch && matchesCategory;
   });
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
-      </div>
-    );
-  }
-
   return (
     <>
-      <div className="mb-8">
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
-          <Tabs defaultValue="all" className="w-full md:w-auto" onValueChange={setActiveCategory}>
-            <TabsList className="mb-4 md:mb-0 grid grid-cols-2 sm:grid-cols-3 md:flex">
-              {categories.map(category => (
-                <TabsTrigger key={category} value={category} className="capitalize">
-                  {category}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
-          
-          <div className="w-full md:w-64">
-            <Input
-              type="text"
-              placeholder="Search labs..."
+      {/* KubeDaily Library Header */}
+      <header className="kube-library-header">
+        <div className="kube-library-container">
+          <p className="kube-label">The CloudSecCorner workshop</p>
+          <h1>
+            Less theory.<br />
+            <span>More hands-on understanding.</span>
+          </h1>
+          <p className="kube-library-intro">
+            Explore cloud and agentic security at your own pace. Start with Security Engineering Fundamentals, inspect agent boundaries, and build up to zero-trust architectures.
+          </p>
+          <div className="kube-library-links">
+            <Link to="/labs/Agentic-Cloud-Security">Start with Agentic Security →</Link>
+            <Link to="/blog">Looking for an explanation? Read the guides →</Link>
+          </div>
+        </div>
+      </header>
+
+      {/* KubeDaily Library Section */}
+      <section id="lab-library" className="kube-library-container kube-library-section">
+        <div className="kube-library-toolbar">
+          <div>
+            <p className="kube-label">Practice &amp; explore</p>
+            <h2>Choose your next lab</h2>
+          </div>
+          <div className="kube-library-search">
+            <label htmlFor="lab-search">Find a lab</label>
+            <input
+              id="lab-search"
+              type="search"
+              placeholder="Search Agentic, Threat, Zero-Trust…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-slate-50/50 dark:bg-slate-900 border-slate-200 dark:border-slate-700"
             />
           </div>
         </div>
-      </div>
 
-      <div className="mb-10">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Available Labs</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredLabs.length === 0 ? (
-            <div className="col-span-full text-center py-12 border border-dashed border-slate-200 dark:border-slate-700 rounded-lg">
-              <svg className="w-12 h-12 mx-auto text-slate-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
-              <p className="text-slate-500 dark:text-slate-400 text-lg">No labs found matching your criteria</p>
-              <Button 
-                variant="outline" 
-                className="mt-4"
-                onClick={() => {
-                  setSearchQuery("");
-                  setActiveCategory("all");
-                }}
-              >
-                Clear filters
-              </Button>
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap gap-2 mt-6">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition capitalize ${
+                activeCategory === cat
+                  ? "bg-purple text-white shadow-sm"
+                  : "bg-slate-100 dark:bg-[#31373b] text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[#3d4449]"
+              }`}
+            >
+              {cat === "all" ? "All Labs" : cat}
+            </button>
+          ))}
+        </div>
+
+        <p className="kube-library-count" role="status">
+          {filteredLabs.length} {filteredLabs.length === 1 ? "lab" : "labs"} to explore
+        </p>
+
+        {/* Labs Grid */}
+        <div className="kube-labs-grid">
+          {loading ? (
+            <div className="col-span-full py-16 text-center text-slate-500">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-purple-500 border-t-transparent mx-auto mb-3" />
+              Loading labs…
+            </div>
+          ) : filteredLabs.length === 0 ? (
+            <div className="col-span-full rounded-xl border border-dashed border-slate-300 dark:border-[#3d4449] p-10 text-center text-slate-600 dark:text-slate-400">
+              No labs match that search. Try another query or clear the filter to see everything.
             </div>
           ) : (
             filteredLabs.map((lab) => (
-              <Card 
-                key={lab.id} 
-                className="hover:shadow-lg transition duration-300 hover:border-indigo-500/30 cursor-pointer overflow-hidden flex flex-col"
-                onClick={() => navigate(`/labs/${lab.id}`)}
-              >
-                <CardHeader className="pb-2 relative">
-                  <div className="absolute top-4 right-4">
-                    <Badge variant={getCategoryVariant(lab.category)}>
-                      {lab.category}
-                    </Badge>
-                  </div>
-                  {lab.image && (
-                    <div className="mb-4 -mx-6 -mt-6">
-                      <img 
-                        src={lab.image} 
-                        alt={`${lab.title} preview`} 
-                        className="w-full h-40 object-contain bg-white p-4 rounded-t-lg"
-                      />
-                    </div>
-                  )}
-                  <CardTitle className="pr-24 mb-2">{lab.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="py-2 flex-grow">
-                  <CardDescription className="mb-4 text-sm line-clamp-3">{lab.description}</CardDescription>
-                  
-                  <div className="flex flex-wrap gap-1 mb-3">
-                    {lab.tags && lab.tags.map((tag, index) => (
-                      <Badge key={index} variant="outline" className="text-xs bg-slate-900/30">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="pt-2 border-t border-slate-700 bg-slate-900/30 flex justify-between items-center">
-                  <div className="flex flex-wrap gap-1">
-                    {lab.contributors && lab.contributors.map((contributor, index) => (
-                      <Badge key={index} variant="outline" className="bg-slate-900/50 text-xs">
-                        @{contributor}
-                      </Badge>
-                    ))}
-                  </div>
-                  <Button variant="ghost" className="text-indigo-500 p-0 hover:text-indigo-400 text-xs">
-                    Explore
-                    <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </Button>
-                </CardFooter>
-              </Card>
+              <article key={lab.id} className="kube-lab-card group">
+                <div className="kube-lab-card-top">
+                  <span className="kube-lab-number" aria-hidden="true">&gt;_</span>
+                  <p className="kube-label">{lab.category}</p>
+                </div>
+                <h3>
+                  <Link to={`/labs/${lab.id}`}>{lab.title}</Link>
+                </h3>
+                <p>{lab.description}</p>
+                <div className="kube-lab-card-tags" aria-label="Topics">
+                  {lab.tags && lab.tags.slice(0, 3).map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+                <Link className="kube-lab-card-link" to={`/labs/${lab.id}`}>
+                  Open lab <span aria-hidden="true">→</span>
+                </Link>
+              </article>
             ))
           )}
         </div>
-      </div>
 
-      <div className="mb-16 border border-dashed border-slate-700 rounded-lg p-8 hover:border-indigo-500/30 transition duration-300">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="mb-6 md:mb-0 md:mr-8">
-            <div className="w-16 h-16 bg-indigo-600/20 rounded-full flex items-center justify-center">
-              <svg className="w-8 h-8 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-              </svg>
-            </div>
-          </div>
-          <div className="text-center md:text-left flex-grow">
-            <h3 className="text-xl font-semibold mb-2">Propose a New Security Lab</h3>
-            <p className="text-slate-400 mb-6 max-w-2xl">
-              Have an idea for a new cybersecurity lab? Propose a new security lab and invite others to collaborate on cutting-edge security research, testing, and defense mechanisms.
-            </p>
-          </div>
-          <div>
-            <a 
-              href={`${REPOSITORY_URL}/issues/new?labels=new-lab&template=new-lab-proposal.md&title=Lab Proposal: [Your Lab Title]`}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition"
-            >
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-              Propose a Lab
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-16 bg-slate-900 rounded-lg p-8">
-        <h2 className="text-2xl font-bold mb-6">How to Contribute</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="bg-slate-900/50">
-            <CardContent className="p-6">
-              <div className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white font-semibold text-lg">1</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Fork the Repository</h3>
-              <p className="text-slate-400">
-                Start by forking our GitHub repository to create your own copy where you can make changes.
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-slate-900/50">
-            <CardContent className="p-6">
-              <div className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white font-semibold text-lg">2</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Create or Edit Markdown</h3>
-              <p className="text-slate-400">
-                Add your security lab content in markdown format following our templates and guidelines for structure.
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-slate-900/50">
-            <CardContent className="p-6">
-              <div className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white font-semibold text-lg">3</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Submit a Pull Request</h3>
-              <p className="text-slate-400">
-                Submit your changes for review, and our team will review and merge your contribution.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-        
-        <div className="mt-8 p-6 border border-indigo-500/30 rounded-lg bg-indigo-500/10">
-          <h3 className="text-lg font-semibold mb-2 flex items-center">
-            <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
-            </svg>
-            Markdown Format
-          </h3>
-          <p className="text-slate-400 mb-4">
-            Each security lab uses markdown files to store content. Here's our basic structure:
+        {/* Good Habit Callout */}
+        <div className="kube-library-practice">
+          <strong>A good defense habit</strong>
+          <p>
+            Use a disposable sandboxed environment. Verify IAM trust boundaries, read policies before applying them, and clean up temporary test resources when finished.
           </p>
-          <pre className="bg-slate-950 p-4 rounded-md overflow-x-auto text-sm">
-            <code>{
-`# Security Lab Title
-
-## Overview
-Brief description of the security lab and its purpose
-
-## Goals
-- Goal 1
-- Goal 2
-
-## Methodology
-Detailed explanation of security testing approach...
-
-## Current Progress
-Ongoing security research and findings...
-
-## How to Contribute
-Specific guidelines for this lab...`
-            }</code>
-          </pre>
-          
-          <div className="mt-6">
-            <a 
-              href="/labs/CONTRIBUTING.md" 
-              target="_blank"
-              className="text-indigo-400 hover:text-indigo-300 flex items-center"
-            >
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clipRule="evenodd" />
-              </svg>
-              View Full Contributing Guidelines
-            </a>
-          </div>
         </div>
-      </div>
+      </section>
+
+      {/* Library Footer */}
+      <section className="kube-library-container kube-library-footer">
+        <div>
+          <p className="kube-label">Learn in the open</p>
+          <h2>Make the next step easier for someone.</h2>
+          <p>Report an outdated policy, clarify a threat model, or contribute an exercise.</p>
+        </div>
+        <a href={`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`} target="_blank" rel="noreferrer">
+          Improve a lab →
+        </a>
+      </section>
     </>
   );
 }
 
-// Lab detail component
+// 2. Individual Lab Reader Component (matching KubeDaily's lab.html.heex)
 function LabDetail() {
   const { labId } = useParams();
   const [content, setContent] = useState("");
@@ -380,24 +250,18 @@ function LabDetail() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch labs data and find the selected lab
     const fetchLabData = async () => {
       try {
         setLoading(true);
-        
-        // Try to get lab data from either the JSON file or use fallback
         let labsData = [];
         let fetchSuccess = false;
-        
-        // Try multiple potential locations for the data
+
         const potentialUrls = [
           '/data/labs.json',
           '/labs/index.json',
-          `${window.location.origin}/data/labs.json`,
-          `${window.location.origin}/labs/index.json`
+          `${window.location.origin}/data/labs.json`
         ];
-        
-        // Try each URL in sequence
+
         for (const url of potentialUrls) {
           try {
             const response = await fetch(url);
@@ -409,281 +273,157 @@ function LabDetail() {
             }
           } catch (err) {
             console.log(`Failed to fetch from ${url}:`, err);
-            // Continue to next URL
           }
         }
-        
-        // If all fetches fail, use the fallback data
+
         if (!fetchSuccess) {
-          console.warn("All fetch attempts failed, using fallback data");
           labsData = fallbackLabsData;
         }
-        
-        const selectedLab = labsData.find(lab => lab.id === labId);
-        
+
+        const selectedLab = labsData.find((l) => l.id.toLowerCase() === labId.toLowerCase());
         if (!selectedLab) {
           navigate("/labs");
           return;
         }
-        
+
         setLab(selectedLab);
-        
-        // Fetch the markdown content
+
         try {
           const markdownResponse = await fetch(selectedLab.path);
-          
           if (markdownResponse.ok) {
             const text = await markdownResponse.text();
             setContent(text);
           } else {
-            // If the file doesn't exist yet, show a placeholder
-            setContent(`# ${selectedLab.title}
-            
-## Overview
-
-${selectedLab.description}
-
-## Goals
-
-- Create standardized metrics for evaluation
-- Develop tools for analysis and improvement
-- Establish guidelines for best practices
-
-## How to Contribute
-
-This lab is still in early stages. You can help by:
-
-1. Fork the repository
-2. Create or edit the markdown file at \`${selectedLab.path}\`
-3. Submit a pull request with your contributions
-
-## Current Contributors
-
-${selectedLab.contributors.join(', ')}
-`);
+            setContent(`# ${selectedLab.title}\n\n${selectedLab.description}\n\nContent for this lab will be updated shortly.`);
           }
-        } catch (markdownError) {
-          console.error("Error fetching markdown:", markdownError);
-          // Use placeholder content
-          setContent(`# ${selectedLab.title}
-          
-## Overview
-
-${selectedLab.description}
-
-## Goals
-
-- Create standardized metrics for evaluation
-- Develop tools for analysis and improvement
-- Establish guidelines for best practices
-
-## How to Contribute
-
-This lab is still in early stages. You can help by:
-
-1. Fork the repository
-2. Create or edit the markdown file at \`${selectedLab.path}\`
-3. Submit a pull request with your contributions
-
-## Current Contributors
-
-${selectedLab.contributors.join(', ')}
-`);
+        } catch (err) {
+          console.error("Error fetching markdown:", err);
+          setContent(`# ${selectedLab.title}\n\n${selectedLab.description}`);
         }
       } catch (error) {
-        console.error("Error fetching lab data:", error);
-        setContent("# Error loading content\n\nPlease try again later.");
+        console.error("Error fetching lab details:", error);
       } finally {
         setLoading(false);
       }
     };
-    
+
     fetchLabData();
   }, [labId, navigate]);
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
+      <div className="flex min-h-[50vh] items-center justify-center">
+        <div className="h-10 w-10 animate-spin rounded-full border-2 border-purple-500 border-t-transparent" />
       </div>
     );
   }
 
   if (!lab) {
-    return <div>Loading...</div>;
+    return null;
   }
 
-  const imageUrl = lab.image ? `${SITE_URL}${lab.image}` : `${SITE_URL}/og-image.png`;
-
   return (
-    <div className="bg-slate-900 p-8 rounded-xl shadow-md w-full">
+    <div>
       <OpenGraph
         title={`${lab.title} | Cloud Security Corner Labs`}
         description={lab.description}
         url={`/labs/${lab.id}`}
-        image={imageUrl}
         type="article"
         tags={lab.tags || []}
       />
-      
-      <Button 
-        variant="ghost" 
-        className="mb-6"
-        onClick={() => navigate("/labs")}
-      >
-        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Back to All Labs
-      </Button>
-      
-      <div className="mb-6 flex flex-wrap items-center gap-2">
-        <Badge variant={getCategoryVariant(lab.category)} className="text-sm">
-          {lab.category}
-        </Badge>
-        {lab.tags && lab.tags.map((tag, index) => (
-          <Badge key={index} variant="outline" className="text-xs bg-slate-900/30">
-            {tag}
-          </Badge>
-        ))}
-        <div className="text-slate-400 text-sm ml-auto">
-          {lab.contributors && lab.contributors.length > 0 && (
-            <span>Contributors: {lab.contributors.join(', ')}</span>
-          )}
-        </div>
-      </div>
-      
-      <div className="w-full">
-        {lab.image && (
-          <div className="mb-6">
-            <img 
-              src={lab.image} 
-              alt={`${lab.title} cover image`} 
-              className="w-full max-h-[400px] object-contain bg-white p-6 rounded-lg"
-            />
-          </div>
-        )}
-        <MarkdownRenderer className="w-full">
-          {content}
-        </MarkdownRenderer>
-      </div>
 
-      <div className="mt-10 pt-6 border-t border-slate-700">
-        <h3 className="text-xl font-semibold mb-4">Want to contribute to this lab?</h3>
-        <div className="flex flex-wrap gap-4">
-          <a 
-                    href={`${REPOSITORY_URL}/edit/main/public${lab.path}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition"
-          >
-            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
-            </svg>
-            Edit this page
-          </a>
-          <a 
-            href={`${REPOSITORY_URL}/issues/new?title=Feedback on lab: ${lab.title}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-indigo-600/70 hover:bg-indigo-700 text-white rounded-md transition"
-          >
-            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
-            </svg>
-            Provide Feedback
-          </a>
-          <a 
-            href="/labs/CONTRIBUTING.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-slate-600 hover:bg-slate-700 text-white rounded-md transition"
-          >
-            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
-            </svg>
-            View contribution guidelines
-          </a>
+      {/* Reader Header */}
+      <header className="kube-lab-reader-header" id="reader-top">
+        <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:py-12">
+          <nav className="kube-lab-breadcrumb" aria-label="Breadcrumb">
+            <Link to="/labs">Labs</Link>
+            <span aria-hidden="true">/</span>
+            <span>{lab.category}</span>
+          </nav>
+          <p className="kube-label">Self-paced lab</p>
+          <h1>{lab.title}</h1>
+          <p>{lab.description}</p>
+          <div className="kube-lab-reader-tags" aria-label="Lab topics">
+            {lab.tags && lab.tags.map((tag) => <span key={tag}>{tag}</span>)}
+          </div>
         </div>
-      </div>
+      </header>
+
+      {/* Reader Steps */}
+      <section className="kube-lab-steps" aria-label="How to use this lab">
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-10">
+          <ol>
+            <li>
+              <span>1</span>
+              <div>
+                <strong>Read the concept</strong>
+                <small>Build the mental model first.</small>
+              </div>
+            </li>
+            <li>
+              <span>2</span>
+              <div>
+                <strong>Try the commands</strong>
+                <small>Use a disposable sandboxed environment.</small>
+              </div>
+            </li>
+            <li>
+              <span>3</span>
+              <div>
+                <strong>Keep the notes</strong>
+                <small>Return when you need a refresher.</small>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* Reader Shell */}
+      <article className="kube-lab-reader-shell">
+        <aside className="kube-lab-outline" aria-label="Lesson contents">
+          <Link className="kube-lab-outline-all" to="/labs">
+            ← All labs
+          </Link>
+          <a
+            className="kube-contribute-link"
+            href={`${REPOSITORY_URL}/blob/main/public${lab.path}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Edit this lab on GitHub →
+          </a>
+          <a
+            className="kube-contribute-link"
+            href={`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Contribution guide
+          </a>
+        </aside>
+
+        <div className="kube-lab-reading">
+          <div className="kube-lab-reading-note">
+            <strong>Before you start:</strong> Read commands and policies before executing them. Avoid using production accounts for testing.
+          </div>
+          <div className="kube-markdown">
+            <MarkdownRenderer content={content} />
+          </div>
+          <footer className="kube-reader-end">
+            <p>Ready for another topic?</p>
+            <Link to="/labs">Browse all labs →</Link>
+            <a href="#reader-top">Back to top ↑</a>
+          </footer>
+        </div>
+      </article>
     </div>
   );
 }
 
-// Helper function to get badge variant based on category
-const getCategoryVariant = (category) => {
-  const categoryMap = {
-    "Application Security": "appSecurity",
-    "Web Security": "webSecurity", 
-    "Network Security": "networkSecurity",
-    "Cloud Security": "cloudSecurity",
-    "Container Security": "containerSecurity",
-    "Penetration Testing": "pentest",
-    "Vulnerability Scanner": "vulnScan",
-    "Intrusion Detection": "intrusion",
-    "System Auditing": "sysAudit",
-    "Threat Intelligence": "threatIntel",
-    "Security Distribution": "secDistro",
-    "Wireless Security": "wirelessSec",
-    "Password Cracking": "password",
-    "Reconnaissance": "recon",
-    "Agentic Security": "appSecurity",
-    "AI Security": "appSecurity"
-  };
-  
-  return categoryMap[category] || "default";
-};
-
-// Main Labs component
+// Main Component Router
 function Labs() {
   const { labId } = useParams();
-  return (
-    <div className="text-white w-full mx-auto px-4 py-8 lab-content-container">
-      {!labId && (
-        <Helmet>
-          <title>Agentic AI & Cloud Security Labs | Cloud Security Corner</title>
-          <meta name="description" content="Practice securing AI agents, autonomous cloud workloads, and the identity, tool, runtime, and governance layers around them." />
-          
-          {/* Open Graph / Facebook */}
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content={`${SITE_URL}/labs`} />
-          <meta property="og:title" content="Agentic AI & Cloud Security Labs | Cloud Security Corner" />
-          <meta property="og:description" content="Practice securing AI agents, autonomous cloud workloads, and the identity, tool, runtime, and governance layers around them." />
-          <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
-          
-          {/* Twitter */}
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:url" content={`${SITE_URL}/labs`} />
-          <meta property="twitter:title" content="Agentic AI & Cloud Security Labs | Cloud Security Corner" />
-          <meta property="twitter:description" content="Practice securing AI agents, autonomous cloud workloads, and the identity, tool, runtime, and governance layers around them." />
-          <meta property="twitter:image" content={`${SITE_URL}/og-image.png`} />
-        </Helmet>
-      )}
-
-      <h1 className="text-3xl font-bold mb-4 text-center">Agentic AI & Cloud Security Labs</h1>
-      <p className="text-slate-400 text-lg mb-8 text-center max-w-3xl mx-auto">
-        Practice securing AI agents, autonomous cloud workloads, and the identity, tool, runtime, and governance layers around them.
-        Anyone can contribute a lab through markdown.
-      </p>
-      
-      <div className="mb-8 text-center">
-        <a 
-          href={REPOSITORY_URL}
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition"
-        >
-          <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
-          </svg>
-          Contribute on GitHub
-        </a>
-      </div>
-      
-      {/* Check if we have a labId parameter to determine which component to render */}
-      {!labId ? <LabsList /> : <LabDetail />}
-    </div>
-  );
+  return !labId ? <LabsList /> : <LabDetail />;
 }
 
 export default Labs;

@@ -140,29 +140,27 @@ done
 breaking down 
 
 
-```
+```bash
 #!/bin/bash 
-``
+```
 its basically a comment we are telling computer that it is a bash script 
 
-```
+```bash
 for ip in `seq 1 254`; do 
-
-``
+```
 this is for loop . we want to execute the command for every ip in the given network range 
 
 this we write a for loop execute it in a range for 1-254 that is , the number of ip addressed in a particular network 
 
-```
+```bash
 ping -c 1$1.$ip | grep "64 bytes" | cut -d "" -f 4 | tr -d ":" & 
-
 ```
 
-we known that of the ip is active it will respond the demo if responding will be something like this `64 bytes from given_ip where given ip will be the ip pinged too 
+we known that of the ip is active it will respond the demo if responding will be something like this `64 bytes from given_ip` where given ip will be the ip pinged too 
 
 thus from the whole response now we will need only  the ip address if the responded ip 
 
-`cut -d "" -f 4 : this command basically does the same thing it cuts the whole response with the delimater -d where whitespace (" ") and picks the 4th term(-f 4)
+`cut -d "" -f 4` : this command basically does the same thing it cuts the whole response with the delimater -d where whitespace (" ") and picks the 4th term(-f 4)
 form it that will be the ip . 
 
 ## Breaking Down 

@@ -29,7 +29,8 @@ defmodule CloudSecurityCornerWeb.LabsController do
       :error ->
         conn
         |> put_status(:not_found)
-        |> render(CloudSecurityCornerWeb.NotFoundHTML, :not_found,
+        |> put_view(html: CloudSecurityCornerWeb.NotFoundHTML)
+        |> render(:not_found,
           page_title: "Lab not found",
           description: "The requested lab could not be found."
         )
