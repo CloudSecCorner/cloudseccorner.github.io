@@ -1,91 +1,70 @@
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow"><span class="eyebrow-dot"></span> Your practical security learning hub</p>
+<section class="kube-home-hero">
+  <div class="relative mx-auto grid items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:px-10 lg:py-20">
+    <div class="kube-home-copy">
+      <span class="kube-kicker">Your practical security learning hub</span>
       <h1>Make agentic cloud security <span>practical.</span></h1>
-      <p class="hero-lede">Find clear paths through AI agent security, cloud defense, identity, and runtime protection—without the noise.</p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="/tools">Explore security tools <span aria-hidden="true">→</span></a>
-        <a class="button button-secondary" href="/labs">Start a hands-on lab</a>
+      <p>Practical paths through AI agent security, cloud defense, identity, threat modeling, and runtime protection—without the noise.</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a class="kube-button" href="/labs/agentic-cloud-security/">Start with Agent Security <span aria-hidden="true">→</span></a>
+        <a class="kube-button kube-button-outline" href="/tools">Browse 37,000+ tools</a>
       </div>
-      <div class="hero-note"><span class="status-dot"></span> Free, open resources for builders and defenders</div>
-    </div>
-    <div class="hero-visual" aria-label="Secure agent execution flow">
-      <div class="visual-label"><span>SECURE BY DESIGN</span><span class="visual-status"><i></i> Guarded</span></div>
-      <div class="agent-card">
-        <span class="agent-icon" aria-hidden="true">✳</span>
-        <div><strong>AI agent</strong><small>Plans, reasons, requests actions</small></div>
-        <span class="agent-indicator"></span>
+      <div class="kube-home-proof" aria-label="CloudSecCorner resource summary">
+        <div><strong>{@tool_count |> Integer.to_string() |> String.replace(~r/(?<=\d)(?=(\d{3})+$)/, ",")}+</strong><span>tools to explore</span></div>
+        <div><strong>{@lab_count}</strong><span>hands-on learning paths</span></div>
+        <div><strong>1</strong><span>place to start</span></div>
       </div>
-      <div class="flow-line"><span></span></div>
-      <div class="guardrail-grid">
-        <div><span class="guardrail-icon">01</span><strong>Identity</strong><small>Least privilege</small></div>
-        <div><span class="guardrail-icon">02</span><strong>Policy</strong><small>Human approval</small></div>
-        <div><span class="guardrail-icon">03</span><strong>Runtime</strong><small>Audit signals</small></div>
+    </div>
+
+    <aside class="kube-home-map" aria-label="Explore CloudSecCorner">
+      <div class="kube-home-map-top"><span>Start here</span><span>Learn · Practice · Defend</span></div>
+      <div class="kube-home-map-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="kube-home-map-content">
+        <p class="kube-label">Choose your path</p>
+        <h2>From threat model to production guardrails.</h2>
+        <ol>
+          <li><span>01</span><a href="/labs">Learn the fundamentals</a></li>
+          <li><span>02</span><a href="/tools">Explore security tools</a></li>
+          <li><span>03</span><a href="/blog">Read field guides</a></li>
+        </ol>
       </div>
-      <div class="flow-line"><span></span></div>
-      <div class="target-row"><span>Cloud APIs</span><span>Data</span><span>Workloads</span></div>
-      <div class="visual-foot"><span>Every action</span><span>·</span><span>Within bounds</span><span>·</span><span>Observable</span></div>
-    </div>
+    </aside>
   </div>
 </section>
 
-<section class="stats-strip" aria-label="Community resources">
-  <div class="container stats-grid">
-    <div><strong>{@tool_count |> Integer.to_string() |> String.replace(~r/(?<=\d)(?=(\d{3})+$)/, ",")}+</strong><span>security tools to explore</span></div>
-    <div><strong>{@lab_count}</strong><span>hands-on learning paths</span></div>
-    <div><strong>{@post_count}</strong><span>field notes to start with</span></div>
-    <p>Less searching.<br /><b>More learning.</b></p>
+<section class="kube-start-section" aria-labelledby="learning-path-title">
+  <div class="kube-section-container">
+    <div class="kube-home-section-heading">
+      <div><p class="kube-label">Less searching. More learning.</p><h2 id="learning-path-title">A clear path through cloud &amp; agent security.</h2></div>
+      <p>New to agentic security? Begin with Agentic Cloud Security. Already comfortable? Jump into threat modeling, CEH, or zero trust.</p>
+    </div>
+    <div class="kube-learning-grid">
+      <a class="kube-learning-card" href="/labs/agentic-cloud-security/"><span class="kube-learning-step">01 · Start here</span><h3>Agentic Cloud Security</h3><p>Guardrails, sandboxing, MCP security, and autonomous workload governance.</p><span class="kube-learning-action">Open lab guide →</span></a>
+      <a class="kube-learning-card" href="/labs/Zero-Trust-Architecture/"><span class="kube-learning-step">02 · Architecture</span><h3>Zero-Trust Security</h3><p>Verify explicitly, least privilege access, and assume breach principles.</p><span class="kube-learning-action">Open lab guide →</span></a>
+      <a class="kube-learning-card" href="/labs/Security-Engineering-Fundamentals/"><span class="kube-learning-step">03 · Systems</span><h3>Security Engineering</h3><p>Cryptography, network defense, system hardening, and resilient pipelines.</p><span class="kube-learning-action">Open lab guide →</span></a>
+      <a class="kube-learning-card" href="/labs/Threat-Modeling/"><span class="kube-learning-step">04 · Strategy</span><h3>Threat Modeling</h3><p>STRIDE analysis, attack trees, and defense-in-depth for complex architectures.</p><span class="kube-learning-action">Open lab guide →</span></a>
+    </div>
+    <form class="kube-home-search" action="/tools/" method="get" role="search" aria-label="Search the tool directory">
+      <label for="home-tool-search">Looking for a tool instead?</label>
+      <div><input id="home-tool-search" type="search" name="q" placeholder="Search AI defense, CSPM, zero trust, runtime…"/><button class="kube-button" type="submit">Find tools →</button></div>
+      <p>A curated directory of 37,000+ security tools, with filters you can bookmark and share.</p>
+    </form>
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div class="section-heading">
-      <p class="eyebrow">Explore with intent</p>
-      <h2>A clear next step for the problem you’re solving.</h2>
-      <p>Start with a practical goal, then follow focused resources built for real security work.</p>
-    </div>
-    <div class="resource-grid">
-      <a class="resource-card" href="/labs">
-        <span class="card-number">01 / PRACTICE</span><span class="resource-icon icon-green">↗</span>
-        <h3>Learn by doing</h3><p>Build real intuition with guided labs for threat modeling, zero trust, and agentic security.</p>
-        <span class="text-link">Browse hands-on labs <b>→</b></span>
-      </a>
-      <a class="resource-card" href="/tools">
-        <span class="card-number">02 / DISCOVER</span><span class="resource-icon icon-blue">⌕</span>
-        <h3>Find the right tools</h3><p>Explore open-source projects and platforms for identity, cloud defense, testing, and runtime.</p>
-        <span class="text-link">Explore the tool stack <b>→</b></span>
-      </a>
-      <a class="resource-card" href="/blog">
-        <span class="card-number">03 / UNDERSTAND</span><span class="resource-icon icon-amber">✳</span>
-        <h3>Keep learning</h3><p>Read practical guides and field notes from the evolving security landscape.</p>
-        <span class="text-link">Read the blog <b>→</b></span>
-      </a>
-    </div>
+<section class="px-4 py-14 sm:px-6 lg:px-10 lg:py-16">
+  <div class="kube-home-section-heading">
+    <div><p class="kube-label">Explore with intent</p><h2>Your next useful step</h2></div>
+    <p>Start with the problem you are solving today, then follow a focused path.</p>
   </div>
-</section>
-
-<section class="section section-tint">
-  <div class="container focus-layout">
-    <div class="section-heading focus-heading">
-      <p class="eyebrow">The security picture</p>
-      <h2>Protect every layer of agentic execution.</h2>
-      <p>Agents connect models to credentials, data, APIs, and infrastructure. We focus on the controls that keep that autonomy useful, observable, and bounded.</p>
-      <a class="text-link" href="/about">Why this work matters <b>→</b></a>
-    </div>
-    <div class="focus-list">
-      <article><span>01</span><div><h3>Identity & access</h3><p>Least-privilege permissions, delegated authorization, and approval boundaries.</p></div></article>
-      <article><span>02</span><div><h3>Tools & isolation</h3><p>Contain execution, data access, and cloud actions with secure defaults.</p></div></article>
-      <article><span>03</span><div><h3>Runtime defense</h3><p>Observe prompts, tool calls, and changes so risk can be detected in context.</p></div></article>
-      <article><span>04</span><div><h3>Governance & assurance</h3><p>Turn tests, audit trails, and human oversight into lasting evidence.</p></div></article>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container community-panel">
-    <div><p class="eyebrow">Built together</p><h2>Help make the cloud safer for everyone.</h2><p>Share a tool, improve a lab, publish a field note, or help turn new risks into practical guidance.</p></div>
-    <a class="button button-primary" href="https://github.com/CloudSecCorner" target="_blank" rel="noopener noreferrer">Contribute on GitHub <span aria-hidden="true">↗</span></a>
+  <div class="kube-home-paths">
+    <article class="kube-home-path kube-home-path-featured">
+      <span class="kube-home-path-number">01</span><p class="kube-label">Practice</p><h3>Learn by doing</h3><p>Build real intuition with guided threat modeling, CEH, zero trust, and agent security labs.</p><a href="/labs">Browse hands-on labs <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="kube-home-path">
+      <span class="kube-home-path-number">02</span><p class="kube-label">Discover</p><h3>Find the right tools</h3><p>Search 37,000+ security tools across AI defenses, cloud platforms, and penetration testing.</p><a href="/tools">Explore the tool stack <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="kube-home-path">
+      <span class="kube-home-path-number">03</span><p class="kube-label">Understand</p><h3>Keep learning</h3><p>Read practical guides and field notes from practitioners in the evolving security landscape.</p><a href="/blog">Read the blog <span aria-hidden="true">→</span></a>
+    </article>
   </div>
 </section>

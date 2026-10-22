@@ -6,7 +6,7 @@ defmodule CloudSecurityCornerWeb.Endpoint do
     from: :cloud_security_corner,
     gzip: false,
     only:
-      ~w(assets blog data images labs patterns og-image.png robots.txt sitemap.xml tools.js CNAME _redirects)
+      ~w(assets blog data images labs patterns og-image.png robots.txt sitemap.xml tools.js site.js CNAME _redirects)
   )
 
   plug(Plug.RequestId)

@@ -1,11 +1,15 @@
-<section class="page-hero page-hero-compact">
-  <div class="container narrow">
-    <a class="back-link" href="/blog">← All articles</a>
-    <p class="eyebrow">{@post["category"] || "Field notes"} · {@post["date"]}</p>
+<section class="kube-article-hero" id="reader-top">
+  <div class="mx-auto max-w-screen-xl px-4 py-9 sm:px-6 lg:px-10 lg:py-16">
+    <a class="kube-article-back" href="/blog/"><span aria-hidden="true">←</span> Back to the blog</a>
+    <p class="kube-label">{@post["category"] || "Field notes"} · {@post["date"]}</p>
     <h1>{@post["title"]}</h1>
-    <p>{@post["excerpt"]}</p>
+    <p class="kube-dek">{@post["excerpt"]}</p>
+    <div class="kube-article-byline"><span>By <strong>{@post["author"] || "CloudSecCorner"}</strong></span><span aria-hidden="true">•</span><span>Practical field guide</span></div>
   </div>
 </section>
-<section class="section">
-  <article class="container narrow prose markdown-content">{raw(@content_html)}</article>
-</section>
+
+<div class="kube-article-shell max-w-4xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+  <div class="kube-markdown">
+    {raw(@content_html)}
+  </div>
+</div>

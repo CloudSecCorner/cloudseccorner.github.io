@@ -1,23 +1,48 @@
-<section class="page-hero page-hero-compact">
-  <div class="container">
-    <p class="eyebrow">Ideas into practice</p>
-    <h1>Field notes for safer systems.</h1>
-    <p>Research and practical guidance for securing AI agents, autonomous workloads, and cloud infrastructure.</p>
+<header class="kube-library-header">
+  <div class="kube-library-container">
+    <p class="kube-label">The CloudSecCorner journal</p>
+    <h1>Understand more.<br /><span>Build with confidence.</span></h1>
+    <p class="kube-library-intro">Practical explanations of AI agent security, cloud architecture, and the decisions behind defensive engineering. Pick a topic, take your time, and keep a useful guide close.</p>
+    <div class="kube-library-links"><a href="#guide-library">Browse {length(@posts)} guides ↓</a><a href="/labs/">Prefer hands-on practice? Explore labs →</a></div>
   </div>
-</section>
-<section class="section section-top-tight">
-  <div class="container">
-    <div class="section-heading section-heading-left"><p class="eyebrow">Latest writing</p><h2>Learn from the field.</h2></div>
-    <div :if={@posts == []} class="empty-state"><h2>More writing is on the way</h2><p>Check back for new research and practical guides.</p></div>
-    <div class="resource-grid">
-      <a :for={post <- @posts} class="resource-card blog-card" href={"/blog/" <> post["id"]}>
-        <span class="card-number">{post["category"] || "Field notes"}</span>
-        <p class="post-date">{post["date"]}</p>
-        <h2>{post["title"]}</h2>
-        <p>{post["excerpt"]}</p>
-        <span class="text-link">Read the article <b>→</b></span>
-      </a>
+</header>
+
+<section id="guide-library" class="kube-library-container kube-library-section" data-content-library>
+  <div class="kube-library-toolbar">
+    <div><p class="kube-label">Read &amp; understand</p><h2>The field guide library</h2></div>
+    <div class="kube-library-search" hidden data-library-controls>
+      <label for="guide-search">Find a guide</label>
+      <input id="guide-search" type="search" placeholder="Search titles, topics, or keywords…" data-library-search />
     </div>
-    <aside class="contribute-callout"><div><p class="eyebrow">Community knowledge</p><h2>Have a useful lesson to share?</h2><p>Contribute a practical guide, analysis, or field note for the community.</p></div><a class="button button-secondary" href="https://github.com/CloudSecCorner/cloudseccorner.github.io/tree/main/public/blog" target="_blank" rel="noopener noreferrer">Contribute a post ↗</a></aside>
+  </div>
+  <p class="kube-library-count" role="status" data-library-count>{length(@posts)} guides to explore</p>
+  <div class="kube-blog-grid">
+    <%= for post <- @posts do %>
+      <article class="kube-blog-card" data-library-card>
+        <div class="kube-blog-card-top"><p class="kube-label">{post["category"] || "Field notes"}</p><time>{post["date"]}</time></div>
+        <h3><a href={"/blog/#{post["id"]}/"}>{post["title"]}</a></h3>
+        <p>{post["excerpt"]}</p>
+        <div class="kube-blog-card-tags">
+          <%= for tag <- Enum.take(post["tags"] || [], 3) do %>
+            <span>{tag}</span>
+          <% end %>
+        </div>
+      </article>
+    <% end %>
+  </div>
+  <p class="kube-library-empty" hidden data-library-empty>No guides matched that filter. Try a broader search term.</p>
+</section>
+
+<section class="kube-contribute">
+  <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-10 lg:py-14">
+    <div class="kube-contribute-copy">
+      <p class="kube-label">Share with the community</p>
+      <h2>Have an engineering lesson or teardown to publish?</h2>
+      <p>Contribute a field note, security analysis, or architecture teardown for engineers building and defending autonomous cloud systems.</p>
+    </div>
+    <div class="kube-contribute-actions">
+      <a class="kube-contribute-primary" href="https://github.com/CloudSecCorner/cloudseccorner.github.io/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">Contribution guide ↗</a>
+      <a href="https://github.com/CloudSecCorner/cloudseccorner.github.io/issues/new/choose" target="_blank" rel="noreferrer">Submit a post ↗</a>
+    </div>
   </div>
 </section>

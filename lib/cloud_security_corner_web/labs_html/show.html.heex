@@ -1,12 +1,25 @@
-<section class="page-hero page-hero-compact">
-  <div class="container narrow">
-    <a class="back-link" href="/labs">← All labs</a>
-    <p class="eyebrow">{@lab["category"]}</p>
+<header class="kube-lab-reader-header" id="reader-top">
+  <div class="mx-auto max-w-4xl px-4 py-7 sm:px-6 lg:py-12">
+    <nav class="kube-lab-breadcrumb" aria-label="Breadcrumb"><a href="/labs/">Labs</a><span aria-hidden="true">/</span><span>{@lab["category"]}</span></nav>
+    <p class="kube-label">Self-paced lab</p>
     <h1>{@lab["title"]}</h1>
     <p>{@lab["description"]}</p>
-    <div class="tag-list"><span :for={tag <- @lab["tags"] || []} class="tag">{tag}</span></div>
+    <div class="kube-lab-reader-tags" aria-label="Lab topics"><span :for={tag <- @lab["tags"] || []}>{tag}</span></div>
+  </div>
+</header>
+
+<section class="kube-lab-steps" aria-label="How to use this lab">
+  <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-10">
+    <ol>
+      <li><span>1</span><div><strong>Read the concept</strong><small>Build the mental model first.</small></div></li>
+      <li><span>2</span><div><strong>Try the commands</strong><small>Use a disposable sandbox.</small></div></li>
+      <li><span>3</span><div><strong>Keep the notes</strong><small>Return when you need a refresher.</small></div></li>
+    </ol>
   </div>
 </section>
-<section class="section">
-  <article class="container narrow prose markdown-content">{raw(@content_html)}</article>
-</section>
+
+<article class="kube-lab-reader-shell max-w-4xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+  <div class="kube-markdown">
+    {raw(@content_html)}
+  </div>
+</article>
