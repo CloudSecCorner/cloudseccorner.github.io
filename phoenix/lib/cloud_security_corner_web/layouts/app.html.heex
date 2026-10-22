@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
+    <meta name="theme-color" content="#f8f8f2" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Cloud Security Corner" />
+    <meta property="og:title" content={assigns[:page_title] || "Cloud Security Corner"} />
+    <meta property="og:description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
+    <link rel="canonical" href={"https://cloudsecuritycorner.com" <> @conn.request_path} />
+    <link rel="icon" href="/patterns/grid.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/app.css" />
+    <title>{assigns[:page_title] || "Cloud Security Corner"} · Cloud Security Corner</title>
+  </head>
+  <body>
+    <div class="announcement">
+      <div class="container announcement-inner">
+        <span>Open community for agentic cloud security</span>
+        <a href="https://github.com/CloudSecCorner" target="_blank" rel="noopener noreferrer">Explore the project <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/" aria-label="Cloud Security Corner home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M20 3.5 34 9v10c0 8.7-5.5 15.4-14 19-8.5-3.6-14-10.3-14-19V9l14-5.5Z" stroke="currentColor" stroke-width="2" />
+              <path d="M14 20.5h12m-6-6v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <circle cx="20" cy="20.5" r="2.5" fill="currentColor" />
+            </svg>
+          </span>
+          <span class="brand-copy"><strong>Cloud Security Corner</strong><small>Learn · practice · protect</small></span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/tools">Tools</a>
+          <a href="/labs">Labs</a>
+          <a href="/blog">Blog</a>
+          <a href="/about">About</a>
+        </nav>
+        <a class="header-cta" href="https://github.com/CloudSecCorner" target="_blank" rel="noopener noreferrer">Join the community <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+    <main>{@inner_content}</main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="brand footer-brand" href="/">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none"><path d="M20 3.5 34 9v10c0 8.7-5.5 15.4-14 19-8.5-3.6-14-10.3-14-19V9l14-5.5Z" stroke="currentColor" stroke-width="2" /><path d="M14 20.5h12m-6-6v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><circle cx="20" cy="20.5" r="2.5" fill="currentColor" /></svg>
+            </span>
+            <span class="brand-copy"><strong>Cloud Security Corner</strong><small>Community-built security</small></span>
+          </a>
+          <p class="footer-summary">Practical tools, hands-on learning, and field notes for securing agents and the cloud systems they can reach.</p>
+        </div>
+        <div><h2>Explore</h2><a href="/tools">Security tools</a><a href="/labs">Hands-on labs</a><a href="/blog">Research & field notes</a></div>
+        <div><h2>Community</h2><a href="https://github.com/CloudSecCorner" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://github.com/CloudSecCorner/cloudseccorner.github.io/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribute</a><a href="https://discord.gg/aUD4hkYYGt" target="_blank" rel="noopener noreferrer">Discord</a></div>
+      </div>
+      <div class="container footer-bottom"><span>© Cloud Security Corner</span><span>Open knowledge. Safer systems.</span></div>
+    </footer>
+  </body>
+</html>

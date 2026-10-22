@@ -1,0 +1,35 @@
+<section class="page-hero page-hero-compact">
+  <div class="container">
+    <p class="eyebrow">Explore the security stack</p>
+    <h1>Tools for a changing cloud.</h1>
+    <p>Search a curated directory of tools for agentic AI, cloud defense, identity, application security, and more.</p>
+  </div>
+</section>
+<section class="section section-top-tight">
+  <div class="container">
+    <form class="filter-bar" action="/tools" method="get">
+      <label class="search-field"><span class="sr-only">Search tools</span><input type="search" name="q" value={@query} placeholder="Search tools by name or capability..." /></label>
+      <label><span class="sr-only">Category</span><select name="category"><option value="">All categories</option><option :for={category <- @result.categories} value={category} selected={@category == category}>{category}</option></select></label>
+      <label><span class="sr-only">Sort order</span><select name="sort"><option value="default" selected={@sort == "default"}>Recommended</option><option value="az" selected={@sort == "az"}>A to Z</option><option value="za" selected={@sort == "za"}>Z to A</option></select></label>
+      <button class="button button-primary" type="submit">Search</button>
+    </form>
+    <div class="results-line"><p><strong>{@result.total |> Integer.to_string() |> String.replace(~r/(?<=\d)(?=(\d{3})+$)/, ",")}</strong> tools found</p><a href="/tools">Clear filters</a></div>
+    <div :if={@result.tools == []} class="empty-state"><h2>No tools found</h2><p>Try another name or category.</p></div>
+    <div :if={@result.tools != []} class="tool-grid">
+      <article :for={tool <- @result.tools} class="tool-card">
+        <div class="tool-card-top"><span class="tag">{tool["tag"]}</span><span class="tool-mark" aria-hidden="true">↗</span></div>
+        <h2>{tool["title"]}</h2>
+        <p>{tool["description"]}</p>
+        <div class="tool-card-links">
+          <a href={tool["link"]} target="_blank" rel="noopener noreferrer">Visit project <span aria-hidden="true">↗</span></a>
+          <a :if={tool["github"]} href={"https://github.com/" <> tool["github"]} target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </article>
+    </div>
+    <nav :if={@result.page_count > 1} class="pagination" aria-label="Tools pages">
+      <a :if={@result.page > 1} href={CloudSecurityCornerWeb.ToolsHTML.page_url(@query, @category, @sort, @result.page - 1)}>← Previous</a>
+      <span>Page {@result.page} of {@result.page_count}</span>
+      <a :if={@result.page < @result.page_count} href={CloudSecurityCornerWeb.ToolsHTML.page_url(@query, @category, @sort, @result.page + 1)}>Next →</a>
+    </nav>
+  </div>
+</section>

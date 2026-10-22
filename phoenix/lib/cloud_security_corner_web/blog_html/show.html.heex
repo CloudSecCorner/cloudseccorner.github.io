@@ -1,0 +1,11 @@
+<section class="page-hero page-hero-compact">
+  <div class="container narrow">
+    <a class="back-link" href="/blog">← All articles</a>
+    <p class="eyebrow">{@post["category"] || "Field notes"} · {@post["date"]}</p>
+    <h1>{@post["title"]}</h1>
+    <p>{@post["excerpt"]}</p>
+  </div>
+</section>
+<section class="section">
+  <article class="container narrow prose markdown-content">{raw(@content_html)}</article>
+</section>

@@ -1,0 +1,27 @@
+<section class="page-hero page-hero-compact">
+  <div class="container">
+    <p class="eyebrow">Practice with purpose</p>
+    <h1>Build confidence by doing.</h1>
+    <p>Guided, self-paced labs for threat modeling, cloud security, zero trust, and agentic systems.</p>
+  </div>
+</section>
+<section class="section section-top-tight">
+  <div class="container">
+    <form class="filter-bar" action="/labs" method="get">
+      <label class="search-field"><span class="sr-only">Search labs</span><input type="search" name="q" value={@query} placeholder="Search labs..." /></label>
+      <label><span class="sr-only">Category</span><select name="category"><option value="">All categories</option><option :for={category <- @categories} value={category} selected={@category == category}>{category}</option></select></label>
+      <button class="button button-primary" type="submit">Find a lab</button>
+    </form>
+    <p class="results-line">{length(@labs)} learning paths</p>
+    <div :if={@labs == []} class="empty-state"><h2>No labs found</h2><p>Try another search or category.</p></div>
+    <div class="resource-grid">
+      <a :for={lab <- @labs} class="resource-card" href={"/labs/" <> lab["id"]}>
+        <span class="card-number">{lab["category"]}</span><span class="resource-icon icon-green">↗</span>
+        <h2>{lab["title"]}</h2><p>{lab["description"]}</p>
+        <div class="tag-list"><span :for={tag <- lab["tags"] || []} class="tag">{tag}</span></div>
+        <span class="text-link">Open this lab <b>→</b></span>
+      </a>
+    </div>
+    <aside class="contribute-callout"><div><p class="eyebrow">Share what you know</p><h2>Propose a new security lab</h2><p>Help others learn by creating a hands-on exercise or improving an existing path.</p></div><a class="button button-secondary" href="https://github.com/CloudSecCorner/cloudseccorner.github.io/issues/new?labels=new-lab" target="_blank" rel="noopener noreferrer">Propose a lab ↗</a></aside>
+  </div>
+</section>

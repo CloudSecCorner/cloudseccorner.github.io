@@ -4,6 +4,10 @@ Cloud Security Corner is an open resource hub for securing AI agents, autonomous
 
 Visit [cloudsecuritycorner.com](https://cloudsecuritycorner.com/) to explore the curated tools, labs, and field notes.
 
+## Phoenix application
+
+A server-rendered Elixir/Phoenix version with a KubeDaily-inspired learning-hub layout is being staged in [`phoenix/`](./phoenix/). Run it locally with `cd phoenix && mix deps.get && mix test && mix phx.server`. The current GitHub Pages deployment remains unchanged until a Phoenix server host is selected; see the [Phoenix migration notes](./phoenix/README.md).
+
 ## Agentic AI Security
 
 - [OWASP Agentic Security Initiative](https://genai.owasp.org/initiatives/agentic-security-initiative/) - Research, standards, threat models, and implementation guidance for autonomous agents.
@@ -120,4 +124,3 @@ Visit [cloudsecuritycorner.com](https://cloudsecuritycorner.com/) to explore the
 
 ## Learning Resources
 - [Paragonie Awesome AppSec](https://github.com/paragonie/awesome-appsec) - A curated list of resources for learning about application security, including books, websites, blog posts, and self-assessment quizzes.
-

@@ -1,0 +1,23 @@
+<section class="page-hero page-hero-compact">
+  <div class="container">
+    <p class="eyebrow">Ideas into practice</p>
+    <h1>Field notes for safer systems.</h1>
+    <p>Research and practical guidance for securing AI agents, autonomous workloads, and cloud infrastructure.</p>
+  </div>
+</section>
+<section class="section section-top-tight">
+  <div class="container">
+    <div class="section-heading section-heading-left"><p class="eyebrow">Latest writing</p><h2>Learn from the field.</h2></div>
+    <div :if={@posts == []} class="empty-state"><h2>More writing is on the way</h2><p>Check back for new research and practical guides.</p></div>
+    <div class="resource-grid">
+      <a :for={post <- @posts} class="resource-card blog-card" href={"/blog/" <> post["id"]}>
+        <span class="card-number">{post["category"] || "Field notes"}</span>
+        <p class="post-date">{post["date"]}</p>
+        <h2>{post["title"]}</h2>
+        <p>{post["excerpt"]}</p>
+        <span class="text-link">Read the article <b>→</b></span>
+      </a>
+    </div>
+    <aside class="contribute-callout"><div><p class="eyebrow">Community knowledge</p><h2>Have a useful lesson to share?</h2><p>Contribute a practical guide, analysis, or field note for the community.</p></div><a class="button button-secondary" href="https://github.com/CloudSecCorner/cloudseccorner.github.io/tree/main/public/blog" target="_blank" rel="noopener noreferrer">Contribute a post ↗</a></aside>
+  </div>
+</section>
