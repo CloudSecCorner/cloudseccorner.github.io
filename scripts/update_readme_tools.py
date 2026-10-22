@@ -20,7 +20,18 @@ import sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_FILE = os.path.join(BASE_DIR, "priv", "data", "security-entries.json")
 STATIC_DATA_FILE = os.path.join(BASE_DIR, "priv", "static", "data", "security-entries.json")
-README_FILE = os.path.join(BASE_DIR, "README.md")
+def get_readme_path():
+    """Finds README.md regardless of filesystem casing (Linux vs macOS)."""
+    candidates = [
+        os.path.join(BASE_DIR, "README.md"),
+        os.path.join(BASE_DIR, "readme.md"),
+    ]
+    for p in candidates:
+        if os.path.exists(p):
+            return p
+    return candidates[0]
+
+README_FILE = get_readme_path()
 
 START_MARKER = "<!-- TOOLS_TABLE:START -->"
 END_MARKER = "<!-- TOOLS_TABLE:END -->"
@@ -504,7 +515,8 @@ def update_readme():
 
     tools_markdown = generate_tools_markdown(tools)
 
-    with open(README_FILE, "r", encoding="utf-8") as f:
+    readme_path = get_readme_path()
+    with open(readme_path, "r", encoding="utf-8") as f:
         readme_content = f.read()
 
     if START_MARKER in readme_content and END_MARKER in readme_content:
@@ -516,10 +528,10 @@ def update_readme():
     else:
         new_readme = readme_content.rstrip() + "\n\n" + tools_markdown + "\n"
 
-    with open(README_FILE, "w", encoding="utf-8") as f:
+    with open(readme_path, "w", encoding="utf-8") as f:
         f.write(new_readme)
 
-    print(f"✅ Successfully updated {README_FILE} with curated tools tables ({len(tools):,} total tools indexed).")
+    print(f"✅ Successfully updated {readme_path} with curated tools tables ({len(tools):,} total tools indexed).")
 
 
 if __name__ == "__main__":
