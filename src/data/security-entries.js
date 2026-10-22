@@ -159,13 +159,6 @@ export const securityEntries = [
       tag: "Security Guidelines"
     },
     {
-      title: "OWASP ZAP",
-      link: "https://github.com/zaproxy/zaproxy",
-      description: "A full-featured, free, and open-source DAST tool that includes both automated scanning for vulnerabilities and tools for manual web app penetration testing",
-      github: "zaproxy",
-      tag: "DAST"
-    },
-    {
       title: "W3af",
       link: "https://github.com/andresriancho/w3af",
       description: "An open-source web application security scanner that helps secure web applications by finding and exploiting all web application vulnerabilities",
@@ -185,13 +178,6 @@ export const securityEntries = [
       description: "A web application vulnerability scanner that performs black-box scans to audit the security of web applications",
       github: "wapiti-scanner",
       tag: "Web Application Security"
-    },
-    {
-      title: "Nikto",
-      link: "https://github.com/sullo/nikto",
-      description: "An open-source web server scanner which performs comprehensive tests against web servers for multiple items, including over 6700 potentially dangerous files/CGIs",
-      github: "sullo",
-      tag: "Web Server Security"
     },
     {
       title: "Nuclei",
@@ -264,12 +250,6 @@ export const securityEntries = [
       tag: "DAST"
     },
     {
-      title: "Burp Suite",
-      link: "https://portswigger.net/burp",
-      description: "Combines manual and automated tools for thorough vulnerability analysis, excelling in web application security",
-      tag: "Web Security Testing"
-    },
-    {
       title: "Qualys VMDR",
       link: "https://www.qualys.com/apps/vulnerability-management-detection-response/",
       description: "Combines vulnerability scanning with AI-driven risk prioritization, ideal for large IT infrastructures",
@@ -323,6 +303,113 @@ export const securityEntries = [
       description: "Discovers agent components, MCP servers, and skills, then scans them for risks such as prompt injection, tool poisoning, unsafe data access, and malicious instructions.",
       github: "snyk/agent-scan",
       tag: "Agent Security"
+    },
+    // Curated from Kitploit's AI Security, Secret Detection, and IAM catalogs.
+    // Descriptions and links are normalized against the projects' official sources.
+    {
+      title: "PurpleLlama",
+      link: "https://github.com/meta-llama/PurpleLlama",
+      description: "Meta's collection of evaluations and safeguards for assessing and improving generative AI security, including CyberSecEval, Prompt Guard, and Code Shield.",
+      github: "meta-llama/PurpleLlama",
+      tag: "AI Security"
+    },
+    {
+      title: "Giskard",
+      link: "https://github.com/Giskard-AI/giskard-oss",
+      description: "An open-source testing library for evaluating and red-teaming LLM agents, RAG systems, and multi-turn AI workflows.",
+      github: "Giskard-AI/giskard-oss",
+      tag: "AI Security Testing"
+    },
+    {
+      title: "AI-Infra-Guard",
+      link: "https://github.com/Tencent/AI-Infra-Guard",
+      description: "A full-stack AI red-team platform for scanning agents, skills, MCP servers, AI infrastructure, and LLM jailbreak exposure.",
+      github: "Tencent/AI-Infra-Guard",
+      tag: "Agentic Security"
+    },
+    {
+      title: "Promptmap",
+      link: "https://github.com/utkusen/promptmap",
+      description: "A prompt-injection scanner that automatically tests custom LLM applications for attack paths and unsafe instruction handling.",
+      github: "utkusen/promptmap",
+      tag: "LLM Security"
+    },
+    {
+      title: "Agentic Radar",
+      link: "https://github.com/splx-ai/agentic-radar",
+      description: "A security scanner that analyzes agentic workflows and visualizes tools, prompts, data flows, and potential security weaknesses.",
+      github: "splx-ai/agentic-radar",
+      tag: "Agent Security"
+    },
+    {
+      title: "NeMo Guardrails",
+      link: "https://github.com/NVIDIA-NeMo/Guardrails",
+      description: "An open-source toolkit for adding programmable input, output, retrieval, dialog, and execution safeguards to AI applications.",
+      github: "NVIDIA-NeMo/Guardrails",
+      tag: "AI Security"
+    },
+    {
+      title: "SkillSpector",
+      link: "https://github.com/NVIDIA/skillspector",
+      description: "A security scanner for AI agent skills that detects prompt injection, unsafe behaviors, data exfiltration, and malicious patterns.",
+      github: "NVIDIA/skillspector",
+      tag: "Agent Security"
+    },
+    {
+      title: "OpenShell",
+      link: "https://github.com/NVIDIA/OpenShell",
+      description: "A sandboxed runtime for autonomous agents with declarative policies for filesystem, network, and process access.",
+      github: "NVIDIA/OpenShell",
+      tag: "Agent Sandbox"
+    },
+    {
+      title: "Gitleaks",
+      link: "https://github.com/gitleaks/gitleaks",
+      description: "A fast secret scanner for detecting passwords, API keys, and tokens in Git history, files, and standard input.",
+      github: "gitleaks/gitleaks",
+      tag: "Secret Detection"
+    },
+    {
+      title: "TruffleHog",
+      link: "https://github.com/trufflesecurity/trufflehog",
+      description: "Finds, verifies, and analyzes exposed credentials across source repositories, cloud storage, container images, and other data sources.",
+      github: "trufflesecurity/trufflehog",
+      tag: "Secret Detection"
+    },
+    {
+      title: "detect-secrets",
+      link: "https://github.com/Yelp/detect-secrets",
+      description: "An extensible secret-detection tool that supports baseline files and pre-commit workflows to prevent new credentials from entering a codebase.",
+      github: "Yelp/detect-secrets",
+      tag: "Secret Detection"
+    },
+    {
+      title: "SOPS",
+      link: "https://github.com/getsops/sops",
+      description: "An editor for encrypted configuration files that integrates with cloud key services and keeps sensitive values protected in version control.",
+      github: "getsops/sops",
+      tag: "Secrets Management"
+    },
+    {
+      title: "Checkov",
+      link: "https://github.com/bridgecrewio/checkov",
+      description: "Static analysis for infrastructure as code that detects cloud misconfigurations, vulnerable dependencies, and exposed secrets.",
+      github: "bridgecrewio/checkov",
+      tag: "Cloud Security"
+    },
+    {
+      title: "Keycloak",
+      link: "https://github.com/keycloak/keycloak",
+      description: "An open-source identity and access management platform for authentication, federation, single sign-on, and fine-grained authorization.",
+      github: "keycloak/keycloak",
+      tag: "Identity & Access Management"
+    },
+    {
+      title: "HashiCorp Vault",
+      link: "https://github.com/hashicorp/vault",
+      description: "A secrets and encryption platform for centrally controlling access to credentials, keys, tokens, and privileged operations.",
+      github: "hashicorp/vault",
+      tag: "Secrets Management"
     }
 ];
 

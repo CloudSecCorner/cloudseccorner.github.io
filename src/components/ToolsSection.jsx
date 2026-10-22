@@ -7,7 +7,7 @@ function ToolsSection() {
   const [search, setSearch] = useState("");
   const [selectVal, setSelectVal] = useState("");
   const [sortBy, setSortBy] = useState("default");
-  const [categoryType, setCategoryType] = useState("agentic"); // "all", "app", "network", "cloud", "agentic"
+  const [categoryType, setCategoryType] = useState("agentic"); // "all", "app", "network", "cloud", "agentic", "identity"
   const [showContributeModal, setShowContributeModal] = useState(false);
 
   // Extract unique tags from entries
@@ -42,8 +42,17 @@ function ToolsSection() {
     tag.includes("Autonomous Security") ||
     tag.includes("Agent Security") ||
     tag.includes("Agentic Security") ||
+    tag.includes("Agent Sandbox") ||
     tag.includes("AI Agent") 
    
+  );
+
+  const identitySecurityTags = allTags.filter(tag =>
+    tag.includes("Identity") ||
+    tag.includes("Access Management") ||
+    tag.includes("Authentication") ||
+    tag.includes("Authorization") ||
+    tag.includes("Secret")
   );
   
   // Select which tags to display based on categoryType
@@ -51,7 +60,8 @@ function ToolsSection() {
                      categoryType === "app" ? appSecurityTags : 
                      categoryType === "network" ? networkSecurityTags : 
                      categoryType === "cloud" ? cloudSecurityTags :
-                     agenticSecurityTags;
+                     categoryType === "agentic" ? agenticSecurityTags :
+                     identitySecurityTags;
 
   // Function to sort tools based on selected criteria
   const sortTools = (filteredEntries) => {
@@ -87,6 +97,8 @@ function ToolsSection() {
       categoryMatches = cloudSecurityTags.includes(entry.tag);
     } else if (categoryType === "agentic") {
       categoryMatches = agenticSecurityTags.includes(entry.tag);
+    } else if (categoryType === "identity") {
+      categoryMatches = identitySecurityTags.includes(entry.tag);
     }
     
     return (titleMatches || descriptionMatches) && tagMatches && categoryMatches;
@@ -188,7 +200,7 @@ function ToolsSection() {
             </button>
             <button
               type="button"
-              className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
+              className={`px-4 py-2 text-sm font-medium ${
                 categoryType === "agentic" 
                   ? "bg-indigo-600 text-white hover:bg-indigo-700" 
                   : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700"
@@ -199,6 +211,20 @@ function ToolsSection() {
               }}
             >
               Agentic Security
+            </button>
+            <button
+              type="button"
+              className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
+                categoryType === "identity"
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700"
+              }`}
+              onClick={() => {
+                setCategoryType("identity");
+                setSelectVal("");
+              }}
+            >
+              Identity & Secrets
             </button>
           </div>
         </div>
@@ -255,7 +281,8 @@ function ToolsSection() {
           Found {sortedEntries.length} {categoryType === "all" ? "security tools" : 
           categoryType === "app" ? "application security tools" : 
           categoryType === "network" ? "network security tools" : 
-          categoryType === "cloud" ? "cloud security tools" : "agentic security tools"}
+          categoryType === "cloud" ? "cloud security tools" :
+          categoryType === "agentic" ? "agentic security tools" : "identity and secrets tools"}
         </div>
         
         {/* Display message if no results */}
