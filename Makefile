@@ -1,4 +1,4 @@
-.PHONY: setup export test format dev
+.PHONY: setup export test format dev readme
 
 setup:
 	mix local.hex --force
@@ -15,5 +15,8 @@ test:
 format:
 	mix format
 
-export:
+readme:
+	python3 scripts/update_readme_tools.py
+
+export: readme
 	mix site.export --output _site

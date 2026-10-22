@@ -50,6 +50,9 @@ jobs:
       - name: Run Elixir tests
         run: mix test
 
+      - name: Sync tool database & README tables
+        run: python3 scripts/update_readme_tools.py
+
       - name: Export static site via Elixir
         run: mix site.export --output _site
 

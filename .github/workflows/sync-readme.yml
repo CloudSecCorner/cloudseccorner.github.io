@@ -1,0 +1,42 @@
+name: Sync README Tools Table
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'priv/data/security-entries.json'
+      - 'scripts/update_readme_tools.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-tools-table:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Synchronize README tools tables
+        run: python3 scripts/update_readme_tools.py
+
+      - name: Commit and push changes if updated
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain README.md priv/static/data/security-entries.json)" ]; then
+            git add README.md priv/static/data/security-entries.json
+            git commit -m "docs: auto-update tools table in README.md [skip ci]"
+            git push
+          else
+            echo "README.md and static data are already up to date."
+          fi
