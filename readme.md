@@ -1,17 +1,31 @@
-# Cloud Security Corner Community  
+# Cloud Security Corner Community
+
+Cloud Security Corner is an open resource hub for securing AI agents, autonomous cloud workloads, and the infrastructure they can access. The project focuses on agent identity, delegated authorization, tool and workload isolation, runtime defense, threat modeling, red teaming, governance, and incident response.
+
+Visit [cloudsecuritycorner.com](https://cloudsecuritycorner.com/) to explore the curated tools, labs, and field notes.
+
+## Agentic AI Security
+
+- [OWASP Agentic Security Initiative](https://genai.owasp.org/initiatives/agentic-security-initiative/) - Research, standards, threat models, and implementation guidance for autonomous agents.
+- [OWASP Secure Agent Playbook](https://github.com/OWASP/secure-agent-playbook) - Practical security checks for agent behavior, tools, and business workflows.
+- [Garak](https://github.com/NVIDIA/garak) - Vulnerability scanning for LLMs and AI applications.
+- [PyRIT](https://github.com/microsoft/PyRIT) - Automated and human-led red teaming for generative AI systems.
+- [Promptfoo](https://github.com/promptfoo/promptfoo) - Evaluation and adversarial testing for prompts, agents, and RAG systems.
+- [Snyk Agent Scan](https://github.com/snyk/agent-scan) - Security scanning for agents, MCP servers, and skills.
 
 
 # Labs 
 
-- [Ethical Hacker Easy Way](https://cloudseccorner.github.io/labs/ethical-hacker-easy-way) - Introduction to ethical hacking principles and methodologies.
-- [Threat Modeling](https://cloudseccorner.github.io/labs/Threat-Modeling) - Learn how to create a threat model for a given system.
-- [NMAP Practical Labs](https://cloudseccorner.github.io/labs/Nmap-Practical-Labs) - Network scanner to identify open ports, services, and other network information.
-- [Security Engineering Fundamentals](https://cloudseccorner.github.io/labs/Security-Engineering-Fundamentals) - Understanding the core principles of security engineering and how to apply them to real-world scenarios.
-- [Zero Trust Architecture](https://cloudseccorner.github.io/labs/Zero-Trust-Architecture) - Exploring security model that assumes all users, devices, and applications are potentially hostile and must be verified.
+- [Agentic Cloud Security Essentials](https://cloudsecuritycorner.com/labs/Agentic-Cloud-Security) - Threat-model an AI agent with cloud access and design practical identity, tool, runtime, and governance controls.
+- [Ethical Hacker Easy Way](https://cloudsecuritycorner.com/labs/ethical-hacker-easy-way) - Introduction to ethical hacking principles and methodologies.
+- [Threat Modeling](https://cloudsecuritycorner.com/labs/Threat-Modeling) - Learn how to create a threat model for a given system.
+- [NMAP Practical Labs](https://cloudsecuritycorner.com/labs/Nmap-Practical-Labs) - Network scanner to identify open ports, services, and other network information.
+- [Security Engineering Fundamentals](https://cloudsecuritycorner.com/labs/Security-Engineering-Fundamentals) - Understanding the core principles of security engineering and how to apply them to real-world scenarios.
+- [Zero Trust Architecture](https://cloudsecuritycorner.com/labs/Zero-Trust-Architecture) - Exploring security model that assumes all users, devices, and applications are potentially hostile and must be verified.
 
 # Blogs 
 
-- [Safeguarding the AI Frontier: An In-Depth Analysis of Straiker's Revolutionary Security Solutions](https://cloudseccorner.github.io/blog/Safeguarding-the-AI-Frontier) - Exploring how Straiker secures enterprise AI applications.
+- [Safeguarding the AI Frontier: An In-Depth Analysis of Straiker's Revolutionary Security Solutions](https://cloudsecuritycorner.com/blog/Safeguarding-the-AI-Frontier) - Exploring how Straiker secures enterprise AI applications.
 
 # Tools 
 
@@ -106,10 +120,4 @@
 
 ## Learning Resources
 - [Paragonie Awesome AppSec](https://github.com/paragonie/awesome-appsec) - A curated list of resources for learning about application security, including books, websites, blog posts, and self-assessment quizzes.
-
-## AI Agent
-- [bumpgen](https://github.com/xeol-io/bumpgen) - An AI agent that upgrades npm packages.
-
-
-
 

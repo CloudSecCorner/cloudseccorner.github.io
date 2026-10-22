@@ -1,6 +1,15 @@
 {
   "labs": [
     {
+      "id": "Agentic-Cloud-Security",
+      "title": "Agentic Cloud Security Essentials",
+      "description": "Threat-model an AI agent with cloud access and design controls for identity, tools, approvals, isolation, observability, and response.",
+      "category": "Agentic Security",
+      "path": "/labs/agentic-cloud-security.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Cloud Security", "AI Security"]
+    },
+    {
       "id": "ethical-hacker-easy-way",
       "title": "Ethical Hacker Easy Way",
       "description": "Ethical Hacker Easy Way",
@@ -10,7 +19,7 @@
       "tags": ["Ethical Hacking"]
     },
     {
-      "id": "Threat Modeling",
+      "id": "Threat-Modeling",
       "title": "Threat Modeling",
       "description": "Learn how to create a threat model for a given system",
       "category": "Security Engineering",
@@ -28,7 +37,7 @@
       "tags": ["Network Security"]
     }, 
     {
-      "id": "Security Engineering Fundamentals",
+      "id": "Security-Engineering-Fundamentals",
       "title": "Security Engineering Fundamentals",
       "description": " Understanding the core principles of security engineering and how to apply them to real-world scenarios.",
       "category": "Security Engineering",

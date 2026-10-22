@@ -14,7 +14,7 @@ For local development or manual deployments, follow these steps to set up your G
 
 1. Go to [GitHub Personal Access Tokens](https://github.com/settings/tokens) page
 2. Click "Generate new token" > "Generate new token (classic)"
-3. Give it a descriptive name like "AI Data Foundation Star Count"
+3. Give it a descriptive name like "Cloud Security Corner Star Count"
 4. Select the following scopes:
    - `read:user`
    - `public_repo`
@@ -53,4 +53,4 @@ If you see GitHub API errors in the console:
 2. Verify that the token has the correct permissions
 3. Check if you've hit GitHub's API rate limits
 
-For more information, see [GitHub's GraphQL API documentation](https://docs.github.com/en/graphql). 
+For more information, see [GitHub's GraphQL API documentation](https://docs.github.com/en/graphql).

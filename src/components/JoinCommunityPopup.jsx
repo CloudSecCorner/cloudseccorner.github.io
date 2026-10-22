@@ -5,10 +5,13 @@ const JoinCommunityPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   
   useEffect(() => {
-    // Show popup after 5 seconds on every visit
+    if (window.sessionStorage.getItem('community-popup-seen')) return undefined;
+
+    // Give visitors time to understand the site before showing the invitation.
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 5000);
+      window.sessionStorage.setItem('community-popup-seen', 'true');
+    }, 12000);
     
     return () => clearTimeout(timer);
   }, []);
@@ -37,8 +40,8 @@ const JoinCommunityPopup = () => {
         
         {/* Blue header */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white">
-          <h3 className="text-xl font-bold">Join Our Security Community</h3>
-          <p className="mt-1 text-blue-100">Connect with cloud security professionals</p>
+          <h3 className="text-xl font-bold">Join the Agentic Security Community</h3>
+          <p className="mt-1 text-blue-100">Build safer AI agents and cloud systems together</p>
         </div>
         
         {/* Content */}
@@ -52,7 +55,7 @@ const JoinCommunityPopup = () => {
             
             <h4 className="text-xl font-medium text-gray-900 dark:text-white mb-3">Join our Discord Community</h4>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Get exclusive access to security tips, tools, and connect with security professionals.
+              Discuss agent identity, tool security, runtime defense, AI governance, and practical cloud controls with fellow builders.
             </p>
             
             <button
@@ -79,4 +82,4 @@ const JoinCommunityPopup = () => {
   );
 };
 
-export default JoinCommunityPopup; 
+export default JoinCommunityPopup;

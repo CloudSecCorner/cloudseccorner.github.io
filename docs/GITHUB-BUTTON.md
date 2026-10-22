@@ -1,6 +1,6 @@
 # GitHub Button Integration
 
-This document explains how we display GitHub repository information in the AI Data Foundation website.
+This document explains how we display GitHub repository information in the Cloud Security Corner website.
 
 ## Overview
 
@@ -80,4 +80,4 @@ Our previous implementation used GitHub's GraphQL API, which required:
 3. Handling rate limiting and error scenarios
 4. Setting up secure token storage in GitHub Actions
 
-The new implementation eliminates these requirements while providing a more reliable solution. 
+The new implementation eliminates these requirements while providing a more reliable solution.

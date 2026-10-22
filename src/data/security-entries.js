@@ -284,10 +284,45 @@ export const securityEntries = [
     } , 
 
     {
-      title: "bumpgen",
-      link: "https://github.com/xeol-io/bumpgen",
-      description: "An AI agent that upgrades npm packages",
-      tag: "AI Agent"
+      title: "OWASP Agentic Security Initiative",
+      link: "https://genai.owasp.org/initiatives/agentic-security-initiative/",
+      description: "Community research, standards, threat models, and implementation guidance for securing autonomous agents and multi-step AI workflows.",
+      tag: "Agentic Security"
+    },
+    {
+      title: "OWASP Secure Agent Playbook",
+      link: "https://github.com/OWASP/secure-agent-playbook",
+      description: "An open playbook of practical security checks for AI agents, including prompt injection, tool misuse, secrets, and business integrity testing.",
+      github: "OWASP/secure-agent-playbook",
+      tag: "Agentic Security"
+    },
+    {
+      title: "Garak",
+      link: "https://github.com/NVIDIA/garak",
+      description: "An LLM vulnerability scanner that probes models and applications for prompt injection, data leakage, jailbreaks, hallucination, and other failure modes.",
+      github: "NVIDIA/garak",
+      tag: "LLM Security"
+    },
+    {
+      title: "PyRIT",
+      link: "https://github.com/microsoft/PyRIT",
+      description: "Microsoft's extensible framework for automated and human-led red teaming of generative AI systems, including multi-turn attacks and repeatable scenarios.",
+      github: "microsoft/PyRIT",
+      tag: "AI Security Testing"
+    },
+    {
+      title: "Promptfoo",
+      link: "https://github.com/promptfoo/promptfoo",
+      description: "An open-source evaluation and red-team framework for prompts, agents, and RAG systems with adversarial testing and CI integration.",
+      github: "promptfoo/promptfoo",
+      tag: "AI Security Testing"
+    },
+    {
+      title: "Snyk Agent Scan",
+      link: "https://github.com/snyk/agent-scan",
+      description: "Discovers agent components, MCP servers, and skills, then scans them for risks such as prompt injection, tool poisoning, unsafe data access, and malicious instructions.",
+      github: "snyk/agent-scan",
+      tag: "Agent Security"
     }
 ];
 

@@ -3,7 +3,7 @@ id: "1"
 title: "Cloud Native Tools Collection"
 date: "May 10, 2023"
 excerpt: "A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface."
-author: "AI Data Foundation"
+author: "Cloud Security Corner"
 category: "Cloud Native"
 tags: ["kubernetes", "cloud native", "tools", "open source"]
 ---
@@ -50,4 +50,4 @@ These techniques enable loosely coupled systems that are resilient, manageable, 
 
 ## Getting Started
 
-Check out our [Quick Start Guide](/blog/2) to begin exploring the extensive collection of cloud native tools we've curated for the community. 
+Check out our [Quick Start Guide](/blog/2) to begin exploring the extensive collection of cloud native tools we've curated for the community.

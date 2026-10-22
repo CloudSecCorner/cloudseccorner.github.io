@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Helmet } from "react-helmet";
 import MarkdownRenderer from "./MarkdownRenderer";
 import OpenGraph from "./OpenGraph";
+import { getAbsoluteUrl, REPOSITORY_URL } from "../utils/socialSharing";
 
 function Blog() {
   const { postId } = useParams();
@@ -16,48 +17,25 @@ function Blog() {
   // Load blog index
   useEffect(() => {
     const fetchBlogIndex = async () => {
-      // Try multiple possible locations for the blog index
-      const possiblePaths = [
-        '/blog/index.json',
-        '/blog.json',
-        './blog/index.json',
-        './blog.json',
-      ];
-      
-      let data = null;
-      let fetchError = null;
-      
-      // Try each path until one works
-      for (const path of possiblePaths) {
-        try {
-          console.log(`Attempting to fetch blog index from: ${path}`);
-          const response = await fetch(path, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            cache: 'no-store'
-          });
-          
-          if (response.ok) {
-            const jsonData = await response.json();
-            // Handle both formats: direct array or { blogs: [...] }
-            data = jsonData.blogs || jsonData;
-            console.log('Blog posts loaded from:', path, data);
-            break; // Exit the loop if successful
-          }
-        } catch (err) {
-          console.error(`Error fetching from ${path}:`, err);
-          fetchError = err;
+      try {
+        const response = await fetch('/data/blog.json', {
+          headers: {
+            'Accept': 'application/json'
+          },
+          cache: 'no-store'
+        });
+        if (!response.ok) {
+          throw new Error(`Blog index request failed with status ${response.status}`);
         }
-      }
-      
-      if (data) {
+        const jsonData = await response.json();
+        const data = jsonData.blogs || jsonData;
+        if (!Array.isArray(data)) {
+          throw new Error('Blog index is not an array');
+        }
         setBlogPosts(data);
         setLoading(false);
-      } else {
-        console.error('All fetch attempts failed:', fetchError);
-        setError('Failed to load blog posts. Please try again later.');
+      } catch (fetchError) {
+        console.error('Failed to load blog index:', fetchError);
         setLoading(false);
         
         // Fallback to hardcoded data if all fetch attempts fail
@@ -74,9 +52,7 @@ function Blog() {
           }
         ]
         
-        console.log('Using fallback blog data');
         setBlogPosts(fallbackData);
-        // Clear the error state after setting fallback data
         setError(null);
       }
     };
@@ -92,14 +68,14 @@ function Blog() {
       "@context": "https://schema.org",
       "@type": "Blog",
       "name": "Cloud Security Corner Blog",
-      "url": "https://cloudseccorner.github.io/blog",
+      "url": getAbsoluteUrl('/blog'),
       "description": "Stay updated with the latest cybersecurity research, tools, and insights from our team and community contributors.",
       "publisher": {
         "@type": "Organization",
         "name": "Cloud Security Corner",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://cloudseccorner.github.io/android-icon-192x192.png"
+          "url": getAbsoluteUrl('/android-icon-192x192.png')
         }
       },
       "blogPost": blogPosts.map(post => ({
@@ -111,7 +87,7 @@ function Blog() {
           "@type": "Person",
           "name": post.author || "Cloud Security Corner"
         },
-        "url": `https://cloudseccorner.github.io/blog/${post.id}`
+        "url": getAbsoluteUrl(`/blog/${post.id}`)
       }))
     };
 
@@ -135,7 +111,7 @@ function Blog() {
       "@type": "BlogPosting",
       "headline": currentPost.title,
       "description": currentPost.excerpt,
-      "image": "https://cloudseccorner.github.io/og-image.png",
+      "image": getAbsoluteUrl('/og-image.png'),
       "datePublished": new Date(currentPost.date).toISOString(),
       "dateModified": new Date(currentPost.date).toISOString(),
       "author": {
@@ -147,12 +123,12 @@ function Blog() {
         "name": "Cloud Security Corner",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://cloudseccorner.github.io/android-icon-192x192.png"
+          "url": getAbsoluteUrl('/android-icon-192x192.png')
         }
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": `https://cloudseccorner.github.io/blog/${currentPost.id}`
+        "@id": getAbsoluteUrl(`/blog/${currentPost.id}`)
       },
       "keywords": "Cloud Security, Cybersecurity, Application Security, Network Security, Cloud Security Posture Management, DevSecOps"
     };
@@ -193,40 +169,21 @@ function Blog() {
         return;
       }
 
-      // Try multiple possible paths for the blog post markdown file
-      // Handle both relative and absolute paths
-      const possiblePaths = [
-        postPath,
-        postPath.startsWith('/') ? postPath.substring(1) : postPath,
-        `./public${postPath}`,
-        `.${postPath}`,
-      ];
-      
-      console.log('Trying paths:', possiblePaths);
-      
       let content = null;
       let fetchError = null;
-      
-      // Try each path until one works
-      for (const path of possiblePaths) {
-        try {
-          console.log(`Attempting to fetch blog post from: ${path}`);
-          const response = await fetch(path, {
-            headers: {
-              'Accept': 'text/plain, text/markdown'
-            },
-            cache: 'no-store'
-          });
-          
-          if (response.ok) {
-            content = await response.text();
-            console.log('Blog post content loaded successfully from:', path);
-            break; // Exit the loop if successful
-          }
-        } catch (err) {
-          console.error(`Error fetching from ${path}:`, err);
-          fetchError = err;
+      try {
+        const response = await fetch(postPath, {
+          headers: {
+            'Accept': 'text/plain, text/markdown'
+          },
+          cache: 'no-store'
+        });
+        if (!response.ok) {
+          throw new Error(`Blog post request failed with status ${response.status}`);
         }
+        content = await response.text();
+      } catch (err) {
+        fetchError = err;
       }
       
       if (content) {
@@ -326,7 +283,7 @@ function Blog() {
           <h2 className="text-xl font-semibold text-primary">Latest Posts</h2>
           <Button 
             variant="outline" 
-            onClick={() => window.open('https://github.com/cloudseccorner/cloudseccorner.github.io/tree/main/public/blog', '_blank')}
+            onClick={() => window.open(`${REPOSITORY_URL}/tree/main/public/blog`, '_blank', 'noopener,noreferrer')}
             className="text-sm"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -363,7 +320,7 @@ function Blog() {
             <div className="bg-blue-500/20 text-blue-500 rounded-full h-6 w-6 flex items-center justify-center mr-3 mt-0.5">3</div>
             <div>
               <h3 className="font-medium text-primary">Update the Index</h3>
-              <p className="text-sm text-grayFill">Add your post entry to <code className="bg-bgPrimary px-1 py-0.5 rounded text-xs">public/blog/index.json</code>.</p>
+              <p className="text-sm text-grayFill">Add your post entry to <code className="bg-bgPrimary px-1 py-0.5 rounded text-xs">public/data/blog.json</code>.</p>
             </div>
           </div>
           <div className="flex items-start">
@@ -375,7 +332,7 @@ function Blog() {
           </div>
         </div>
         <Button 
-          onClick={() => window.open('https://github.com/cloudseccorner/cloudseccorner.github.io/blob/main/public/blog/3-categories-and-contributing.md', '_blank')}
+          onClick={() => window.open(`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`, '_blank', 'noopener,noreferrer')}
           className="mt-6"
         >
           View Contribution Guidelines
@@ -459,7 +416,7 @@ function BlogPostDetail({ post }) {
             </button>
           </div>
           <a 
-            href={`https://github.com/cloudseccorner/cloudseccorner.github.io/edit/main/public${(post.path || post.file)}`} 
+            href={`${REPOSITORY_URL}/edit/main/public${(post.path || post.file)}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="text-sm text-indigo-500 hover:underline flex items-center"
@@ -595,4 +552,4 @@ function BlogList({ blogPosts }) {
   );
 }
 
-export default Blog; 
+export default Blog;

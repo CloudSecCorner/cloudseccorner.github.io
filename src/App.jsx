@@ -1,14 +1,41 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav";
-import LandingPage from "./components/LandingPage";
-import ToolsSection from "./components/ToolsSection";
-import Blog from "./components/Blog";
 import Footer from "./components/Footer";
-import Labs from "./components/Labs";
 import OpenGraph from "./components/OpenGraph";
 import JoinCommunityPopup from "./components/JoinCommunityPopup";
-import SocialSharingTest from "./components/SocialSharingTest";
+
+const LandingPage = lazy(() => import("./components/LandingPage"));
+const ToolsSection = lazy(() => import("./components/ToolsSection"));
+const Blog = lazy(() => import("./components/Blog"));
+const Labs = lazy(() => import("./components/Labs"));
+
+function RouteFallback() {
+  return (
+    <div className="flex min-h-[50vh] items-center justify-center" role="status">
+      <div className="h-10 w-10 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+      <span className="sr-only">Loading page</span>
+    </div>
+  );
+}
+
+function NotFound() {
+  return (
+    <main className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center px-4 text-center text-primary">
+      <OpenGraph
+        title="Page not found | Cloud Security Corner"
+        description="The requested Cloud Security Corner page could not be found."
+      />
+      <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-blue-500">404</p>
+      <h1 className="mb-4 text-4xl font-bold">Page not found</h1>
+      <p className="mb-8 text-grayFill">The page may have moved or the address may be incorrect.</p>
+      <Link className="rounded-md bg-blue-600 px-5 py-3 font-medium text-white hover:bg-blue-700" to="/">
+        Return home
+      </Link>
+    </main>
+  );
+}
 
 function App() {
   return (
@@ -16,13 +43,14 @@ function App() {
       <div className="bg-bgPrimary min-h-screen">
         <Nav />
         <div className="pt-16">
-          <Routes>
+          <Suspense fallback={<RouteFallback />}>
+            <Routes>
             <Route path="/" element={
               <>
                 <OpenGraph 
-                  title="Cloud Security Corner | Cloud Security Resources & Best Practices"
-                  description="A comprehensive resource for cloud security tools, frameworks, best practices, and methodologies. Explore the latest in AWS, Azure, GCP security, DevSecOps, and compliance."
-                  tags={["Cloud Security", "AWS Security", "Azure Security", "GCP Security", "DevSecOps"]}
+                  title="Cloud Security Corner | Agentic AI & Cloud Security"
+                  description="Practical tools, labs, and guidance for securing AI agents, autonomous cloud workloads, identities, toolchains, and runtime behavior."
+                  tags={["Agentic AI Security", "AI Agent Security", "Cloud Security", "Runtime Security", "AI Governance"]}
                 />
                 <LandingPage />
               </>
@@ -30,11 +58,12 @@ function App() {
             <Route path="/tools" element={
               <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
                 <OpenGraph 
-                  title="Cloud Security Tools | Cloud Security Corner"
-                  description="Explore our curated collection of cloud security tools, frameworks, libraries, and resources for AWS, Azure, GCP, and multi-cloud environments."
-                  tags={["Cloud Security Tools", "CSPM", "Cloud Security Posture Management", "DevSecOps Tools"]}
+                  title="Agentic AI & Cloud Security Tools | Cloud Security Corner"
+                  description="Explore tools for AI agent security, cloud defense, identity, policy enforcement, runtime monitoring, testing, and governance."
+                  tags={["AI Agent Security Tools", "Cloud Security Tools", "Agent Runtime Security", "AI Governance"]}
                 />
-                <h1 className="text-3xl font-bold mb-8 text-center">Cloud Security Tools Collection</h1>
+                <h1 className="text-3xl font-bold mb-3 text-center">Agentic AI & Cloud Security Tools</h1>
+                <p className="mx-auto mb-8 max-w-3xl text-center text-grayFill">Curated tools for protecting AI agents, cloud workloads, identities, data, and the systems that connect them.</p>
                 <ToolsSection />
               </div>
             } />
@@ -42,8 +71,8 @@ function App() {
               <>
                 <OpenGraph 
                   title="Security Labs | Cloud Security Corner"
-                  description="Interactive cloud security labs and workshops showcasing cutting-edge security practices and technologies."
-                  tags={["Security Labs", "Cloud Security Practice", "Hands-on Security", "Security Workshops"]}
+                  description="Hands-on labs for agentic AI security, threat modeling, zero trust, cloud defense, and security engineering."
+                  tags={["Agentic Security Labs", "Cloud Security Practice", "Threat Modeling", "Zero Trust"]}
                 />
                 <Labs />
               </>
@@ -52,9 +81,9 @@ function App() {
             <Route path="/blog" element={
               <>
                 <OpenGraph 
-                  title="Cloud Security Blog | Cloud Security Corner"
-                  description="Latest insights, tutorials, and news about cloud security, DevSecOps, and compliance best practices."
-                  tags={["Cloud Security Blog", "DevSecOps", "Security Best Practices", "Tutorials", "Security News"]}
+                  title="Agentic Cloud Security Blog | Cloud Security Corner"
+                  description="Research and practical guidance for securing AI agents, autonomous workloads, and cloud infrastructure."
+                  tags={["Agentic AI Security", "Cloud Security Blog", "AI Governance", "Security Research"]}
                 />
                 <Blog />
               </>
@@ -64,27 +93,20 @@ function App() {
               <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
                 <OpenGraph 
                   title="About Cloud Security Corner"
-                  description="Cloud Security Corner is a community dedicated to advancing cloud security through high-quality resources, best practices, and expert guidance."
-                  tags={["About", "Cloud Security Organization", "Security Community", "Mission"]}
+                  description="Cloud Security Corner is an open community focused on securing AI agents and the cloud systems they can access."
+                  tags={["About", "Agentic AI Security", "Cloud Security Community", "Mission"]}
                 />
                 <h1 className="text-3xl font-bold mb-8 text-center">About Cloud Security Corner</h1>
-                <p className="text-grayFill text-lg mb-6">
-                  Cloud Security Corner is a community dedicated to advancing the field of cloud security through high-quality resources, best practices, and expert guidance.
-                </p>
-                <p className="text-grayFill text-lg mb-6">
-                  Our mission is to democratize access to cloud security knowledge, enabling organizations of all sizes to implement robust security practices in their cloud environments.
-                </p>
-                <p className="text-grayFill text-lg">
-                  Founded in 2023, we collaborate with security practitioners, cloud engineers, and compliance experts to build a more secure cloud ecosystem.
-                </p>
+                <div className="mx-auto max-w-3xl space-y-6 text-grayFill text-lg leading-8">
+                  <p>Cloud Security Corner is an open community focused on a fast-growing security problem: AI agents can now use credentials, call tools, access sensitive data, and change cloud infrastructure.</p>
+                  <p>Our mission is to make agentic cloud security practical. We create and curate guidance for identity, authorization, tool isolation, runtime defense, threat modeling, evaluations, governance, and incident response.</p>
+                  <p>We bring together security practitioners, cloud engineers, AI builders, and governance teams to develop controls that keep autonomous systems useful, observable, and bounded.</p>
+                </div>
               </div>
             } />
-            <Route path="/social-sharing-test" element={
-              <div className="py-8">
-                <SocialSharingTest />
-              </div>
-            } />
-          </Routes>
+            <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </div>
         <Footer />
         <JoinCommunityPopup />
