@@ -290,66 +290,77 @@ DOMAINS = [
     {
         "id": "agentic-ai",
         "title": "🤖 Agentic & AI Security",
+        "filter_slug": "agentic-ai",
         "description": "AI agent guardrails, LLM red teaming, MCP security, sandboxing, and prompt evaluation.",
         "regex": re.compile(r"\b(agentic|agent|mcp|llm|llms|langchain|prompt inject|guardrail|openai|anthropic|ai security|promptfoo|garak|pyrit|giskard|nemo)\b", re.I),
     },
     {
         "id": "cloud-container",
         "title": "☁️ Cloud & Container Security",
+        "filter_slug": "cloud-container",
         "description": "Cloud security posture (CSPM), Kubernetes security, container runtime defense, and image scanning.",
         "regex": re.compile(r"\b(cloud|container|docker|kubernetes|k8s|helm|trivy|falco|runtime|aws|azure|gcp|cspm|cwpp|cnspec)\b", re.I),
     },
     {
         "id": "app-web-sec",
         "title": "🛡️ Application & Web Security",
+        "filter_slug": "app-api",
         "description": "SAST, DAST, web scanners, API defense, WAFs, and software supply chain protection.",
         "regex": re.compile(r"\b(web|dast|sast|waf|api|burp|zap|nikto|modsecurity|owasp|arachni|wapiti|vega|w3af|xss|sql|sqlmap|xsstrike|injection|browser)\b", re.I),
     },
     {
         "id": "identity-zero-trust",
         "title": "🔑 Identity, Access & Zero Trust",
+        "filter_slug": "identity-access",
         "description": "Authentication, authorization, IAM auditing, credential security, and zero-trust boundary controls.",
         "regex": re.compile(r"\b(identity|iam|zero trust|oauth|jwt|saml|active directory|ad|ldap|access management|teampass|credential)\b", re.I),
     },
     {
         "id": "vuln-assessment",
         "title": "🔍 Vulnerability Assessment & Scanners",
+        "filter_slug": "vuln-cve",
         "description": "Vulnerability scanning, CVE intelligence, configuration auditing, and vulnerability management.",
         "regex": re.compile(r"\b(vulnerability|cve|scanner|openvas|nuclei|qualys|defectdojo|lynis|nessus|auditing|mr\.sip)\b", re.I),
     },
     {
         "id": "pentest-exploit",
         "title": "⚔️ Penetration Testing & Exploitation",
+        "filter_slug": "pentest-redteam",
         "description": "Penetration testing frameworks, exploit tooling, post-exploitation, and security distributions.",
         "regex": re.compile(r"\b(pentest|penetration|exploit|metasploit|kali|netexec|impacket|linwinpwn|privilege escalation|c2|payload|shell|framework)\b", re.I),
     },
     {
         "id": "network-perimeter",
         "title": "📡 Network Security & Monitoring",
+        "filter_slug": "network-perimeter",
         "description": "Port scanning, traffic inspection, IDS/IPS, packet analysis, and perimeter security.",
         "regex": re.compile(r"\b(network|nmap|wireshark|snort|packet|sniffing|firewall|pfsense|traffic|ids|ips|pcap)\b", re.I),
     },
     {
         "id": "osint-threat-intel",
         "title": "👁️ OSINT & Threat Intelligence",
+        "filter_slug": "threat-intel",
         "description": "Threat intelligence sharing, IOC correlation, attack surface mapping, and reconnaissance.",
         "regex": re.compile(r"\b(osint|threat intelligence|recon|reconnaissance|shodan|misp|ioc|scavenger|pwned|hacktricks|information gathering)\b", re.I),
     },
     {
         "id": "ir-forensics",
         "title": "🚨 Incident Response & Forensics",
+        "filter_slug": "incident-forensics",
         "description": "Digital forensics, memory analysis, disk investigation, log analysis, and incident triage.",
         "regex": re.compile(r"\b(forensic|forensics|incident response|ossec|memory forensics|disk forensics|donpapi|triage|malware)\b", re.I),
     },
     {
         "id": "crypto-password",
         "title": "🔐 Cryptography & Password Auditing",
+        "filter_slug": "crypto-secrets",
         "description": "Password cracking, hash analysis, cryptographic verification, and WiFi assessment.",
         "regex": re.compile(r"\b(password|hashcat|aircrack|crypto|cryptography|hash|cracking|wifi|encryption|john|haiti|airgorah|hcxtools|hcxdumptool)\b", re.I),
     },
     {
         "id": "standards-learning",
         "title": "📚 Security Guidelines & Training",
+        "filter_slug": "all",
         "description": "Security standards, verification guides, training academies, and benchmark lists.",
         "regex": re.compile(r"\b(top ten|asvs|sans|academy|training|learning|guidelines|standards|curated list|seclists)\b", re.I),
     },
@@ -396,12 +407,22 @@ def extract_github_repo(tool):
     return None
 
 
-def build_markdown_table(domain_title, domain_desc, tools):
-    """Renders a single domain's tools as a Markdown table."""
+def build_markdown_table(domain, tools):
+    """Renders a single domain's tools as an aesthetic Markdown table."""
+    domain_id = domain["id"]
+    domain_title = domain["title"]
+    domain_desc = domain["description"]
+    filter_slug = domain.get("filter_slug", "all")
+    web_url = f"https://cloudsecuritycorner.com/tools/?category={filter_slug}"
+
+    clean_domain_name = domain_title.split(" ", 1)[1] if " " in domain_title else domain_title
+
     lines = []
-    lines.append(f"### {domain_title}")
-    lines.append(f"_{domain_desc}_\n")
-    lines.append("| Tool | Description | Repository / Link |")
+    lines.append(f'<a id="{domain_id}"></a>')
+    lines.append(f"### {domain_title}\n")
+    lines.append(f"> **{len(tools)} Curated Projects** · _{domain_desc}_  ")
+    lines.append(f"> 🔗 [Browse & search all {clean_domain_name} tools on the web directory ↗]({web_url})\n")
+    lines.append("| Project | Focus & Capabilities | Repository / Official Link |")
     lines.append("| :--- | :--- | :--- |")
 
     sorted_tools = sorted(tools, key=lambda t: t.get("title", "").lower())
@@ -412,8 +433,8 @@ def build_markdown_table(domain_title, domain_desc, tools):
         desc = sanitize_markdown(tool.get("description", ""))
         repo = extract_github_repo(tool)
 
-        if len(desc) > 130:
-            desc = desc[:127] + "..."
+        if len(desc) > 135:
+            desc = desc[:132] + "..."
 
         tool_link = f"**[{title}]({link})**" if link else f"**{title}**"
 
@@ -426,7 +447,7 @@ def build_markdown_table(domain_title, domain_desc, tools):
 
         lines.append(f"| {tool_link} | {desc} | {repo_link} |")
 
-    lines.append("")
+    lines.append('\n<p align="right"><a href="#quick-navigation">↑ Back to Domain Navigation</a></p>\n')
     return "\n".join(lines)
 
 
@@ -468,33 +489,48 @@ def generate_tools_markdown(tools):
 
     output = []
     output.append(START_MARKER)
-    output.append("## Curated Security Tools\n")
+    output.append("## 🧰 Curated Security Tools Showcase\n")
     output.append(
-        f"This directory is **automatically synchronized** from [`priv/data/security-entries.json`](./priv/data/security-entries.json). "
-        f"Below is a curated showcase of **{total_curated} community-highlighted tools** across 11 core security domains. "
-        f"Search and filter the complete collection of **{total_db:,} tools** on **[cloudsecuritycorner.com/tools](https://cloudsecuritycorner.com/tools/)**.\n"
+        f"> 🌟 **Automated Directory Sync**: This curated showcase highlights **{total_curated} community-highlighted projects** "
+        f"across 11 core security domains, automatically synchronized from [`priv/data/security-entries.json`](./priv/data/security-entries.json). "
+        f"Search, filter, and inspect the complete database of **{total_db:,} tools** on **[cloudsecuritycorner.com/tools](https://cloudsecuritycorner.com/tools/)**.\n"
     )
+
+    # Domain Quick Navigation Table
+    output.append('<a id="quick-navigation"></a>')
+    output.append("### 🧭 Quick Navigation by Security Domain\n")
+    output.append("| Domain | Focus Area | Curated Count | Quick Jump |")
+    output.append("| :--- | :--- | :---: | :---: |")
+
+    for domain in DOMAINS:
+        count = len(buckets.get(domain["id"], []))
+        short_desc = domain["description"].split(", and ")[0].split(".")[0]
+        output.append(f"| **{domain['title']}** | {short_desc} | `{count} tools` | [Browse ↓](#{domain['id']}) |")
+
+    output.append(f"| 🌐 **Full 37k+ Database** | Real-time search, interactive filters & GitHub metadata | `{total_db:,} tools` | [**Open Web Directory ↗**](https://cloudsecuritycorner.com/tools/) |\n")
+    output.append("---\n")
 
     for domain in DOMAINS:
         domain_tools = buckets.get(domain["id"], [])
         if domain_tools:
-            table_md = build_markdown_table(domain["title"], domain["description"], domain_tools)
+            table_md = build_markdown_table(domain, domain_tools)
             output.append(table_md)
 
-    output.append("### ➕ How to Add a Tool to This Table")
-    output.append("Contributions from the security community are welcome!\n")
-    output.append("1. Add an entry to [`priv/data/security-entries.json`](./priv/data/security-entries.json):")
-    output.append("   ```json")
-    output.append("   {")
-    output.append('     "title": "MySecurityTool",')
-    output.append('     "link": "https://github.com/org/mysecuritytool",')
-    output.append('     "description": "A clear 1-2 sentence description explaining what the tool secures or tests.",')
-    output.append('     "tag": "Agentic & AI Security",')
-    output.append('     "github": "org/mysecuritytool"')
-    output.append("   }")
-    output.append("   ```")
-    output.append("2. Run `make readme` (or `python3 scripts/update_readme_tools.py`).")
-    output.append("3. Submit a Pull Request. GitHub Actions will automatically validate the schema, update the table, and export the site.\n")
+    output.append("> [!TIP]")
+    output.append("> ### 🚀 How to Add a Tool to CloudSecCorner")
+    output.append("> Contributions from the security community are warmly welcomed!\n>")
+    output.append("> 1. Add your project entry to [`priv/data/security-entries.json`](./priv/data/security-entries.json):")
+    output.append(">    ```json")
+    output.append(">    {")
+    output.append('>      "title": "MySecurityTool",')
+    output.append('>      "link": "https://github.com/org/mysecuritytool",')
+    output.append('>      "description": "A concise 1-2 sentence description explaining what the tool secures, tests, or monitors.",')
+    output.append('>      "tag": "Agentic & AI Security",')
+    output.append('>      "github": "org/mysecuritytool"')
+    output.append(">    }")
+    output.append(">    ```")
+    output.append("> 2. Run `make readme` (or `python3 scripts/update_readme_tools.py`) to refresh the tables.")
+    output.append("> 3. Submit a Pull Request. GitHub Actions will validate the schema, rebuild the table, and export the site.\n")
     output.append(END_MARKER)
 
     return "\n".join(output)
