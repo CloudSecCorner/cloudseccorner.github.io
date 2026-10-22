@@ -1,31 +1,129 @@
 <section class="page-hero page-hero-compact">
   <div class="container">
-    <p class="eyebrow">Explore the security stack</p>
-    <h1>Tools for a changing cloud.</h1>
-    <p>Search a curated directory of tools for agentic AI, cloud defense, identity, application security, and more.</p>
+    <p class="eyebrow">Security &amp; Agentic Ecosystem Directory</p>
+    <h1>Find the tools that help teams <span>secure cloud and AI agents.</span></h1>
+    <p>Search CloudSecCorner’s curated collection of 37,000+ projects across AI agent security, cloud defense, identity, runtime monitoring, and governance.</p>
   </div>
 </section>
+
 <section class="section section-top-tight">
   <div class="container">
+    <!-- Curated Category Pills -->
+    <div class="category-pills-bar" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+      <a
+        href={CloudSecurityCornerWeb.ToolsHTML.category_url("all", @query, @sort)}
+        class={"badge-pill " <> if(@category == "" or @category == "all", do: "badge-pill-active", else: "")}
+        style="display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.85rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-decoration: none;"
+      >
+        <span>🌐 All Tools</span>
+        <span style="opacity: 0.75; font-size: 0.65rem;">37,750</span>
+      </a>
+
+      <%= for cat <- @result.categories do %>
+        <% is_active = @category == cat.id or String.downcase(@category) == String.downcase(cat.label) %>
+        <% count = Map.get(@result.category_counts, cat.id, 0) %>
+        <a
+          href={CloudSecurityCornerWeb.ToolsHTML.category_url(cat.id, @query, @sort)}
+          class={"badge-pill " <> if(is_active, do: "badge-pill-active", else: "")}
+          style="display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.85rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-decoration: none;"
+        >
+          <span>{cat.icon} {cat.short_label}</span>
+          <span style="opacity: 0.75; font-size: 0.65rem;">{count |> Integer.to_string() |> String.replace(~r/(?<=\d)(?=(\d{3})+$)/, ",")}</span>
+        </a>
+      <% end %>
+    </div>
+
+    <!-- Active Category Banner -->
+    <%= if @category != "" and @category != "all" do %>
+      <% active_cat = Enum.find(@result.categories, fn c -> c.id == @category or String.downcase(c.label) == String.downcase(@category) end) %>
+      <%= if active_cat do %>
+        <div style="margin-bottom: 1.5rem; padding: 1rem 1.25rem; border-radius: 0.75rem; border: 1px solid rgba(139, 92, 246, 0.3); background: rgba(139, 92, 246, 0.08); display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 1.5rem;">{active_cat.icon}</span>
+            <div>
+              <strong style="font-size: 0.875rem;">{active_cat.label}</strong>
+              <p style="margin: 0.2rem 0 0 0; font-size: 0.75rem; opacity: 0.85;">{active_cat.description}</p>
+            </div>
+          </div>
+          <a href={CloudSecurityCornerWeb.ToolsHTML.category_url("all", @query, @sort)} style="font-size: 0.75rem; font-weight: 700; color: #a855f7; white-space: nowrap;">✕ Clear category</a>
+        </div>
+      <% end %>
+    <% end %>
+
+    <!-- Filter Form -->
     <form class="filter-bar" action="/tools" method="get">
-      <label class="search-field"><span class="sr-only">Search tools</span><input type="search" name="q" value={@query} placeholder="Search tools by name or capability..." /></label>
-      <label><span class="sr-only">Category</span><select name="category"><option value="">All categories</option><option :for={category <- @result.categories} value={category} selected={@category == category}>{category}</option></select></label>
-      <label><span class="sr-only">Sort order</span><select name="sort"><option value="default" selected={@sort == "default"}>Recommended</option><option value="az" selected={@sort == "az"}>A to Z</option><option value="za" selected={@sort == "za"}>Z to A</option></select></label>
+      <label class="search-field">
+        <span class="sr-only">Search tools</span>
+        <input type="search" name="q" value={@query} placeholder="Search tools by name, CVE, or capability..." />
+      </label>
+
+      <label>
+        <span class="sr-only">Category</span>
+        <select name="category">
+          <option value="">All Categories</option>
+          <optgroup label="Core Security Domains (12)">
+            <%= for cat <- @result.categories do %>
+              <% count = Map.get(@result.category_counts, cat.id, 0) %>
+              <option value={cat.id} selected={@category == cat.id or String.downcase(@category) == String.downcase(cat.label)}>
+                {cat.icon} {cat.label} ({count |> Integer.to_string() |> String.replace(~r/(?<=\d)(?=(\d{3})+$)/, ",")})
+              </option>
+            <% end %>
+          </optgroup>
+          <optgroup label="Specific Subcategories (25)">
+            <%= for {subcat, count} <- @result.subcategories do %>
+              <option value={subcat} selected={@category == subcat}>
+                {subcat} ({count |> Integer.to_string() |> String.replace(~r/(?<=\d)(?=(\d{3})+$)/, ",")})
+              </option>
+            <% end %>
+          </optgroup>
+        </select>
+      </label>
+
+      <label>
+        <span class="sr-only">Sort order</span>
+        <select name="sort">
+          <option value="az" selected={@sort == "az" or @sort == "default"}>Name: A to Z</option>
+          <option value="za" selected={@sort == "za"}>Name: Z to A</option>
+        </select>
+      </label>
+
       <button class="button button-primary" type="submit">Search</button>
     </form>
-    <div class="results-line"><p><strong>{@result.total |> Integer.to_string() |> String.replace(~r/(?<=\d)(?=(\d{3})+$)/, ",")}</strong> tools found</p><a href="/tools">Clear filters</a></div>
-    <div :if={@result.tools == []} class="empty-state"><h2>No tools found</h2><p>Try another name or category.</p></div>
-    <div :if={@result.tools != []} class="tool-grid">
-      <article :for={tool <- @result.tools} class="tool-card">
-        <div class="tool-card-top"><span class="tag">{tool["tag"]}</span><span class="tool-mark" aria-hidden="true">↗</span></div>
-        <h2>{tool["title"]}</h2>
-        <p>{tool["description"]}</p>
-        <div class="tool-card-links">
-          <a href={tool["link"]} target="_blank" rel="noopener noreferrer">Visit project <span aria-hidden="true">↗</span></a>
-          <a :if={tool["github"]} href={"https://github.com/" <> tool["github"]} target="_blank" rel="noopener noreferrer">GitHub</a>
-        </div>
-      </article>
+
+    <div class="results-line">
+      <p>
+        <strong>{@result.total |> Integer.to_string() |> String.replace(~r/(?<=\d)(?=(\d{3})+$)/, ",")}</strong> tools found
+        <%= if @category != "" do %>
+          in <em>{@category}</em>
+        <% end %>
+      </p>
+      <%= if @query != "" or @category != "" or @sort == "za" do %>
+        <a href="/tools">Clear filters</a>
+      <% end %>
     </div>
+
+    <%= if @result.tools == [] do %>
+      <div class="empty-state">
+        <h2>No matching tools found</h2>
+        <p>Try a broader keyword or <a href="/tools">clear all filters</a>.</p>
+      </div>
+    <% else %>
+      <div class="tool-grid">
+        <article :for={tool <- @result.tools} class="tool-card">
+          <div class="tool-card-top">
+            <span class="tag">{CloudSecurityCornerWeb.ToolsHTML.display_badge(tool)}</span>
+            <span class="tool-mark" aria-hidden="true">↗</span>
+          </div>
+          <h2>{tool["title"]}</h2>
+          <p>{tool["description"] || "Explore this project's official documentation and repository."}</p>
+          <div class="tool-card-links">
+            <a href={tool["link"]} target="_blank" rel="noopener noreferrer">Visit project <span aria-hidden="true">↗</span></a>
+            <a :if={tool["github"]} href={"https://github.com/" <> tool["github"]} target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </article>
+      </div>
+    <% end %>
+
     <nav :if={@result.page_count > 1} class="pagination" aria-label="Tools pages">
       <a :if={@result.page > 1} href={CloudSecurityCornerWeb.ToolsHTML.page_url(@query, @category, @sort, @result.page - 1)}>← Previous</a>
       <span>Page {@result.page} of {@result.page_count}</span>

@@ -11,7 +11,7 @@
  * }
  */
 
-import { securityEntries } from './security-entries';
+import { securityEntries } from './security-entries.js';
 
 export const entries = [
 
