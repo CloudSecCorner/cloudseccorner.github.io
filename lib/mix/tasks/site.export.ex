@@ -51,7 +51,11 @@ defmodule Mix.Tasks.Site.Export do
     lab_routes =
       try do
         CloudSecurityCorner.Content.labs()
-        |> Enum.map(&"/labs/#{&1["id"]}")
+        |> Enum.flat_map(fn lab ->
+          id = lab["id"]
+          lower = String.downcase(id)
+          if id == lower, do: ["/labs/#{id}"], else: ["/labs/#{id}", "/labs/#{lower}"]
+        end)
       rescue
         _ -> []
       end
@@ -59,7 +63,11 @@ defmodule Mix.Tasks.Site.Export do
     blog_routes =
       try do
         CloudSecurityCorner.Content.blog_posts()
-        |> Enum.map(&"/blog/#{&1["id"]}")
+        |> Enum.flat_map(fn post ->
+          id = post["id"]
+          lower = String.downcase(id)
+          if id == lower, do: ["/blog/#{id}"], else: ["/blog/#{id}", "/blog/#{lower}"]
+        end)
       rescue
         _ -> []
       end

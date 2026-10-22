@@ -224,14 +224,14 @@ defmodule CloudSecurityCorner.Content do
   end
 
   def lab(id) do
-    case Enum.find(labs(), &(&1["id"] == id)) do
+    case Enum.find(labs(), &(String.downcase(&1["id"]) == String.downcase(id))) do
       nil -> :error
       entry -> load_markdown(entry, "path", "labs")
     end
   end
 
   def blog_post(id) do
-    case Enum.find(blog_posts(), &(&1["id"] == id)) do
+    case Enum.find(blog_posts(), &(String.downcase(&1["id"]) == String.downcase(id))) do
       nil -> :error
       entry -> load_markdown(entry, "file", "blog")
     end
