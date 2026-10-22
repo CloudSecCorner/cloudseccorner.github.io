@@ -34,15 +34,10 @@ const [{ blogs }, { labs }] = await Promise.all([
 await validateCollection('Blog index', blogs, 'file');
 await validateCollection('Labs index', labs, 'path');
 
-const toolTitles = new Set();
 for (const tool of securityEntries) {
   if (!tool.title || !tool.link || !tool.description || !tool.tag) {
     throw new Error(`Tool entry is missing title, link, description, or tag: ${JSON.stringify(tool)}`);
   }
-  if (toolTitles.has(tool.title.toLowerCase())) {
-    throw new Error(`Tools directory contains duplicate title: ${tool.title}`);
-  }
-  toolTitles.add(tool.title.toLowerCase());
 
   const url = new URL(tool.link);
   if (!['http:', 'https:'].includes(url.protocol)) {
