@@ -8,7 +8,9 @@ defmodule CloudSecurityCornerWeb.PageController do
         "Practical tools, labs, and guidance for securing AI agents, autonomous cloud workloads, and the systems they can access.",
       tool_count: CloudSecurityCorner.Content.tool_count(),
       lab_count: length(CloudSecurityCorner.Content.labs()),
-      post_count: length(CloudSecurityCorner.Content.blog_posts())
+      post_count: length(CloudSecurityCorner.Content.blog_posts()),
+      categories: CloudSecurityCorner.Content.curated_categories(),
+      category_counts: CloudSecurityCorner.Content.category_counts()
     )
   end
 
