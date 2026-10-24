@@ -7,18 +7,24 @@ function Footer() {
       <div className="kube-footer-main">
         {/* Intro / Brand column */}
         <div className="kube-footer-intro">
-          <Link to="/" className="kube-footer-wordmark" aria-label="Cloud Security Corner home">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-400 text-white shadow-sm" aria-hidden="true">
-              <svg className="h-5 w-5" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+          <Link to="/" className="kube-footer-wordmark group" aria-label="Cloud Security Corner home">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-400 text-white shadow-md shadow-purple-500/25 group-hover:scale-105 transition-transform" aria-hidden="true">
+              <svg className="h-6 w-6" viewBox="0 0 32 32" fill="none" stroke="currentColor">
                 <path d="M16 3.5l10 4.2v7.1c0 6.2-3.9 11-10 13.7-6.1-2.7-10-7.5-10-13.7V7.7L16 3.5z" strokeWidth="1.8" strokeLinejoin="round" />
                 <circle cx="16" cy="11" r="2" fill="currentColor" stroke="none" />
                 <circle cx="11" cy="18" r="1.7" fill="currentColor" stroke="none" />
                 <circle cx="21" cy="18" r="1.7" fill="currentColor" stroke="none" />
+                <path d="M16 13v2.5m-1.5 1L12.4 17.5m5.1-1l2.1 1" strokeWidth="1.6" strokeLinecap="round" />
               </svg>
             </span>
-            <span className="font-extrabold text-slate-900 text-base tracking-tight">
-              CloudSec<span className="text-[#8b5cf6]">Corner</span>
-            </span>
+            <div className="flex flex-col text-left leading-none">
+              <span className="font-extrabold text-white text-lg tracking-tight">
+                CloudSec<span className="text-[#caa2f5]">Corner</span>
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-purple-300/80 mt-1">
+                Agentic &amp; Cloud Security
+              </span>
+            </div>
           </Link>
           <p>
             Practical, community-led learning for cloud security, DevSecOps, and the agentic AI ecosystem.

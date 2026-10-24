@@ -34,12 +34,22 @@
     <header class="kube-site-header">
       <nav class="kube-header-inner" aria-label="Main navigation">
         <a href="/" class="kube-brand" aria-label="CloudSecCorner home">
-          <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-purple-600 to-indigo-500 text-white shadow-sm font-black text-sm">
-            CSC
-          </div>
-          <div class="flex flex-col">
-            <span class="text-base font-extrabold tracking-tight text-heavy dark:text-white">CloudSecCorner</span>
-            <span class="text-[10px] font-semibold tracking-wider text-purple dark:text-brand-purple-100 uppercase">Agentic &amp; Cloud Security</span>
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-400 text-white shadow-md shadow-purple-500/25" aria-hidden="true">
+            <svg class="h-6 w-6" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+              <path d="M16 3.5l10 4.2v7.1c0 6.2-3.9 11-10 13.7-6.1-2.7-10-7.5-10-13.7V7.7L16 3.5z" stroke-width="1.8" stroke-linejoin="round" />
+              <circle cx="16" cy="11" r="2" fill="currentColor" stroke="none" />
+              <circle cx="11" cy="18" r="1.7" fill="currentColor" stroke="none" />
+              <circle cx="21" cy="18" r="1.7" fill="currentColor" stroke="none" />
+              <path d="M16 13v2.5m-1.5 1L12.4 17.5m5.1-1l2.1 1" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </span>
+          <div class="flex flex-col text-left leading-none">
+            <span class="text-base font-extrabold tracking-tight text-slate-900 dark:text-white">
+              CloudSec<span class="text-[#8b5cf6] dark:text-[#caa2f5]">Corner</span>
+            </span>
+            <span class="text-[10px] font-semibold tracking-wider text-purple dark:text-brand-purple-100 uppercase mt-1">
+              Agentic &amp; Cloud Security
+            </span>
           </div>
         </a>
 
@@ -70,11 +80,24 @@
     <footer class="kube-footer">
       <div class="kube-footer-main">
         <div class="kube-footer-intro">
-          <a class="kube-footer-wordmark" href="/" aria-label="CloudSecCorner home">
-            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-purple-600 to-indigo-500 text-white font-black text-xs">
-              CSC
+          <a class="kube-footer-wordmark group" href="/" aria-label="CloudSecCorner home">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-400 text-white shadow-md shadow-purple-500/25 group-hover:scale-105 transition-transform" aria-hidden="true">
+              <svg class="h-6 w-6" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+                <path d="M16 3.5l10 4.2v7.1c0 6.2-3.9 11-10 13.7-6.1-2.7-10-7.5-10-13.7V7.7L16 3.5z" stroke-width="1.8" stroke-linejoin="round" />
+                <circle cx="16" cy="11" r="2" fill="currentColor" stroke="none" />
+                <circle cx="11" cy="18" r="1.7" fill="currentColor" stroke="none" />
+                <circle cx="21" cy="18" r="1.7" fill="currentColor" stroke="none" />
+                <path d="M16 13v2.5m-1.5 1L12.4 17.5m5.1-1l2.1 1" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+            </span>
+            <div class="flex flex-col text-left leading-none">
+              <span class="font-extrabold text-lg tracking-tight text-white">
+                CloudSec<span class="text-[#caa2f5]">Corner</span>
+              </span>
+              <span class="text-[10px] font-bold uppercase tracking-[0.16em] text-purple-300/80 mt-1">
+                Agentic &amp; Cloud Security
+              </span>
             </div>
-            <span class="font-extrabold text-sm text-slate-900 dark:text-white">CloudSecCorner</span>
           </a>
           <p>Practical tools, hands-on learning, and architecture teardowns for securing AI agents and the cloud systems they access.</p>
           <a class="kube-footer-github" href="https://github.com/CloudSecCorner/cloudseccorner.github.io" target="_blank" rel="noreferrer">
