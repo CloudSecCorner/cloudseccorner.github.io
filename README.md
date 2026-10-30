@@ -5,14 +5,19 @@
 **Practical Defensive Engineering, Threat Modeling & Agentic AI Security Intelligence**
 
 [![Deploy GitHub Pages](https://img.shields.io/github/actions/workflow/status/CloudSecCorner/cloudseccorner.github.io/pages.yml?branch=main&label=Deploy%20Pages&style=for-the-badge&logo=githubactions&logoColor=white&color=0ea5e9)](https://cloudsecuritycorner.com)
+[![AWS Architectures](https://img.shields.io/badge/AWS_Architectures-1%2C000%2B-ff9900?style=for-the-badge&logo=amazonwebservices&logoColor=white)](https://cloudsecuritycorner.com/aws-architectures/)
+[![Azure Architectures](https://img.shields.io/badge/Azure_Architectures-1%2C000%2B-0078d4?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://cloudsecuritycorner.com/azure-architectures/)
 [![Tools Directory](https://img.shields.io/badge/Security_Tools-37%2C750%2B-8b5cf6?style=for-the-badge&logo=shield&logoColor=white)](https://cloudsecuritycorner.com/tools/)
 [![Hands-on Labs](https://img.shields.io/badge/Interactive_Labs-6_Tracks-10b981?style=for-the-badge&logo=gitbook&logoColor=white)](https://cloudsecuritycorner.com/labs/)
 [![Built with Elixir](https://img.shields.io/badge/Built_With-Elixir_%7C_Phoenix-4B275F?style=for-the-badge&logo=elixir&logoColor=white)](https://elixir-lang.org/)
+[![Obsidian Pele](https://img.shields.io/badge/Diagrams-Obsidian_Pele-purple?style=for-the-badge&logo=obsidian&logoColor=white)](https://github.com/obsidianmd/pele)
 [![License: MIT](https://img.shields.io/badge/License-MIT-3b82f6?style=for-the-badge)](LICENSE)
 
 <br />
 
 [**🌐 Live Website**](https://cloudsecuritycorner.com/) &nbsp;•&nbsp;
+[**📐 1,000+ AWS Architectures**](https://cloudsecuritycorner.com/aws-architectures/) &nbsp;•&nbsp;
+[**🛡️ 1,000+ Azure Architectures**](https://cloudsecuritycorner.com/azure-architectures/) &nbsp;•&nbsp;
 [**🧰 37k+ Tool Directory**](https://cloudsecuritycorner.com/tools/) &nbsp;•&nbsp;
 [**🧪 Hands-on Labs**](https://cloudsecuritycorner.com/labs/) &nbsp;•&nbsp;
 [**📝 Field Notes & Blog**](https://cloudsecuritycorner.com/blog/) &nbsp;•&nbsp;
@@ -25,9 +30,31 @@
 
 | Section | Focus & Capabilities | Direct Link |
 | :--- | :--- | :---: |
+| 📐 **1,000+ AWS Best Practices** | 1,032 architecture diagrams rendered with Obsidian Pele, verified OPA Rego policies, and Terraform modules across 24 AWS domains. | [Explore AWS Architectures ↗](https://cloudsecuritycorner.com/aws-architectures/) |
+| 🛡️ **1,000+ Azure Best Practices** | 1,032 architecture diagrams rendered with Obsidian Pele, verified OPA Rego policies, and Terraform modules across 24 Azure domains. | [Explore Azure Architectures ↗](https://cloudsecuritycorner.com/azure-architectures/) |
 | 🧰 **Security Tools Directory** | Searchable database of 37,750+ open-source tools and frameworks across AI, cloud, and app defense. | [Open Directory ↗](https://cloudsecuritycorner.com/tools/) |
 | 🧪 **Hands-on Learning Labs** | Guided labs covering agentic security, zero trust, STRIDE threat modeling, and network reconnaissance. | [Browse Labs ↗](https://cloudsecuritycorner.com/labs/) |
 | 📝 **Research & Field Notes** | In-depth engineering teardowns, defensive architecture guides, and emerging threat analysis. | [Read Field Notes ↗](https://cloudsecuritycorner.com/blog/) |
+
+## 📐 1,000+ AWS Best Practices Architecture Diagrams (Pele, OPA & Terraform)
+
+> ⚡ **Powered by Obsidian Pele**: High-performance, zero-dependency SVG diagram rendering paired with Open Policy Agent (OPA) Rego guardrails and ready-to-deploy Terraform IaC modules.
+
+The interactive catalog on **[cloudsecuritycorner.com/aws-architectures](https://cloudsecuritycorner.com/aws-architectures/)** provides **1,032 distinct defensive patterns** covering:
+- **24 AWS Domains**: Amazon S3, AWS IAM, Amazon VPC, Amazon EC2, Amazon RDS, Amazon DynamoDB, Amazon EKS, Amazon ECS, AWS Lambda, Amazon API Gateway, Amazon CloudFront, AWS WAF, AWS KMS, AWS CloudTrail, Amazon CloudWatch, Amazon GuardDuty, AWS Security Hub, AWS Backup, Amazon SQS/SNS, Amazon EventBridge, Amazon SageMaker, AWS Organizations, Amazon Route 53, and Amazon OpenSearch Service.
+- **Obsidian Pele SVG Engine**: Rendered synchronously via [obsidianmd/pele](https://github.com/obsidianmd/pele), delivering zero-lag, themeable vector graphics with dark/light mode CSS variable customization.
+- **OPA Rego Enforcement**: Production policies enforcing each architecture pattern against Terraform plan JSON (`resource_changes`) for automated CI/CD gating.
+- **Terraform IaC**: Full HCL definitions with security best practices, least-privilege tags, and CIS AWS Benchmark mappings.
+
+## 🛡️ 1,000+ Azure Best Practices Architecture Diagrams (Pele, OPA & Terraform)
+
+> ⚡ **Powered by Obsidian Pele**: High-performance, zero-dependency SVG diagram rendering paired with Open Policy Agent (OPA) Rego guardrails and ready-to-deploy Terraform IaC modules.
+
+The interactive catalog on **[cloudsecuritycorner.com/azure-architectures](https://cloudsecuritycorner.com/azure-architectures/)** provides **1,032 distinct defensive patterns** covering:
+- **24 Azure Domains**: Azure Blob Storage, Microsoft Entra ID, Azure Virtual Network (VNet), Azure Virtual Machines, Azure SQL Database, Azure Cosmos DB, Azure Kubernetes Service (AKS), Azure Container Apps, Azure Functions, Azure Application Gateway, Azure Front Door, Azure Firewall Premium, Azure Key Vault, Azure Activity Logs, Azure Monitor, Microsoft Defender for Cloud, Microsoft Sentinel SIEM, Azure Backup Vault, Azure Service Bus, Azure Event Grid, Azure OpenAI Service, Azure Policy, Azure DNS, and Azure Synapse Analytics.
+- **Official Azure Architecture Icons**: Vector SVG icons rendered cleanly in multi-tier topologies with unique gradient namespacing to prevent cross-icon collisions.
+- **OPA Rego Enforcement**: Rego policies validating Terraform plan JSON (`resource_changes` for `azurerm_*`) against CIS Microsoft Azure Foundations Benchmark v2.0, NIST 800-53, and PCI-DSS v4.0.
+- **Hardened Terraform IaC**: Production-grade `azurerm_*` modules enforcing encryption-at-rest, private endpoints, managed identities, and disaster recovery.
 
 ## 🧪 Interactive Security Labs
 

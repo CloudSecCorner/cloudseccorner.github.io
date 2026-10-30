@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <defs>
+    <linearGradient id="gcp-log-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4"/><stop offset="100%" stop-color="#FBBC05"/>
+    </linearGradient></defs>
+  
+    <rect width="40" height="40" rx="8" fill="#0F172A"/>
+    <rect x="8" y="7" width="24" height="26" rx="3" fill="none" stroke="url(#gcp-log-g)" stroke-width="2.5"/>
+    <path d="M12 13 H24 M12 18 H28 M12 23 H20 M12 28 H25" stroke="#34A853" stroke-width="2" stroke-linecap="round"/>
+  
+</svg>

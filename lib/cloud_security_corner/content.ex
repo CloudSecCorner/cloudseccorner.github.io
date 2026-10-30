@@ -12,7 +12,9 @@ defmodule CloudSecurityCorner.Content do
     data = %{
       tools: read_json!("security-entries.json"),
       blogs: read_json!("blog.json")["blogs"],
-      labs: read_json!("labs.json")["labs"]
+      labs: read_json!("labs.json")["labs"],
+      aws_best_practices: read_json!("aws-best-practices.json"),
+      azure_best_practices: read_json!("azure-best-practices.json")
     }
 
     {:ok, data}
@@ -21,7 +23,11 @@ defmodule CloudSecurityCorner.Content do
   def tools, do: GenServer.call(__MODULE__, :tools)
   def blog_posts, do: GenServer.call(__MODULE__, :blogs)
   def labs, do: GenServer.call(__MODULE__, :labs)
+  def aws_best_practices, do: GenServer.call(__MODULE__, :aws_best_practices)
+  def azure_best_practices, do: GenServer.call(__MODULE__, :azure_best_practices)
   def tool_count, do: length(tools())
+  def aws_best_practice_count, do: length(aws_best_practices())
+  def azure_best_practice_count, do: length(azure_best_practices())
 
   def lab_categories do
     labs()
@@ -241,6 +247,12 @@ defmodule CloudSecurityCorner.Content do
   def handle_call(:tools, _from, state), do: {:reply, state.tools, state}
   def handle_call(:blogs, _from, state), do: {:reply, state.blogs, state}
   def handle_call(:labs, _from, state), do: {:reply, state.labs, state}
+
+  def handle_call(:aws_best_practices, _from, state),
+    do: {:reply, state.aws_best_practices, state}
+
+  def handle_call(:azure_best_practices, _from, state),
+    do: {:reply, state.azure_best_practices, state}
 
   defp read_json!(filename) do
     filename

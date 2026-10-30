@@ -8,6 +8,32 @@ defmodule CloudSecurityCornerTest do
     assert Content.tool_count() > 30_000
     assert length(Content.labs()) == 6
     assert length(Content.blog_posts()) == 1
+    assert Content.aws_best_practice_count() >= 1000
+    assert Content.azure_best_practice_count() >= 1000
+  end
+
+  test "renders aws architectures route and loads best practices" do
+    conn =
+      Plug.Test.conn(:get, "/aws-architectures")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Obsidian Pele"
+    assert conn.resp_body =~ "1,000+ AWS Architecture Best Practices"
+    assert conn.resp_body =~ "aws-architectures.js"
+    assert conn.resp_body =~ "pele.global.js"
+  end
+
+  test "renders azure architectures route and loads best practices" do
+    conn =
+      Plug.Test.conn(:get, "/azure-architectures")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Obsidian Pele"
+    assert conn.resp_body =~ "1,000+ Azure Architecture Best Practices"
+    assert conn.resp_body =~ "azure-architectures.js"
+    assert conn.resp_body =~ "pele.global.js"
   end
 
   test "searches and paginates the tool directory" do

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <defs>
+    <linearGradient id="gcp-vpc-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4"/><stop offset="100%" stop-color="#34A853"/>
+    </linearGradient></defs>
+  
+    <rect width="40" height="40" rx="8" fill="#0F172A"/>
+    <rect x="7" y="7" width="26" height="26" rx="5" fill="none" stroke="url(#gcp-vpc-g)" stroke-width="2.5"/>
+    <circle cx="14" cy="14" r="3" fill="#4285F4"/><circle cx="26" cy="14" r="3" fill="#34A853"/>
+    <circle cx="14" cy="26" r="3" fill="#FBBC05"/><circle cx="26" cy="26" r="3" fill="#EA4335"/>
+    <path d="M14 14 H26 V26 H14 Z" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="2 2"/>
+  
+</svg>

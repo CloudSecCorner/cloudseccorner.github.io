@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <defs>
+    <linearGradient id="az-cos-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#80397B"/><stop offset="100%" stop-color="#0078D4"/>
+    </linearGradient></defs>
+  
+    <rect width="40" height="40" rx="8" fill="#001833"/>
+    <circle cx="20" cy="20" r="10" fill="url(#az-cos-g)"/>
+    <ellipse cx="20" cy="20" rx="16" ry="6" fill="none" stroke="#50E6FF" stroke-width="2" transform="rotate(-30 20 20)"/>
+    <ellipse cx="20" cy="20" rx="16" ry="6" fill="none" stroke="#FFB900" stroke-width="2" transform="rotate(30 20 20)"/>
+  
+</svg>

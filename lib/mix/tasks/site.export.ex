@@ -46,7 +46,15 @@ defmodule Mix.Tasks.Site.Export do
   end
 
   def routes do
-    base_routes = ["/", "/tools", "/labs", "/blog", "/about"]
+    base_routes = [
+      "/",
+      "/aws-architectures",
+      "/azure-architectures",
+      "/tools",
+      "/labs",
+      "/blog",
+      "/about"
+    ]
 
     lab_routes =
       try do

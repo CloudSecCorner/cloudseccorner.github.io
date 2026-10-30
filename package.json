@@ -14,6 +14,7 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.5.0",
     "@radix-ui/react-tabs": "^1.2.1",
+    "pele": "^1.12.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-github-btn": "^1.4.0",
@@ -23,15 +24,20 @@
     "react-scroll": "^1.9.3"
   },
   "devDependencies": {
+    "@iconify-json/devicon": "^1.2.74",
+    "@iconify-json/logos": "^1.2.18",
     "@tailwindcss/typography": "^0.5.20",
+    "@threeveloper/azure-react-icons": "^1.1.1",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.6.1",
+    "aws-svg-icons": "^3.0.0-2021-07-30",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.503.0",
     "postcss": "^8.5.31",
+    "simple-icons": "^16.36.0",
     "tailwind-merge": "^3.7.0",
     "tailwindcss": "^3.4.19",
     "tailwindcss-animate": "^1.0.7",

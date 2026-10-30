@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <defs>
+    <linearGradient id="az-mon-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0078D4"/><stop offset="100%" stop-color="#00BCF2"/>
+    </linearGradient></defs>
+  
+    <rect width="40" height="40" rx="8" fill="#001833"/>
+    <rect x="6" y="8" width="28" height="24" rx="4" fill="none" stroke="url(#az-mon-g)" stroke-width="2.5"/>
+    <path d="M8 22 L14 22 L17 14 L22 28 L26 19 L28 22 L32 22" fill="none" stroke="#50E6FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+</svg>

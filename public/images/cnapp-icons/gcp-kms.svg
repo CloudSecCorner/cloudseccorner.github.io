@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <defs>
+    <linearGradient id="gcp-kms-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBC05"/><stop offset="100%" stop-color="#EA4335"/>
+    </linearGradient></defs>
+  
+    <rect width="40" height="40" rx="8" fill="#0F172A"/>
+    <circle cx="16" cy="16" r="8" fill="url(#gcp-kms-g)"/>
+    <circle cx="16" cy="16" r="3.5" fill="#0F172A"/>
+    <path d="M22 22 L32 32 M28 28 L32 28 M30 30 L33 30" stroke="#FBBC05" stroke-width="2.8" stroke-linecap="round"/>
+  
+</svg>

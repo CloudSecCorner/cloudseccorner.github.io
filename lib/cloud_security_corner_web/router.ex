@@ -10,6 +10,8 @@ defmodule CloudSecurityCornerWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :home)
+    get("/aws-architectures", AwsArchitectureController, :index)
+    get("/azure-architectures", AzureArchitectureController, :index)
     get("/tools", ToolsController, :index)
     get("/labs", LabsController, :index)
     get("/labs/:id", LabsController, :show)

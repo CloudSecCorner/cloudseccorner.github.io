@@ -8,6 +8,8 @@ import JoinCommunityPopup from "./components/JoinCommunityPopup";
 import { REPOSITORY_URL } from "./utils/socialSharing";
 
 const LandingPage = lazy(() => import("./components/LandingPage"));
+const AwsArchitectures = lazy(() => import("./components/AwsArchitectures"));
+const AzureArchitectures = lazy(() => import("./components/AzureArchitectures"));
 const ToolsSection = lazy(() => import("./components/ToolsSection"));
 const Blog = lazy(() => import("./components/Blog"));
 const Labs = lazy(() => import("./components/Labs"));
@@ -56,6 +58,8 @@ function App() {
                   <LandingPage />
                 </>
               } />
+              <Route path="/aws-architectures" element={<AwsArchitectures />} />
+              <Route path="/azure-architectures" element={<AzureArchitectures />} />
               <Route path="/tools" element={<ToolsSection />} />
               <Route path="/labs" element={<Labs />} />
               <Route path="/labs/:labId" element={<Labs />} />

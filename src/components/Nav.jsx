@@ -51,6 +51,8 @@ function Nav() {
 
   const navLinks = [
     { path: "/", label: "Home" },
+    { path: "/aws-architectures", label: "AWS Architectures" },
+    { path: "/azure-architectures", label: "Azure Architectures" },
     { path: "/tools", label: "Tools" },
     { path: "/labs", label: "Labs" },
     { path: "/blog", label: "Blog" },
