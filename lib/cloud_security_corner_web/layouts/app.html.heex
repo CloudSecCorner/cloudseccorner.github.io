@@ -5,15 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
     <meta name="theme-color" content="#18131f" />
+    <meta name="keywords" content="cloud security, AI agent security, agentic AI, LLM security, MCP security, zero trust, threat modeling, DevSecOps, security tools" />
+    <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Cloud Security Corner" />
     <meta property="og:title" content={assigns[:page_title] || "Cloud Security Corner"} />
     <meta property="og:description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
+    <meta property="og:url" content={"https://cloudsecuritycorner.com" <> @conn.request_path} />
+    <meta property="og:image" content="https://cloudsecuritycorner.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
     <link rel="canonical" href={"https://cloudsecuritycorner.com" <> @conn.request_path} />
     <link rel="icon" href="/android-icon-192x192.png" type="image/png" />
     <link rel="stylesheet" href="/assets/app.css" />
     <script src="/assets/initialize-theme.js"></script>
     <script defer src="/site.js"></script>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={assigns[:page_title] || "Cloud Security Corner"} />
+    <meta name="twitter:description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
+    <meta name="twitter:image" content="https://cloudsecuritycorner.com/og-image.png" />
     <title>{assigns[:page_title] || "Cloud Security Corner"} · Cloud Security Corner</title>
   </head>
   <body class="bg-white text-slate-900 dark:bg-[#18131f] dark:text-white min-h-screen flex flex-col font-sans transition-colors duration-200">

@@ -15,6 +15,20 @@ const JoinCommunityPopup = () => {
     
     return () => clearTimeout(timer);
   }, []);
+
+  // Allow dismissing the invitation with the Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
   
   const closePopup = () => {
     setIsOpen(false);
@@ -28,8 +42,18 @@ const JoinCommunityPopup = () => {
   if (!isOpen) return null;
   
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-xl w-full max-w-md relative overflow-hidden">
+    <div
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) {
+          setIsOpen(false);
+        }
+      }}
+    >
+      <div
+        className="bg-white dark:bg-slate-800 rounded-xl shadow-xl w-full max-w-md relative overflow-hidden"
+        onClick={(event) => event.stopPropagation()}
+      >
         {/* Close button */}
         <button 
           onClick={closePopup}

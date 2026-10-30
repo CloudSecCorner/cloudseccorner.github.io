@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import OpenGraph from "./OpenGraph";
 
 export default function AwsArchitectures() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
@@ -28,6 +30,44 @@ export default function AwsArchitectures() {
         setLoading(false);
       });
   }, []);
+
+  // Keep explorer state in sync with the URL so filters and pages are shareable/bookmarkable
+  useEffect(() => {
+    const q = searchParams.get("q") || "";
+    const cat = searchParams.get("category") || "all";
+    const pil = searchParams.get("pillar") || "all";
+    const sev = searchParams.get("severity") || "all";
+    const pg = Math.max(1, parseInt(searchParams.get("page") || "1", 10) || 1);
+    setQuery(q);
+    setCategory(cat);
+    setPillar(pil);
+    setSeverity(sev);
+    setPage(pg);
+  }, [searchParams]);
+
+  const applyUrlFilters = (next) => {
+    const params = new URLSearchParams();
+    if (next.q) params.set("q", next.q);
+    if (next.category && next.category !== "all") params.set("category", next.category);
+    if (next.pillar && next.pillar !== "all") params.set("pillar", next.pillar);
+    if (next.severity && next.severity !== "all") params.set("severity", next.severity);
+    if (next.page && next.page > 1) params.set("page", String(next.page));
+    setSearchParams(params, { replace: true });
+  };
+
+  // Close the fullscreen blueprint modal with the Escape key
+  useEffect(() => {
+    if (!modalItem) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setModalItem(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [modalItem]);
 
   const categories = [
     { id: "all", name: "All Categories", icon: null },

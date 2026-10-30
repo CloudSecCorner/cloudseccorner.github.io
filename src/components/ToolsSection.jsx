@@ -350,6 +350,20 @@ function ToolsSection() {
       .catch(() => {});
   }, []);
 
+  // Close the contribute modal with the Escape key
+  useEffect(() => {
+    if (!showContributeModal) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setShowContributeModal(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showContributeModal]);
+
   // Compute tool counts per curated category
   const categoryCounts = useMemo(() => {
     const counts = {};
@@ -858,6 +872,11 @@ function ToolsSection() {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto"
           role="dialog"
           aria-modal="true"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setShowContributeModal(false);
+            }
+          }}
         >
           <div className="w-full max-w-2xl rounded-2xl border border-slate-200 dark:border-[#3d4449] bg-white dark:bg-[#22272e] p-6 sm:p-8 shadow-2xl text-slate-900 dark:text-white">
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#3d4449] pb-4">
@@ -882,18 +901,18 @@ function ToolsSection() {
               <h4 className="font-bold text-slate-900 dark:text-white">How to submit:</h4>
               <ol className="list-decimal pl-5 space-y-2">
                 <li>Fork the repository on GitHub.</li>
-                <li>Add your project entry into <code className="rounded bg-slate-100 dark:bg-[#31373b] px-1.5 py-0.5 font-mono text-purple-600 dark:text-purple-400">src/data/entries.js</code>.</li>
+                <li>Add your project entry into <code className="rounded bg-slate-100 dark:bg-[#31373b] px-1.5 py-0.5 font-mono text-purple-600 dark:text-purple-400">src/data/security-entries.js</code>.</li>
                 <li>Ensure it includes a title, valid project URL, category tag, and concise description.</li>
                 <li>Open a Pull Request with our PR template.</li>
               </ol>
 
               <div className="rounded-xl border border-slate-200 dark:border-[#3d4449] bg-slate-50 dark:bg-[#18131f] p-4 font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto">
 {`{
-  title: "Your Tool Name",
-  link: "https://your-tool.example.com",
-  description: "Precise summary of what this security tool does.",
-  github: "owner/repo",
-  tag: "Agentic Security"
+  "title": "Your Tool Name",
+  "link": "https://your-tool.example.com",
+  "description": "Precise summary of what this security tool does.",
+  "github": "owner/repo",
+  "tag": "Agentic Security"
 }`}
               </div>
             </div>
