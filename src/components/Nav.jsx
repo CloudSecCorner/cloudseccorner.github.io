@@ -51,8 +51,18 @@ function Nav() {
 
   const navLinks = [
     { path: "/", label: "Home" },
-    { path: "/aws-architectures", label: "AWS Architectures" },
-    { path: "/azure-architectures", label: "Azure Architectures" },
+    {
+      path: "/aws-architectures",
+      label: "AWS Architectures",
+      badge: "1,000+",
+      badgeClass: "bg-amber-500/15 text-amber-500 dark:text-amber-300 border border-amber-500/30"
+    },
+    {
+      path: "/azure-architectures",
+      label: "Azure Architectures",
+      badge: "1,000+",
+      badgeClass: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30"
+    },
     { path: "/tools", label: "Tools" },
     { path: "/labs", label: "Labs" },
     { path: "/blog", label: "Blog" },
@@ -116,11 +126,16 @@ function Nav() {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`kube-nav-link ${active ? "active" : ""}`}
+                  className={`kube-nav-link ${active ? "active" : ""} inline-flex items-center gap-1.5`}
                   aria-current={active ? "page" : undefined}
                   role="menuitem"
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {item.badge && (
+                    <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold leading-none ${item.badgeClass}`}>
+                      {item.badge}
+                    </span>
+                  )}
                 </Link>
               );
             })}
@@ -220,13 +235,18 @@ function Nav() {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`block px-4 py-2.5 rounded-lg text-sm font-semibold transition ${
+                  className={`flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-semibold transition ${
                     active
                       ? "bg-purple-100 text-purple-700 dark:bg-[#44354f] dark:text-[#c4b5fd]"
                       : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#31373b]"
                   }`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {item.badge && (
+                    <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono font-bold leading-none ${item.badgeClass}`}>
+                      {item.badge}
+                    </span>
+                  )}
                 </Link>
               );
             })}

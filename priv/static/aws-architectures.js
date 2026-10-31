@@ -558,7 +558,12 @@
       return `
         <div class="flex flex-col flex-1 rounded-xl border border-slate-200/80 dark:border-white/10 bg-[#0d0915] overflow-hidden">
           <div class="flex items-center justify-between px-3 py-2 bg-white/[0.03] border-b border-white/5 text-[11px]">
-            <span class="font-mono text-purple-400 font-bold">policy.rego</span>
+            <div class="flex items-center gap-1.5">
+              <span class="h-2.5 w-2.5 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+              <span class="font-mono text-purple-400 font-bold ml-1.5">policy.rego</span>
+            </div>
             <button
               data-copy-text="${escapeHtml(item.opa_policy)}"
               class="copy-btn px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 text-white font-semibold transition"
@@ -575,7 +580,12 @@
       return `
         <div class="flex flex-col flex-1 rounded-xl border border-slate-200/80 dark:border-white/10 bg-[#0d0915] overflow-hidden">
           <div class="flex items-center justify-between px-3 py-2 bg-white/[0.03] border-b border-white/5 text-[11px]">
-            <span class="font-mono text-cyan-400 font-bold">main.tf</span>
+            <div class="flex items-center gap-1.5">
+              <span class="h-2.5 w-2.5 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+              <span class="font-mono text-amber-400 font-bold ml-1.5">main.tf</span>
+            </div>
             <button
               data-copy-text="${escapeHtml(item.terraform)}"
               class="copy-btn px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 text-white font-semibold transition"

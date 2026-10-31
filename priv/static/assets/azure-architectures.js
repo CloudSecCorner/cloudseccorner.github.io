@@ -456,25 +456,41 @@
                     ` : ''}
 
                     ${activeTab === 'opa' ? `
-                      <div class="relative rounded-xl border border-slate-300 dark:border-white/10 bg-slate-900 p-4 text-xs font-mono text-slate-200 overflow-x-auto max-h-[240px]">
-                        <button
-                          data-copy-text="${escapeHtml(item.opa_policy)}"
-                          class="az-copy-btn absolute right-3 top-3 px-2 py-1 rounded text-[10px] font-semibold bg-white/10 hover:bg-white/20 text-slate-200"
-                        >
-                          Copy Rego
-                        </button>
+                      <div class="relative rounded-xl border border-slate-300 dark:border-white/10 bg-[#070b16] p-4 text-xs font-mono text-slate-200 overflow-x-auto max-h-[240px]">
+                        <div class="flex items-center justify-between mb-2 pb-2 border-b border-white/5">
+                          <div class="flex items-center gap-1.5">
+                            <span class="h-2.5 w-2.5 rounded-full bg-red-500/80 inline-block"></span>
+                            <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
+                            <span class="h-2.5 w-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            <span class="text-[11px] text-slate-400 ml-2 font-mono">policy.rego</span>
+                          </div>
+                          <button
+                            data-copy-text="${escapeHtml(item.opa_policy)}"
+                            class="az-copy-btn px-2 py-0.5 rounded text-[10px] font-semibold bg-white/10 hover:bg-white/20 text-slate-200 transition"
+                          >
+                            Copy Rego
+                          </button>
+                        </div>
                         <pre>${highlightCode(item.opa_policy, 'rego')}</pre>
                       </div>
                     ` : ''}
 
                     ${activeTab === 'tf' ? `
-                      <div class="relative rounded-xl border border-slate-300 dark:border-white/10 bg-slate-900 p-4 text-xs font-mono text-slate-200 overflow-x-auto max-h-[240px]">
-                        <button
-                          data-copy-text="${escapeHtml(item.terraform)}"
-                          class="az-copy-btn absolute right-3 top-3 px-2 py-1 rounded text-[10px] font-semibold bg-white/10 hover:bg-white/20 text-slate-200"
-                        >
-                          Copy Terraform
-                        </button>
+                      <div class="relative rounded-xl border border-slate-300 dark:border-white/10 bg-[#070b16] p-4 text-xs font-mono text-slate-200 overflow-x-auto max-h-[240px]">
+                        <div class="flex items-center justify-between mb-2 pb-2 border-b border-white/5">
+                          <div class="flex items-center gap-1.5">
+                            <span class="h-2.5 w-2.5 rounded-full bg-red-500/80 inline-block"></span>
+                            <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
+                            <span class="h-2.5 w-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+                            <span class="text-[11px] text-slate-400 ml-2 font-mono">main.tf</span>
+                          </div>
+                          <button
+                            data-copy-text="${escapeHtml(item.terraform)}"
+                            class="az-copy-btn px-2 py-0.5 rounded text-[10px] font-semibold bg-white/10 hover:bg-white/20 text-slate-200 transition"
+                          >
+                            Copy Terraform
+                          </button>
+                        </div>
                         <pre>${highlightCode(item.terraform, 'tf')}</pre>
                       </div>
                     ` : ''}
@@ -815,4 +831,3 @@
     init();
   }
 })();
-
