@@ -18,9 +18,9 @@
     <meta property="og:locale" content="en_US" />
     <link rel="canonical" href={"https://cloudsecuritycorner.com" <> @conn.request_path} />
     <link rel="icon" href="/android-icon-192x192.png" type="image/png" />
-    <link rel="stylesheet" href="/assets/app.css?v=20261031_03" />
+    <link rel="stylesheet" href="/assets/app.css?v=20261031_04" />
     <script src="/assets/initialize-theme.js"></script>
-    <script defer src="/site.js?v=20261031_03"></script>
+    <script defer src="/site.js?v=20261031_04"></script>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={assigns[:page_title] || "Cloud Security Corner"} />
     <meta name="twitter:description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
@@ -67,24 +67,109 @@
           </div>
         </a>
 
-        <div class="kube-desktop-nav kube-nav-menu">
+        <div class="kube-desktop-nav kube-nav-menu" role="menubar">
           <a href="/" class="kube-nav-link">Home</a>
-          <a href="/aws-architectures" class="kube-nav-link inline-flex items-center gap-1.5">
-            <span>AWS Architectures</span>
-            <span class="px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold leading-none bg-amber-500/15 text-amber-500 dark:text-amber-300 border border-amber-500/30">1,000+</span>
-          </a>
-          <a href="/azure-architectures" class="kube-nav-link inline-flex items-center gap-1.5">
-            <span>Azure Architectures</span>
-            <span class="px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold leading-none bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30">1,000+</span>
-          </a>
-          <a href="/gcp-architectures" class="kube-nav-link inline-flex items-center gap-1.5">
-            <span>GCP Architectures</span>
-            <span class="px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold leading-none bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30">1,000+</span>
-          </a>
-          <a href="/kspm-architectures" class="kube-nav-link inline-flex items-center gap-1.5">
-            <span>KSPM Kubernetes</span>
-            <span class="px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold leading-none bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30">1,000+</span>
-          </a>
+
+          <div class="kube-desktop-dropdown-wrapper">
+            <button
+              id="desktop-architectures-toggle"
+              type="button"
+              class="kube-nav-link inline-flex items-center gap-1.5 focus:outline-none"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="desktop-architectures-menu"
+            >
+              <span>Architectures</span>
+              <span class="px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold leading-none bg-purple-500/15 text-purple-600 dark:text-purple-300 border border-purple-500/30">
+                4,000+
+              </span>
+              <svg id="desktop-architectures-chevron" class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+
+            <div
+              id="desktop-architectures-menu"
+              class="hidden kube-desktop-dropdown-menu"
+              role="menu"
+              aria-label="Cloud Architectures"
+            >
+              <div class="flex items-center justify-between px-3 py-1.5 mb-1.5 border-b border-slate-100 dark:border-[#31373b]">
+                <span class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  Cloud Security Blueprints
+                </span>
+                <span class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">
+                  4,000+ Total
+                </span>
+              </div>
+              <div class="space-y-1">
+                <a href="/aws-architectures" class="kube-dropdown-link flex items-center justify-between px-3 py-2 rounded-xl text-sm transition hover:bg-slate-100 dark:hover:bg-[#2c333a] min-h-[44px]" role="menuitem">
+                  <div class="flex items-center gap-2.5 min-w-0">
+                    <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-500/15 text-amber-500 dark:text-amber-300">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+                      </svg>
+                    </span>
+                    <div class="flex flex-col text-left leading-tight min-w-0">
+                      <span class="font-semibold text-slate-800 dark:text-slate-200 truncate">AWS Architectures</span>
+                      <span class="text-[10px] text-slate-500 dark:text-slate-400 truncate">1,000+ threat models &amp; IAM controls</span>
+                    </div>
+                  </div>
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold leading-none bg-amber-500/15 text-amber-500 dark:text-amber-300 border border-amber-500/30 shrink-0 ml-2">1,000+</span>
+                </a>
+                <a href="/azure-architectures" class="kube-dropdown-link flex items-center justify-between px-3 py-2 rounded-xl text-sm transition hover:bg-slate-100 dark:hover:bg-[#2c333a] min-h-[44px]" role="menuitem">
+                  <div class="flex items-center gap-2.5 min-w-0">
+                    <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cyan-500/15 text-cyan-600 dark:text-cyan-300">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </span>
+                    <div class="flex flex-col text-left leading-tight min-w-0">
+                      <span class="font-semibold text-slate-800 dark:text-slate-200 truncate">Azure Architectures</span>
+                      <span class="text-[10px] text-slate-500 dark:text-slate-400 truncate">1,000+ cloud security blueprints</span>
+                    </div>
+                  </div>
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold leading-none bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30 shrink-0 ml-2">1,000+</span>
+                </a>
+                <a href="/gcp-architectures" class="kube-dropdown-link flex items-center justify-between px-3 py-2 rounded-xl text-sm transition hover:bg-slate-100 dark:hover:bg-[#2c333a] min-h-[44px]" role="menuitem">
+                  <div class="flex items-center gap-2.5 min-w-0">
+                    <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-300">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                        <polyline points="2 17 12 22 22 17" />
+                        <polyline points="2 12 12 17 22 12" />
+                      </svg>
+                    </span>
+                    <div class="flex flex-col text-left leading-tight min-w-0">
+                      <span class="font-semibold text-slate-800 dark:text-slate-200 truncate">GCP Architectures</span>
+                      <span class="text-[10px] text-slate-500 dark:text-slate-400 truncate">1,000+ Google Cloud patterns</span>
+                    </div>
+                  </div>
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold leading-none bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30 shrink-0 ml-2">1,000+</span>
+                </a>
+                <a href="/kspm-architectures" class="kube-dropdown-link flex items-center justify-between px-3 py-2 rounded-xl text-sm transition hover:bg-slate-100 dark:hover:bg-[#2c333a] min-h-[44px]" role="menuitem">
+                  <div class="flex items-center gap-2.5 min-w-0">
+                    <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-500/15 text-blue-600 dark:text-blue-300">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="4" />
+                        <line x1="4.93" y1="4.93" x2="9.17" y2="9.17" />
+                        <line x1="14.83" y1="9.17" x2="19.07" y2="4.93" />
+                        <line x1="14.83" y1="14.83" x2="19.07" y2="19.07" />
+                        <line x1="4.93" y1="19.07" x2="9.17" y2="14.83" />
+                      </svg>
+                    </span>
+                    <div class="flex flex-col text-left leading-tight min-w-0">
+                      <span class="font-semibold text-slate-800 dark:text-slate-200 truncate">KSPM Kubernetes</span>
+                      <span class="text-[10px] text-slate-500 dark:text-slate-400 truncate">1,000+ pod &amp; posture rules</span>
+                    </div>
+                  </div>
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold leading-none bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30 shrink-0 ml-2">1,000+</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
           <a href="/tools" class="kube-nav-link">Tools</a>
           <a href="/labs" class="kube-nav-link">Labs</a>
           <a href="/blog" class="kube-nav-link">Blog</a>

@@ -132,6 +132,62 @@ if (themeToggleMobileBtn) {
   themeToggleMobileBtn.addEventListener('click', handleThemeToggle);
 }
 
+// Desktop Architectures Dropdown
+const desktopArchToggle = document.getElementById('desktop-architectures-toggle');
+const desktopArchMenu = document.getElementById('desktop-architectures-menu');
+const desktopArchChevron = document.getElementById('desktop-architectures-chevron');
+const desktopArchWrapper = desktopArchToggle?.closest('.kube-desktop-dropdown-wrapper');
+
+function openDesktopArchitecturesDropdown() {
+  if (!desktopArchMenu) return;
+  desktopArchMenu.classList.add('is-open');
+  desktopArchMenu.classList.remove('hidden');
+  desktopArchToggle?.setAttribute('aria-expanded', 'true');
+  desktopArchChevron?.classList.add('rotate-180');
+}
+
+function closeDesktopArchitecturesDropdown() {
+  if (!desktopArchMenu) return;
+  desktopArchMenu.classList.remove('is-open');
+  desktopArchMenu.classList.add('hidden');
+  desktopArchToggle?.setAttribute('aria-expanded', 'false');
+  desktopArchChevron?.classList.remove('rotate-180');
+}
+
+function toggleDesktopArchitecturesDropdown() {
+  if (!desktopArchMenu) return;
+  if (desktopArchMenu.classList.contains('is-open')) {
+    closeDesktopArchitecturesDropdown();
+  } else {
+    openDesktopArchitecturesDropdown();
+  }
+}
+
+if (desktopArchToggle) {
+  desktopArchToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleDesktopArchitecturesDropdown();
+  });
+}
+
+if (desktopArchWrapper) {
+  let closeTimeout;
+  desktopArchWrapper.addEventListener('mouseenter', () => {
+    clearTimeout(closeTimeout);
+    openDesktopArchitecturesDropdown();
+  });
+  desktopArchWrapper.addEventListener('mouseleave', () => {
+    closeTimeout = setTimeout(() => {
+      closeDesktopArchitecturesDropdown();
+    }, 150);
+  });
+}
+
+for (const link of document.querySelectorAll('#desktop-architectures-menu a')) {
+  link.addEventListener('click', closeDesktopArchitecturesDropdown);
+}
+
 // Mobile Dropdown attached directly below navbar
 const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
 const mobileDropdown = document.getElementById('mobile-dropdown-menu');
@@ -183,6 +239,11 @@ if (mobileBackdrop) {
 }
 
 document.addEventListener('click', (e) => {
+  if (desktopArchMenu && desktopArchMenu.classList.contains('is-open')) {
+    if (desktopArchWrapper && !desktopArchWrapper.contains(e.target)) {
+      closeDesktopArchitecturesDropdown();
+    }
+  }
   if (!mobileDropdown || !mobileDropdown.classList.contains('is-open')) return;
   const header = document.querySelector('.kube-site-header');
   if (header && !header.contains(e.target)) {
@@ -192,6 +253,7 @@ document.addEventListener('click', (e) => {
 
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
+    closeDesktopArchitecturesDropdown();
     closeMobileDropdown();
   }
 });
