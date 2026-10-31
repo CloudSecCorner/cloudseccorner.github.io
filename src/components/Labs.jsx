@@ -540,7 +540,7 @@ function LabDetail() {
 
   // Parse markdown headings for dynamic Table of Contents
   const headings = useMemo(() => {
-    if (!content) return [];
+    if (!content || typeof content !== 'string') return [];
     const lines = content.split('\n');
     const items = [];
     let inCodeBlock = false;
@@ -570,7 +570,7 @@ function LabDetail() {
 
   // Compute estimated reading time & word count
   const { readingTime, wordCount } = useMemo(() => {
-    if (!content) return { readingTime: 1, wordCount: 0 };
+    if (!content || typeof content !== 'string') return { readingTime: 1, wordCount: 0 };
     const words = content.trim().split(/\s+/).length;
     return {
       readingTime: Math.max(1, Math.ceil(words / 180)),
@@ -664,8 +664,11 @@ function LabDetail() {
         const labFileName = (selectedLab.path || '').split('/').pop();
         for (const [key, val] of Object.entries(bundledLabFiles)) {
           if (key.endsWith(labFileName) || key.toLowerCase().includes(selectedLab.id.toLowerCase())) {
-            loadedMarkdown = val;
-            break;
+            const rawVal = typeof val === 'string' ? val : (val && typeof val.default === 'string' ? val.default : '');
+            if (rawVal) {
+              loadedMarkdown = rawVal;
+              break;
+            }
           }
         }
 
@@ -679,7 +682,7 @@ function LabDetail() {
           const markdownResponse = await fetch(selectedLab.path);
           if (markdownResponse.ok) {
             const text = await markdownResponse.text();
-            if (!text.trim().startsWith('<!DOCTYPE') && !text.trim().startsWith('<html')) {
+            if (typeof text === 'string' && !text.trim().startsWith('<!DOCTYPE') && !text.trim().startsWith('<html')) {
               setContent(text);
               return;
             }
@@ -792,7 +795,7 @@ function LabDetail() {
       )}
 
       {/* Ergonomic Reader Sticky Toolbar (Width, Font Size, Zen Mode) */}
-      <div className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-[#26203b] bg-white/95 dark:bg-[#130f1c]/95 backdrop-blur-md transition-all shadow-xs">
+      <div className="sticky top-16 z-40 w-full border-b border-slate-200 dark:border-[#26203b] bg-white/95 dark:bg-[#130f1c]/95 backdrop-blur-md transition-all shadow-xs">
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
           {/* Left: Quick Breadcrumb / Zen Exit */}
           <div className="flex items-center gap-3">
@@ -916,7 +919,7 @@ function LabDetail() {
 
           {/* Left Column: Interactive Sticky Navigation & Table of Contents (Hidden in Focus Mode) */}
           {!focusMode && (
-            <aside className="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6">
+            <aside className="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6 order-2 lg:order-1">
 
               {/* Back link & Actions */}
               <div className="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs">
@@ -1013,7 +1016,7 @@ function LabDetail() {
           )}
 
           {/* Right Column: Lab Reading Content with Ergonomic Reader Measure */}
-          <main className="flex-1 min-w-0 w-full">
+          <div className="flex-1 min-w-0 w-full order-1 lg:order-2">
             <div className={widthMode === "reading" && !focusMode ? "reader-measure-reading" : "reader-measure-full"}>
               <div className="rounded-xl border border-purple-200 dark:border-purple-900/60 bg-purple-50/70 dark:bg-[#1a1429] p-4 sm:p-5 mb-8 text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-xs">
                 <strong className="text-slate-900 dark:text-white font-bold block mb-1">
@@ -1047,7 +1050,7 @@ function LabDetail() {
                 </a>
               </footer>
             </div>
-          </main>
+          </div>
         </div>
       </article>
     </div>

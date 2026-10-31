@@ -1,0 +1,58 @@
+{
+  "labs": [
+    {
+      "id": "Agentic-Cloud-Security",
+      "title": "Agentic Cloud Security Essentials",
+      "description": "Architect enterprise-grade defenses for autonomous AI agents: Zero-Trust identity brokering, L7 MCP tool firewalls, Firecracker microVM sandboxing, eBPF telemetry, and NIST/ISO/OWASP governance.",
+      "category": "Agentic Security",
+      "path": "/labs/agentic-cloud-security.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Cloud AI Security", "Agentic Defense", "Zero Trust", "Firecracker", "MCP Firewall", "eBPF", "NIST AI RMF"]
+    },
+    {
+      "id": "Zero-Trust-Architecture",
+      "title": "Zero-Trust Architecture",
+      "description": "A security model assuming all users, devices, and agents are hostile. Enforce mutual attestation, least privilege, and continuous verification.",
+      "category": "Security Engineering",
+      "path": "/labs/Zero-Trust-Architecture.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Zero Trust", "Cloud Architecture", "IAM", "Mutual TLS", "SPIFFE"]
+    },
+    {
+      "id": "Threat-Modeling",
+      "title": "Threat Modeling Practical Guide",
+      "description": "Learn how to systematically create a threat model, map trust boundaries, and evaluate attack surfaces for real-world cloud architectures.",
+      "category": "Security Engineering",
+      "path": "/labs/threat-modeling.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Threat Modeling", "STRIDE", "Architecture", "MITRE ATLAS"]
+    },
+    {
+      "id": "Security-Engineering-Fundamentals",
+      "title": "Security Engineering Fundamentals",
+      "description": "Understand the core principles of security engineering and how to apply them to modern infrastructure and workload boundaries.",
+      "category": "Security Engineering",
+      "path": "/labs/Security-Engineering-Fundamentals.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Security Engineering", "Defense In Depth", "Identity", "CIS Benchmarks"]
+    },
+    {
+      "id": "Nmap-Practical-Labs",
+      "title": "NMAP Practical Auditing Labs",
+      "description": "Network reconnaissance, service discovery, open port auditing, and banner grabbing techniques for security engineers.",
+      "category": "Network Security",
+      "path": "/labs/NMAP-Practical-Labs.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Network Security", "Reconnaissance", "Auditing"]
+    },
+    {
+      "id": "ethical-hacker-easy-way",
+      "title": "Ethical Hacker Practical Lab",
+      "description": "Hands-on fundamentals of ethical hacking, penetration testing workflows, vulnerability assessment, and defense validation.",
+      "category": "Ethical Hacking",
+      "path": "/labs/ethical-hacker-easy-way.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["Ethical Hacking", "Penetration Testing"]
+    }
+  ]
+}

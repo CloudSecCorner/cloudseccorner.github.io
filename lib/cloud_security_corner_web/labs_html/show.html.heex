@@ -42,7 +42,7 @@
 </section>
 
 <!-- Ergonomic Reader Sticky Toolbar (Width, Font Size, Zen Mode) -->
-<div class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-[#26203b] bg-white/95 dark:bg-[#130f1c]/95 backdrop-blur-md transition-all shadow-xs" id="reader-toolbar">
+<div class="sticky top-16 z-40 w-full border-b border-slate-200 dark:border-[#26203b] bg-white/95 dark:bg-[#130f1c]/95 backdrop-blur-md transition-all shadow-xs" id="reader-toolbar">
   <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
     <!-- Left: Quick Breadcrumb / Zen Exit -->
     <div class="flex items-center gap-3">
@@ -131,7 +131,7 @@
   <div id="reader-flex-container" class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
     <!-- Left Column: Interactive Navigation & TOC -->
-    <aside id="reader-aside" class="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6">
+    <aside id="reader-aside" class="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6 order-2 lg:order-1">
       <div class="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs">
         <a href="/labs/" class="flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -193,7 +193,7 @@
     </aside>
 
     <!-- Right Column: Lab Content with Ergonomic Reader Measure -->
-    <main id="reader-main" class="flex-1 min-w-0 w-full">
+    <div id="reader-main" class="flex-1 min-w-0 w-full order-1 lg:order-2">
       <div id="lab-prose-container" class="reader-measure-reading">
         <div class="rounded-xl border border-purple-200 dark:border-purple-900/60 bg-purple-50/70 dark:bg-[#1a1429] p-4 sm:p-5 mb-8 text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-xs">
           <strong class="text-slate-900 dark:text-white font-bold block mb-1">
@@ -220,7 +220,7 @@
           </a>
         </footer>
       </div>
-    </main>
+    </div>
   </div>
 </article>
 

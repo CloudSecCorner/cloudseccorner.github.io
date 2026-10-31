@@ -4,17 +4,17 @@ import { render as renderPele } from 'pele';
 
 // Safe Pele Vector Diagram Component
 const PeleDiagram = ({ code, language }) => {
-  const renderedSvg = useMemo(() => {
-    try {
-      if (!code || typeof code !== 'string') return null;
+  let renderedSvg = null;
+  try {
+    if (code && typeof code === 'string') {
       const cleanCode = code.trim();
       const result = renderPele(cleanCode);
-      return result?.svg || null;
-    } catch (err) {
-      console.warn('Pele diagram render error:', err);
-      return null;
+      renderedSvg = result?.svg || null;
     }
-  }, [code]);
+  } catch (err) {
+    console.warn('Pele diagram render error:', err);
+    renderedSvg = null;
+  }
 
   if (!renderedSvg) {
     return (
@@ -269,7 +269,12 @@ const Blockquote = ({ fontSize = 'normal', children, ...props }) => {
 };
 
 const MarkdownRenderer = ({ children, content, fontSize = 'normal', className = '' }) => {
-  const markdownText = children || content || '';
+  const rawInput = children !== undefined ? children : content;
+  const markdownText = typeof rawInput === 'string'
+    ? rawInput
+    : (rawInput?.default && typeof rawInput.default === 'string'
+      ? rawInput.default
+      : String(rawInput || ''));
 
   const paragraphSize = {
     normal: 'text-[17px] leading-[1.85] my-5',
@@ -283,145 +288,144 @@ const MarkdownRenderer = ({ children, content, fontSize = 'normal', className = 
     xlarge: 'text-[21px] leading-[1.95]',
   }[fontSize] || 'text-[17px] leading-[1.8]';
 
+  const components = useMemo(() => ({
+    pre: ({ children: codeElement }) => {
+      const isCode = React.isValidElement(codeElement);
+      const codeClassName = isCode ? codeElement.props.className || '' : '';
+      const match = /language-(\w+)/.exec(codeClassName);
+      const language = match ? match[1] : '';
+
+      let rawCode = '';
+      if (isCode) {
+        const c = codeElement.props.children;
+        rawCode = Array.isArray(c) ? c.join('') : (typeof c === 'string' ? c : '');
+      }
+
+      if (rawCode) {
+        const trimmed = rawCode.trim();
+        const isDiagram =
+          language === 'mermaid' ||
+          language === 'pele' ||
+          language === 'architecture' ||
+          trimmed.startsWith('flowchart') ||
+          trimmed.startsWith('graph') ||
+          trimmed.startsWith('sequenceDiagram') ||
+          trimmed.startsWith('stateDiagram') ||
+          trimmed.startsWith('erDiagram') ||
+          trimmed.startsWith('architecture');
+
+        if (isDiagram) {
+          return <PeleDiagram code={trimmed} language={language} />;
+        }
+      }
+
+      return (
+        <CodeBlock
+          language={language}
+          rawCode={rawCode}
+        />
+      );
+    },
+    code: ({ children: code, className: codeClassName, ...props }) => {
+      return (
+        <code
+          className="rounded bg-slate-100 dark:bg-[#1f1b2e] px-1.5 py-0.5 text-[0.88em] font-mono font-semibold text-purple-700 dark:text-purple-300 border border-slate-200/80 dark:border-[#2e2747]"
+          {...props}
+        >
+          {code}
+        </code>
+      );
+    },
+    h1: (props) => <Heading level={1} fontSize={fontSize} {...props} />,
+    h2: (props) => <Heading level={2} fontSize={fontSize} {...props} />,
+    h3: (props) => <Heading level={3} fontSize={fontSize} {...props} />,
+    h4: (props) => <Heading level={4} fontSize={fontSize} {...props} />,
+    h5: (props) => <Heading level={5} fontSize={fontSize} {...props} />,
+    h6: (props) => <Heading level={6} fontSize={fontSize} {...props} />,
+    p: ({ children: paragraph, ...props }) => (
+      <p className={`text-slate-800 dark:text-slate-200 ${paragraphSize}`} {...props}>
+        {paragraph}
+      </p>
+    ),
+    a: ({ href = '', children: label, ...props }) => {
+      const external = /^https?:\/\//i.test(href);
+      return (
+        <a
+          href={href}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noopener noreferrer' : undefined}
+          className="text-purple-600 dark:text-purple-400 font-semibold hover:underline decoration-2 underline-offset-4"
+          {...props}
+        >
+          {label}
+        </a>
+      );
+    },
+    blockquote: (props) => <Blockquote fontSize={fontSize} {...props} />,
+    table: ({ children: rows, ...props }) => (
+      <div className="my-10 w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
+        <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-left" {...props}>
+          {rows}
+        </table>
+      </div>
+    ),
+    thead: ({ children: rows, ...props }) => (
+      <thead className="bg-slate-100 dark:bg-[#1a1528] text-slate-900 dark:text-white font-bold text-xs sm:text-sm uppercase tracking-wider" {...props}>
+        {rows}
+      </thead>
+    ),
+    tbody: ({ children: rows, ...props }) => (
+      <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 bg-white dark:bg-[#130f1c]" {...props}>
+        {rows}
+      </tbody>
+    ),
+    th: ({ children: value, ...props }) => (
+      <th className="px-5 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white" {...props}>
+        {value}
+      </th>
+    ),
+    td: ({ children: value, ...props }) => (
+      <td className={`px-5 py-3.5 text-slate-800 dark:text-slate-200 ${listSize}`} {...props}>
+        {value}
+      </td>
+    ),
+    ul: ({ children: items, ...props }) => (
+      <ul className="my-5 list-disc space-y-2.5 pl-6 sm:pl-8 text-slate-800 dark:text-slate-200" {...props}>
+        {items}
+      </ul>
+    ),
+    ol: ({ children: items, ...props }) => (
+      <ol className="my-5 list-decimal space-y-2.5 pl-6 sm:pl-8 text-slate-800 dark:text-slate-200" {...props}>
+        {items}
+      </ol>
+    ),
+    li: ({ children: item, ...props }) => (
+      <li className={`pl-1.5 leading-relaxed ${listSize}`} {...props}>{item}</li>
+    ),
+    hr: (props) => <hr className="my-10 border-slate-200 dark:border-slate-800" {...props} />,
+    img: ({ src, alt = '', ...props }) => (
+      <span className="my-8 block">
+        <img
+          src={src}
+          alt={alt}
+          className="mx-auto max-w-full rounded-xl border border-slate-200 dark:border-slate-800 shadow-md"
+          loading="lazy"
+          {...props}
+        />
+        {alt && <span className="mt-2.5 block text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400">{alt}</span>}
+      </span>
+    ),
+    strong: ({ children: value, ...props }) => (
+      <strong className="font-bold text-slate-950 dark:text-white" {...props}>{value}</strong>
+    ),
+    em: ({ children: value, ...props }) => (
+      <em className="italic text-purple-700 dark:text-purple-300" {...props}>{value}</em>
+    ),
+  }), [fontSize, paragraphSize, listSize]);
+
   return (
     <div className={`markdown-body w-full max-w-none text-slate-800 dark:text-slate-200 ${className}`}>
-      <ReactMarkdown
-        skipHtml
-        components={{
-          pre: ({ children: codeElement }) => {
-            const isCode = React.isValidElement(codeElement);
-            const codeClassName = isCode ? codeElement.props.className || '' : '';
-            const match = /language-(\w+)/.exec(codeClassName);
-            const language = match ? match[1] : '';
-
-            let rawCode = '';
-            if (isCode) {
-              const c = codeElement.props.children;
-              rawCode = Array.isArray(c) ? c.join('') : (typeof c === 'string' ? c : '');
-            }
-
-            if (rawCode) {
-              const trimmed = rawCode.trim();
-              const isDiagram =
-                language === 'mermaid' ||
-                language === 'pele' ||
-                language === 'architecture' ||
-                trimmed.startsWith('flowchart') ||
-                trimmed.startsWith('graph') ||
-                trimmed.startsWith('sequenceDiagram') ||
-                trimmed.startsWith('stateDiagram') ||
-                trimmed.startsWith('erDiagram') ||
-                trimmed.startsWith('architecture');
-
-              if (isDiagram) {
-                return <PeleDiagram code={trimmed} language={language} />;
-              }
-            }
-
-            return (
-              <CodeBlock
-                language={language}
-                rawCode={rawCode}
-              />
-            );
-          },
-          code: ({ children: code, className: codeClassName, ...props }) => {
-            return (
-              <code
-                className="rounded bg-slate-100 dark:bg-[#1f1b2e] px-1.5 py-0.5 text-[0.88em] font-mono font-semibold text-purple-700 dark:text-purple-300 border border-slate-200/80 dark:border-[#2e2747]"
-                {...props}
-              >
-                {code}
-              </code>
-            );
-          },
-          h1: (props) => <Heading level={1} fontSize={fontSize} {...props} />,
-          h2: (props) => <Heading level={2} fontSize={fontSize} {...props} />,
-          h3: (props) => <Heading level={3} fontSize={fontSize} {...props} />,
-          h4: (props) => <Heading level={4} fontSize={fontSize} {...props} />,
-          h5: (props) => <Heading level={5} fontSize={fontSize} {...props} />,
-          h6: (props) => <Heading level={6} fontSize={fontSize} {...props} />,
-          p: ({ children: paragraph, ...props }) => (
-            <p className={`text-slate-800 dark:text-slate-200 ${paragraphSize}`} {...props}>
-              {paragraph}
-            </p>
-          ),
-          a: ({ href = '', children: label, ...props }) => {
-            const external = /^https?:\/\//i.test(href);
-            return (
-              <a
-                href={href}
-                target={external ? '_blank' : undefined}
-                rel={external ? 'noopener noreferrer' : undefined}
-                className="text-purple-600 dark:text-purple-400 font-semibold hover:underline decoration-2 underline-offset-4"
-                {...props}
-              >
-                {label}
-              </a>
-            );
-          },
-          blockquote: (props) => <Blockquote fontSize={fontSize} {...props} />,
-          table: ({ children: rows, ...props }) => (
-            <div className="my-10 w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
-              <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-left" {...props}>
-                {rows}
-              </table>
-            </div>
-          ),
-          thead: ({ children: rows, ...props }) => (
-            <thead className="bg-slate-100 dark:bg-[#1a1528] text-slate-900 dark:text-white font-bold text-xs sm:text-sm uppercase tracking-wider" {...props}>
-              {rows}
-            </thead>
-          ),
-          tbody: ({ children: rows, ...props }) => (
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 bg-white dark:bg-[#130f1c]" {...props}>
-              {rows}
-            </tbody>
-          ),
-          th: ({ children: value, ...props }) => (
-            <th className="px-5 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white" {...props}>
-              {value}
-            </th>
-          ),
-          td: ({ children: value, ...props }) => (
-            <td className={`px-5 py-3.5 text-slate-800 dark:text-slate-200 ${listSize}`} {...props}>
-              {value}
-            </td>
-          ),
-          ul: ({ children: items, ...props }) => (
-            <ul className="my-5 list-disc space-y-2.5 pl-6 sm:pl-8 text-slate-800 dark:text-slate-200" {...props}>
-              {items}
-            </ul>
-          ),
-          ol: ({ children: items, ...props }) => (
-            <ol className="my-5 list-decimal space-y-2.5 pl-6 sm:pl-8 text-slate-800 dark:text-slate-200" {...props}>
-              {items}
-            </ol>
-          ),
-          li: ({ children: item, ...props }) => (
-            <li className={`pl-1.5 leading-relaxed ${listSize}`} {...props}>{item}</li>
-          ),
-          hr: (props) => <hr className="my-10 border-slate-200 dark:border-slate-800" {...props} />,
-          img: ({ src, alt = '', ...props }) => (
-            <span className="my-8 block">
-              <img
-                src={src}
-                alt={alt}
-                className="mx-auto max-w-full rounded-xl border border-slate-200 dark:border-slate-800 shadow-md"
-                loading="lazy"
-                {...props}
-              />
-              {alt && <span className="mt-2.5 block text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400">{alt}</span>}
-            </span>
-          ),
-          strong: ({ children: value, ...props }) => (
-            <strong className="font-bold text-slate-950 dark:text-white" {...props}>{value}</strong>
-          ),
-          em: ({ children: value, ...props }) => (
-            <em className="italic text-purple-700 dark:text-purple-300" {...props}>{value}</em>
-          ),
-        }}
-      >
+      <ReactMarkdown skipHtml components={components}>
         {markdownText}
       </ReactMarkdown>
     </div>
