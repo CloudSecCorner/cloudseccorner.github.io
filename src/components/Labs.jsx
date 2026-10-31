@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import MarkdownRenderer from "./MarkdownRenderer";
@@ -518,11 +518,69 @@ function LabDetail() {
   const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("");
   const [copiedLink, setCopiedLink] = useState(false);
-  const [fontSize, setFontSize] = useState("normal"); // 'normal' | 'large' | 'xlarge'
-  const [widthMode, setWidthMode] = useState("reading"); // 'reading' (optimal) | 'full' (100% monitor)
-  const [focusMode, setFocusMode] = useState(false); // Zen mode
+  const [fontSize, setFontSize] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("cloudsec_lab_font_size");
+      if (saved === "normal" || saved === "large" || saved === "xlarge") return saved;
+    }
+    return "normal"; // 'normal' | 'large' | 'xlarge'
+  });
+  const [widthMode, setWidthMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("cloudsec_lab_width_mode");
+      if (saved === "reading" || saved === "full") return saved;
+    }
+    return "reading"; // 'reading' (optimal ~75-80ch) | 'full' (expanded canvas)
+  });
+  const [focusMode, setFocusMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("cloudsec_lab_zen_mode");
+      if (saved !== null) {
+        return saved === "true";
+      }
+    }
+    return true; // Zen mode is true by default!
+  });
+  const [outlineOpen, setOutlineOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const navigate = useNavigate();
+
+  const toggleFocusMode = () => {
+    setFocusMode((prev) => {
+      const next = !prev;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("cloudsec_lab_zen_mode", String(next));
+      }
+      return next;
+    });
+  };
+
+  const handleWidthMode = (mode) => {
+    setWidthMode(mode);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cloudsec_lab_width_mode", mode);
+    }
+  };
+
+  const handleFontSize = (size) => {
+    setFontSize(size);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cloudsec_lab_font_size", size);
+    }
+  };
+
+  // Close outline drawer on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setOutlineOpen(false);
+      }
+    };
+    if (outlineOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+      return () => window.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [outlineOpen]);
 
   // Track window scroll progress for reader bar
   useEffect(() => {
@@ -591,7 +649,7 @@ function LabDetail() {
         });
       },
       {
-        rootMargin: '-80px 0% -65% 0%',
+        rootMargin: '-100px 0% -60% 0%',
         threshold: 0,
       }
     );
@@ -614,9 +672,12 @@ function LabDetail() {
   const scrollToHeading = (slug) => {
     const el = document.getElementById(slug);
     if (el) {
-      const yOffset = -90;
+      const yOffset = -120; // Clearance for sticky site header + sticky toolbar
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    if (window.innerWidth < 1024) {
+      setOutlineOpen(false);
     }
   };
 
@@ -715,7 +776,7 @@ function LabDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0c0915] text-slate-800 dark:text-slate-100">
+    <div id="reader-top" className="min-h-screen bg-slate-50 dark:bg-[#0c0915] text-slate-800 dark:text-slate-100">
       <OpenGraph
         title={`${lab.title} | Cloud Security Corner Labs`}
         description={lab.description}
@@ -732,9 +793,9 @@ function LabDetail() {
         />
       </div>
 
-      {/* Reader Header - Full Wide Layout (Hidden in Zen Mode) */}
+      {/* Classic Reader Header (Only shown when Zen Mode is toggled off) */}
       {!focusMode && (
-        <header className="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c]" id="reader-top">
+        <header className="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c]">
           <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
             <nav className="kube-lab-breadcrumb" aria-label="Breadcrumb">
               <Link to="/labs">Labs</Link>
@@ -763,7 +824,7 @@ function LabDetail() {
         </header>
       )}
 
-      {/* Reader Steps Guide (Hidden in Zen Mode) */}
+      {/* Classic Reader Steps Guide (Only shown when Zen Mode is toggled off) */}
       {!focusMode && (
         <section className="kube-lab-steps border-b border-slate-200 dark:border-[#26203b] bg-slate-100/60 dark:bg-[#0f0c18]" aria-label="How to use this lab">
           <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -794,37 +855,60 @@ function LabDetail() {
         </section>
       )}
 
-      {/* Ergonomic Reader Sticky Toolbar (Width, Font Size, Zen Mode) */}
-      <div className="sticky top-16 z-40 w-full border-b border-slate-200 dark:border-[#26203b] bg-white/95 dark:bg-[#130f1c]/95 backdrop-blur-md transition-all shadow-xs">
-        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
-          {/* Left: Quick Breadcrumb / Zen Exit */}
-          <div className="flex items-center gap-3">
-            {focusMode ? (
-              <button
-                type="button"
-                onClick={() => setFocusMode(false)}
-                className="flex items-center gap-1.5 px-3 py-1 rounded-lg font-bold bg-purple-600 text-white hover:bg-purple-700 transition"
-              >
-                <span>✕ Exit Zen Mode</span>
-              </button>
-            ) : (
-              <Link
-                to="/labs"
-                className="text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 font-semibold flex items-center gap-1"
-              >
-                ← All Labs
-              </Link>
-            )}
-            <span className="hidden sm:inline-block text-slate-300 dark:text-[#2e2646]">|</span>
-            <span className="hidden md:inline font-medium text-slate-600 dark:text-slate-300 truncate max-w-xs xl:max-w-md">
-              {lab.title}
-            </span>
+      {/* Ergonomic Reader Sticky Toolbar (Always persistent navigation, Width, Font Size, Outline, Zen Mode) */}
+      <div className="sticky top-16 z-40 w-full border-b border-slate-200/90 dark:border-[#26203b] bg-white/95 dark:bg-[#130f1c]/95 backdrop-blur-md transition-all shadow-xs">
+        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+          {/* Left: Always Back to All Labs + Breadcrumb / Title */}
+          <div className="flex items-center gap-2.5 min-w-0">
+            <Link
+              to="/labs"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-bold text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-950/40 border border-slate-200/80 dark:border-[#2b243f] transition shrink-0 cursor-pointer"
+              title="Return to Labs Library"
+            >
+              <svg className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              <span>← All Labs</span>
+            </Link>
+
+            <span className="text-slate-300 dark:text-[#2e2646] hidden sm:inline-block">|</span>
+
+            <div className="hidden sm:flex items-center gap-2 min-w-0">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200/60 dark:border-purple-800/50 shrink-0">
+                {lab.category}
+              </span>
+              <span className="font-semibold text-slate-800 dark:text-slate-200 truncate max-w-xs md:max-w-sm lg:max-w-md text-xs">
+                {lab.title}
+              </span>
+            </div>
           </div>
 
-          {/* Right: Controls (Scroll %, Width Measure, Font Size, Zen Focus) */}
-          <div className="flex items-center gap-2 sm:gap-4 flex-wrap ml-auto">
+          {/* Right: Controls (Outline Drawer, Scroll %, Font Size, Width Measure, Zen Toggle) */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap ml-auto">
+            {/* Outline / Table of Contents Button */}
+            <button
+              type="button"
+              onClick={() => setOutlineOpen(!outlineOpen)}
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold transition cursor-pointer ${
+                outlineOpen
+                  ? "bg-purple-100 dark:bg-purple-950/70 text-purple-800 dark:text-purple-200 border-purple-300 dark:border-purple-700 shadow-xs"
+                  : "bg-white dark:bg-[#1a1528] text-slate-700 dark:text-slate-300 border-slate-200 dark:border-[#2b243f] hover:border-purple-400 dark:hover:border-purple-600 hover:text-purple-600 dark:hover:text-purple-300"
+              }`}
+              title="Table of Contents / Section Outline"
+            >
+              <svg className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h10M4 18h14" />
+              </svg>
+              <span>Outline</span>
+              {headings.length > 0 && (
+                <span className="ml-0.5 px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-purple-200/70 dark:bg-purple-900/60 text-purple-800 dark:text-purple-200 font-bold">
+                  {headings.length}
+                </span>
+              )}
+            </button>
+
             {/* Scroll % */}
-            <div className="hidden sm:flex items-center gap-1.5 font-mono text-[11px] text-slate-500 dark:text-slate-400">
+            <div className="hidden lg:flex items-center gap-1 font-mono text-[11px] text-slate-500 dark:text-slate-400 select-none">
               <span>{scrollProgress}% read</span>
             </div>
 
@@ -832,8 +916,8 @@ function LabDetail() {
             <div className="flex items-center rounded-lg border border-slate-200 dark:border-[#2b243f] p-0.5 bg-slate-100/70 dark:bg-[#1a1528]">
               <button
                 type="button"
-                title="Default Font (17px)"
-                onClick={() => setFontSize("normal")}
+                title="Default Font (17px body)"
+                onClick={() => handleFontSize("normal")}
                 className={`px-2 py-0.5 rounded text-xs font-semibold transition ${
                   fontSize === "normal"
                     ? "bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs"
@@ -844,8 +928,8 @@ function LabDetail() {
               </button>
               <button
                 type="button"
-                title="Large Font (19px)"
-                onClick={() => setFontSize("large")}
+                title="Large Font (19px body)"
+                onClick={() => handleFontSize("large")}
                 className={`px-2 py-0.5 rounded text-xs font-bold transition ${
                   fontSize === "large"
                     ? "bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs"
@@ -856,8 +940,8 @@ function LabDetail() {
               </button>
               <button
                 type="button"
-                title="X-Large Font (21px)"
-                onClick={() => setFontSize("xlarge")}
+                title="X-Large Font (21px body)"
+                onClick={() => handleFontSize("xlarge")}
                 className={`px-2 py-0.5 rounded text-xs font-black transition ${
                   fontSize === "xlarge"
                     ? "bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs"
@@ -872,55 +956,158 @@ function LabDetail() {
             <div className="flex items-center rounded-lg border border-slate-200 dark:border-[#2b243f] p-0.5 bg-slate-100/70 dark:bg-[#1a1528]">
               <button
                 type="button"
-                title="Optimal 75-80 char line length for deep reading"
-                onClick={() => setWidthMode("reading")}
-                className={`px-2.5 py-0.5 rounded text-xs font-medium transition ${
+                title="Optimal ~75-80 char line measure for deep reading"
+                onClick={() => handleWidthMode("reading")}
+                className={`px-2.5 py-0.5 rounded text-xs transition ${
                   widthMode === "reading"
                     ? "bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs font-bold"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium"
                 }`}
               >
                 Optimal
               </button>
               <button
                 type="button"
-                title="Full 100% monitor width"
-                onClick={() => setWidthMode("full")}
-                className={`px-2.5 py-0.5 rounded text-xs font-medium transition ${
+                title="Expanded monitor width for architecture diagrams and code"
+                onClick={() => handleWidthMode("full")}
+                className={`px-2.5 py-0.5 rounded text-xs transition ${
                   widthMode === "full"
                     ? "bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs font-bold"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium"
                 }`}
               >
                 Full Width
               </button>
             </div>
 
-            {/* Zen Focus Mode Button */}
+            {/* Zen Mode Toggle Button */}
             <button
               type="button"
-              title="Zen Focus Mode (Hide sidebar and distractions)"
-              onClick={() => setFocusMode(!focusMode)}
-              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs font-medium transition ${
+              title={focusMode ? "Zen Mode is Active (Click to switch to Classic 2-column view)" : "Enable Zen Mode (Distraction-free reading)"}
+              onClick={toggleFocusMode}
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold transition cursor-pointer ${
                 focusMode
-                  ? "bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-200 border-purple-300 dark:border-purple-700"
+                  ? "bg-purple-600 text-white border-purple-600 hover:bg-purple-700 shadow-xs"
                   : "bg-white dark:bg-[#1a1528] text-slate-700 dark:text-slate-300 border-slate-200 dark:border-[#2b243f] hover:bg-slate-50 dark:hover:bg-[#231c36]"
               }`}
             >
-              <span>{focusMode ? "🧘 Focus Active" : "🧘 Zen Mode"}</span>
+              <span>{focusMode ? "🧘 Zen: On" : "🧘 Zen: Off"}</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Reader Shell - Sticky Outline & Full-Width Reading Content */}
-      <article className={`w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 ${focusMode ? "max-w-4xl" : "max-w-[1600px]"}`}>
+      {/* Slide-Over Outline Drawer (Accessible in both Zen & Classic modes) */}
+      {outlineOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-slate-900/50 dark:bg-black/70 backdrop-blur-xs transition-opacity"
+            onClick={() => setOutlineOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Drawer Panel */}
+          <aside className="relative w-full max-w-sm sm:max-w-md bg-white dark:bg-[#130f1c] border-l border-slate-200 dark:border-[#26203b] shadow-2xl flex flex-col h-full z-10 animate-in slide-in-from-right duration-200">
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-200 dark:border-[#201a30]">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block animate-pulse" />
+                <h3 className="font-bold text-sm text-slate-900 dark:text-white">
+                  Table of Contents
+                </h3>
+                <span className="text-xs font-mono text-slate-400 dark:text-slate-500">
+                  ({headings.length} sections)
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setOutlineOpen(false)}
+                className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#1e192c] transition"
+                title="Close drawer (Esc)"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="p-3 bg-slate-50 dark:bg-[#181324] border-b border-slate-200/80 dark:border-[#201a30] flex items-center gap-2">
+              <button
+                onClick={handleCopyLink}
+                type="button"
+                className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-[#201a30] text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-300 border border-slate-200 dark:border-[#2b243f] transition shadow-2xs cursor-pointer"
+              >
+                <svg className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                </svg>
+                <span>{copiedLink ? "Link Copied!" : "Copy Link"}</span>
+              </button>
+
+              <a
+                className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-[#201a30] text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-300 border border-slate-200 dark:border-[#2b243f] transition shadow-2xs"
+                href={`${REPOSITORY_URL}/blob/main/priv/static${lab.path}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                <span>Edit GitHub</span>
+              </a>
+            </div>
+
+            {/* Headings List */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-1 text-xs">
+              {headings.length === 0 ? (
+                <div className="text-center py-8 text-slate-400">No sections found</div>
+              ) : (
+                headings.map(({ level, text, slug }) => {
+                  const isActive = activeSection === slug;
+                  return (
+                    <button
+                      key={slug}
+                      onClick={() => scrollToHeading(slug)}
+                      type="button"
+                      className={`w-full text-left py-2 px-3 rounded-lg transition flex items-start gap-2.5 cursor-pointer ${
+                        level === 3 ? "pl-6 text-slate-500 dark:text-slate-400 text-[11.5px]" : "font-semibold"
+                      } ${
+                        isActive
+                          ? "bg-purple-100 dark:bg-purple-900/50 text-purple-900 dark:text-purple-200 font-bold border-l-2 border-purple-600 dark:border-purple-400"
+                          : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1c172b] hover:text-slate-900 dark:hover:text-white"
+                      }`}
+                    >
+                      <span className="truncate">{text}</span>
+                    </button>
+                  );
+                })
+              )}
+            </div>
+
+            {/* Drawer Footer */}
+            <div className="p-4 border-t border-slate-200 dark:border-[#201a30] bg-slate-50/70 dark:bg-[#161122] flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span>⏱️ {readingTime} min read</span>
+              <span>{wordCount.toLocaleString()} words</span>
+            </div>
+          </aside>
+        </div>
+      )}
+
+      {/* Reader Shell - Zen Mode Centered or Classic 2-Column Mode */}
+      <article
+        className={`w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 transition-all duration-200 ${
+          focusMode
+            ? widthMode === "reading"
+              ? "max-w-4xl xl:max-w-5xl"
+              : "max-w-7xl xl:max-w-[1550px]"
+            : widthMode === "reading"
+            ? "max-w-[1500px]"
+            : "max-w-[1750px]"
+        }`}
+      >
         <div className={`flex ${focusMode ? "flex-col" : "flex-col lg:flex-row gap-8 lg:gap-12"} items-start`}>
-
-          {/* Left Column: Interactive Sticky Navigation & Table of Contents (Hidden in Focus Mode) */}
+          {/* Classic Mode Left Column: Interactive Sticky Navigation & Table of Contents */}
           {!focusMode && (
-            <aside className="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6 order-2 lg:order-1">
-
+            <aside className="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-28 max-h-[calc(100vh-8rem)] lg:overflow-y-auto space-y-6 order-2 lg:order-1">
               {/* Back link & Actions */}
               <div className="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs">
                 <Link
@@ -1015,41 +1202,95 @@ function LabDetail() {
             </aside>
           )}
 
-          {/* Right Column: Lab Reading Content with Ergonomic Reader Measure */}
+          {/* Reading Content */}
           <div className="flex-1 min-w-0 w-full order-1 lg:order-2">
-            <div className={widthMode === "reading" && !focusMode ? "reader-measure-reading" : "reader-measure-full"}>
-              <div className="rounded-xl border border-purple-200 dark:border-purple-900/60 bg-purple-50/70 dark:bg-[#1a1429] p-4 sm:p-5 mb-8 text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-xs">
-                <strong className="text-slate-900 dark:text-white font-bold block mb-1">
-                  🛡️ Production Safety Protocol:
+            {/* Minimalist Metadata Strip in Zen Mode */}
+            {focusMode && (
+              <div className="mb-8 pb-6 border-b border-slate-200/90 dark:border-[#26203b]">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <nav className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+                    <Link to="/labs" className="hover:text-purple-600 dark:hover:text-purple-400 transition">
+                      Labs
+                    </Link>
+                    <span className="text-slate-300 dark:text-slate-700">/</span>
+                    <span className="text-purple-600 dark:text-purple-400 font-bold">{lab.category}</span>
+                  </nav>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 border border-purple-200/80 dark:border-purple-800/60">
+                      ⏱️ {readingTime} min read
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-[#1f1b2e] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-[#2b243f]">
+                      {wordCount.toLocaleString()} words
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+                  {lab.description}
+                </p>
+
+                {lab.tags && lab.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {lab.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 dark:bg-[#1a1528] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-[#2e2646]"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Production Safety Protocol Callout */}
+            <div className="rounded-xl border border-purple-200 dark:border-purple-900/60 bg-purple-50/70 dark:bg-[#1a1429] p-4 sm:p-5 mb-8 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-xs flex items-start gap-3">
+              <span className="text-xl sm:text-2xl shrink-0 mt-0.5 select-none" aria-hidden="true">
+                🛡️
+              </span>
+              <div>
+                <strong className="text-slate-900 dark:text-white font-bold block mb-0.5">
+                  Production Safety Protocol
                 </strong>
                 Review all commands, security policies, and network sweeps before executing. Never run intrusive scans or automated agents against production VPCs without verified written authorization and change-window approval.
               </div>
+            </div>
 
-              <div className="kube-markdown w-full bg-white dark:bg-[#130f1c] rounded-2xl border border-slate-200 dark:border-[#26203b] p-6 sm:p-10 shadow-sm">
-                <MarkdownRenderer content={content} fontSize={fontSize} />
+            {/* Markdown Body */}
+            <div className="kube-markdown w-full bg-white dark:bg-[#130f1c] rounded-2xl border border-slate-200 dark:border-[#26203b] p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
+              <MarkdownRenderer content={content} fontSize={fontSize} />
+            </div>
+
+            {/* Reader Footer Navigation */}
+            <footer className="mt-12 pt-6 border-t border-slate-200 dark:border-[#26203b] flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
+                  Ready for another topic?
+                </p>
+                <Link
+                  to="/labs"
+                  className="text-sm font-bold text-purple-600 dark:text-purple-400 hover:underline mt-1 inline-block"
+                >
+                  Browse full cloud AI security curriculum →
+                </Link>
               </div>
-
-              {/* Reader Footer Navigation */}
-              <footer className="mt-12 pt-6 border-t border-slate-200 dark:border-[#26203b] flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
-                    Ready for another topic?
-                  </p>
-                  <Link
-                    to="/labs"
-                    className="text-sm font-bold text-purple-600 dark:text-purple-400 hover:underline mt-1 inline-block"
-                  >
-                    Browse full cloud AI security curriculum →
-                  </Link>
-                </div>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setOutlineOpen(true)}
+                  className="px-3 py-2 rounded-lg text-xs font-bold text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/40 hover:bg-purple-100 dark:hover:bg-purple-900/60 transition border border-purple-200 dark:border-purple-800 cursor-pointer"
+                >
+                  📑 Table of Contents
+                </button>
                 <a
                   href="#reader-top"
                   className="px-4 py-2 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-[#1f1b2e] hover:bg-slate-200 dark:hover:bg-[#2b243f] transition border border-slate-200 dark:border-[#2b243f]"
                 >
                   Back to top ↑
                 </a>
-              </footer>
-            </div>
+              </div>
+            </footer>
           </div>
         </div>
       </article>

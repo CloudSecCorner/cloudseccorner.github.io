@@ -40,7 +40,7 @@ const PeleDiagram = ({ code, language }) => {
       </div>
       <div className="blueprint-canvas p-6 sm:p-10 flex justify-center items-center overflow-x-auto min-h-[260px] w-full">
         <div
-          className="pele-svg-container w-full max-w-5xl flex justify-center"
+          className="pele-svg-container w-full max-w-full flex justify-center"
           dangerouslySetInnerHTML={{ __html: renderedSvg }}
         />
       </div>
@@ -166,12 +166,12 @@ const Heading = ({ level, fontSize = 'normal', children, ...props }) => {
   const sizeClasses = currentScale[level] || currentScale[2];
 
   const baseStyles = {
-    1: 'scroll-mt-24 text-slate-900 dark:text-white font-extrabold border-b border-slate-200 dark:border-slate-800 tracking-tight',
-    2: 'scroll-mt-24 text-slate-900 dark:text-white font-bold border-b border-slate-200/70 dark:border-slate-800/60 tracking-tight',
-    3: 'scroll-mt-24 text-slate-900 dark:text-slate-100 font-bold tracking-tight',
-    4: 'scroll-mt-24 text-slate-800 dark:text-slate-200 font-semibold',
-    5: 'scroll-mt-24 text-slate-800 dark:text-slate-200 font-semibold',
-    6: 'scroll-mt-24 text-slate-700 dark:text-slate-300 font-semibold',
+    1: 'scroll-mt-32 text-slate-900 dark:text-white font-extrabold border-b border-slate-200 dark:border-slate-800 tracking-tight',
+    2: 'scroll-mt-32 text-slate-900 dark:text-white font-bold border-b border-slate-200/70 dark:border-slate-800/60 tracking-tight',
+    3: 'scroll-mt-32 text-slate-900 dark:text-slate-100 font-bold tracking-tight',
+    4: 'scroll-mt-32 text-slate-800 dark:text-slate-200 font-semibold',
+    5: 'scroll-mt-32 text-slate-800 dark:text-slate-200 font-semibold',
+    6: 'scroll-mt-32 text-slate-700 dark:text-slate-300 font-semibold',
   };
 
   return (
@@ -190,6 +190,31 @@ const Heading = ({ level, fontSize = 'normal', children, ...props }) => {
   );
 };
 
+// Helper: Remove [!ALERT] markdown syntax from the rendered content inside blockquotes
+function stripAlertPrefix(node) {
+  if (typeof node === 'string') {
+    return node.replace(/^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/i, '');
+  }
+  if (Array.isArray(node)) {
+    let replaced = false;
+    return node.map((child) => {
+      if (!replaced && (typeof child === 'string' || React.isValidElement(child))) {
+        const cleaned = stripAlertPrefix(child);
+        if (cleaned !== child) replaced = true;
+        return cleaned;
+      }
+      return child;
+    });
+  }
+  if (React.isValidElement(node) && node.props?.children) {
+    return React.cloneElement(node, {
+      ...node.props,
+      children: stripAlertPrefix(node.props.children),
+    });
+  }
+  return node;
+}
+
 // Callout / Blockquote with GitHub-Style Alerts
 const Blockquote = ({ fontSize = 'normal', children, ...props }) => {
   const text = getChildrenText(children);
@@ -207,55 +232,62 @@ const Blockquote = ({ fontSize = 'normal', children, ...props }) => {
       NOTE: {
         border: 'border-blue-500',
         bg: 'bg-blue-50/80 dark:bg-blue-950/25',
-        text: 'text-blue-950 dark:text-blue-200',
-        badge: 'bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300',
+        text: 'text-blue-950 dark:text-blue-100',
+        badge: 'bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 border border-blue-200/80 dark:border-blue-800/60',
+        icon: 'ℹ️',
         title: 'NOTE',
       },
       TIP: {
         border: 'border-emerald-500',
         bg: 'bg-emerald-50/80 dark:bg-emerald-950/25',
-        text: 'text-emerald-950 dark:text-emerald-200',
-        badge: 'bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300',
+        text: 'text-emerald-950 dark:text-emerald-100',
+        badge: 'bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/60',
+        icon: '💡',
         title: 'PRO TIP',
       },
       IMPORTANT: {
         border: 'border-purple-500',
         bg: 'bg-purple-50/80 dark:bg-purple-950/25',
-        text: 'text-purple-950 dark:text-purple-200',
-        badge: 'bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-300',
+        text: 'text-purple-950 dark:text-purple-100',
+        badge: 'bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-300 border border-purple-200/80 dark:border-purple-800/60',
+        icon: '🛡️',
         title: 'IMPORTANT',
       },
       WARNING: {
         border: 'border-amber-500',
         bg: 'bg-amber-50/80 dark:bg-amber-950/25',
-        text: 'text-amber-950 dark:text-amber-200',
-        badge: 'bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300',
+        text: 'text-amber-950 dark:text-amber-100',
+        badge: 'bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 border border-amber-200/80 dark:border-amber-800/60',
+        icon: '⚠️',
         title: 'WARNING',
       },
       CAUTION: {
         border: 'border-rose-500',
         bg: 'bg-rose-50/80 dark:bg-rose-950/25',
-        text: 'text-rose-950 dark:text-rose-200',
-        badge: 'bg-rose-100 dark:bg-rose-900/60 text-rose-800 dark:text-rose-300',
+        text: 'text-rose-950 dark:text-rose-100',
+        badge: 'bg-rose-100 dark:bg-rose-900/60 text-rose-800 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/60',
+        icon: '🚨',
         title: 'SECURITY CAUTION',
       },
     }[type] || {
       border: 'border-purple-500',
       bg: 'bg-purple-50/80 dark:bg-purple-950/25',
-      text: 'text-purple-950 dark:text-purple-200',
+      text: 'text-purple-950 dark:text-purple-100',
       badge: 'bg-purple-100 text-purple-800',
+      icon: '🛡️',
       title: type,
     };
 
     return (
       <div className={`my-8 rounded-xl border-l-4 ${config.border} ${config.bg} p-5 sm:p-6 shadow-xs`}>
         <div className="flex items-center gap-2 mb-2.5">
-          <span className={`px-2.5 py-0.5 rounded text-[11px] font-extrabold uppercase tracking-wider ${config.badge}`}>
-            {config.title}
+          <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-extrabold uppercase tracking-wider ${config.badge}`}>
+            <span>{config.icon}</span>
+            <span>{config.title}</span>
           </span>
         </div>
         <div className={`${textSize} ${config.text} [&>p:first-child]:mt-0 [&>p:last-child]:mb-0`}>
-          {children}
+          {stripAlertPrefix(children)}
         </div>
       </div>
     );
