@@ -12,11 +12,11 @@
     {
       "id": "Zero-Trust-Architecture",
       "title": "Zero-Trust Architecture",
-      "description": "A security model assuming all users, devices, and agents are hostile. Enforce mutual attestation, least privilege, and continuous verification.",
+      "description": "Architect continuous workload identity with SPIFFE/SPIRE, dynamic Envoy mTLS with Secret Discovery Service (SDS), and OPA fine-grained authorization.",
       "category": "Security Engineering",
       "path": "/labs/Zero-Trust-Architecture.md",
       "contributors": ["Sangam Biradar"],
-      "tags": ["Zero Trust", "Cloud Architecture", "IAM", "Mutual TLS", "SPIFFE"]
+      "tags": ["Zero Trust", "SPIFFE", "SPIRE", "Envoy", "mTLS", "OPA Rego", "NIST SP 800-207"]
     },
     {
       "id": "Threat-Modeling",
