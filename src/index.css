@@ -678,113 +678,20 @@ html {
   transform: translateY(-1px);
 }
 
-/* Mobile Navigation Drawer & Backdrops */
-.kube-mobile-backdrop {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 998;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease-out;
+/* Mobile Dropdown attached directly below navbar */
+#mobile-dropdown-menu {
+  animation: navDropdownSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.kube-mobile-backdrop.is-open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.kube-mobile-drawer {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  max-width: 380px;
-  background-color: #ffffff;
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.16);
-  transform: translateX(100%);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
-}
-
-.dark .kube-mobile-drawer {
-  background-color: #1e242c;
-  border-left: 1px solid #3d4449;
-  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.45);
-}
-
-.kube-mobile-drawer.is-open {
-  transform: translateX(0);
-}
-
-.kube-drawer-body {
-  flex: 1 1 auto;
-  overflow-y: auto;
-  padding: 1.25rem 1rem 2rem 1rem;
-  -webkit-overflow-scrolling: touch;
-}
-
-.kube-drawer-group-title {
-  font-size: 0.7rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #64748b;
-  margin-bottom: 0.5rem;
-  padding-left: 0.75rem;
-}
-
-.dark .kube-drawer-group-title {
-  color: #94a3b8;
-}
-
-.kube-drawer-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 44px;
-  padding: 0.65rem 0.85rem;
-  border-radius: 0.75rem;
-  font-size: 0.925rem;
-  font-weight: 600;
-  color: #334155;
-  text-decoration: none;
-  transition: all 0.15s ease;
-}
-
-.kube-drawer-link:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
-}
-
-.dark .kube-drawer-link {
-  color: #e2e8f0;
-}
-
-.dark .kube-drawer-link:hover {
-  background-color: #2b323c;
-  color: #ffffff;
-}
-
-.kube-drawer-link.active,
-.kube-drawer-link[aria-current="page"] {
-  background-color: #ede9fe;
-  color: #6d28d9;
-  border: 1px solid rgba(139, 92, 246, 0.3);
-}
-
-.dark .kube-drawer-link.active,
-.dark .kube-drawer-link[aria-current="page"] {
-  background-color: #382c44;
-  color: #c4b5fd;
-  border-color: rgba(168, 85, 247, 0.35);
+@keyframes navDropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Kickers & Labels */
