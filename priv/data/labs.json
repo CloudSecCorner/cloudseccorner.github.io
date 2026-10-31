@@ -30,11 +30,11 @@
     {
       "id": "Security-Engineering-Fundamentals",
       "title": "Security Engineering Fundamentals",
-      "description": "Understand the core principles of security engineering and how to apply them to modern infrastructure and workload boundaries.",
+      "description": "Master systems security engineering: hardware KMS envelope encryption (AES-256-GCM), SLSA Level 3 supply chain defense, and SBOM attestation.",
       "category": "Security Engineering",
       "path": "/labs/Security-Engineering-Fundamentals.md",
       "contributors": ["Sangam Biradar"],
-      "tags": ["Security Engineering", "Defense In Depth", "Identity", "CIS Benchmarks"]
+      "tags": ["Security Engineering", "Envelope Encryption", "KMS", "SLSA", "SBOM", "Cosign", "Supply Chain"]
     },
     {
       "id": "Nmap-Practical-Labs",
