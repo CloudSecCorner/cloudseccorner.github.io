@@ -1,15 +1,33 @@
-<header class="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b]" id="reader-top">
-  <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-12">
-    <nav class="kube-lab-breadcrumb" aria-label="Breadcrumb"><a href="/labs/">Labs</a><span aria-hidden="true">/</span><span>{@lab["category"]}</span></nav>
-    <p class="kube-label">Self-paced lab</p>
-    <h1>{@lab["title"]}</h1>
-    <p>{@lab["description"]}</p>
-    <div class="kube-lab-reader-tags" aria-label="Lab topics"><span :for={tag <- @lab["tags"] || []}>{tag}</span></div>
+<header class="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c]" id="reader-top">
+  <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <nav class="kube-lab-breadcrumb" aria-label="Breadcrumb">
+      <a href="/labs/">Labs</a>
+      <span aria-hidden="true">/</span>
+      <span class="capitalize">{@lab["category"]}</span>
+    </nav>
+    <div class="flex flex-wrap items-center gap-3 mt-3 mb-2">
+      <span class="kube-label !mb-0">Self-paced lab</span>
+      <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60">
+        ⏱️ Self-Paced Track
+      </span>
+      <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-[#1f1b2e] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-[#2b243f]">
+        Production Grade
+      </span>
+    </div>
+    <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2 mb-3">
+      {@lab["title"]}
+    </h1>
+    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-4xl leading-relaxed">
+      {@lab["description"]}
+    </p>
+    <div class="kube-lab-reader-tags mt-4" aria-label="Lab topics">
+      <span :for={tag <- @lab["tags"] || []}>{tag}</span>
+    </div>
   </div>
 </header>
 
-<section class="kube-lab-steps" aria-label="How to use this lab">
-  <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+<section class="kube-lab-steps border-b border-slate-200 dark:border-[#26203b] bg-slate-100/60 dark:bg-[#0f0c18]" aria-label="How to use this lab">
+  <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <ol>
       <li><span>1</span><div><strong>Read the concept</strong><small>Build the mental model first.</small></div></li>
       <li><span>2</span><div><strong>Try the commands</strong><small>Use a disposable sandbox.</small></div></li>
@@ -18,81 +36,244 @@
   </div>
 </section>
 
-<article class="kube-lab-reader-shell w-full max-w-[1600px] mx-auto">
-  <aside class="kube-lab-outline" aria-label="Lesson navigation">
-    <a class="kube-lab-outline-all" href="/labs/">← All labs</a>
-    <a class="kube-contribute-link" href={"https://github.com/CloudSecCorner/cloudseccorner.github.io/blob/main/priv/static#{@lab["path"]}"} target="_blank" rel="noreferrer">
-      Edit this lab on GitHub →
-    </a>
-    <a class="kube-contribute-link" href="https://github.com/CloudSecCorner/cloudseccorner.github.io/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">
-      Contribution guide
-    </a>
-  </aside>
+<article class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+  <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
-  <div class="kube-lab-reading w-full min-w-0">
-    <div class="kube-lab-reading-note">
-      <strong>Before you start:</strong> Read commands and policies before executing them. Avoid using production accounts for testing.
-    </div>
-    <div class="kube-markdown w-full text-base leading-relaxed">
-      {raw(@content_html)}
-    </div>
-    <footer class="kube-reader-end">
-      <p>Ready for another topic?</p>
-      <a href="/labs/">Browse all labs →</a>
-      <a href="#reader-top">Back to top ↑</a>
-    </footer>
+    <!-- Left Column: Interactive Navigation & TOC -->
+    <aside class="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6">
+      <div class="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs">
+        <a href="/labs/" class="flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to All Labs
+        </a>
+
+        <div class="mt-3 pt-3 border-t border-slate-100 dark:border-[#201a30] flex flex-col gap-2">
+          <button
+            id="copy-link-btn"
+            type="button"
+            class="flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-50 dark:bg-[#1a1528] text-slate-700 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-purple-950/40 border border-slate-200 dark:border-[#26203b] transition cursor-pointer"
+          >
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+              </svg>
+              <span id="copy-link-text">Copy Lab Link</span>
+            </span>
+          </button>
+
+          <a
+            class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-300 transition"
+            href={"https://github.com/CloudSecCorner/cloudseccorner.github.io/blob/main/priv/static#{@lab["path"]}"}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+            Edit on GitHub →
+          </a>
+        </div>
+      </div>
+
+      <!-- Dynamic Table of Contents Container -->
+      <nav id="lab-toc-container" class="hidden rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs" aria-label="Table of Contents">
+        <div class="flex items-center gap-2 mb-3 pb-2 border-b border-slate-100 dark:border-[#201a30]">
+          <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            On This Page
+          </span>
+          <span id="toc-count" class="ml-auto text-[10px] font-mono text-slate-400 dark:text-slate-500"></span>
+        </div>
+        <div id="lab-toc-list" class="space-y-1 max-h-[50vh] overflow-y-auto pr-1 text-xs"></div>
+      </nav>
+
+      <div class="px-2">
+        <a
+          class="text-xs text-slate-500 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-300 transition flex items-center gap-1.5"
+          href="https://github.com/CloudSecCorner/cloudseccorner.github.io/blob/main/CONTRIBUTING.md"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span>📖</span> Community contribution guide →
+        </a>
+      </div>
+    </aside>
+
+    <!-- Right Column: Lab Content -->
+    <main class="flex-1 min-w-0 w-full">
+      <div class="rounded-xl border border-purple-200 dark:border-purple-900/60 bg-purple-50/70 dark:bg-[#1a1429] p-4 sm:p-5 mb-8 text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-xs">
+        <strong class="text-slate-900 dark:text-white font-bold block mb-1">
+          🛡️ Production Safety Protocol:
+        </strong>
+        Review all commands, security policies, and network sweeps before executing. Never run intrusive scans or automated agents against production VPCs without verified written authorization and change-window approval.
+      </div>
+
+      <div class="kube-markdown w-full text-base leading-relaxed bg-white dark:bg-[#130f1c] rounded-2xl border border-slate-200 dark:border-[#26203b] p-6 sm:p-10 shadow-sm">
+        {raw(@content_html)}
+      </div>
+
+      <footer class="mt-12 pt-6 border-t border-slate-200 dark:border-[#26203b] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <p class="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
+            Ready for another topic?
+          </p>
+          <a href="/labs/" class="text-sm font-bold text-purple-600 dark:text-purple-400 hover:underline mt-1 inline-block">
+            Browse full cloud AI security curriculum →
+          </a>
+        </div>
+        <a href="#reader-top" class="px-4 py-2 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-[#1f1b2e] hover:bg-slate-200 dark:hover:bg-[#2b243f] transition border border-slate-200 dark:border-[#2b243f]">
+          Back to top ↑
+        </a>
+      </footer>
+    </main>
   </div>
 </article>
 
 <script src="/assets/pele.global.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    if (typeof pele === "undefined" || !pele.render) return;
+    // 1. Copy link button handler
+    var copyBtn = document.getElementById("copy-link-btn");
+    var copyText = document.getElementById("copy-link-text");
+    if (copyBtn && copyText) {
+      copyBtn.addEventListener("click", function () {
+        navigator.clipboard.writeText(window.location.href).then(function () {
+          copyText.textContent = "Link Copied! ✓";
+          setTimeout(function () {
+            copyText.textContent = "Copy Lab Link";
+          }, 2000);
+        });
+      });
+    }
 
-    var codeBlocks = document.querySelectorAll("pre code");
-    codeBlocks.forEach(function (el) {
-      var className = el.className || "";
-      var isMermaid = className.indexOf("mermaid") !== -1 || className.indexOf("pele") !== -1 || className.indexOf("architecture") !== -1;
-      var text = el.textContent || "";
-      var trimmed = text.trim();
+    // 2. Dynamic Table of Contents generation
+    var markdownEl = document.querySelector(".kube-markdown");
+    var tocContainer = document.getElementById("lab-toc-container");
+    var tocList = document.getElementById("lab-toc-list");
+    var tocCount = document.getElementById("toc-count");
 
-      var isDiagram = isMermaid ||
-        trimmed.indexOf("flowchart") === 0 ||
-        trimmed.indexOf("graph") === 0 ||
-        trimmed.indexOf("sequenceDiagram") === 0 ||
-        trimmed.indexOf("stateDiagram") === 0 ||
-        trimmed.indexOf("erDiagram") === 0 ||
-        trimmed.indexOf("architecture") === 0;
+    if (markdownEl && tocContainer && tocList) {
+      var headings = markdownEl.querySelectorAll("h2, h3");
+      if (headings.length > 0) {
+        tocContainer.classList.remove("hidden");
+        if (tocCount) tocCount.textContent = headings.length + " sections";
 
-      if (isDiagram) {
-        try {
-          var result = pele.render(trimmed);
-          if (result && result.svg) {
-            var container = document.createElement("div");
-            container.className = "my-8 w-full rounded-2xl border border-slate-200/90 dark:border-[#2e2747] bg-white dark:bg-[#130f1c] shadow-md overflow-hidden";
-            container.innerHTML =
-              '<div class="flex items-center justify-between px-5 py-3 bg-slate-50 dark:bg-[#1a1528] border-b border-slate-200 dark:border-[#26203b] text-xs font-semibold text-slate-700 dark:text-slate-300">' +
-                '<div class="flex items-center gap-2.5">' +
-                  '<span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block animate-pulse"></span>' +
-                  '<span class="font-mono text-xs uppercase tracking-wider text-purple-700 dark:text-purple-300 font-bold">Pele Architecture Vector Topology</span>' +
-                '</div>' +
-                '<span class="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-700/50">Interactive SVG</span>' +
-              '</div>' +
-              '<div class="blueprint-canvas p-6 sm:p-8 flex justify-center items-center overflow-x-auto min-h-[220px] w-full">' +
-                '<div class="pele-svg-container w-full max-w-full flex justify-center">' +
-                  result.svg +
-                '</div>' +
-              '</div>';
+        headings.forEach(function (h, idx) {
+          var text = h.textContent.trim().replace(/^#+\s*/, "");
+          var slug = h.id || text.toLowerCase().replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-") || ("section-" + idx);
+          h.id = slug;
+          h.classList.add("scroll-mt-24");
 
-            var pre = el.closest("pre");
-            if (pre && pre.parentNode) {
-              pre.parentNode.replaceChild(container, pre);
+          var isH3 = h.tagName.toLowerCase() === "h3";
+          var a = document.createElement("a");
+          a.href = "#" + slug;
+          a.className = "toc-link block py-1.5 px-2.5 rounded-md transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1c172b] hover:text-slate-900 dark:hover:text-white truncate " +
+            (isH3 ? "pl-5 text-slate-500 dark:text-slate-400" : "font-medium");
+          a.textContent = text;
+          a.addEventListener("click", function (e) {
+            e.preventDefault();
+            var target = document.getElementById(slug);
+            if (target) {
+              var y = target.getBoundingClientRect().top + window.pageYOffset - 90;
+              window.scrollTo({ top: y, behavior: "smooth" });
             }
-          }
-        } catch (e) {
-          console.warn("Pele render error in lab:", e);
+          });
+          tocList.appendChild(a);
+        });
+
+        // Scroll spy
+        if ("IntersectionObserver" in window) {
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                var id = entry.target.id;
+                var links = tocList.querySelectorAll(".toc-link");
+                links.forEach(function (link) {
+                  if (link.getAttribute("href") === "#" + id) {
+                    link.classList.add("bg-purple-100", "dark:bg-purple-900/50", "text-purple-900", "dark:text-purple-200", "font-bold", "border-l-2", "border-purple-600", "dark:border-purple-400");
+                  } else {
+                    link.classList.remove("bg-purple-100", "dark:bg-purple-900/50", "text-purple-900", "dark:text-purple-200", "font-bold", "border-l-2", "border-purple-600", "dark:border-purple-400");
+                  }
+                });
+              }
+            });
+          }, { rootMargin: "-80px 0% -65% 0%", threshold: 0 });
+
+          headings.forEach(function (h) { observer.observe(h); });
         }
       }
+    }
+
+    // 3. Pele Vector Architecture and Diagram Rendering
+    if (typeof pele !== "undefined" && pele.render) {
+      var codeBlocks = document.querySelectorAll("pre code");
+      codeBlocks.forEach(function (el) {
+        var className = el.className || "";
+        var isMermaid = className.indexOf("mermaid") !== -1 || className.indexOf("pele") !== -1 || className.indexOf("architecture") !== -1;
+        var text = el.textContent || "";
+        var trimmed = text.trim();
+
+        var isDiagram = isMermaid ||
+          trimmed.indexOf("flowchart") === 0 ||
+          trimmed.indexOf("graph") === 0 ||
+          trimmed.indexOf("sequenceDiagram") === 0 ||
+          trimmed.indexOf("stateDiagram") === 0 ||
+          trimmed.indexOf("erDiagram") === 0 ||
+          trimmed.indexOf("architecture") === 0;
+
+        if (isDiagram) {
+          try {
+            var result = pele.render(trimmed);
+            if (result && result.svg) {
+              var container = document.createElement("div");
+              container.className = "my-8 w-full rounded-2xl border border-slate-200/90 dark:border-[#2e2747] bg-white dark:bg-[#130f1c] shadow-md overflow-hidden";
+              container.innerHTML =
+                '<div class="flex items-center justify-between px-5 py-3 bg-slate-50 dark:bg-[#1a1528] border-b border-slate-200 dark:border-[#26203b] text-xs font-semibold text-slate-700 dark:text-slate-300">' +
+                  '<div class="flex items-center gap-2.5">' +
+                    '<span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block animate-pulse"></span>' +
+                    '<span class="font-mono text-xs uppercase tracking-wider text-purple-700 dark:text-purple-300 font-bold">Pele Architecture Vector Topology</span>' +
+                  '</div>' +
+                  '<span class="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-700/50">Interactive SVG</span>' +
+                '</div>' +
+                '<div class="blueprint-canvas p-6 sm:p-8 flex justify-center items-center overflow-x-auto min-h-[220px] w-full">' +
+                  '<div class="pele-svg-container w-full max-w-full flex justify-center">' +
+                    result.svg +
+                  '</div>' +
+                '</div>';
+
+              var pre = el.closest("pre");
+              if (pre && pre.parentNode) {
+                pre.parentNode.replaceChild(container, pre);
+              }
+            }
+          } catch (e) {
+            console.warn("Pele render error in lab:", e);
+          }
+        }
+      });
+    }
+
+    // 4. Add copy button to normal code blocks
+    var normalPres = document.querySelectorAll(".kube-markdown pre");
+    normalPres.forEach(function (pre) {
+      if (pre.closest(".blueprint-canvas") || pre.querySelector("button")) return;
+      pre.classList.add("relative", "group");
+
+      var copyCodeBtn = document.createElement("button");
+      copyCodeBtn.type = "button";
+      copyCodeBtn.className = "absolute top-2.5 right-2.5 opacity-0 group-hover:opacity-100 px-2 py-1 rounded text-[11px] font-mono text-slate-300 hover:text-white bg-slate-800/90 hover:bg-slate-700 transition border border-slate-700/60 cursor-pointer";
+      copyCodeBtn.textContent = "Copy";
+      copyCodeBtn.addEventListener("click", function () {
+        var code = pre.querySelector("code");
+        var text = (code ? code.textContent : pre.textContent) || "";
+        navigator.clipboard.writeText(text).then(function () {
+          copyCodeBtn.textContent = "Copied! ✓";
+          setTimeout(function () { copyCodeBtn.textContent = "Copy"; }, 2000);
+        });
+      });
+      pre.appendChild(copyCodeBtn);
     });
   });
 </script>

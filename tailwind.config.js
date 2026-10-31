@@ -106,37 +106,100 @@ export default {
       typography: {
         DEFAULT: {
           css: {
-            color: '#f8f8f2',
+            color: '#334155', // slate-700 for light mode
+            maxWidth: 'none',
             h1: {
-              color: '#f8f8f2',
+              color: '#0f172a', // slate-900
+              fontWeight: '800',
             },
             h2: {
-              color: '#f8f8f2',
+              color: '#0f172a', // slate-900
+              fontWeight: '700',
             },
             h3: {
-              color: '#f8f8f2',
+              color: '#1e293b', // slate-800
+              fontWeight: '600',
+            },
+            h4: {
+              color: '#1e293b', // slate-800
+              fontWeight: '600',
             },
             strong: {
-              color: '#f8f8f2',
+              color: '#0f172a', // slate-900
+              fontWeight: '700',
             },
             a: {
-              color: '#6366f1',
+              color: '#7c3aed', // purple-600
+              textDecoration: 'none',
+              fontWeight: '600',
               '&:hover': {
-                color: '#818cf8',
+                color: '#6d28d9',
+                textDecoration: 'underline',
               },
             },
             code: {
-              color: '#f8f8f2',
-              backgroundColor: 'rgba(15, 23, 42, 0.5)',
-              padding: '0.125rem 0.25rem',
-              borderRadius: '0.25rem',
+              color: '#7c3aed',
+              backgroundColor: '#f1f5f9',
+              padding: '0.15rem 0.35rem',
+              borderRadius: '0.375rem',
+              fontWeight: '600',
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
             },
             pre: {
-              backgroundColor: '#0f172a',
+              backgroundColor: '#0c0915',
+              color: '#e2e8f0',
               code: {
                 backgroundColor: 'transparent',
                 padding: '0',
+                color: '#e2e8f0',
               },
+            },
+            blockquote: {
+              borderLeftColor: '#7c3aed',
+              color: '#475569',
+            },
+          },
+        },
+        invert: {
+          css: {
+            color: '#cbd5e1', // slate-300 for dark mode
+            h1: {
+              color: '#f8fafc', // slate-50
+            },
+            h2: {
+              color: '#f8fafc', // slate-50
+            },
+            h3: {
+              color: '#f1f5f9', // slate-100
+            },
+            h4: {
+              color: '#f1f5f9', // slate-100
+            },
+            strong: {
+              color: '#ffffff',
+            },
+            a: {
+              color: '#caa2f5', // brand purple light
+              '&:hover': {
+                color: '#e9d5ff',
+              },
+            },
+            code: {
+              color: '#caa2f5',
+              backgroundColor: '#1e1b2e',
+            },
+            pre: {
+              backgroundColor: '#0c0915',
+              color: '#f1f5f9',
+            },
+            blockquote: {
+              borderLeftColor: '#caa2f5',
+              color: '#94a3b8',
             },
           },
         },

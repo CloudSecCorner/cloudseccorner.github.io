@@ -2751,6 +2751,206 @@ html {
   color: #caa2f5;
 }
 
+/* Enhanced Markdown Prose Styling */
+.kube-markdown {
+  color: #334155;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.dark .kube-markdown {
+  color: #cbd5e1;
+}
+
+.kube-markdown h1,
+.kube-markdown h2,
+.kube-markdown h3,
+.kube-markdown h4,
+.kube-markdown h5,
+.kube-markdown h6 {
+  color: #0f172a;
+  font-weight: 700;
+  scroll-margin-top: 6rem;
+}
+
+.dark .kube-markdown h1,
+.dark .kube-markdown h2,
+.dark .kube-markdown h3,
+.dark .kube-markdown h4,
+.dark .kube-markdown h5,
+.dark .kube-markdown h6 {
+  color: #f8fafc;
+}
+
+.kube-markdown h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dark .kube-markdown h1 {
+  border-bottom-color: #27213c;
+}
+
+.kube-markdown h2 {
+  font-size: 1.5rem;
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.dark .kube-markdown h2 {
+  border-bottom-color: #26203b;
+}
+
+.kube-markdown h3 {
+  font-size: 1.25rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.kube-markdown p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kube-markdown ul,
+.kube-markdown ol {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.kube-markdown ul {
+  list-style-type: disc;
+}
+
+.kube-markdown ol {
+  list-style-type: decimal;
+}
+
+.kube-markdown li {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.kube-markdown a {
+  color: #7c3aed;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dark .kube-markdown a {
+  color: #caa2f5;
+}
+
+.kube-markdown code:not(pre code) {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #7c3aed;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.375rem;
+}
+
+.dark .kube-markdown code:not(pre code) {
+  color: #caa2f5;
+  background-color: #1e1b2e;
+  border-color: #2e2747;
+}
+
+.kube-markdown pre {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.75rem;
+  background-color: #0c0915;
+  color: #f1f5f9;
+  padding: 1.25rem;
+  overflow-x: auto;
+  border: 1px solid #2e2747;
+}
+
+.kube-markdown pre code {
+  background-color: transparent;
+  color: inherit;
+  font-size: 0.875rem;
+  padding: 0;
+  border: none;
+}
+
+.kube-markdown blockquote {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  border-left: 4px solid #7c3aed;
+  background-color: rgba(124, 58, 237, 0.05);
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: #475569;
+}
+
+.dark .kube-markdown blockquote {
+  border-left-color: #caa2f5;
+  background-color: #1a1429;
+  color: #94a3b8;
+}
+
+.kube-markdown table {
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.dark .kube-markdown table {
+  border-color: #2e2747;
+}
+
+.kube-markdown th,
+.kube-markdown td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dark .kube-markdown th,
+.dark .kube-markdown td {
+  border-bottom-color: #26203b;
+}
+
+.kube-markdown th {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.dark .kube-markdown th {
+  background-color: #1a1528;
+  color: #f8fafc;
+}
+
+.kube-markdown tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.dark .kube-markdown tr:nth-child(even) {
+  background-color: #130f1c;
+}
+
 
 /* Pele SVG Diagrams Theming */
 .pele {

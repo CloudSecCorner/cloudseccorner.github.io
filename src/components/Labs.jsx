@@ -516,7 +516,91 @@ function LabDetail() {
   const [content, setContent] = useState("");
   const [lab, setLab] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState("");
+  const [copiedLink, setCopiedLink] = useState(false);
   const navigate = useNavigate();
+
+  // Parse markdown headings for dynamic Table of Contents
+  const headings = useMemo(() => {
+    if (!content) return [];
+    const lines = content.split('\n');
+    const items = [];
+    let inCodeBlock = false;
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('```')) {
+        inCodeBlock = !inCodeBlock;
+        continue;
+      }
+      if (inCodeBlock) continue;
+
+      const match = line.match(/^(#{2,3})\s+(.+)$/);
+      if (match) {
+        const level = match[1].length; // 2 or 3
+        const rawText = match[2].trim().replace(/[*_`]/g, '');
+        const slug = rawText
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .trim()
+          .replace(/\s+/g, '-');
+        items.push({ level, text: rawText, slug });
+      }
+    }
+    return items;
+  }, [content]);
+
+  // Compute estimated reading time & word count
+  const { readingTime, wordCount } = useMemo(() => {
+    if (!content) return { readingTime: 1, wordCount: 0 };
+    const words = content.trim().split(/\s+/).length;
+    return {
+      readingTime: Math.max(1, Math.ceil(words / 180)),
+      wordCount: words,
+    };
+  }, [content]);
+
+  // Scroll-spy observer for headings
+  useEffect(() => {
+    if (!headings.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: '-80px 0% -65% 0%',
+        threshold: 0,
+      }
+    );
+
+    headings.forEach(({ slug }) => {
+      const el = document.getElementById(slug);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [headings, content]);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2000);
+    });
+  };
+
+  const scrollToHeading = (slug) => {
+    const el = document.getElementById(slug);
+    if (el) {
+      const yOffset = -90;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const fetchLabData = async () => {
@@ -610,7 +694,7 @@ function LabDetail() {
   }
 
   return (
-    <div>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0c0915] text-slate-800 dark:text-slate-100">
       <OpenGraph
         title={`${lab.title} | Cloud Security Corner Labs`}
         description={lab.description}
@@ -620,25 +704,37 @@ function LabDetail() {
       />
 
       {/* Reader Header - Full Wide Layout */}
-      <header className="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b]" id="reader-top">
+      <header className="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c]" id="reader-top">
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <nav className="kube-lab-breadcrumb" aria-label="Breadcrumb">
             <Link to="/labs">Labs</Link>
             <span aria-hidden="true">/</span>
-            <span>{lab.category}</span>
+            <span className="capitalize">{lab.category}</span>
           </nav>
-          <p className="kube-label">Self-paced lab</p>
-          <h1>{lab.title}</h1>
-          <p>{lab.description}</p>
-          <div className="kube-lab-reader-tags" aria-label="Lab topics">
+          <div className="flex flex-wrap items-center gap-3 mt-3 mb-2">
+            <span className="kube-label !mb-0">Self-paced lab</span>
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60">
+              ⏱️ {readingTime} min read
+            </span>
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-[#1f1b2e] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-[#2b243f]">
+              {wordCount.toLocaleString()} words
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2 mb-3">
+            {lab.title}
+          </h1>
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-4xl leading-relaxed">
+            {lab.description}
+          </p>
+          <div className="kube-lab-reader-tags mt-4" aria-label="Lab topics">
             {lab.tags && lab.tags.map((tag) => <span key={tag}>{tag}</span>)}
           </div>
         </div>
       </header>
 
-      {/* Reader Steps */}
-      <section className="kube-lab-steps" aria-label="How to use this lab">
-        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Reader Steps Guide */}
+      <section className="kube-lab-steps border-b border-slate-200 dark:border-[#26203b] bg-slate-100/60 dark:bg-[#0f0c18]" aria-label="How to use this lab">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <ol>
             <li>
               <span>1</span>
@@ -665,42 +761,140 @@ function LabDetail() {
         </div>
       </section>
 
-      {/* Reader Shell - Full Width */}
-      <article className="kube-lab-reader-shell w-full max-w-[1600px] mx-auto">
-        <aside className="kube-lab-outline" aria-label="Lesson contents">
-          <Link className="kube-lab-outline-all" to="/labs">
-            ← All labs
-          </Link>
-          <a
-            className="kube-contribute-link"
-            href={`${REPOSITORY_URL}/blob/main/priv/static${lab.path}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Edit this lab on GitHub →
-          </a>
-          <a
-            className="kube-contribute-link"
-            href={`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Contribution guide
-          </a>
-        </aside>
+      {/* Reader Shell - Sticky Outline & Full-Width Reading Content */}
+      <article className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
-        <div className="kube-lab-reading w-full min-w-0">
-          <div className="kube-lab-reading-note">
-            <strong>Before you start:</strong> Read commands and policies before executing them. Avoid using production accounts for testing.
-          </div>
-          <div className="kube-markdown w-full text-base leading-relaxed">
-            <MarkdownRenderer content={content} />
-          </div>
-          <footer className="kube-reader-end">
-            <p>Ready for another topic?</p>
-            <Link to="/labs">Browse all labs →</Link>
-            <a href="#reader-top">Back to top ↑</a>
-          </footer>
+          {/* Left Column: Interactive Sticky Navigation & Table of Contents */}
+          <aside className="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6">
+
+            {/* Back link & Actions */}
+            <div className="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs">
+              <Link
+                to="/labs"
+                className="flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to All Labs
+              </Link>
+
+              <div className="mt-3 pt-3 border-t border-slate-100 dark:border-[#201a30] flex flex-col gap-2">
+                <button
+                  onClick={handleCopyLink}
+                  type="button"
+                  className="flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-50 dark:bg-[#1a1528] text-slate-700 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-purple-950/40 border border-slate-200 dark:border-[#26203b] transition cursor-pointer"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                    </svg>
+                    {copiedLink ? "Link Copied!" : "Copy Lab Link"}
+                  </span>
+                  {copiedLink && (
+                    <span className="text-[10px] text-emerald-500 font-bold">✓</span>
+                  )}
+                </button>
+
+                <a
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-300 transition"
+                  href={`${REPOSITORY_URL}/blob/main/priv/static${lab.path}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                  Edit on GitHub →
+                </a>
+              </div>
+            </div>
+
+            {/* Dynamic Table of Contents */}
+            {headings.length > 0 && (
+              <nav className="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs" aria-label="Table of Contents">
+                <div className="flex items-center gap-2 mb-3 pb-2 border-b border-slate-100 dark:border-[#201a30]">
+                  <span className="w-2 h-2 rounded-full bg-purple-500" />
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    On This Page
+                  </span>
+                  <span className="ml-auto text-[10px] font-mono text-slate-400 dark:text-slate-500">
+                    {headings.length} sections
+                  </span>
+                </div>
+
+                <div className="space-y-1 max-h-[50vh] overflow-y-auto pr-1 text-xs">
+                  {headings.map(({ level, text, slug }) => {
+                    const isActive = activeSection === slug;
+                    return (
+                      <button
+                        key={slug}
+                        onClick={() => scrollToHeading(slug)}
+                        type="button"
+                        className={`w-full text-left py-1.5 px-2.5 rounded-md transition flex items-start gap-2 cursor-pointer ${
+                          level === 3 ? "pl-5 text-slate-500 dark:text-slate-400" : "font-medium"
+                        } ${
+                          isActive
+                            ? "bg-purple-100 dark:bg-purple-900/50 text-purple-900 dark:text-purple-200 font-bold border-l-2 border-purple-600 dark:border-purple-400"
+                            : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1c172b] hover:text-slate-900 dark:hover:text-white"
+                        }`}
+                      >
+                        <span className="truncate">{text}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </nav>
+            )}
+
+            {/* Contribution Guide */}
+            <div className="px-2">
+              <a
+                className="text-xs text-slate-500 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-300 transition flex items-center gap-1.5"
+                href={`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>📖</span> Community contribution guide →
+              </a>
+            </div>
+          </aside>
+
+          {/* Right Column: Lab Reading Content */}
+          <main className="flex-1 min-w-0 w-full">
+            <div className="rounded-xl border border-purple-200 dark:border-purple-900/60 bg-purple-50/70 dark:bg-[#1a1429] p-4 sm:p-5 mb-8 text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-xs">
+              <strong className="text-slate-900 dark:text-white font-bold block mb-1">
+                🛡️ Production Safety Protocol:
+              </strong>
+              Review all commands, security policies, and network sweeps before executing. Never run intrusive scans or automated agents against production VPCs without verified written authorization and change-window approval.
+            </div>
+
+            <div className="kube-markdown w-full text-base leading-relaxed bg-white dark:bg-[#130f1c] rounded-2xl border border-slate-200 dark:border-[#26203b] p-6 sm:p-10 shadow-sm">
+              <MarkdownRenderer content={content} />
+            </div>
+
+            {/* Reader Footer Navigation */}
+            <footer className="mt-12 pt-6 border-t border-slate-200 dark:border-[#26203b] flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
+                  Ready for another topic?
+                </p>
+                <Link
+                  to="/labs"
+                  className="text-sm font-bold text-purple-600 dark:text-purple-400 hover:underline mt-1 inline-block"
+                >
+                  Browse full cloud AI security curriculum →
+                </Link>
+              </div>
+              <a
+                href="#reader-top"
+                className="px-4 py-2 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-[#1f1b2e] hover:bg-slate-200 dark:hover:bg-[#2b243f] transition border border-slate-200 dark:border-[#2b243f]"
+              >
+                Back to top ↑
+              </a>
+            </footer>
+          </main>
         </div>
       </article>
     </div>
