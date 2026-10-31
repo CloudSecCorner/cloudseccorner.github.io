@@ -34,3 +34,4 @@
   - Validate mobile viewports (320px, 375px, 414px) and tablet viewports (768px, 1024px) and desktop (1280px, 1440px).
   - Check `git diff --check` for whitespace compliance.
   - Commit and push to `origin main`.
+
