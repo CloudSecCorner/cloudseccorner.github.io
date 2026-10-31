@@ -12,4 +12,3 @@ defmodule CloudSecurityCornerWeb.AzureArchitectureController do
     )
   end
 end
-

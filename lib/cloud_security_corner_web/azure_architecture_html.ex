@@ -3,4 +3,3 @@ defmodule CloudSecurityCornerWeb.AzureArchitectureHTML do
 
   embed_templates("azure_architecture_html/*")
 end
-
