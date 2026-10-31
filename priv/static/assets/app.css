@@ -336,18 +336,32 @@ html:not(.dark) .blueprint-canvas {
 }
 
 .kube-mobile-dropdown {
-  display: block;
+  display: none !important;
+}
+
+.kube-mobile-dropdown.is-open {
+  display: block !important;
   animation: navDropdownSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .kube-dropdown-backdrop {
+  display: none !important;
+}
+
+.kube-dropdown-backdrop.is-open {
+  display: block !important;
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.45);
+  background: rgba(15, 23, 42, 0.5);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 40;
   animation: backdropFadeIn 0.2s ease-out forwards;
+}
+
+#mobile-menu-hamburger-icon.hidden,
+#mobile-menu-close-icon.hidden {
+  display: none !important;
 }
 
 @media (min-width: 1200px) {
@@ -357,10 +371,12 @@ html:not(.dark) .blueprint-canvas {
   .kube-mobile-actions {
     display: none !important;
   }
-  .kube-mobile-dropdown {
+  .kube-mobile-dropdown,
+  .kube-mobile-dropdown.is-open {
     display: none !important;
   }
-  .kube-dropdown-backdrop {
+  .kube-dropdown-backdrop,
+  .kube-dropdown-backdrop.is-open {
     display: none !important;
   }
 }

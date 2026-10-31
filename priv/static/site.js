@@ -140,8 +140,10 @@ const hamburgerIcon = document.getElementById('mobile-menu-hamburger-icon');
 const closeIcon = document.getElementById('mobile-menu-close-icon');
 
 function closeMobileDropdown() {
-  if (!mobileDropdown || mobileDropdown.classList.contains('hidden')) return;
+  if (!mobileDropdown) return;
+  mobileDropdown.classList.remove('is-open');
   mobileDropdown.classList.add('hidden');
+  mobileBackdrop?.classList.remove('is-open');
   mobileBackdrop?.classList.add('hidden');
   mobileMenuToggle?.setAttribute('aria-expanded', 'false');
   hamburgerIcon?.classList.remove('hidden');
@@ -150,7 +152,9 @@ function closeMobileDropdown() {
 
 function openMobileDropdown() {
   if (!mobileDropdown) return;
+  mobileDropdown.classList.add('is-open');
   mobileDropdown.classList.remove('hidden');
+  mobileBackdrop?.classList.add('is-open');
   mobileBackdrop?.classList.remove('hidden');
   mobileMenuToggle?.setAttribute('aria-expanded', 'true');
   hamburgerIcon?.classList.add('hidden');
@@ -159,15 +163,16 @@ function openMobileDropdown() {
 
 function toggleMobileDropdown() {
   if (!mobileDropdown) return;
-  if (mobileDropdown.classList.contains('hidden')) {
-    openMobileDropdown();
-  } else {
+  if (mobileDropdown.classList.contains('is-open')) {
     closeMobileDropdown();
+  } else {
+    openMobileDropdown();
   }
 }
 
 if (mobileMenuToggle) {
   mobileMenuToggle.addEventListener('click', (e) => {
+    e.preventDefault();
     e.stopPropagation();
     toggleMobileDropdown();
   });
@@ -178,7 +183,7 @@ if (mobileBackdrop) {
 }
 
 document.addEventListener('click', (e) => {
-  if (!mobileDropdown || mobileDropdown.classList.contains('hidden')) return;
+  if (!mobileDropdown || !mobileDropdown.classList.contains('is-open')) return;
   const header = document.querySelector('.kube-site-header');
   if (header && !header.contains(e.target)) {
     closeMobileDropdown();

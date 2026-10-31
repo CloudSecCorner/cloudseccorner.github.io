@@ -250,7 +250,7 @@ function Nav() {
       {/* Mobile Dropdown Backdrop */}
       {isMenuOpen && (
         <div
-          className="kube-dropdown-backdrop"
+          className="kube-dropdown-backdrop is-open"
           onClick={() => setIsMenuOpen(false)}
           aria-hidden="true"
         />
@@ -415,7 +415,7 @@ function Nav() {
         {isMenuOpen && (
           <div
             id="mobile-dropdown-menu"
-            className="kube-mobile-dropdown border-t border-slate-200 dark:border-[#3d4449] bg-white/98 dark:bg-[#1a1f26]/98 backdrop-blur-xl px-3.5 sm:px-6 py-4 shadow-2xl max-h-[calc(100vh-70px)] overflow-y-auto"
+            className="kube-mobile-dropdown is-open border-t border-slate-200 dark:border-[#3d4449] bg-white/98 dark:bg-[#1a1f26]/98 backdrop-blur-xl px-3.5 sm:px-6 py-4 shadow-2xl max-h-[calc(100vh-70px)] overflow-y-auto"
             role="menu"
             aria-label="Navigation menu"
           >

@@ -18,9 +18,9 @@
     <meta property="og:locale" content="en_US" />
     <link rel="canonical" href={"https://cloudsecuritycorner.com" <> @conn.request_path} />
     <link rel="icon" href="/android-icon-192x192.png" type="image/png" />
-    <link rel="stylesheet" href="/assets/app.css" />
+    <link rel="stylesheet" href="/assets/app.css?v=20261031_03" />
     <script src="/assets/initialize-theme.js"></script>
-    <script defer src="/site.js"></script>
+    <script defer src="/site.js?v=20261031_03"></script>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={assigns[:page_title] || "Cloud Security Corner"} />
     <meta name="twitter:description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
@@ -42,7 +42,7 @@
     </aside>
 
     <!-- Mobile Dropdown Backdrop -->
-    <div id="mobile-dropdown-backdrop" class="hidden kube-dropdown-backdrop"></div>
+    <div id="mobile-dropdown-backdrop" class="kube-dropdown-backdrop"></div>
 
     <!-- Site Header -->
     <header class="kube-site-header">
@@ -119,7 +119,7 @@
       </nav>
 
       <!-- Mobile Dropdown attached directly below navbar -->
-      <div id="mobile-dropdown-menu" class="hidden kube-mobile-dropdown border-t border-slate-200 dark:border-[#3d4449] bg-white/98 dark:bg-[#1a1f26]/98 backdrop-blur-xl px-3.5 sm:px-6 py-4 shadow-2xl max-h-[calc(100vh-70px)] overflow-y-auto" role="menu" aria-label="Navigation menu">
+      <div id="mobile-dropdown-menu" class="kube-mobile-dropdown border-t border-slate-200 dark:border-[#3d4449] bg-white/98 dark:bg-[#1a1f26]/98 backdrop-blur-xl px-3.5 sm:px-6 py-4 shadow-2xl max-h-[calc(100vh-70px)] overflow-y-auto" role="menu" aria-label="Navigation menu">
         <div class="max-w-4xl mx-auto space-y-4">
           <div class="sm:grid sm:grid-cols-2 sm:gap-6 space-y-4 sm:space-y-0">
             <!-- Architecture Catalog Column -->
