@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Kubernetes Gateway API</title>
+  <defs>
+    <linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="k8s-k8s-gateway-grad">
+      <stop stop-color="#3B82F6" offset="0%"></stop>
+      <stop stop-color="#1E40AF" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <rect fill="url(#k8s-k8s-gateway-grad)" x="0" y="0" width="40" height="40" rx="8"></rect>
+    <g transform="translate(8, 8)" fill="#FFFFFF">
+      <path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-7 2a3 3 0 110 6 3 3 0 010-6zm7 12H5v-1c0-2.33 4.67-3.5 7-3.5s7 1.17 7 3.5v1z"/>
+    </g>
+  </g>
+</svg>

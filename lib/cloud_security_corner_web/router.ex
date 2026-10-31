@@ -13,6 +13,7 @@ defmodule CloudSecurityCornerWeb.Router do
     get("/aws-architectures", AwsArchitectureController, :index)
     get("/azure-architectures", AzureArchitectureController, :index)
     get("/gcp-architectures", GcpArchitectureController, :index)
+    get("/kspm-architectures", KspmArchitectureController, :index)
     get("/tools", ToolsController, :index)
     get("/labs", LabsController, :index)
     get("/labs/:id", LabsController, :show)

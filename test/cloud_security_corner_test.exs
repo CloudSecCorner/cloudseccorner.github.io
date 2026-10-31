@@ -11,6 +11,7 @@ defmodule CloudSecurityCornerTest do
     assert Content.aws_best_practice_count() >= 1000
     assert Content.azure_best_practice_count() >= 1000
     assert Content.gcp_best_practice_count() >= 1000
+    assert Content.kspm_best_practice_count() >= 1000
   end
 
   test "renders aws architectures route and loads best practices" do
@@ -46,6 +47,18 @@ defmodule CloudSecurityCornerTest do
     assert conn.resp_body =~ "Obsidian Pele"
     assert conn.resp_body =~ "1,000+ GCP Architecture Best Practices"
     assert conn.resp_body =~ "gcp-architectures.js"
+    assert conn.resp_body =~ "pele.global.js"
+  end
+
+  test "renders kspm architectures route and loads best practices" do
+    conn =
+      Plug.Test.conn(:get, "/kspm-architectures")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Obsidian Pele"
+    assert conn.resp_body =~ "1,000+ KSPM Kubernetes Architecture"
+    assert conn.resp_body =~ "kspm-architectures.js"
     assert conn.resp_body =~ "pele.global.js"
   end
 

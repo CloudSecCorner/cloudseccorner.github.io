@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Kubernetes Node & Kubelet</title>
+  <defs>
+    <linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="k8s-k8s-node-grad">
+      <stop stop-color="#0891B2" offset="0%"></stop>
+      <stop stop-color="#0E7490" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <rect fill="url(#k8s-k8s-node-grad)" x="0" y="0" width="40" height="40" rx="8"></rect>
+    <g transform="translate(8, 8)" fill="#FFFFFF">
+      <path d="M4 3h16a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2zm0 10h16a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4a2 2 0 012-2zm2-7v2h2V6H6zm0 10v2h2v-2H6zm10-10v2h2V6h-2zm0 10v2h2v-2h-2z"/>
+    </g>
+  </g>
+</svg>

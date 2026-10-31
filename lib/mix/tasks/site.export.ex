@@ -51,6 +51,7 @@ defmodule Mix.Tasks.Site.Export do
       "/aws-architectures",
       "/azure-architectures",
       "/gcp-architectures",
+      "/kspm-architectures",
       "/tools",
       "/labs",
       "/blog",

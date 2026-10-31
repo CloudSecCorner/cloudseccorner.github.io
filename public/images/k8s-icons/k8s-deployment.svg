@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Kubernetes Deployment</title>
+  <defs>
+    <linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="k8s-k8s-deployment-grad">
+      <stop stop-color="#2563EB" offset="0%"></stop>
+      <stop stop-color="#1E40AF" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <rect fill="url(#k8s-k8s-deployment-grad)" x="0" y="0" width="40" height="40" rx="8"></rect>
+    <g transform="translate(8, 8)" fill="#FFFFFF">
+      <path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm12 0a4 4 0 11-4 4 4 4 0 014-4zm0 2a2 2 0 102 2 2 2 0 00-2-2z"/>
+    </g>
+  </g>
+</svg>

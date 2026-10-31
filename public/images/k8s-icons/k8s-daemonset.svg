@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Kubernetes DaemonSet</title>
+  <defs>
+    <linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="k8s-k8s-daemonset-grad">
+      <stop stop-color="#4F46E5" offset="0%"></stop>
+      <stop stop-color="#3730A3" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <rect fill="url(#k8s-k8s-daemonset-grad)" x="0" y="0" width="40" height="40" rx="8"></rect>
+    <g transform="translate(8, 8)" fill="#FFFFFF">
+      <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm-1 3v4.59l3.7 2.13.75-1.3-3.2-1.84V8h-1.25z"/>
+    </g>
+  </g>
+</svg>

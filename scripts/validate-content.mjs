@@ -56,12 +56,13 @@ async function readJsonCandidates(relPath) {
   throw new Error(`Cannot find JSON at candidates: ${candidates.join(', ')}`);
 }
 
-const [{ blogs }, { labs }, awsPractices, azurePractices, gcpPractices] = await Promise.all([
+const [{ blogs }, { labs }, awsPractices, azurePractices, gcpPractices, kspmPractices] = await Promise.all([
   readJsonCandidates('blog.json'),
   readJsonCandidates('labs.json'),
   readJsonCandidates('aws-best-practices.json'),
   readJsonCandidates('azure-best-practices.json'),
-  readJsonCandidates('gcp-best-practices.json')
+  readJsonCandidates('gcp-best-practices.json'),
+  readJsonCandidates('kspm-best-practices.json')
 ]);
 
 await validateCollection('Blog index', blogs, 'file');
@@ -79,6 +80,10 @@ if (!Array.isArray(gcpPractices) || gcpPractices.length < 1000) {
   throw new Error(`GCP Best Practices dataset must have at least 1,000 entries; found ${gcpPractices?.length}`);
 }
 
+if (!Array.isArray(kspmPractices) || kspmPractices.length < 1000) {
+  throw new Error(`KSPM Best Practices dataset must have at least 1,000 entries; found ${kspmPractices?.length}`);
+}
+
 for (const tool of securityEntries) {
   if (!tool.title || !tool.link || !tool.description || !tool.tag) {
     throw new Error(`Tool entry is missing title, link, description, or tag: ${JSON.stringify(tool)}`);
@@ -90,4 +95,4 @@ for (const tool of securityEntries) {
   }
 }
 
-console.log(`Validated ${blogs.length} blog post, ${labs.length} labs, ${awsPractices.length} AWS architectures, ${azurePractices.length} Azure architectures, ${gcpPractices.length} GCP architectures (Pele, OPA & Terraform), and ${securityEntries.length} tools.`);
+console.log(`Validated ${blogs.length} blog post, ${labs.length} labs, ${awsPractices.length} AWS architectures, ${azurePractices.length} Azure architectures, ${gcpPractices.length} GCP architectures, ${kspmPractices.length} KSPM architectures (Pele, OPA & K8s Manifests), and ${securityEntries.length} tools.`);

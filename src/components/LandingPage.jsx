@@ -61,6 +61,9 @@ function LandingPage() {
               <Link className="kube-button shadow-lg shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-500 border-emerald-400/30 text-white" to="/gcp-architectures">
                 <span className="mr-1">🌐</span> 1,000+ GCP Architectures (Pele)
               </Link>
+              <Link className="kube-button shadow-lg shadow-blue-500/20 bg-blue-700 hover:bg-blue-600 border-blue-400/30 text-white" to="/kspm-architectures">
+                <span className="mr-1">☸️</span> 1,000+ KSPM Kubernetes (Pele)
+              </Link>
               <Link className="kube-button kube-button-outline" to="/labs/Agentic-Cloud-Security">
                 Start Agentic Lab <span aria-hidden="true">→</span>
               </Link>
@@ -285,6 +288,34 @@ function LandingPage() {
           <div className="flex items-center gap-3 shrink-0">
             <Link to="/gcp-architectures" className="kube-button shadow-lg shadow-emerald-500/30 bg-emerald-600 hover:bg-emerald-500 border-emerald-400/30 text-white">
               Explore GCP Patterns →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* KSPM Kubernetes Architecture Banner (Powered by Obsidian Pele) */}
+      <section className="border-b border-slate-200 dark:border-brand-gray-700/60 bg-gradient-to-r from-blue-50/80 via-white to-indigo-50/80 dark:from-blue-950/60 dark:via-[#0a1226] dark:to-indigo-950/60 py-8 px-4 sm:px-6 lg:px-10 transition-colors">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div className="flex items-start gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-100 dark:bg-blue-600/20 border border-blue-300 dark:border-blue-500/40 text-2xl text-blue-600 dark:text-blue-300 shadow-inner">
+              ☸️
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400">Kubernetes KSPM Release</span>
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-500/30">1,032 PATTERNS</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
+                1,000+ KSPM Kubernetes Architecture with Pele, OPA &amp; Pod Hardening
+              </h2>
+              <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+                In-depth Kubernetes Security Posture Management and pod-level defensive blueprints across each Kubernetes Kind. Rendered with Obsidian Pele, verified OPA Rego admission policies, and hardened manifests.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <Link to="/kspm-architectures" className="kube-button shadow-lg shadow-blue-500/30 bg-blue-600 hover:bg-blue-500 border-blue-400/30 text-white">
+              Explore KSPM Patterns →
             </Link>
           </div>
         </div>
