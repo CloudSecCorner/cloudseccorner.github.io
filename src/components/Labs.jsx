@@ -28,11 +28,11 @@ const fallbackLabsData = [
   {
     id: "Threat-Modeling",
     title: "Threat Modeling Practical Guide",
-    description: "Learn how to systematically create a threat model, map trust boundaries, and evaluate attack surfaces for real-world cloud architectures.",
+    description: "Architect enterprise threat models using STRIDE, DFD trust boundaries, DREAD/CVSS v4 scoring, and automated Threat-Model-as-Code with pytm.",
     category: "Security Engineering",
     path: "/labs/threat-modeling.md",
     contributors: ["Sangam Biradar"],
-    tags: ["Threat Modeling", "STRIDE", "Architecture", "MITRE ATLAS"]
+    tags: ["Threat Modeling", "STRIDE", "DREAD", "pytm", "MITRE ATLAS", "Policy as Code"]
   },
   {
     id: "Security-Engineering-Fundamentals",
