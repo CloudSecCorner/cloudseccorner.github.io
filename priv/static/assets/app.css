@@ -310,18 +310,52 @@ html:not(.dark) .blueprint-canvas {
 
 /* Announcement / Pick-up Banner Mobile Ergonomics */
 #pick-up {
-  padding-right: 2.75rem !important;
+  font-size: 0.775rem !important;
+  line-height: 1.35 !important;
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem !important;
+  gap: 0.35rem !important;
 }
 
-/* Mobile Dropdown attached directly below navbar */
-#mobile-dropdown-menu {
+@media (min-width: 640px) {
+  #pick-up {
+    font-size: 0.85rem !important;
+    padding: 0.6rem 2.75rem 0.6rem 1rem !important;
+    gap: 0.5rem !important;
+  }
+}
+
+/* Header Responsive Navigation Visibility */
+.kube-desktop-nav {
+  display: none !important;
+}
+
+.kube-mobile-actions {
+  display: flex !important;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.kube-mobile-dropdown {
+  display: block;
   animation: navDropdownSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (min-width: 1200px) {
+  .kube-desktop-nav {
+    display: flex !important;
+  }
+  .kube-mobile-actions {
+    display: none !important;
+  }
+  .kube-mobile-dropdown {
+    display: none !important;
+  }
 }
 
 @keyframes navDropdownSlide {
   from {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
   to {
     opacity: 1;

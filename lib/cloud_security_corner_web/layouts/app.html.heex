@@ -45,8 +45,8 @@
     <header class="kube-site-header">
       <nav class="kube-header-inner" aria-label="Main navigation">
         <a href="/" class="kube-brand" aria-label="CloudSecCorner home">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-400 text-white shadow-md shadow-purple-500/25" aria-hidden="true">
-            <svg class="h-6 w-6" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+          <span class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-400 text-white shadow-md shadow-purple-500/25" aria-hidden="true">
+            <svg class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 32 32" fill="none" stroke="currentColor">
               <path d="M16 3.5l10 4.2v7.1c0 6.2-3.9 11-10 13.7-6.1-2.7-10-7.5-10-13.7V7.7L16 3.5z" stroke-width="1.8" stroke-linejoin="round" />
               <circle cx="16" cy="11" r="2" fill="currentColor" stroke="none" />
               <circle cx="11" cy="18" r="1.7" fill="currentColor" stroke="none" />
@@ -54,17 +54,17 @@
               <path d="M16 13v2.5m-1.5 1L12.4 17.5m5.1-1l2.1 1" stroke-width="1.6" stroke-linecap="round" />
             </svg>
           </span>
-          <div class="flex flex-col text-left leading-none">
-            <span class="text-base font-extrabold tracking-tight text-slate-900 dark:text-white">
+          <div class="flex flex-col text-left leading-none min-w-0">
+            <span class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white whitespace-nowrap">
               CloudSec<span class="text-[#8b5cf6] dark:text-[#caa2f5]">Corner</span>
             </span>
-            <span class="text-[10px] font-semibold tracking-wider text-purple dark:text-brand-purple-100 uppercase mt-1">
+            <span class="text-[9px] sm:text-[10px] font-semibold tracking-wider text-purple dark:text-brand-purple-100 uppercase mt-0.5 sm:mt-1 whitespace-nowrap">
               Agentic &amp; Cloud Security
             </span>
           </div>
         </a>
 
-        <div class="hidden xl:flex kube-nav-menu">
+        <div class="kube-desktop-nav kube-nav-menu">
           <a href="/" class="kube-nav-link">Home</a>
           <a href="/aws-architectures" class="kube-nav-link inline-flex items-center gap-1.5">
             <span>AWS Architectures</span>
@@ -88,7 +88,7 @@
           <a href="/about" class="kube-nav-link">About</a>
         </div>
 
-        <div class="hidden xl:flex items-center gap-3">
+        <div class="kube-desktop-nav items-center gap-3">
           <button id="theme-toggle" type="button" class="p-2 rounded-lg text-slate-500 dark:text-slate-300 hover:text-purple dark:hover:text-white transition" aria-label="Toggle theme">
             <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
             <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
@@ -99,7 +99,7 @@
         </div>
 
         <!-- Mobile & Tablet Actions -->
-        <div class="flex items-center gap-1.5 xl:hidden">
+        <div class="kube-mobile-actions">
           <button id="theme-toggle-mobile" type="button" class="p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-[#3d4449] transition min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label="Toggle theme">
             <svg id="theme-toggle-mobile-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
             <svg id="theme-toggle-mobile-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
@@ -113,7 +113,7 @@
       </nav>
 
       <!-- Mobile Dropdown attached directly below navbar -->
-      <div id="mobile-dropdown-menu" class="hidden xl:hidden border-t border-slate-200 dark:border-[#3d4449] bg-white/98 dark:bg-[#1e242c]/98 backdrop-blur-md px-4 py-3 space-y-1 shadow-xl max-h-[calc(100vh-80px)] overflow-y-auto" role="menu" aria-label="Navigation menu">
+      <div id="mobile-dropdown-menu" class="hidden kube-mobile-dropdown border-t border-slate-200 dark:border-[#3d4449] bg-white/98 dark:bg-[#1a1f26]/98 backdrop-blur-md px-3 sm:px-4 py-3 space-y-1 shadow-2xl max-h-[calc(100vh-70px)] overflow-y-auto" role="menu" aria-label="Navigation menu">
         <div class="space-y-1">
           <a href="/" class="kube-dropdown-link flex items-center justify-between px-3.5 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#31373b] min-h-[44px]">Home</a>
           <a href="/aws-architectures" class="kube-dropdown-link flex items-center justify-between px-3.5 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#31373b] min-h-[44px]">
