@@ -50,6 +50,7 @@ defmodule Mix.Tasks.Site.Export do
       "/",
       "/aws-architectures",
       "/azure-architectures",
+      "/gcp-architectures",
       "/tools",
       "/labs",
       "/blog",

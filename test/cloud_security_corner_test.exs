@@ -10,6 +10,7 @@ defmodule CloudSecurityCornerTest do
     assert length(Content.blog_posts()) == 1
     assert Content.aws_best_practice_count() >= 1000
     assert Content.azure_best_practice_count() >= 1000
+    assert Content.gcp_best_practice_count() >= 1000
   end
 
   test "renders aws architectures route and loads best practices" do
@@ -33,6 +34,18 @@ defmodule CloudSecurityCornerTest do
     assert conn.resp_body =~ "Obsidian Pele"
     assert conn.resp_body =~ "1,000+ Azure Architecture Best Practices"
     assert conn.resp_body =~ "azure-architectures.js"
+    assert conn.resp_body =~ "pele.global.js"
+  end
+
+  test "renders gcp architectures route and loads best practices" do
+    conn =
+      Plug.Test.conn(:get, "/gcp-architectures")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Obsidian Pele"
+    assert conn.resp_body =~ "1,000+ GCP Architecture Best Practices"
+    assert conn.resp_body =~ "gcp-architectures.js"
     assert conn.resp_body =~ "pele.global.js"
   end
 

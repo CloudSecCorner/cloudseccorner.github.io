@@ -74,6 +74,12 @@ function Nav() {
       badge: "1,000+",
       badgeClass: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30"
     },
+    {
+      path: "/gcp-architectures",
+      label: "GCP Architectures",
+      badge: "1,000+",
+      badgeClass: "bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30"
+    },
     { path: "/tools", label: "Tools" },
     { path: "/labs", label: "Labs" },
     { path: "/blog", label: "Blog" },

@@ -49,6 +49,7 @@ function Footer() {
           <Link to="/tools?category=agentic-ai">Agentic AI security tools</Link>
           <Link to="/aws-architectures">AWS defense architectures</Link>
           <Link to="/azure-architectures">Azure defense architectures</Link>
+          <Link to="/gcp-architectures">GCP defense architectures</Link>
           <Link to="/labs">Hands-on security labs</Link>
           <Link to="/blog">Field notes &amp; guides</Link>
           <Link to="/about">About CloudSecCorner</Link>
