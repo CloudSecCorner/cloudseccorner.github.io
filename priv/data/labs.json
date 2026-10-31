@@ -48,11 +48,11 @@
     {
       "id": "ethical-hacker-easy-way",
       "title": "Ethical Hacker Practical Lab",
-      "description": "Hands-on fundamentals of ethical hacking, penetration testing workflows, vulnerability assessment, and defense validation.",
+      "description": "Hands-on cloud & container penetration testing: OSINT automation, Docker socket escape, hostPID breakout, and OPA admission defense.",
       "category": "Ethical Hacking",
       "path": "/labs/ethical-hacker-easy-way.md",
       "contributors": ["Sangam Biradar"],
-      "tags": ["Ethical Hacking", "Penetration Testing"]
+      "tags": ["Ethical Hacking", "Penetration Testing", "Container Security", "Docker Breakout", "Kubernetes", "OPA Rego"]
     }
   ]
 }
