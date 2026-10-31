@@ -755,6 +755,7 @@ html {
   color: #7c3aed;
   background: linear-gradient(135deg, #7c3aed 0%, #9333ea 45%, #6366f1 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -762,6 +763,7 @@ html {
   color: #caa2f5;
   background: linear-gradient(135deg, #caa2f5 0%, #c084fc 45%, #818cf8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -1598,6 +1600,7 @@ html {
   color: #caa2f5;
   background: linear-gradient(135deg, #caa2f5 0%, #c084fc 45%, #818cf8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -2122,6 +2125,7 @@ html {
   color: #caa2f5;
   background: linear-gradient(135deg, #caa2f5 0%, #c084fc 45%, #818cf8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
