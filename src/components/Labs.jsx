@@ -46,11 +46,11 @@ const fallbackLabsData = [
   {
     id: "Nmap-Practical-Labs",
     title: "NMAP Practical Auditing Labs",
-    description: "Network reconnaissance, service discovery, open port auditing, and banner grabbing techniques for security engineers.",
+    description: "Enterprise network reconnaissance: TCP packet bitmasks, stealth SYN and evasion scans, custom Lua NSE scripting, and kernel firewall defenses.",
     category: "Network Security",
     path: "/labs/NMAP-Practical-Labs.md",
     contributors: ["Sangam Biradar"],
-    tags: ["Network Security", "Reconnaissance", "Auditing"]
+    tags: ["Network Security", "Reconnaissance", "Nmap", "NSE Lua", "Packet Analysis", "iptables"]
   },
   {
     id: "ethical-hacker-easy-way",

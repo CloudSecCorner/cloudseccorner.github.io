@@ -1,365 +1,397 @@
 # Nmap Practical Auditing & Network Reconnaissance Masterclass
 
 > [!IMPORTANT]
-> **Production Security Engineering Lab | Tier 1 Core Audit Track**
-> **Target Audience:** Cloud Security Engineers, Penetration Testers, DevSecOps Architects
-> **Key Protocols & Standards:** RFC 793 (TCP), RFC 768 (UDP), NIST SP 800-115, CIS Network Controls
-> **Authorization Notice:** Only execute network scanning against systems you own or have explicit, documented authorization to test.
+> **Production Network Auditing Lab | Masterclass Offensive & Defensive Track**
+> **Target Audience:** Cloud Security Engineers, Network Architects, Penetration Testers, DevSecOps Leads
+> **Key Protocols & Standards:** RFC 793 (TCP), RFC 768 (UDP), NIST SP 800-115, CIS Network Controls v8
+> **Execution Environment:** Zero-cost local Docker sandbox (isolated bridge network with vulnerable daemon mocks)
+> **Authorization Notice:** Execute network reconnaissance exclusively against systems you own or have explicit, legally binding written authorization to audit.
 
 ---
 
-## 1. Network Reconnaissance & Port Scanning Fundamentals
+## 1. Enterprise Context & Network Reconnaissance Philosophy
 
-Network scanning and service enumeration are foundational disciplines in infrastructure security. Security engineers use these techniques to audit perimeter exposure, verify stateful firewall rules, detect shadow services, and confirm that only sanctioned ports are accessible across VPCs.
+Network reconnaissance and port auditing form the first phase of both adversarial campaigns and internal posture assessments. For defensive security engineers, continuous automated port auditing is critical to eliminate "shadow IT"—unauthorized administrative ports, staging containers accidentally bound to `0.0.0.0`, and unpatched network services.
 
-- **Scanning**: The automated interrogation of network address spaces to discover responsive hosts, open TCP/UDP ports, and active daemon services.
-- **Enumeration**: The granular discovery of daemon banners, software build versions, OS kernel footprints, and misconfigurations on responsive endpoints.
+Nmap (Network Mapper) remains the de facto standard tool for network asset discovery, service fingerprinting, and vulnerability scanning. Rather than running blind, brute-force scans, senior engineers leverage granular packet flag manipulation, custom Lua NSE (Nmap Scripting Engine) scripts, and firewall evasion profiling to evaluate perimeter resilience.
+
+### Reconnaissance & Defensive Lifecycle
+
+```mermaid
+flowchart LR
+    A["1. Discovery<br><b>Host Ping Sweeps</b>"] --> B["2. Layer 4 Interrogation<br><b>SYN / UDP State Mapping</b>"]
+    B --> C["3. Fingerprinting<br><b>Service & OS Extraction</b>"]
+    C --> D["4. Vulnerability Auditing<br><b>Custom Lua NSE</b>"]
+    D --> E["5. Defensive Hardening<br><b>iptables / Suricata Rules</b>"]
+```
 
 ---
 
-## 2. Nmap 10-Phase Scanning Architecture
+## 2. Architecture Blueprint & Scan Topologies
 
-Nmap (Network Mapper) operates across an optimized, multi-phase execution pipeline. Understanding this pipeline allows security engineers to optimize scan speed, control packet rates, and avoid triggering false alarms on intrusion detection systems.
+The blueprint below models an enterprise multi-tier network perimeter under audit from an internal auditing node, traversing stateful packet inspection firewalls to reach isolated containerized services and an emulated cloud metadata daemon:
 
 ```architecture
 architecture-beta
-  service nmap(terminal)[Nmap Security Scanner CLI]
-  group target(cloud)[Target Enterprise Network]
-  service fw(firewall)[Perimeter Stateful Firewall] in target
-  service web(server)[Public HTTPS Web Server] in target
-  service ssh(lock)[Bastion SSH Server] in target
-  service db(database)[Internal Database Server] in target
+  group scanner(terminal)[Auditing Security Station]
+  service nmap_cli(terminal)[Nmap Engine CLI] in scanner
 
-  nmap:R -- L:fw
-  fw:R -- L:web
-  fw:B -- T:ssh
-  web:R -- L:db
+  group perimeter(cloud)[Trust Boundary 1: Perimeter Edge]
+  service fw(firewall)[Stateful Linux Firewall] in perimeter
+  service ids(detector)[Suricata NIDS Sensor] in perimeter
+
+  group dmz(server)[Trust Boundary 2: Audited Services]
+  service web_svc(server)[Nginx Ingress :80/:443] in dmz
+  service ssh_svc(lock)[SSH Bastion Daemon :2222] in dmz
+  service db_svc(database)[PostgreSQL Server :5432] in dmz
+  service metadata_svc(cloud)[Cloud Metadata Daemon :8080] in dmz
+
+  nmap_cli:R -- L:fw
+  fw:B -- T:ids
+  fw:R -- L:web_svc
+  fw:B -- T:ssh_svc
+  web_svc:R -- L:db_svc
+  web_svc:B -- T:metadata_svc
 ```
 
-### Scan Phases Workflow
-
-```mermaid
-flowchart TD
-  P1[1. Target Enumeration DNS/CIDR] --> P2[2. Host Discovery Ping Sweep]
-  P2 --> P3[3. Reverse-DNS Resolution]
-  P3 --> P4[4. Port Scanning SYN/Connect]
-  P4 --> P5[5. Version Detection -sV]
-  P5 --> P6[6. OS Detection -O]
-  P6 --> P7[7. Traceroute Routing]
-  P7 --> P8[8. NSE Script Scanning -sC]
-  P8 --> P9[9. Output & Reporting]
-```
-
-### Execution Pipeline Breakdown
-
-1. **Script Pre-scanning**: Executes initialization NSE scripts that run once per session (e.g., broadcast discovery, DHCP queries) prior to host interrogation.
-2. **Target Enumeration**: Translates target arguments (hostnames, IP ranges, CIDR subnets like `10.0.0.0/16`) into a structured list of IPv4 and IPv6 target addresses.
-3. **Host Discovery (Ping Sweep)**: Sends ARP, ICMP Echo, and TCP/UDP SYN probes to identify live systems and eliminate inactive IP addresses from subsequent compute-heavy phases.
-4. **Reverse-DNS Resolution**: Resolves PTR records for discovered live hosts to surface domain names and identify server roles (e.g., `bastion-01.corp.internal`).
-5. **Port Scanning**: Transmits targeted Layer 4 probes (TCP SYN, ACK, FIN, or UDP) to categorize destination ports as `open`, `closed`, or `filtered`.
-6. **Version Detection (`-sV`)**: Interrogates open ports with protocol-specific probes and matches daemon responses against thousands of known service signatures.
-7. **OS Detection (`-O`)**: Examines TCP ISN (Initial Sequence Number) predictability, TCP options, and IP header behavior to fingerprint the target OS kernel.
-8. **Traceroute**: Uses multi-packet probe techniques to trace IP routing hops and network latency from scanner to target.
-9. **Script Scanning (`-sC`)**: Executes Nmap Scripting Engine (NSE) automation against identified services for vulnerability auditing, TLS cipher checks, and configuration extraction.
-10. **Output & Reporting**: Formats collected scan intelligence into human-readable text, interactive XML, or grepable output formats.
-
----
-
-## 3. TCP Three-Way Handshake & Scan Mechanics
-
-TCP port scanning leverages the deterministic mechanics of the RFC 793 connection establishment sequence:
+### TCP Three-Way Handshake vs. SYN Half-Open Scan
 
 ```mermaid
 sequenceDiagram
-  autonumber
-  actor Scanner as Nmap Scanner
-  participant Target as Target Port 443
+    autonumber
+    participant Scanner as Nmap Scanner Node
+    participant TargetOpen as Target Host (Port 80 OPEN)
+    participant TargetClosed as Target Host (Port 443 CLOSED)
+    participant Firewall as Stateful Firewall (FILTERED)
 
-  Note over Scanner,Target: Standard TCP Connect Handshake (-sT)
-  Scanner->>Target: TCP SYN
-  Target-->>Scanner: TCP SYN/ACK (Port Open)
-  Scanner->>Target: TCP ACK (Connection Established)
-  Scanner->>Target: TCP RST (Disconnect)
+    Note over Scanner,TargetOpen: 1. Full Connect Scan (-sT)
+    Scanner->>TargetOpen: TCP SYN (Seq=X)
+    TargetOpen-->>Scanner: TCP SYN-ACK (Seq=Y, Ack=X+1)
+    Scanner->>TargetOpen: TCP ACK (Seq=X+1, Ack=Y+1)
+    Scanner->>TargetOpen: TCP RST-ACK (Clean Teardown)
 
-  Note over Scanner,Target: SYN Stealth Scan (-sS)
-  Scanner->>Target: TCP SYN
-  Target-->>Scanner: TCP SYN/ACK (Port Open)
-  Scanner->>Target: TCP RST (Half-Open Teardown - Not Logged by App)
+    Note over Scanner,TargetOpen: 2. Stealth SYN Half-Open Scan (-sS)
+    Scanner->>TargetOpen: TCP SYN (Seq=X)
+    TargetOpen-->>Scanner: TCP SYN-ACK (Seq=Y, Ack=X+1)
+    Scanner->>TargetOpen: TCP RST (Connection Aborted before OS socket opens)
+
+    Note over Scanner,TargetClosed: 3. Interrogating Closed Port
+    Scanner->>TargetClosed: TCP SYN (Seq=X)
+    TargetClosed-->>Scanner: TCP RST-ACK (Port Rejected)
+
+    Note over Scanner,Firewall: 4. Interrogating Filtered Port (Firewall Drop)
+    Scanner->>Firewall: TCP SYN (Seq=X)
+    Firewall--xScanner: Packet Dropped (No Response / Timeout)
 ```
 
-### The RFC 793 Connection Mechanics
-1. **TCP Port Basics**: Layer 4 ports identify specific listening processes. IP addresses route packets to the host, while port numbers (0–65535) direct datagrams to the correct socket.
-2. **The 3-Way Handshake**:
-   - Client sends **SYN** (Synchronize sequence numbers).
-   - Server responds with **SYN/ACK** (Synchronize and Acknowledge) if listening, or **RST** (Reset) if closed.
-   - Client returns **ACK** to establish the stateful connection.
+---
+
+## 3. Deep Technical Foundations: Packet Bitmasks & Scan Mechanics
+
+### 1. TCP Header Control Bits (RFC 793)
+
+Every TCP segment contains an 8-bit flag byte in its header (or 9-bit with Nonce):
+- **URG** (0x20): Urgent Pointer field significant.
+- **ACK** (0x10): Acknowledgment field significant.
+- **PSH** (0x08): Push function (bypass buffer, deliver immediately to application).
+- **RST** (0x04): Reset connection.
+- **SYN** (0x02): Synchronize sequence numbers.
+- **FIN** (0x01): No more data from sender.
+
+### 2. Scan Type Mechanics & RFC Compliance
+
+| Scan Type | Flag Bitmask | Target OPEN Port Behavior | Target CLOSED Port Behavior | Target FILTERED Port Behavior | Use Case / Notes |
+|---|---|---|---|---|---|
+| **TCP SYN (`-sS`)** | `SYN` (0x02) | Target responds `SYN-ACK`. Scanner sends `RST`. | Target responds `RST-ACK`. | No response (timeout) or ICMP type 3 code 1,2,3,9,10,13. | Default stealth scan. Never creates full socket connection. |
+| **TCP Connect (`-sT`)** | Full Handshake | Completes 3-way handshake via `connect()` syscall. | OS returns `ECONNREFUSED`. | OS returns `ETIMEDOUT`. | Unprivileged users (no raw socket root access required). |
+| **TCP FIN (`-sF`)** | `FIN` (0x01) | Packet quietly dropped (No response). | Target responds `RST-ACK`. | No response or ICMP unreachable. | Bypasses simple stateless SYN-filtering firewalls. |
+| **TCP NULL (`-sN`)** | `None` (0x00) | Packet quietly dropped (No response). | Target responds `RST-ACK`. | No response or ICMP unreachable. | Exploits RFC 793 page 65 edge case; fails on Windows hosts. |
+| **TCP XMAS (`-sX`)** | `FIN+PSH+URG` (0x29) | Packet quietly dropped (No response). | Target responds `RST-ACK`. | No response or ICMP unreachable. | Lit up "like a Christmas tree". Bypasses naive packet filters. |
+| **TCP ACK (`-sA`)** | `ACK` (0x10) | Target responds `RST`. | Target responds `RST`. | No response (timeout). | **Firewall mapping scan**: Does not determine open/closed; determines stateful filtering rules. |
+| **Idle / Zombie (`-sI`)** | Side-Channel | Indirect IP ID increment on Zombie host. | IP ID unchanged on Zombie host. | Zombie IP ID unchanged. | True blind anonymous port scan exploiting predictable IP ID sequences. |
 
 ---
 
-## 4. Full Connect (`-sT`) vs. SYN Stealth (`-sS`) Audit Comparison
+## 4. Hands-on Laboratory Phases
 
-Nmap provides two primary TCP scanning methods with distinct trade-offs:
+### Phase 1: Local Dockerized Testbed Initialization
 
-| Feature | TCP Connect Scan (`-sT`) | SYN Stealth Scan (`-sS`) |
-|---|---|---|
-| **Handshake State** | Full 3-Way Handshake completed (`SYN` → `SYN/ACK` → `ACK` → `RST`) | Half-open teardown (`SYN` → `SYN/ACK` → immediate `RST`) |
-| **Privileges Required** | Standard user (Uses Berkeley socket `connect()` system call) | Root / Administrator (`CAP_NET_RAW` raw packet creation) |
-| **Application Logging** | High (Completed connections trigger application logging) | Low (Half-open connections rarely reach application loggers) |
-| **Network Overhead** | Higher (3-4 packets per port) | Lower (2 packets per responsive port) |
-| **Scan Speed** | Slower (Kernel socket allocation overhead) | Rapid (Direct raw packet assembly) |
-| **Firewall Visibility** | Standard traffic profile | Detected by modern stateful firewalls & IDS/IPS engines |
+We construct an isolated, multi-service Docker Compose network emulating an audited enterprise perimeter:
 
-> [!TIP]
-> Use `-sS` when you have administrator privileges and require high throughput. Fall back to `-sT` when running inside restricted container environments where raw socket creation is denied by seccomp profiles.
+```bash
+# 1. Create dedicated testbed workspace
+mkdir -p ~/nmap-lab-testbed && cd ~/nmap-lab-testbed
 
----
-
-## 5. Setting Up a Dockerized Vulnerable Security Lab
-
-To practice scanning techniques safely without risking production infrastructure, deploy this disposable 4-tier containerized environment:
-
-```yaml
+# 2. Deploy vulnerable target container sandbox with Nginx, SSH mock, and metadata mock
+cat << 'EOF' > docker-compose.yml
 version: '3.8'
 
 services:
-  web-server:
-    image: nginx:alpine
-    container_name: lab-web-server
-    ports:
-      - "80:80"
+  target-host:
+    image: alpine:3.19
+    container_name: nmap-target
     networks:
-      nmap-network:
-        ipv4_address: 172.28.0.2
-
-  ftp-server:
-    image: delfer/alpine-ftp-server
-    container_name: lab-ftp-server
-    environment:
-      - USERS=user:password:1000:1000
+      audit-net:
+        ipv4_address: 172.28.0.10
+    command: >
+      sh -c "
+        apk add --no-cache nginx openssh-server python3 curl &&
+        mkdir -p /run/nginx /var/run/sshd &&
+        ssh-keygen -A &&
+        echo 'Port 2222' >> /etc/ssh/sshd_config &&
+        echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config &&
+        echo 'root:AuditLabPass123!' | chpasswd &&
+        /usr/sbin/sshd &&
+        echo '<h1>Enterprise Ingress Portal</h1>' > /var/lib/nginx/html/index.html &&
+        nginx &&
+        python3 -m http.server 8080 --directory /etc &
+        python3 -c 'import socket, time; s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM); s.bind((\"0.0.0.0\", 5353)); [time.sleep(1) for _ in iter(int, 1)]'
+      "
     ports:
-      - "21:21"
-      - "21000-21010:21000-21010"
-    networks:
-      nmap-network:
-        ipv4_address: 172.28.0.3
-
-  ssh-server:
-    image: linuxserver/openssh-server
-    container_name: lab-ssh-server
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=UTC
-      - PASSWORD_ACCESS=true
-      - USER_PASSWORD=password
-      - USER_NAME=audituser
-    ports:
+      - "8080:80"
       - "2222:2222"
-    networks:
-      nmap-network:
-        ipv4_address: 172.28.0.4
-
-  mysql-server:
-    image: mariadb:latest
-    container_name: lab-db-server
-    environment:
-      - MYSQL_ROOT_PASSWORD=auditing-secret-pass
-    ports:
-      - "3306:3306"
-    networks:
-      nmap-network:
-        ipv4_address: 172.28.0.5
+      - "8888:8080"
 
 networks:
-  nmap-network:
+  audit-net:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.28.0.0/16
+        - subnet: 172.28.0.0/24
+EOF
+
+# 3. Spin up the sandbox network
+docker compose up -d
+
+# 4. Verify target container is healthy and responding
+docker ps --filter "name=nmap-target"
 ```
 
-### Launching the Isolated Lab
-
-```bash
-# 1. Start the containers in the background
-docker-compose -f docker-compose.lab.yml up -d
-
-# 2. Verify all 4 containers are healthy and running
-docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
-```
-
----
-
-## 6. Hands-On Scanning & Port State Classification
-
-### The Three Core Port States
-
-Nmap categorizes scanned destination ports into clear state classifications:
-
-- **Open**: An active service is accepting incoming connections on this port.
-- **Closed**: The probe packet reached the host, but the OS returned a TCP RST packet indicating no daemon is listening.
-- **Filtered**: Probes were dropped or ICMP unreachable errors were received, indicating stateful packet inspection or a firewall block.
-
-### Executing Target Scans Against Lab Services
-
-```bash
-# Audit specific container service ports
-nmap -sT -Pn -p 80 172.28.0.2          # Nginx Web Server
-nmap -sT -Pn -p 21,21000-21010 172.28.0.3  # FTP Server
-nmap -sT -Pn -p 2222 172.28.0.4        # SSH Server
-nmap -sT -Pn -p 3306 172.28.0.5        # MariaDB Database
-```
-
-### Consolidated Multi-Port Audit
-
-```bash
-nmap -sT -Pn -p 21,80,2222,3306,21000-21010 127.0.0.1
-```
-
+*Expected Output:*
 ```text
-Starting Nmap 7.95 ( https://nmap.org ) at 2026-10-31 04:00 UTC
-Nmap scan report for localhost (127.0.0.1)
-Host is up (0.00032s latency).
-
-PORT      STATE SERVICE
-21/tcp    open  ftp
-80/tcp    open  http
-2222/tcp  open  ssh
-3306/tcp  open  mysql
-21000/tcp open  irtrans
-21001/tcp open  unknown
-21002/tcp open  unknown
-21010/tcp open  notezilla-lan
-
-Nmap done: 1 IP address (1 host up) scanned in 0.03 seconds
-```
-
-### Executing SYN Stealth Scans (`-sS`)
-
-```bash
-# SYN scan with port specification (requires sudo / raw socket capabilities)
-sudo nmap -sS -Pn -p 80,443 127.0.0.1
-```
-
-```text
-Starting Nmap 7.95 ( https://nmap.org ) at 2026-10-31 04:04 UTC
-Nmap scan report for localhost (127.0.0.1)
-Host is up (0.000089s latency).
-
-PORT    STATE  SERVICE
-80/tcp  open   http
-443/tcp closed https
-
-Nmap done: 1 IP address (1 host up) scanned in 0.02 seconds
+CONTAINER ID   IMAGE         COMMAND                  STATUS         PORTS
+a1b2c3d4e5f6   alpine:3.19   "sh -c 'apk add --no…"   Up 2 seconds   0.0.0.0:2222->2222/tcp, ...
 ```
 
 ---
 
-## 7. Advanced UDP Scanning & Firewall Evasion Techniques
+### Phase 2: Host Discovery & Advanced Port Scanning
 
-### Auditing UDP Services (`-sU`)
-
-While most web applications run over TCP, critical infrastructure services rely on UDP (DNS port 53, SNMP ports 161/162, DHCP ports 67/68, NTP port 123, and WireGuard VPN port 51820).
-
-> [!WARNING]
-> UDP scanning is inherently slower than TCP. When a UDP packet is sent to a closed port, the OS sends an ICMP Port Unreachable packet. Operating systems rate-limit these ICMP error responses (e.g., Linux limits them to 1 per second), causing full-range UDP sweeps to take significant time.
+Execute precise TCP SYN half-open, Connect, and UDP interrogations against the target:
 
 ```bash
-# Target common UDP infrastructure services
-sudo nmap -sU -p 53,123,161,51820 127.0.0.1
+# 1. Host Discovery without port scanning (Fast Ping Sweep)
+nmap -sn 172.28.0.10
+
+# 2. Stealth SYN scan targeting common ports
+sudo nmap -sS -p 2222,80,8080,5353 -T4 172.28.0.10
+
+# 3. Comprehensive service and version fingerprinting (-sV)
+sudo nmap -sS -sV -p 2222,80,8080 172.28.0.10
 ```
 
-### Packet Fragmentation & MTU Manipulation (`-f`, `--mtu`)
-
-To audit whether perimeter firewalls and intrusion prevention systems reassemble fragmented IP datagrams, security engineers test packet splitting:
-
-```bash
-# Split probe packets into 8-byte fragments
-sudo nmap -f 127.0.0.1
-
-# Enforce custom MTU boundary (must be multiple of 8)
-sudo nmap --mtu 24 127.0.0.1
-```
-
-### Decoy Scanning (`-D`)
-
-To mask the origin of a scan in an authorized audit, decoy addresses can be interleaved with genuine probe packets:
-
-```bash
-# Send probes interleaved with decoy IPs (ME designates scanner position)
-sudo nmap -D 192.168.1.100,192.168.1.101,ME,192.168.1.102 127.0.0.1
-```
-
----
-
-## 8. Host Discovery & Service Version Fingerprinting
-
-### Ping Sweep & Host Discovery Options
-
-```bash
-# Host discovery only - disable port scanning (-sn)
-sudo nmap -sn 172.28.0.0/24
-
-# Disable host discovery - treat all target hosts as live (-Pn)
-nmap -Pn -p 80,443 172.28.0.2
-```
-
-### OS Kernel & Service Version Detection (`-sV`, `-O`)
-
-```bash
-# Service version detection with aggressive banner probing
-sudo nmap -sV --version-intensity 7 -p 21,80,2222,3306 127.0.0.1
-```
-
+*Expected Terminal Output:*
 ```text
 PORT     STATE SERVICE VERSION
-21/tcp   open  ftp     vsftpd 2.0.8 or later
-80/tcp   open  http    nginx 1.27.4
-2222/tcp open  ssh     OpenSSH 9.9 (protocol 2.0)
-3306/tcp open  mysql   MariaDB 11.7.2
-```
-
-```bash
-# Operating System fingerprinting
-sudo nmap -O --osscan-guess 127.0.0.1
+80/tcp   open  http    nginx 1.24.0
+2222/tcp open  ssh     OpenSSH 9.6_p1-r0 (protocol 2.0)
+8080/tcp open  http    SimpleHTTP/0.6 Python/3.11.8
 ```
 
 ---
 
-## 9. Performance Tuning & Timing Templates (`-T0` to `-T5`)
+### Phase 3: Firewall Filtering & Inverse Scans (FIN, NULL, XMAS)
 
-Nmap includes 6 predefined timing templates to modulate probe intervals, timeouts, and parallel socket limits:
-
-| Template | Name | Use Case | Behavior & Timing |
-|---|---|---|---|
-| `-T0` | **Paranoid** | IDS/IPS evasion | Probes are serialized with 5-minute pauses between packets |
-| `-T1` | **Sneaky** | Sensitive networks | Probes paused for 15 seconds |
-| `-T2` | **Polite** | Bandwidth conservation | Slows scan down to consume minimal bandwidth |
-| `-T3` | **Normal** | Default setting | Standard dynamic timing based on measured network latency |
-| `-T4` | **Aggressive** | Modern cloud VPCs | Shorter timeouts, faster parallel sweeps; recommended for reliable networks |
-| `-T5` | **Insane** | High-speed local networks | Extremely aggressive timeouts; risks dropping packets on congested links |
+Audit stateless firewall rules and verify RFC 793 inverse behavior:
 
 ```bash
-# Recommended production auditing command: fast, thorough, and structured
-sudo nmap -sS -sV -O -T4 --top-ports 100 -oA audit-report-$(date +%F) 172.28.0.0/24
+# 1. TCP FIN scan
+sudo nmap -sF -p 80,443,2222 172.28.0.10
+
+# 2. TCP NULL scan (Zero flags set)
+sudo nmap -sN -p 80,443,2222 172.28.0.10
+
+# 3. TCP XMAS scan (FIN+PSH+URG set)
+sudo nmap -sX -p 80,443,2222 172.28.0.10
+
+# 4. TCP ACK scan to map stateful firewall rules
+sudo nmap -sA -p 80,443,2222 172.28.0.10
+```
+
+*Expected Terminal Output for ACK Scan:*
+```text
+PORT     STATE      SERVICE
+80/tcp   unfiltered http
+443/tcp  unfiltered https
+2222/tcp unfiltered ssh
+```
+> [!NOTE]
+> An `unfiltered` state in an ACK scan confirms that the firewall passed the packet through to the host (which returned `RST`), proving that no stateful drop rule intervened.
+
+---
+
+### Phase 4: IDS Evasion & Timing Profiling
+
+Security engineers test whether network monitoring solutions (Suricata, AWS GuardDuty) catch evasive probe techniques:
+
+```bash
+# 1. MTU Fragmentation: Split probe packets into 8-byte MTU fragments
+sudo nmap -sS -p 80,2222 --mtu 24 172.28.0.10
+
+# 2. Decoy Generation (-D): Interleave real scans with dummy IP addresses
+sudo nmap -sS -p 80,2222 -D 10.0.0.1,10.0.0.2,ME,10.0.0.3 172.28.0.10
+
+# 3. Data Padding: Append random payload bytes to bypass signatures looking for 0-byte SYN packets
+sudo nmap -sS -p 80,2222 --data-length 32 172.28.0.10
+
+# 4. Source Port Spoofing: Forge source port to mimic DNS (port 53) to bypass bad inbound ACLs
+sudo nmap -sS -p 80,2222 --source-port 53 172.28.0.10
 ```
 
 ---
 
-## 10. Enterprise Detection Rules & Defense Recommendations
+### Phase 5: Custom Lua NSE Scripting for Cloud Metadata Auditing
 
-To protect production cloud workloads from unauthorized reconnaissance, implement deterministic firewall rules and network intrusion detection signatures:
+The Nmap Scripting Engine (NSE) allows automating complex multi-step audits in Lua. In cloud environments, exposing metadata endpoints (like AWS IMDS or local microservice metadata) leads directly to credential exfiltration.
 
-### Suricata / Snort IDS Detection Rule
+We author a custom NSE script `http-cloud-metadata.nse` to automatically audit HTTP endpoints for exposed metadata:
+
+```bash
+cat << 'EOF' > http-cloud-metadata.nse
+local http = require "http"
+local shortport = require "shortport"
+local stdnse = require "stdnse"
+
+description = [[
+Audits open HTTP services for exposed cloud metadata and configuration endpoints
+(e.g., IMDS /latest/meta-data/, /env, /actuator/env, and system passwd leaks).
+]]
+
+author = "CloudSecCorner Engineering"
+license = "Same as Nmap--See https://nmap.org/book/man-legal.html"
+categories = {"vuln", "discovery", "safe"}
+
+-- Rule: Run against any HTTP port (80, 8080, 8888, 5000, 3000)
+portrule = shortport.http
+
+action = function(host, port)
+    local output = {}
+    local sensitive_paths = {
+        "/passwd",
+        "/latest/meta-data/",
+        "/env",
+        "/actuator/health",
+        "/metrics"
+    }
+
+    for _, path in ipairs(sensitive_paths) do
+        local response = http.get(host, port, path)
+        if response and response.status == 200 then
+            table.insert(output, string.format("VULNERABLE: Exposed endpoint '%s' returned HTTP 200 (Length: %d bytes)", path, string.len(response.body or "")))
+        end
+    end
+
+    if #output > 0 then
+        return stdnse.format_output(true, output)
+    end
+    return nil
+end
+EOF
+```
+
+#### Executing the Custom NSE Script
+
+```bash
+# Execute custom NSE script against the target container
+nmap -p 80,8080 --script ./http-cloud-metadata.nse 172.28.0.10
+```
+
+*Expected Terminal Output:*
+```text
+PORT     STATE SERVICE
+80/tcp   open  http
+8080/tcp open  http-proxy
+| http-cloud-metadata: 
+|   VULNERABLE: Exposed endpoint '/passwd' returned HTTP 200 (Length: 1042 bytes)
+|_  VULNERABLE: Exposed endpoint '/metrics' returned HTTP 200 (Length: 512 bytes)
+```
+
+---
+
+## 5. Policy as Code & Defensive Automation
+
+### 1. Linux Kernel `iptables` & `nftables` Rate Limiting
+
+To actively neutralize port reconnaissance, deploy rate-limiting and connection-tracking rules on Linux edge gateways:
+
+```bash
+cat << 'EOF' > setup_firewall_defense.sh
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Deploying production kernel port-scan defenses via iptables..."
+
+# 1. Create a dedicated chain for port-scan detection
+iptables -N PORT_SCAN_DETECT 2>/dev/null || true
+iptables -F PORT_SCAN_DETECT
+
+# 2. Log and drop rapid SYN packets from any single IP exceeding 20 connections in 5 seconds
+iptables -A PORT_SCAN_DETECT -m recent --set --name SCANNER --rsource
+iptables -A PORT_SCAN_DETECT -m recent --update --seconds 5 --hitcount 20 --name SCANNER --rsource -j LOG --log-prefix "[PORT_SCAN_BLOCKED]: "
+iptables -A PORT_SCAN_DETECT -m recent --update --seconds 5 --hitcount 20 --name SCANNER --rsource -j DROP
+
+# 3. Drop invalid TCP flag combinations (NULL, XMAS, FIN scans)
+iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP -m comment --comment "Drop NULL scans"
+iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP -m comment --comment "Drop XMAS scans"
+iptables -A INPUT -p tcp --tcp-flags ALL FIN,PSH,URG -j DROP -m comment --comment "Drop FIN/PSH/URG scans"
+iptables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP -m comment --comment "Drop SYN-FIN scans"
+
+# 4. Route new incoming TCP connections through the rate-limiting chain
+iptables -A INPUT -p tcp --syn -m state --state NEW -j PORT_SCAN_DETECT
+
+echo "Firewall rules applied successfully."
+EOF
+
+chmod +x setup_firewall_defense.sh
+```
+
+### 2. Suricata / Snort Intrusion Detection Signatures
 
 ```text
-# Detect high-volume TCP SYN scanning across common ports
-alert tcp any any -> $HOME_NET any (msg:"SECURITY-CORNER: Rapid TCP SYN Port Scan Detected"; \
-    flags:S; threshold:type threshold, track by_src, count 30, seconds 5; \
-    classtype:attempted-recon; sid:1000001; rev:1;)
+# Rule: Detect high-velocity port scanning (>30 SYN packets across ports within 5 seconds)
+alert tcp any any -> $HOME_NET any ( \
+    msg:"CLOUDAUDIT: High-Velocity TCP SYN Scan Detected"; \
+    flags:S; \
+    threshold:type threshold, track by_src, count 30, seconds 5; \
+    classtype:attempted-recon; \
+    sid:2000001; rev:1; \
+)
+
+# Rule: Detect TCP NULL scan (zero flags set)
+alert tcp any any -> $HOME_NET any ( \
+    msg:"CLOUDAUDIT: Evasive TCP NULL Scan Detected"; \
+    flags:0; \
+    classtype:attempted-recon; \
+    sid:2000002; rev:1; \
+)
 ```
 
-### Cloud Security Architecture Best Practices
-1. **Default-Deny Security Groups**: Never expose database (`3306`), SSH (`22`), or FTP (`21`) directly to `0.0.0.0/0`.
-2. **Private Subnets & Bastion Gateways**: Place all application workloads and data stores in isolated private VPC subnets with NAT gateways for egress.
-3. **AWS GuardDuty / Azure Defender**: Enable continuous VPC flow-log analysis to automatically detect reconnaissance scans and unauthorized probing.
+---
+
+## 6. Hardening Checklist & Verification Matrix
+
+| Audit Target | Compliance Standard | Verification Command | Expected Hardening Result |
+|---|---|---|---|
+| **Admin Ports (SSH)** | CIS Controls 4.1 | `nmap -p 22,2222 172.28.0.10` | Port must be `filtered` from external untrusted subnets. |
+| **Cleartext Services** | NIST SP 800-52 | `nmap -p 21,23,80 172.28.0.10` | Insecure protocols (Telnet, FTP, HTTP unencrypted) blocked. |
+| **Evasive Scans** | CIS Network Rules | `sudo nmap -sN -p 80 172.28.0.10` | Kernel silently drops without emitting unmetered RSTs. |
+| **Cloud IMDS Protection** | AWS/GCP GuardDuty | `curl -s -m 2 http://169.254.169.254/latest/meta-data/` | HTTP 401 Unauthorized (IMDSv2 enforced). |
+| **Rate Limiting** | DDoS Resilience | `sudo nmap -T5 -p 1-1000 172.28.0.10` | Rate limiter throttles scanner after 20 packets. |
+
+### Post-Lab Cleanup
+
+```bash
+# Tear down local testbed containers and networks
+cd ~/nmap-lab-testbed && docker compose down -v
+rm -rf ~/nmap-lab-testbed
+```
