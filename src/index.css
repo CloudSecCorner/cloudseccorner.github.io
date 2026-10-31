@@ -4,33 +4,33 @@
 
 @layer base {
 :root {
-    --background: 240 10% 3.9%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
  
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
  
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
  
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
  
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
  
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
  
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262.1 83.3% 57.8%;
  
     --radius: 0.5rem;
     
@@ -693,6 +693,12 @@ html {
 .kube-home-hero {
   position: relative;
   overflow: hidden;
+  background-color: #f8fafc;
+  color: #0f172a;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .kube-home-hero {
   background-color: #171221;
   color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -703,14 +709,21 @@ html {
   position: absolute;
   inset: 0;
   opacity: 0.65;
-  background-image: radial-gradient(circle at 82% 20%, rgba(168, 85, 247, 0.28), transparent 45%),
-                    radial-gradient(circle at 15% 80%, rgba(99, 102, 241, 0.22), transparent 45%),
-                    linear-gradient(rgba(202, 162, 245, 0.08) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(202, 162, 245, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(circle at 82% 20%, rgba(168, 85, 247, 0.14), transparent 45%),
+                    radial-gradient(circle at 15% 80%, rgba(99, 102, 241, 0.12), transparent 45%),
+                    linear-gradient(rgba(147, 51, 234, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(147, 51, 234, 0.05) 1px, transparent 1px);
   background-size: auto, auto, 48px 48px, 48px 48px;
   -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent);
   mask-image: linear-gradient(to bottom, black 75%, transparent);
   pointer-events: none;
+}
+
+.dark .kube-home-hero:before {
+  background-image: radial-gradient(circle at 82% 20%, rgba(168, 85, 247, 0.28), transparent 45%),
+                    radial-gradient(circle at 15% 80%, rgba(99, 102, 241, 0.22), transparent 45%),
+                    linear-gradient(rgba(202, 162, 245, 0.08) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(202, 162, 245, 0.08) 1px, transparent 1px);
 }
 
 .kube-home-copy {
@@ -725,6 +738,10 @@ html {
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.025em;
+  color: #0f172a;
+}
+
+.dark .kube-home-copy h1 {
   color: #ffffff;
 }
 
@@ -735,6 +752,13 @@ html {
 }
 
 .kube-home-copy h1 span {
+  color: #7c3aed;
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 45%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .kube-home-copy h1 span {
   color: #caa2f5;
   background: linear-gradient(135deg, #caa2f5 0%, #c084fc 45%, #818cf8 100%);
   -webkit-background-clip: text;
@@ -746,6 +770,10 @@ html {
   max-width: 40rem;
   font-size: 1.15rem;
   line-height: 1.7;
+  color: #475569;
+}
+
+.dark .kube-home-copy > p:not(.kube-kicker) {
   color: #c9cdd4;
 }
 

@@ -20,6 +20,17 @@ function Nav() {
 
   const location = useLocation();
 
+  // Sync document root class with theme state
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  }, [isDark]);
+
   // Close mobile menu on route change
   useEffect(() => {
     setIsMenuOpen(false);

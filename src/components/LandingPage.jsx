@@ -172,31 +172,31 @@ function LandingPage() {
       </section>
 
       {/* Domain Quick Navigation Pills */}
-      <section className="border-y border-brand-gray-700/60 bg-[#161220] py-4 px-4 sm:px-6 lg:px-10">
+      <section className="border-y border-slate-200 dark:border-brand-gray-700/60 bg-slate-50 dark:bg-[#161220] py-4 px-4 sm:px-6 lg:px-10 transition-colors">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-          <div className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
-            <span className="text-purple-400">⚡</span> Explore by Defense Domain:
+          <div className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
+            <span className="text-purple-600 dark:text-purple-400">⚡</span> Explore by Defense Domain:
           </div>
           <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
-            <Link to="/tools?category=agentic-ai" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-purple-950/40 text-purple-200 border border-purple-500/30 hover:bg-purple-800/40 hover:text-white transition">
+            <Link to="/tools?category=agentic-ai" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-purple-100 dark:bg-purple-950/40 text-purple-700 dark:text-purple-200 border border-purple-300 dark:border-purple-500/30 hover:bg-purple-200 dark:hover:bg-purple-800/40 transition">
               <span>🤖</span> Agentic &amp; AI Sec
             </Link>
-            <Link to="/tools?category=cloud-container" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-brand-gray-800/70 text-slate-300 border border-brand-gray-700 hover:border-purple-400 hover:text-white transition">
+            <Link to="/tools?category=cloud-container" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-brand-gray-800/70 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-brand-gray-700 hover:border-purple-400 hover:text-purple-600 dark:hover:text-white transition">
               <span>☁️</span> Cloud &amp; Containers
             </Link>
-            <Link to="/tools?category=identity-access" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-brand-gray-800/70 text-slate-300 border border-brand-gray-700 hover:border-purple-400 hover:text-white transition">
+            <Link to="/tools?category=identity-access" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-brand-gray-800/70 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-brand-gray-700 hover:border-purple-400 hover:text-purple-600 dark:hover:text-white transition">
               <span>🔑</span> Identity &amp; Zero Trust
             </Link>
-            <Link to="/tools?category=app-api" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-brand-gray-800/70 text-slate-300 border border-brand-gray-700 hover:border-purple-400 hover:text-white transition">
+            <Link to="/tools?category=app-api" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-brand-gray-800/70 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-brand-gray-700 hover:border-purple-400 hover:text-purple-600 dark:hover:text-white transition">
               <span>🛡️</span> App &amp; API Security
             </Link>
-            <Link to="/tools?category=devsecops-supplychain" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-brand-gray-800/70 text-slate-300 border border-brand-gray-700 hover:border-purple-400 hover:text-white transition">
+            <Link to="/tools?category=devsecops-supplychain" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-brand-gray-800/70 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-brand-gray-700 hover:border-purple-400 hover:text-purple-600 dark:hover:text-white transition">
               <span>📦</span> Supply Chain &amp; SBOM
             </Link>
-            <Link to="/tools?category=vuln-cve" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-brand-gray-800/70 text-slate-300 border border-brand-gray-700 hover:border-purple-400 hover:text-white transition">
+            <Link to="/tools?category=vuln-cve" className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-brand-gray-800/70 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-brand-gray-700 hover:border-purple-400 hover:text-purple-600 dark:hover:text-white transition">
               <span>🔍</span> Vuln &amp; CVE
             </Link>
-            <Link to="/tools" className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-bold text-purple-300 hover:text-white transition">
+            <Link to="/tools" className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-bold text-purple-600 dark:text-purple-300 hover:underline transition">
               All 11 domains →
             </Link>
           </div>
@@ -204,21 +204,21 @@ function LandingPage() {
       </section>
 
       {/* AWS Best Practices Architecture Banner (Powered by Obsidian Pele) */}
-      <section className="border-b border-brand-gray-700/60 bg-gradient-to-r from-purple-950/60 via-[#1e142e] to-indigo-950/60 py-8 px-4 sm:px-6 lg:px-10">
+      <section className="border-b border-slate-200 dark:border-brand-gray-700/60 bg-gradient-to-r from-purple-50/80 via-white to-indigo-50/80 dark:from-purple-950/60 dark:via-[#1e142e] dark:to-indigo-950/60 py-8 px-4 sm:px-6 lg:px-10 transition-colors">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="flex items-start gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-purple-600/20 border border-purple-500/40 text-2xl text-purple-300 shadow-inner">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-purple-100 dark:bg-purple-600/20 border border-purple-300 dark:border-purple-500/40 text-2xl text-purple-600 dark:text-purple-300 shadow-inner">
               📐
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-extrabold uppercase tracking-widest text-purple-400">AWS Architecture Release</span>
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">1,032 PATTERNS</span>
+                <span className="text-xs font-extrabold uppercase tracking-widest text-purple-600 dark:text-purple-400">AWS Architecture Release</span>
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-300 dark:border-purple-500/30">1,032 PATTERNS</span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
                 1,000+ AWS Architecture Best Practices with Pele, OPA &amp; Terraform
               </h2>
-              <p className="mt-1 text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+              <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
                 Production-grade AWS Well-Architected and CIS Benchmark defensive blueprints. Rendered with Obsidian Pele's lightning-fast SVG engine, backed by executable OPA Rego policies and ready-to-deploy Terraform IaC modules.
               </p>
             </div>
@@ -232,21 +232,21 @@ function LandingPage() {
       </section>
 
       {/* Azure Best Practices Architecture Banner (Powered by Obsidian Pele) */}
-      <section className="border-b border-brand-gray-700/60 bg-gradient-to-r from-blue-950/60 via-[#11192e] to-cyan-950/60 py-8 px-4 sm:px-6 lg:px-10">
+      <section className="border-b border-slate-200 dark:border-brand-gray-700/60 bg-gradient-to-r from-blue-50/80 via-white to-cyan-50/80 dark:from-blue-950/60 dark:via-[#11192e] dark:to-cyan-950/60 py-8 px-4 sm:px-6 lg:px-10 transition-colors">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="flex items-start gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-600/20 border border-blue-500/40 text-2xl text-blue-300 shadow-inner">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-100 dark:bg-blue-600/20 border border-blue-300 dark:border-blue-500/40 text-2xl text-blue-600 dark:text-blue-300 shadow-inner">
               🛡️
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-extrabold uppercase tracking-widest text-blue-400">Azure Architecture Release</span>
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">1,032 PATTERNS</span>
+                <span className="text-xs font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400">Azure Architecture Release</span>
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-500/30">1,032 PATTERNS</span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
                 1,000+ Azure Architecture Best Practices with Pele, OPA &amp; Terraform
               </h2>
-              <p className="mt-1 text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+              <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
                 Comprehensive Microsoft Azure and CIS Azure Benchmark defensive architectures. Deep multi-tier topologies rendered with Obsidian Pele, verified OPA Rego guardrails, and hardened Terraform IaC templates.
               </p>
             </div>
@@ -263,73 +263,73 @@ function LandingPage() {
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto">
         <div className="kube-home-section-heading">
           <div>
-            <p className="kube-label text-purple-400 font-bold tracking-widest text-xs uppercase">Core Architecture Blueprint</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">
+            <p className="kube-label text-purple-600 dark:text-purple-400 font-bold tracking-widest text-xs uppercase">Core Architecture Blueprint</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">
               Four pillars of agentic &amp; cloud defense.
             </h2>
           </div>
-          <p className="text-slate-400 text-sm sm:text-base max-w-xl">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl">
             Autonomous AI workloads can use credentials, invoke cloud APIs, and modify systems. Defense requires end-to-end boundaries from prompt ingestion to cloud execution.
           </p>
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {/* Pillar 1 */}
-          <div className="group relative rounded-2xl border border-brand-gray-700/80 bg-[#211a2e]/60 p-6 transition-all duration-300 hover:border-purple-500/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-950/40">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/30 text-2xl text-purple-300 mb-5 group-hover:scale-110 transition-transform">
+          <div className="group relative rounded-2xl border border-slate-200 dark:border-brand-gray-700/80 bg-white dark:bg-[#211a2e]/60 p-6 shadow-sm dark:shadow-xl transition-all duration-300 hover:border-purple-500/60 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-purple-950/40">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/30 text-2xl text-purple-600 dark:text-purple-300 mb-5 group-hover:scale-110 transition-transform">
               🔑
             </div>
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-400 block mb-1">Pillar 01 · Identity</span>
-            <h3 className="text-lg font-bold text-white mb-2">Scoped Credential Vaults</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 block mb-1">Pillar 01 · Identity</span>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Scoped Credential Vaults</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               Prevent secret exfiltration. Agents never hold raw API credentials; short-lived, just-in-time tokens are injected via proxy gateways with strict role boundaries.
             </p>
-            <div className="mt-4 pt-3 border-t border-brand-gray-700/50 text-[11px] font-semibold text-purple-300">
+            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-brand-gray-700/50 text-[11px] font-semibold text-purple-600 dark:text-purple-300">
               Tools: OneCLI · Cerbos · ToolHive
             </div>
           </div>
 
           {/* Pillar 2 */}
-          <div className="group relative rounded-2xl border border-brand-gray-700/80 bg-[#211a2e]/60 p-6 transition-all duration-300 hover:border-purple-500/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-950/40">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/30 text-2xl text-purple-300 mb-5 group-hover:scale-110 transition-transform">
+          <div className="group relative rounded-2xl border border-slate-200 dark:border-brand-gray-700/80 bg-white dark:bg-[#211a2e]/60 p-6 shadow-sm dark:shadow-xl transition-all duration-300 hover:border-purple-500/60 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-purple-950/40">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/30 text-2xl text-purple-600 dark:text-purple-300 mb-5 group-hover:scale-110 transition-transform">
               🛡️
             </div>
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-400 block mb-1">Pillar 02 · Gateway</span>
-            <h3 className="text-lg font-bold text-white mb-2">MCP &amp; Tool Call Firewalls</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 block mb-1">Pillar 02 · Gateway</span>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">MCP &amp; Tool Call Firewalls</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               Intercept and validate tool manifests, arguments, and responses before execution. Enforce schema boundaries to stop tool poisoning and unauthorized mutations.
             </p>
-            <div className="mt-4 pt-3 border-t border-brand-gray-700/50 text-[11px] font-semibold text-purple-300">
+            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-brand-gray-700/50 text-[11px] font-semibold text-purple-600 dark:text-purple-300">
               Tools: Polaxis MCP · mcp-scan · Adrian
             </div>
           </div>
 
           {/* Pillar 3 */}
-          <div className="group relative rounded-2xl border border-brand-gray-700/80 bg-[#211a2e]/60 p-6 transition-all duration-300 hover:border-purple-500/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-950/40">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/30 text-2xl text-purple-300 mb-5 group-hover:scale-110 transition-transform">
+          <div className="group relative rounded-2xl border border-slate-200 dark:border-brand-gray-700/80 bg-white dark:bg-[#211a2e]/60 p-6 shadow-sm dark:shadow-xl transition-all duration-300 hover:border-purple-500/60 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-purple-950/40">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/30 text-2xl text-purple-600 dark:text-purple-300 mb-5 group-hover:scale-110 transition-transform">
               📦
             </div>
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-400 block mb-1">Pillar 03 · Runtime</span>
-            <h3 className="text-lg font-bold text-white mb-2">MicroVM Sandboxing &amp; TEEs</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 block mb-1">Pillar 03 · Runtime</span>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">MicroVM Sandboxing &amp; TEEs</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               Isolate untrusted code generated by agents inside ephemeral Firecracker microVMs. Run sensitive inference inside attested hardware enclaves (Intel TDX / GPU TEE).
             </p>
-            <div className="mt-4 pt-3 border-t border-brand-gray-700/50 text-[11px] font-semibold text-purple-300">
+            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-brand-gray-700/50 text-[11px] font-semibold text-purple-600 dark:text-purple-300">
               Tools: E2B · microsandbox · OpenPCC
             </div>
           </div>
 
           {/* Pillar 4 */}
-          <div className="group relative rounded-2xl border border-brand-gray-700/80 bg-[#211a2e]/60 p-6 transition-all duration-300 hover:border-purple-500/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-950/40">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/30 text-2xl text-purple-300 mb-5 group-hover:scale-110 transition-transform">
+          <div className="group relative rounded-2xl border border-slate-200 dark:border-brand-gray-700/80 bg-white dark:bg-[#211a2e]/60 p-6 shadow-sm dark:shadow-xl transition-all duration-300 hover:border-purple-500/60 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-purple-950/40">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/30 text-2xl text-purple-600 dark:text-purple-300 mb-5 group-hover:scale-110 transition-transform">
               👁️
             </div>
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-400 block mb-1">Pillar 04 · Assurance</span>
-            <h3 className="text-lg font-bold text-white mb-2">Reasoning Audit &amp; Red Teaming</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 block mb-1">Pillar 04 · Assurance</span>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Reasoning Audit &amp; Red Teaming</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               Capture full execution traces, detect indirect prompt injections, monitor privilege drift, and continuously evaluate multi-agent workflows with automated harnesses.
             </p>
-            <div className="mt-4 pt-3 border-t border-brand-gray-700/50 text-[11px] font-semibold text-purple-300">
+            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-brand-gray-700/50 text-[11px] font-semibold text-purple-600 dark:text-purple-300">
               Tools: Garak · AI-Infra-Guard · Vulnhuntr
             </div>
           </div>
@@ -337,16 +337,16 @@ function LandingPage() {
       </section>
 
       {/* 3. Open Source Tool Spotlight */}
-      <section className="border-t border-brand-gray-700/60 bg-[#161220] py-16 sm:py-20 px-4 sm:px-6 lg:px-10">
+      <section className="border-t border-slate-200 dark:border-brand-gray-700/60 bg-slate-50 dark:bg-[#161220] py-16 sm:py-20 px-4 sm:px-6 lg:px-10 transition-colors">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <p className="kube-label text-purple-400 font-bold tracking-widest text-xs uppercase">Curated Stack Spotlight</p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+              <p className="kube-label text-purple-600 dark:text-purple-400 font-bold tracking-widest text-xs uppercase">Curated Stack Spotlight</p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
                 Open-source tools leading modern defense.
               </h2>
             </div>
-            <Link to="/tools" className="inline-flex items-center gap-1 text-sm font-bold text-purple-300 hover:text-white transition">
+            <Link to="/tools" className="inline-flex items-center gap-1 text-sm font-bold text-purple-600 dark:text-purple-300 hover:underline transition">
               Browse all 37,750+ tools in the directory <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -354,66 +354,66 @@ function LandingPage() {
           {/* Spotlight Grid */}
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {/* Tool 1 */}
-            <div className="rounded-xl border border-brand-gray-700 bg-[#211a2e]/70 p-5 flex flex-col justify-between hover:border-purple-500/50 transition">
+            <div className="rounded-xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-[#211a2e]/70 p-5 flex flex-col justify-between shadow-sm hover:border-purple-500/50 transition">
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">Agentic Vault · Rust</span>
-                  <span className="text-[11px] font-semibold text-slate-400">Open Source</span>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300">Agentic Vault · Rust</span>
+                  <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Open Source</span>
                 </div>
-                <h3 className="text-lg font-bold text-white">OneCLI</h3>
-                <p className="text-xs text-slate-300 mt-2 leading-relaxed">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">OneCLI</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
                   Credential vault for AI agents. Intercepts agent HTTP requests, cloaks raw secrets, and injects AES-256-GCM tokens with scoped access controls and audit logs.
                 </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-brand-gray-700/50 flex items-center justify-between">
-                <a href="https://github.com/onecli/onecli" target="_blank" rel="noreferrer" className="text-xs font-bold text-purple-300 hover:text-white flex items-center gap-1">
+              <div className="mt-4 pt-3 border-t border-slate-100 dark:border-brand-gray-700/50 flex items-center justify-between">
+                <a href="https://github.com/onecli/onecli" target="_blank" rel="noreferrer" className="text-xs font-bold text-purple-600 dark:text-purple-300 hover:underline flex items-center gap-1">
                   GitHub Repo ↗
                 </a>
-                <Link to="/tools?q=onecli" className="text-xs text-slate-400 hover:text-purple-300">
+                <Link to="/tools?q=onecli" className="text-xs text-slate-500 hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-300">
                   View in Catalog →
                 </Link>
               </div>
             </div>
 
             {/* Tool 2 */}
-            <div className="rounded-xl border border-brand-gray-700 bg-[#211a2e]/70 p-5 flex flex-col justify-between hover:border-purple-500/50 transition">
+            <div className="rounded-xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-[#211a2e]/70 p-5 flex flex-col justify-between shadow-sm hover:border-purple-500/50 transition">
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">Agentic Scanner · Python</span>
-                  <span className="text-[11px] font-semibold text-slate-400">Open Source</span>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300">Agentic Scanner · Python</span>
+                  <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Open Source</span>
                 </div>
-                <h3 className="text-lg font-bold text-white">Agentic Radar</h3>
-                <p className="text-xs text-slate-300 mt-2 leading-relaxed">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Agentic Radar</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
                   Security scanner analyzing agentic workflows, visualizing data flows, tools, prompts, and detecting potential security weaknesses and tool exfiltration.
                 </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-brand-gray-700/50 flex items-center justify-between">
-                <a href="https://github.com/splx-ai/agentic-radar" target="_blank" rel="noreferrer" className="text-xs font-bold text-purple-300 hover:text-white flex items-center gap-1">
+              <div className="mt-4 pt-3 border-t border-slate-100 dark:border-brand-gray-700/50 flex items-center justify-between">
+                <a href="https://github.com/splx-ai/agentic-radar" target="_blank" rel="noreferrer" className="text-xs font-bold text-purple-600 dark:text-purple-300 hover:underline flex items-center gap-1">
                   GitHub Repo ↗
                 </a>
-                <Link to="/tools?q=agentic-radar" className="text-xs text-slate-400 hover:text-purple-300">
+                <Link to="/tools?q=agentic-radar" className="text-xs text-slate-500 hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-300">
                   View in Catalog →
                 </Link>
               </div>
             </div>
 
             {/* Tool 3 */}
-            <div className="rounded-xl border border-brand-gray-700 bg-[#211a2e]/70 p-5 flex flex-col justify-between hover:border-purple-500/50 transition">
+            <div className="rounded-xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-[#211a2e]/70 p-5 flex flex-col justify-between shadow-sm hover:border-purple-500/50 transition">
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">Red Team Platform · Go</span>
-                  <span className="text-[11px] font-semibold text-slate-400">Tencent</span>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300">Red Team Platform · Go</span>
+                  <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Tencent</span>
                 </div>
-                <h3 className="text-lg font-bold text-white">AI-Infra-Guard</h3>
-                <p className="text-xs text-slate-300 mt-2 leading-relaxed">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">AI-Infra-Guard</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
                   Full-stack red-teaming platform: scans AI infrastructure across 30+ components (~400 CVEs), evaluates MCP server risks across 9 categories, and tests jailbreaks.
                 </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-brand-gray-700/50 flex items-center justify-between">
-                <a href="https://github.com/Tencent/AI-Infra-Guard" target="_blank" rel="noreferrer" className="text-xs font-bold text-purple-300 hover:text-white flex items-center gap-1">
+              <div className="mt-4 pt-3 border-t border-slate-100 dark:border-brand-gray-700/50 flex items-center justify-between">
+                <a href="https://github.com/Tencent/AI-Infra-Guard" target="_blank" rel="noreferrer" className="text-xs font-bold text-purple-600 dark:text-purple-300 hover:underline flex items-center gap-1">
                   GitHub Repo ↗
                 </a>
-                <Link to="/tools?q=ai-infra-guard" className="text-xs text-slate-400 hover:text-purple-300">
+                <Link to="/tools?q=ai-infra-guard" className="text-xs text-slate-500 hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-300">
                   View in Catalog →
                 </Link>
               </div>
@@ -650,31 +650,31 @@ function LandingPage() {
       </section>
 
       {/* 5. Research & Field Notes Spotlight */}
-      <section className="border-t border-brand-gray-700/60 bg-[#161220] py-16 sm:py-20 px-4 sm:px-6 lg:px-10">
+      <section className="border-t border-slate-200 dark:border-brand-gray-700/60 bg-slate-50 dark:bg-[#161220] py-16 sm:py-20 px-4 sm:px-6 lg:px-10 transition-colors">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7">
-            <p className="kube-label text-purple-400 font-bold tracking-widest text-xs uppercase">Research &amp; Field Notes</p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+            <p className="kube-label text-purple-600 dark:text-purple-400 font-bold tracking-widest text-xs uppercase">Research &amp; Field Notes</p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
               Engineering deep-dives into modern threat vectors.
             </h2>
-            <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
               We analyze real-world exploit mechanics, model isolation frameworks, and the evolving security boundaries required when AI systems are granted tool-execution capabilities.
             </p>
-            <div className="mt-6 p-5 rounded-xl border border-brand-gray-700 bg-[#211a2e]/60">
-              <span className="text-xs font-bold text-purple-300 uppercase tracking-wider block mb-1">Featured Teardown</span>
-              <h3 className="text-base font-bold text-white">
-                <Link to="/blog/Safeguarding-the-AI-Frontier" className="hover:text-purple-300 transition">
+            <div className="mt-6 p-5 rounded-xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-[#211a2e]/60 shadow-sm">
+              <span className="text-xs font-bold text-purple-600 dark:text-purple-300 uppercase tracking-wider block mb-1">Featured Teardown</span>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                <Link to="/blog/Safeguarding-the-AI-Frontier" className="hover:text-purple-600 dark:hover:text-purple-300 transition">
                   Safeguarding the AI Frontier: An In-Depth Analysis of Straiker's Revolutionary Security Solutions ↗
                 </Link>
               </h3>
-              <p className="text-xs text-slate-300 mt-2 leading-relaxed">
+              <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
                 Teardown of runtime guardrails, prompt injection barriers, and autonomous agent monitoring in multi-tenant environments.
               </p>
               <div className="mt-4 flex items-center gap-4 text-xs font-semibold">
-                <Link to="/blog/Safeguarding-the-AI-Frontier" className="text-purple-300 hover:text-white flex items-center gap-1">
+                <Link to="/blog/Safeguarding-the-AI-Frontier" className="text-purple-600 dark:text-purple-300 hover:underline flex items-center gap-1">
                   Read Field Note <span aria-hidden="true">→</span>
                 </Link>
-                <Link to="/blog" className="text-slate-400 hover:text-white">
+                <Link to="/blog" className="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
                   All Field Notes
                 </Link>
               </div>
@@ -683,26 +683,26 @@ function LandingPage() {
 
           {/* Machine-Readable Discovery Callout */}
           <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-brand-gray-700 bg-[#1c162b] p-6 shadow-xl">
+            <div className="rounded-2xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-[#1c162b] p-6 shadow-sm dark:shadow-xl">
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-xl">🤖</span>
-                <h3 className="text-base font-bold text-white">Machine-Readable &amp; LLM-Ready</h3>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">Machine-Readable &amp; LLM-Ready</h3>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed mb-4">
+              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                 CloudSecCorner is designed for human engineers and autonomous agents alike. Discover our public standardized endpoints for model retrieval and automation:
               </p>
               <div className="space-y-2 font-mono text-xs">
-                <div className="flex items-center justify-between p-2.5 rounded bg-black/40 border border-brand-gray-700">
-                  <span className="text-slate-300">/llm.txt</span>
-                  <a href="/llm.txt" target="_blank" rel="noreferrer" className="text-purple-300 hover:text-white font-bold">Standard Index ↗</a>
+                <div className="flex items-center justify-between p-2.5 rounded bg-slate-50 dark:bg-black/40 border border-slate-200 dark:border-brand-gray-700">
+                  <span className="text-slate-700 dark:text-slate-300">/llm.txt</span>
+                  <a href="/llm.txt" target="_blank" rel="noreferrer" className="text-purple-600 dark:text-purple-300 hover:underline font-bold">Standard Index ↗</a>
                 </div>
-                <div className="flex items-center justify-between p-2.5 rounded bg-black/40 border border-brand-gray-700">
-                  <span className="text-slate-300">/sitemap.xml</span>
-                  <a href="/sitemap.xml" target="_blank" rel="noreferrer" className="text-purple-300 hover:text-white font-bold">XML Sitemap ↗</a>
+                <div className="flex items-center justify-between p-2.5 rounded bg-slate-50 dark:bg-black/40 border border-slate-200 dark:border-brand-gray-700">
+                  <span className="text-slate-700 dark:text-slate-300">/sitemap.xml</span>
+                  <a href="/sitemap.xml" target="_blank" rel="noreferrer" className="text-purple-600 dark:text-purple-300 hover:underline font-bold">XML Sitemap ↗</a>
                 </div>
-                <div className="flex items-center justify-between p-2.5 rounded bg-black/40 border border-brand-gray-700">
-                  <span className="text-slate-300">/priv/data/security-entries.json</span>
-                  <span className="text-emerald-400 font-bold">37k+ JSON</span>
+                <div className="flex items-center justify-between p-2.5 rounded bg-slate-50 dark:bg-black/40 border border-slate-200 dark:border-brand-gray-700">
+                  <span className="text-slate-700 dark:text-slate-300">/priv/data/security-entries.json</span>
+                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">37k+ JSON</span>
                 </div>
               </div>
             </div>
