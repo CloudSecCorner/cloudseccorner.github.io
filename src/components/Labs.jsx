@@ -10,20 +10,11 @@ const fallbackLabsData = [
   {
     id: "Agentic-Cloud-Security",
     title: "Agentic Cloud Security Essentials",
-    description: "Threat-model an AI agent with cloud access and design controls for identity, tools, approvals, isolation, observability, and response.",
+    description: "Architect enterprise-grade defenses for autonomous AI agents: Zero-Trust identity brokering, L7 MCP tool firewalls, Firecracker microVM sandboxing, eBPF telemetry, and NIST/ISO/OWASP governance.",
     category: "Agentic Security",
     path: "/labs/agentic-cloud-security.md",
     contributors: ["Sangam Biradar"],
-    tags: ["Cloud Security", "AI Security", "Agentic Defense"]
-  },
-  {
-    id: "Security-Engineering-Fundamentals",
-    title: "Security Engineering Fundamentals",
-    description: "Understand the core principles of security engineering and how to apply them to modern infrastructure and workload boundaries.",
-    category: "Security Engineering",
-    path: "/labs/Security-Engineering-Fundamentals.md",
-    contributors: ["Sangam Biradar"],
-    tags: ["Security Engineering", "Defense In Depth", "Identity"]
+    tags: ["Cloud AI Security", "Agentic Defense", "Zero Trust", "Firecracker", "MCP Firewall", "eBPF", "NIST AI RMF"]
   },
   {
     id: "Zero-Trust-Architecture",
@@ -32,7 +23,7 @@ const fallbackLabsData = [
     category: "Security Engineering",
     path: "/labs/Zero-Trust-Architecture.md",
     contributors: ["Sangam Biradar"],
-    tags: ["Zero Trust", "Cloud Architecture", "IAM"]
+    tags: ["Zero Trust", "Cloud Architecture", "IAM", "Mutual TLS", "SPIFFE"]
   },
   {
     id: "Threat-Modeling",
@@ -41,7 +32,16 @@ const fallbackLabsData = [
     category: "Security Engineering",
     path: "/labs/threat-modeling.md",
     contributors: ["Sangam Biradar"],
-    tags: ["Threat Modeling", "Architecture", "STRIDE"]
+    tags: ["Threat Modeling", "STRIDE", "Architecture", "MITRE ATLAS"]
+  },
+  {
+    id: "Security-Engineering-Fundamentals",
+    title: "Security Engineering Fundamentals",
+    description: "Understand the core principles of security engineering and how to apply them to modern infrastructure and workload boundaries.",
+    category: "Security Engineering",
+    path: "/labs/Security-Engineering-Fundamentals.md",
+    contributors: ["Sangam Biradar"],
+    tags: ["Security Engineering", "Defense In Depth", "Identity", "CIS Benchmarks"]
   },
   {
     id: "Nmap-Practical-Labs",
@@ -63,10 +63,96 @@ const fallbackLabsData = [
   }
 ];
 
+// 4-Tier Cloud AI Security Engineer Career & Learning Roadmap
+const roadmapTiers = [
+  {
+    id: "tier-1",
+    tier: "Tier 1",
+    level: "Foundations & Perimeter",
+    role: "Cloud Security Associate / SRE",
+    badge: "L1 - L2 Track",
+    title: "Cloud & Perimeter Security Fundamentals",
+    summary: "Establish uncompromising infrastructure baseline security. Master identity boundary definitions, network microsegmentation, IMDSv2 protections, and automated CIS Benchmark audit scanning.",
+    topics: [
+      "AWS IAM & Azure Entra ID Least-Privilege Policies",
+      "Network ACLs, Security Groups & Transit Gateway Egress",
+      "Instance Metadata Service Hardening (IMDSv2 Hop Limit = 1)",
+      "Automated CSPM Auditing against CIS Cloud Benchmarks"
+    ],
+    regulations: ["CIS Cloud Benchmarks v3.0", "NIST SP 800-53 (AC/SC)"],
+    primaryLabId: "Security-Engineering-Fundamentals",
+    primaryLabTitle: "Security Engineering Fundamentals",
+    secondaryLabId: "Nmap-Practical-Labs",
+    secondaryLabTitle: "NMAP Practical Auditing Labs"
+  },
+  {
+    id: "tier-2",
+    tier: "Tier 2",
+    level: "Architecture & Verification",
+    role: "Senior Cloud Security Engineer",
+    badge: "L3 Track",
+    title: "Zero-Trust Architecture & Threat Modeling",
+    summary: "Shift from implicit perimeter trust to continuous attestation. Perform rigorous STRIDE and LINDDUN threat modeling on microservices, enforce mTLS, and implement Open Policy Agent (OPA) guardrails.",
+    topics: [
+      "BeyondCorp Zero-Trust Principles (Never Trust, Always Verify)",
+      "STRIDE & Data Flow Threat Modeling for Distributed Systems",
+      "SPIFFE/SPIRE Workload Attestation & Mutual TLS",
+      "Policy-as-Code Guardrails with Open Policy Agent (Rego)"
+    ],
+    regulations: ["NIST SP 800-207 (Zero Trust)", "SOC 2 Type II Security Criteria"],
+    primaryLabId: "Zero-Trust-Architecture",
+    primaryLabTitle: "Zero-Trust Architecture",
+    secondaryLabId: "Threat-Modeling",
+    secondaryLabTitle: "Threat Modeling Practical Guide"
+  },
+  {
+    id: "tier-3",
+    tier: "Tier 3",
+    level: "Agentic Systems & Isolation",
+    role: "Staff Cloud AI Security Engineer (Netflix/Cloudflare Caliber)",
+    badge: "L4 Core Specialist",
+    title: "Agentic AI Defense, MCP Firewalls & MicroVMs",
+    summary: "Architect enterprise defense envelopes for autonomous LLM agents. Implement L7 Model Guardrail Gateways, MCP Tool-Call Firewalls, Down-Scoped JIT Token Brokering, and Firecracker/eBPF runtime isolation.",
+    topics: [
+      "Multi-Tier LLM Gateway & Layer 7 Semantic Inspection",
+      "Model Context Protocol (MCP) Tool-Call Firewall & OPA Validation",
+      "Down-Scoped Just-In-Time (JIT) IAM Token Brokering",
+      "Hardware MicroVM Sandboxing (AWS Firecracker / gVisor runsc)",
+      "eBPF Tetragon Kernel Syscall Interception (Blocking IMDS SSRF)"
+    ],
+    regulations: ["OWASP Top 10 for LLMs / GenAI", "MITRE ATLAS Matrix (AML.T0051, AML.T0054)"],
+    primaryLabId: "Agentic-Cloud-Security",
+    primaryLabTitle: "Agentic Cloud Security & Defense",
+    secondaryLabId: null,
+    secondaryLabTitle: null
+  },
+  {
+    id: "tier-4",
+    tier: "Tier 4",
+    level: "Red Teaming & Governance",
+    role: "Principal AI Security Architect / Governance Lead",
+    badge: "L5 / Principal Track",
+    title: "Autonomous Red Teaming & Global AI Compliance",
+    summary: "Execute continuous adversarial evaluation and cryptographic governance. Automate prompt injection jailbreaks, deploy RAG canary tripwires, enforce WORM audit trails, and ensure multi-framework regulatory alignment.",
+    topics: [
+      "Automated Prompt Injection & Jailbreak Fuzzing (PyRIT / Garak)",
+      "Canary Token Tripwires for RAG Retrieval & Prompt Leakage",
+      "Tamper-Evident WORM Audit Ledgers & OpenTelemetry GenAI Spans",
+      "Cross-Framework Compliance (NIST AI RMF 1.0 & ISO/IEC 42001)"
+    ],
+    regulations: ["NIST AI RMF 1.0 (GOVERN, MAP, MEASURE, MANAGE)", "ISO/IEC 42001:2023", "EU AI Act High-Risk Controls"],
+    primaryLabId: "Agentic-Cloud-Security",
+    primaryLabTitle: "Agentic Security & Compliance",
+    secondaryLabId: "ethical-hacker-easy-way",
+    secondaryLabTitle: "Ethical Hacker Practical Lab"
+  }
+];
+
 // 1. Labs Library Listing Component (matching KubeDaily's labs.html.heex)
 function LabsList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
+  const [activeTierIndex, setActiveTierIndex] = useState(2); // Default to Tier 3 (Agentic AI)
   const [labsData, setLabsData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -122,6 +208,8 @@ function LabsList() {
     return matchesSearch && matchesCategory;
   });
 
+  const activeTier = roadmapTiers[activeTierIndex];
+
   return (
     <>
       {/* KubeDaily Library Header */}
@@ -141,6 +229,184 @@ function LabsList() {
           </div>
         </div>
       </header>
+
+      {/* Cloud AI Security Engineer Career & Learning Roadmap */}
+      <section className="kube-library-container my-10" aria-label="Cloud AI Security Engineer Roadmap">
+        <div className="rounded-2xl border border-slate-200/90 dark:border-[#26203b] bg-white dark:bg-[#13111c] p-6 sm:p-8 shadow-sm">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-100 dark:border-[#26203b]">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-950/40 border border-purple-200/60 dark:border-purple-800/40 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider mb-3">
+                <span className="w-2 h-2 rounded-full bg-purple-600 dark:bg-purple-400 animate-pulse" />
+                Industry Roadmap • Cloudflare &amp; Netflix Engineering Caliber
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                Cloud AI Security Engineer Curriculum
+              </h2>
+              <p className="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl">
+                A progressive 4-tier competency roadmap bridging cloud infrastructure defense, zero-trust attestation, autonomous agent sandboxing, and global AI governance.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span className="inline-block w-2.5 h-2.5 rounded-full bg-purple-600 dark:bg-purple-400" />
+              <span>Interactive Step-by-Step Tracks</span>
+            </div>
+          </div>
+
+          {/* Stepper Tabs */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mt-6">
+            {roadmapTiers.map((tier, idx) => {
+              const isActive = activeTierIndex === idx;
+              return (
+                <button
+                  key={tier.id}
+                  type="button"
+                  onClick={() => setActiveTierIndex(idx)}
+                  className={`text-left p-3.5 sm:p-4 rounded-xl border transition-all duration-200 relative ${
+                    isActive
+                      ? "border-purple-600 dark:border-purple-500 bg-purple-50/70 dark:bg-purple-950/30 shadow-xs"
+                      : "border-slate-200 dark:border-[#26203b] hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/50 dark:bg-[#1a1726]/40"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-1 mb-1.5">
+                    <span className={`text-xs font-bold uppercase tracking-wider ${
+                      isActive ? "text-purple-700 dark:text-purple-300" : "text-slate-500 dark:text-slate-400"
+                    }`}>
+                      {tier.tier}
+                    </span>
+                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
+                      isActive
+                        ? "bg-purple-600 text-white"
+                        : "bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
+                    }`}>
+                      {tier.badge}
+                    </span>
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white line-clamp-1">
+                    {tier.level}
+                  </h3>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">
+                    {tier.role}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Selected Tier Detail Panel */}
+          {activeTier && (
+            <div className="mt-6 rounded-xl border border-slate-200/90 dark:border-[#2e2747] bg-slate-50/60 dark:bg-[#151221] p-5 sm:p-7 shadow-xs">
+              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 pb-5 border-b border-slate-200/80 dark:border-[#26203b]">
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className="px-2.5 py-0.5 rounded-md bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300 text-xs font-bold uppercase tracking-wider">
+                      {activeTier.tier} Focus
+                    </span>
+                    <span className="text-xs font-semibold text-slate-600 dark:text-slate-400">
+                      Target Role: <strong className="text-slate-900 dark:text-slate-200">{activeTier.role}</strong>
+                    </span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                    {activeTier.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
+                    {activeTier.summary}
+                  </p>
+                </div>
+
+                {/* Regulatory Tags */}
+                <div className="flex flex-wrap lg:flex-col lg:items-end gap-1.5 shrink-0">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    Frameworks &amp; Regulations
+                  </span>
+                  {activeTier.regulations.map((reg) => (
+                    <span
+                      key={reg}
+                      className="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40"
+                    >
+                      {reg}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Grid: Competencies vs Applied Labs */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                {/* Left: Competencies & Defense Topologies */}
+                <div>
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-3 flex items-center gap-1.5">
+                    <svg className="w-4 h-4 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Production Defense Competencies
+                  </h4>
+                  <ul className="space-y-2.5">
+                    {activeTier.topics.map((topic, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+                        <span className="w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400 mt-2 shrink-0" />
+                        <span>{topic}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Right: Recommended Labs */}
+                <div className="flex flex-col justify-between rounded-lg bg-white dark:bg-[#1a1728]/70 border border-slate-200/80 dark:border-[#2b243f] p-4 sm:p-5">
+                  <div>
+                    <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2 flex items-center gap-1.5">
+                      <svg className="w-4 h-4 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                      </svg>
+                      Applied Practice Labs
+                    </h4>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mb-4">
+                      Complete these self-paced scenarios in your isolated sandbox to validate this tier's controls:
+                    </p>
+
+                    <div className="space-y-2.5">
+                      <Link
+                        to={`/labs/${activeTier.primaryLabId}`}
+                        className="group flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-[#201c30] border border-purple-200 dark:border-purple-800/50 hover:border-purple-500 transition shadow-xs"
+                      >
+                        <div>
+                          <span className="text-[10px] font-bold uppercase text-purple-600 dark:text-purple-400">
+                            Primary Lab
+                          </span>
+                          <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition">
+                            {activeTier.primaryLabTitle}
+                          </p>
+                        </div>
+                        <span className="text-purple-600 dark:text-purple-400 font-bold text-sm group-hover:translate-x-1 transition-transform">
+                          →
+                        </span>
+                      </Link>
+
+                      {activeTier.secondaryLabId && (
+                        <Link
+                          to={`/labs/${activeTier.secondaryLabId}`}
+                          className="group flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-[#201c30] border border-slate-200 dark:border-[#2b243f] hover:border-purple-500 transition shadow-xs"
+                        >
+                          <div>
+                            <span className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400">
+                              Complementary Track
+                            </span>
+                            <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition">
+                              {activeTier.secondaryLabTitle}
+                            </p>
+                          </div>
+                          <span className="text-slate-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 font-bold text-sm group-hover:translate-x-1 transition-transform">
+                            →
+                          </span>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* KubeDaily Library Section */}
       <section id="lab-library" className="kube-library-container kube-library-section">
