@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { REPOSITORY_URL } from "../utils/socialSharing";
 
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerRef = useRef(null);
   const [bannerDismissed, setBannerDismissed] = useState(() => {
     return sessionStorage.getItem("kube-banner-dismissed") === "true";
   });
@@ -48,6 +49,23 @@ function Nav() {
     }
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMenuOpen]);
+
+  // Close dropdown on click outside header
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isMenuOpen && headerRef.current && !headerRef.current.contains(e.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [isMenuOpen]);
 
@@ -107,8 +125,137 @@ function Nav() {
     { path: "/about", label: "About" }
   ];
 
+  const architectureLinks = [
+    {
+      path: "/aws-architectures",
+      label: "AWS Architectures",
+      sublabel: "1,000+ threat models & IAM controls",
+      badge: "1,000+",
+      badgeClass: "bg-amber-500/15 text-amber-500 dark:text-amber-300 border border-amber-500/30",
+      iconBg: "bg-amber-500/15 text-amber-500 dark:text-amber-300",
+      icon: (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+        </svg>
+      )
+    },
+    {
+      path: "/azure-architectures",
+      label: "Azure Architectures",
+      sublabel: "1,000+ cloud security blueprints",
+      badge: "1,000+",
+      badgeClass: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30",
+      iconBg: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-300",
+      icon: (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      )
+    },
+    {
+      path: "/gcp-architectures",
+      label: "GCP Architectures",
+      sublabel: "1,000+ Google Cloud patterns",
+      badge: "1,000+",
+      badgeClass: "bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30",
+      iconBg: "bg-emerald-500/15 text-emerald-600 dark:text-emerald-300",
+      icon: (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2" />
+          <polyline points="2 17 12 22 22 17" />
+          <polyline points="2 12 12 17 22 12" />
+        </svg>
+      )
+    },
+    {
+      path: "/kspm-architectures",
+      label: "KSPM Kubernetes",
+      sublabel: "1,000+ pod & posture rules",
+      badge: "1,000+",
+      badgeClass: "bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30",
+      iconBg: "bg-blue-500/15 text-blue-600 dark:text-blue-300",
+      icon: (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <circle cx="12" cy="12" r="4" />
+          <line x1="4.93" y1="4.93" x2="9.17" y2="9.17" />
+          <line x1="14.83" y1="9.17" x2="19.07" y2="4.93" />
+          <line x1="14.83" y1="14.83" x2="19.07" y2="19.07" />
+          <line x1="4.93" y1="19.07" x2="9.17" y2="14.83" />
+        </svg>
+      )
+    }
+  ];
+
+  const exploreLinks = [
+    {
+      path: "/",
+      label: "Home",
+      sublabel: "Hub & overview",
+      icon: (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      )
+    },
+    {
+      path: "/tools",
+      label: "Tools",
+      sublabel: "37,000+ security & agentic tools",
+      icon: (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+        </svg>
+      )
+    },
+    {
+      path: "/labs",
+      label: "Labs",
+      sublabel: "Hands-on guided curricula",
+      icon: (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M10 2v7.31L4.17 20.3a2 2 0 0 0 1.7 3.7h12.26a2 2 0 0 0 1.7-3.7L14 9.31V2" />
+          <path d="M8.5 2h7" />
+        </svg>
+      )
+    },
+    {
+      path: "/blog",
+      label: "Blog",
+      sublabel: "Field notes & deep dives",
+      icon: (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+        </svg>
+      )
+    },
+    {
+      path: "/about",
+      label: "About",
+      sublabel: "Mission & contributors",
+      icon: (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="16" x2="12" y2="12" />
+          <line x1="12" y1="8" x2="12.01" y2="8" />
+        </svg>
+      )
+    }
+  ];
+
   return (
     <>
+      {/* Mobile Dropdown Backdrop */}
+      {isMenuOpen && (
+        <div
+          className="kube-dropdown-backdrop"
+          onClick={() => setIsMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Top Pick-up / Announcement Bar */}
       {!bannerDismissed && (
         <div id="pick-up" role="region" aria-label="Announcement">
@@ -133,7 +280,7 @@ function Nav() {
       )}
 
       {/* Main Header */}
-      <header className="kube-site-header">
+      <header ref={headerRef} className="kube-site-header">
         <nav className="kube-header-inner" aria-label="Main navigation">
           {/* Brand */}
           <Link to="/" className="kube-brand" aria-label="Cloud Security Corner Home">
@@ -268,51 +415,113 @@ function Nav() {
         {isMenuOpen && (
           <div
             id="mobile-dropdown-menu"
-            className="kube-mobile-dropdown border-t border-slate-200 dark:border-[#3d4449] bg-white/98 dark:bg-[#1a1f26]/98 backdrop-blur-md px-3 sm:px-4 py-3 space-y-1 shadow-2xl max-h-[calc(100vh-70px)] overflow-y-auto"
+            className="kube-mobile-dropdown border-t border-slate-200 dark:border-[#3d4449] bg-white/98 dark:bg-[#1a1f26]/98 backdrop-blur-xl px-3.5 sm:px-6 py-4 shadow-2xl max-h-[calc(100vh-70px)] overflow-y-auto"
             role="menu"
             aria-label="Navigation menu"
           >
-            <div className="space-y-1">
-              {navLinks.map((item) => {
-                const active = isActive(item.path);
-                return (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold transition min-h-[44px] ${
-                      active
-                        ? "bg-purple-100 text-purple-700 dark:bg-[#44354f] dark:text-[#c4b5fd] font-bold shadow-sm"
-                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#2c333a]"
-                    }`}
-                    role="menuitem"
-                  >
-                    <span>{item.label}</span>
-                    {item.badge && (
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold leading-none ${item.badgeClass}`}>
-                        {item.badge}
-                      </span>
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
+            <div className="max-w-4xl mx-auto space-y-4">
+              <div className="sm:grid sm:grid-cols-2 sm:gap-6 space-y-4 sm:space-y-0">
+                {/* Architecture Blueprints Column */}
+                <div>
+                  <div className="flex items-center justify-between px-3 py-1 mb-1.5">
+                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                      Architecture Catalog
+                    </span>
+                    <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">
+                      4,000+
+                    </span>
+                  </div>
+                  <div className="space-y-1">
+                    {architectureLinks.map((item) => {
+                      const active = isActive(item.path);
+                      return (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          onClick={() => setIsMenuOpen(false)}
+                          className={`flex items-center justify-between px-3 py-2 rounded-xl text-sm transition min-h-[44px] ${
+                            active
+                              ? "bg-purple-100 text-purple-800 dark:bg-[#44354f] dark:text-[#c4b5fd] font-bold shadow-sm"
+                              : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#2c333a]"
+                          }`}
+                          role="menuitem"
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${item.iconBg}`}>
+                              {item.icon}
+                            </span>
+                            <div className="flex flex-col text-left leading-tight min-w-0">
+                              <span className="font-semibold truncate">{item.label}</span>
+                              <span className="text-[10px] text-slate-500 dark:text-slate-400 truncate">{item.sublabel}</span>
+                            </div>
+                          </div>
+                          <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold shrink-0 ml-2 ${item.badgeClass}`}>
+                            {item.badge}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
 
-            <div className="pt-2 border-t border-slate-200 dark:border-[#31373b] mt-2">
-              <a
-                href={REPOSITORY_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#2c333a] min-h-[44px]"
-              >
-                <span className="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                  </svg>
-                  GitHub Organization
-                </span>
-                <span aria-hidden="true">↗</span>
-              </a>
+                {/* Explore & Resources Column */}
+                <div>
+                  <div className="px-3 py-1 mb-1.5">
+                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                      Explore & Resources
+                    </span>
+                  </div>
+                  <div className="space-y-1">
+                    {exploreLinks.map((item) => {
+                      const active = isActive(item.path);
+                      return (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          onClick={() => setIsMenuOpen(false)}
+                          className={`flex items-center justify-between px-3 py-2 rounded-xl text-sm transition min-h-[44px] ${
+                            active
+                              ? "bg-purple-100 text-purple-800 dark:bg-[#44354f] dark:text-[#c4b5fd] font-bold shadow-sm"
+                              : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#2c333a]"
+                          }`}
+                          role="menuitem"
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-[#2c333a] text-slate-600 dark:text-slate-300">
+                              {item.icon}
+                            </span>
+                            <div className="flex flex-col text-left leading-tight min-w-0">
+                              <span className="font-semibold truncate">{item.label}</span>
+                              <span className="text-[10px] text-slate-500 dark:text-slate-400 truncate">{item.sublabel}</span>
+                            </div>
+                          </div>
+                          <span className="text-slate-400 dark:text-slate-500 text-xs">→</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom GitHub Link */}
+              <div className="pt-3 border-t border-slate-200 dark:border-[#31373b]">
+                <a
+                  href={REPOSITORY_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#2c333a] transition min-h-[44px]"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-900 text-white dark:bg-slate-800">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                      </svg>
+                    </span>
+                    <span>Join us on GitHub</span>
+                  </span>
+                  <span className="text-xs text-slate-500 font-mono font-medium">cloudseccorner ↗</span>
+                </a>
+              </div>
             </div>
           </div>
         )}
