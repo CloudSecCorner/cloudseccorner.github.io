@@ -9,6 +9,23 @@
 
 ##### 2. Phases of an NMAP Scan 
 
+```architecture
+architecture-beta
+  service nmap(terminal)[Nmap Security Scanner CLI]
+  group target(cloud)[Target Enterprise Network]
+  service fw(firewall)[Perimeter Stateful Firewall] in target
+  service web(server)[Public HTTPS Web Server] in target
+  service ssh(lock)[Bastion SSH Server] in target
+  service db(database)[Internal Database Server] in target
+
+  nmap:R -- L:fw
+  fw:R -- L:web
+  fw:B -- T:ssh
+  web:R -- L:db
+```
+
+### Scan Phases Workflow
+
 ```mermaid
 flowchart TD
   P1[1. Target Enumeration DNS/CIDR] --> P2[2. Host Discovery Ping Sweep]

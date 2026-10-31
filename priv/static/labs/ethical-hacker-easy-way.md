@@ -2,6 +2,23 @@
 
 ### 5-Phase Penetration Testing Methodology
 
+```architecture
+architecture-beta
+  service kali(terminal)[Kali Linux Attack Workstation]
+  group target(cloud)[Target Cloud Enterprise Environment]
+  service waf(firewall)[Cloud Armor / WAF Guard] in target
+  service web(server)[Target Web Application] in target
+  service api(code)[REST API Endpoint] in target
+  service db(database)[Target Customer Database] in target
+
+  kali:R -- L:waf
+  waf:R -- L:web
+  web:B -- T:api
+  api:R -- L:db
+```
+
+### Methodology Workflow
+
 ```mermaid
 flowchart LR
   P1[1. Reconnaissance & OSINT] --> P2[2. Scanning & Enumeration]

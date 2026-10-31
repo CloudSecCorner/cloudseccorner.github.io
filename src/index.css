@@ -2528,7 +2528,7 @@ html {
 
 .kube-lab-reader-header p:not(.kube-label) {
   margin-top: 1rem;
-  max-width: 48rem;
+  max-width: 100%;
   font-size: 1.15rem;
   line-height: 1.65;
   color: #4a4a4a;
@@ -2633,18 +2633,19 @@ html {
 }
 
 .kube-lab-reader-shell {
-  max-width: 1280px;
+  max-width: 1600px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   display: grid;
   gap: 2.5rem;
-  padding: 2.5rem 1rem;
+  padding: 2rem 1.25rem;
 }
 
 @media (min-width: 1024px) {
   .kube-lab-reader-shell {
-    grid-template-columns: 15rem minmax(0, 1fr);
-    padding: 3.5rem 2.5rem;
+    grid-template-columns: 16rem minmax(0, 1fr);
+    padding: 3rem 2rem;
   }
 }
 
@@ -2687,7 +2688,8 @@ html {
 
 .kube-lab-reading {
   min-width: 0;
-  max-width: 48rem;
+  max-width: 100%;
+  width: 100%;
 }
 
 .kube-lab-reading-note {
@@ -2777,10 +2779,19 @@ html {
   --pele-accent: #c084fc;
 }
 
+.pele-svg-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+
 .pele-svg-container svg {
   max-width: 100%;
+  width: auto;
   height: auto;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.12));
 }
 
 /* Blueprint Canvas Background */

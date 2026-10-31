@@ -32,6 +32,31 @@ Traditional security worked like a castle with a moat—strong defenses on the o
 
 ### Zero Trust Reference Architecture Topology
 
+```architecture
+architecture-beta
+  group dmz(cloud)[Public Ingress DMZ]
+  service waf(firewall)[WAF & DDoS Shield] in dmz
+
+  group cp(shield)[Zero Trust Control Plane]
+  service pep(gateway)[Policy Enforcement Gateway PEP] in cp
+  service pdp(server)[Policy Decision Engine PDP] in cp
+  service spiffe(key)[SPIRE CA & Workload Attestation] in cp
+
+  group data(database)[Segmented Production Environment]
+  service app(server)[App Microservice] in data
+  service db(database)[Encrypted Customer DB] in data
+
+  service user(user)[Subject Identity]
+  user:R -- L:waf
+  waf:R -- L:pep
+  pep:B -- T:pdp
+  pdp:R -- L:spiffe
+  pep:R -- L:app
+  app:B -- T:db
+```
+
+### Policy Enforcement and Attestation Flow
+
 ```mermaid
 flowchart TD
   subgraph UntrustedZone[Untrusted Subject & Device Zone]

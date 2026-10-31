@@ -69,10 +69,34 @@ some key participants include :
 
 ### Threat Modeling Diagrams 
 
-Remember the quote -" Threat Modeling is the use of abstractions to aid in thinking about risks?" well there are common way to represent these abstractions in threat modeling , while you could scribble or pros/cons list on a napkin or create 
-an elabtaye corkboard with twine and thumbtacks , using well-known diagrams can help streamline the process and make it more accessible to all parties involved . here are two common diagram types :
+#### 1. System Trust Boundary Architecture (Pele Icons)
 
-#### 1. Threat Modeling Lifecycle Workflow
+```architecture
+architecture-beta
+  group client(internet)[Untrusted External Clients]
+  service web(user)[Web Browser Client] in client
+  service mobile(user)[Mobile App Client] in client
+
+  group dmz(cloud)[Trust Boundary 1: Perimeter DMZ]
+  service waf(firewall)[Cloud WAF & Reverse Proxy] in dmz
+
+  group apps(server)[Trust Boundary 2: Microservices]
+  service api(server)[API Gateway Service] in apps
+  service auth(lock)[Authentication Service] in apps
+
+  group storage(database)[Trust Boundary 3: Confidential Data]
+  service db(database)[Customer Records Database] in storage
+  service kms(key)[KMS Key & Secret Vault] in storage
+
+  web:R -- L:waf
+  mobile:R -- L:waf
+  waf:R -- L:api
+  api:B -- T:auth
+  auth:R -- L:kms
+  api:R -- L:db
+```
+
+#### 2. Threat Modeling Lifecycle Workflow
 
 ```mermaid
 flowchart TD

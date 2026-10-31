@@ -26,6 +26,31 @@ In my experience, successful security programs are built on these fundamental pr
 
 ### Defense-in-Depth Architecture Model
 
+```architecture
+architecture-beta
+  group edge(internet)[Layer 1: Perimeter Edge]
+  service cdn(cloud)[Cloud CDN & Edge Shield] in edge
+  service waf(firewall)[Web Application Firewall] in edge
+
+  group compute(server)[Layer 2: Hardened Compute]
+  service api(server)[Microservice Container Cluster] in compute
+  service sandbox(cpu)[Isolated Firecracker Sandbox] in compute
+
+  group data(database)[Layer 3: Secure Storage]
+  service db(database)[Encrypted RDS Database] in data
+  service s3(disk)[Immutable Audit Log Bucket] in data
+  service kms(key)[KMS Hardware Security Module] in data
+
+  cdn:R -- L:waf
+  waf:R -- L:api
+  api:B -- T:sandbox
+  api:R -- L:db
+  api:B -- T:s3
+  db:B -- T:kms
+```
+
+### Layered Defense Flowchart
+
 ```mermaid
 flowchart TD
   subgraph DefenseInDepth[Cloud Defense-in-Depth Architecture]

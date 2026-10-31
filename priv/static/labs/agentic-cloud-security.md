@@ -20,7 +20,34 @@ To achieve production resilience at the caliber of Cloudflare or Netflix, securi
 
 ## 1. Enterprise Reference Architecture Topology
 
-The diagram below details an enterprise-grade, defense-in-depth architecture for an autonomous operations and incident remediation agent operating within AWS / Azure environments:
+The Pele architecture diagram below details an enterprise-grade defense envelope with native cloud icons for an autonomous operations and incident remediation agent operating within AWS / Azure environments:
+
+```architecture
+architecture-beta
+  group cloud(cloud)[AWS Cloud Platform]
+  service waf(firewall)[GenAI Guardrail WAF] in cloud
+  service agent(server)[Agent Orchestrator Control Plane] in cloud
+  service rag(search)[Runbook Vector Retrieval Store] in cloud
+  service mcp(shield)[L7 MCP Tool Firewall] in cloud
+  service broker(key)[SPIFFE Workload Token Broker] in cloud
+  service sandbox(cpu)[Firecracker MicroVM Sandbox] in cloud
+  service audit(disk)[WORM Audit Log Vault] in cloud
+  service k8s(server)[EKS Kubernetes Cluster] in cloud
+  service user(user)[On-Call Incident SRE]
+  service internet(internet)[External Threat Actors]
+
+  user:R -- L:waf
+  internet:R -- L:waf
+  waf:R -- L:agent
+  agent:L -- R:rag
+  agent:B -- T:mcp
+  mcp:B -- T:broker
+  mcp:R -- L:sandbox
+  sandbox:B -- T:k8s
+  agent:R -- L:audit
+```
+
+### Defense In Depth Control Plane Flow
 
 ```mermaid
 flowchart TD

@@ -1,5 +1,5 @@
-<header class="kube-lab-reader-header" id="reader-top">
-  <div class="mx-auto max-w-4xl px-4 py-7 sm:px-6 lg:py-12">
+<header class="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b]" id="reader-top">
+  <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-12">
     <nav class="kube-lab-breadcrumb" aria-label="Breadcrumb"><a href="/labs/">Labs</a><span aria-hidden="true">/</span><span>{@lab["category"]}</span></nav>
     <p class="kube-label">Self-paced lab</p>
     <h1>{@lab["title"]}</h1>
@@ -9,7 +9,7 @@
 </header>
 
 <section class="kube-lab-steps" aria-label="How to use this lab">
-  <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-10">
+  <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
     <ol>
       <li><span>1</span><div><strong>Read the concept</strong><small>Build the mental model first.</small></div></li>
       <li><span>2</span><div><strong>Try the commands</strong><small>Use a disposable sandbox.</small></div></li>
@@ -18,7 +18,7 @@
   </div>
 </section>
 
-<article class="kube-lab-reader-shell">
+<article class="kube-lab-reader-shell w-full max-w-[1600px] mx-auto">
   <aside class="kube-lab-outline" aria-label="Lesson navigation">
     <a class="kube-lab-outline-all" href="/labs/">← All labs</a>
     <a class="kube-contribute-link" href={"https://github.com/CloudSecCorner/cloudseccorner.github.io/blob/main/priv/static#{@lab["path"]}"} target="_blank" rel="noreferrer">
@@ -29,11 +29,11 @@
     </a>
   </aside>
 
-  <div class="kube-lab-reading">
+  <div class="kube-lab-reading w-full min-w-0">
     <div class="kube-lab-reading-note">
       <strong>Before you start:</strong> Read commands and policies before executing them. Avoid using production accounts for testing.
     </div>
-    <div class="kube-markdown">
+    <div class="kube-markdown w-full text-base leading-relaxed">
       {raw(@content_html)}
     </div>
     <footer class="kube-reader-end">
@@ -52,7 +52,7 @@
     var codeBlocks = document.querySelectorAll("pre code");
     codeBlocks.forEach(function (el) {
       var className = el.className || "";
-      var isMermaid = className.indexOf("mermaid") !== -1 || className.indexOf("pele") !== -1;
+      var isMermaid = className.indexOf("mermaid") !== -1 || className.indexOf("pele") !== -1 || className.indexOf("architecture") !== -1;
       var text = el.textContent || "";
       var trimmed = text.trim();
 
@@ -61,24 +61,25 @@
         trimmed.indexOf("graph") === 0 ||
         trimmed.indexOf("sequenceDiagram") === 0 ||
         trimmed.indexOf("stateDiagram") === 0 ||
-        trimmed.indexOf("erDiagram") === 0;
+        trimmed.indexOf("erDiagram") === 0 ||
+        trimmed.indexOf("architecture") === 0;
 
       if (isDiagram) {
         try {
           var result = pele.render(trimmed);
           if (result && result.svg) {
             var container = document.createElement("div");
-            container.className = "my-8 rounded-xl border border-slate-200/90 dark:border-[#2e2747] bg-white dark:bg-[#130f1c] shadow-sm overflow-hidden";
+            container.className = "my-8 w-full rounded-2xl border border-slate-200/90 dark:border-[#2e2747] bg-white dark:bg-[#130f1c] shadow-md overflow-hidden";
             container.innerHTML =
-              '<div class="flex items-center justify-between px-4 py-2.5 bg-slate-50 dark:bg-[#1a1528] border-b border-slate-200 dark:border-[#26203b] text-xs font-semibold text-slate-600 dark:text-slate-300">' +
-                '<div class="flex items-center gap-2">' +
+              '<div class="flex items-center justify-between px-5 py-3 bg-slate-50 dark:bg-[#1a1528] border-b border-slate-200 dark:border-[#26203b] text-xs font-semibold text-slate-700 dark:text-slate-300">' +
+                '<div class="flex items-center gap-2.5">' +
                   '<span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block animate-pulse"></span>' +
-                  '<span class="font-mono text-[11px] uppercase tracking-wider text-purple-700 dark:text-purple-300 font-bold">Architecture Topology Diagram</span>' +
+                  '<span class="font-mono text-xs uppercase tracking-wider text-purple-700 dark:text-purple-300 font-bold">Pele Architecture Vector Topology</span>' +
                 '</div>' +
-                '<span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300">Pele Vector SVG</span>' +
+                '<span class="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-700/50">Interactive SVG</span>' +
               '</div>' +
-              '<div class="blueprint-canvas p-6 flex justify-center items-center overflow-x-auto min-h-[160px]">' +
-                '<div class="pele-svg-container w-full flex justify-center">' +
+              '<div class="blueprint-canvas p-6 sm:p-8 flex justify-center items-center overflow-x-auto min-h-[220px] w-full">' +
+                '<div class="pele-svg-container w-full max-w-full flex justify-center">' +
                   result.svg +
                 '</div>' +
               '</div>';

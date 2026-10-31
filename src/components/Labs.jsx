@@ -507,6 +507,9 @@ function LabsList() {
   );
 }
 
+// Bundled raw markdown content for instant offline/SPA rendering
+const bundledLabFiles = import.meta.glob('../../priv/static/labs/*.md', { query: '?raw', import: 'default', eager: true });
+
 // 2. Individual Lab Reader Component (matching KubeDaily's lab.html.heex)
 function LabDetail() {
   const { labId } = useParams();
@@ -554,18 +557,36 @@ function LabDetail() {
 
         setLab(selectedLab);
 
+        // 1. Check bundled files first (instant, guaranteed, zero network latency, no 404 HTML fallback)
+        let loadedMarkdown = "";
+        const labFileName = (selectedLab.path || '').split('/').pop();
+        for (const [key, val] of Object.entries(bundledLabFiles)) {
+          if (key.endsWith(labFileName) || key.toLowerCase().includes(selectedLab.id.toLowerCase())) {
+            loadedMarkdown = val;
+            break;
+          }
+        }
+
+        if (loadedMarkdown) {
+          setContent(loadedMarkdown);
+          return;
+        }
+
+        // 2. Fallback to network fetch if not found in bundle
         try {
           const markdownResponse = await fetch(selectedLab.path);
           if (markdownResponse.ok) {
             const text = await markdownResponse.text();
-            setContent(text);
-          } else {
-            setContent(`# ${selectedLab.title}\n\n${selectedLab.description}\n\nContent for this lab will be updated shortly.`);
+            if (!text.trim().startsWith('<!DOCTYPE') && !text.trim().startsWith('<html')) {
+              setContent(text);
+              return;
+            }
           }
-        } catch (err) {
-          console.error("Error fetching markdown:", err);
-          setContent(`# ${selectedLab.title}\n\n${selectedLab.description}`);
+        } catch (fetchErr) {
+          console.warn("Network fetch failed, attempting fallback paths:", fetchErr);
         }
+
+        setContent(`# ${selectedLab.title}\n\n${selectedLab.description}`);
       } catch (error) {
         console.error("Error fetching lab details:", error);
       } finally {
@@ -598,9 +619,9 @@ function LabDetail() {
         tags={lab.tags || []}
       />
 
-      {/* Reader Header */}
-      <header className="kube-lab-reader-header" id="reader-top">
-        <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:py-12">
+      {/* Reader Header - Full Wide Layout */}
+      <header className="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b]" id="reader-top">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <nav className="kube-lab-breadcrumb" aria-label="Breadcrumb">
             <Link to="/labs">Labs</Link>
             <span aria-hidden="true">/</span>
@@ -617,7 +638,7 @@ function LabDetail() {
 
       {/* Reader Steps */}
       <section className="kube-lab-steps" aria-label="How to use this lab">
-        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-10">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <ol>
             <li>
               <span>1</span>
@@ -644,8 +665,8 @@ function LabDetail() {
         </div>
       </section>
 
-      {/* Reader Shell */}
-      <article className="kube-lab-reader-shell">
+      {/* Reader Shell - Full Width */}
+      <article className="kube-lab-reader-shell w-full max-w-[1600px] mx-auto">
         <aside className="kube-lab-outline" aria-label="Lesson contents">
           <Link className="kube-lab-outline-all" to="/labs">
             ← All labs
@@ -668,11 +689,11 @@ function LabDetail() {
           </a>
         </aside>
 
-        <div className="kube-lab-reading">
+        <div className="kube-lab-reading w-full min-w-0">
           <div className="kube-lab-reading-note">
             <strong>Before you start:</strong> Read commands and policies before executing them. Avoid using production accounts for testing.
           </div>
-          <div className="kube-markdown">
+          <div className="kube-markdown w-full text-base leading-relaxed">
             <MarkdownRenderer content={content} />
           </div>
           <footer className="kube-reader-end">

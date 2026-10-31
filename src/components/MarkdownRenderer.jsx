@@ -26,21 +26,21 @@ const PeleDiagram = ({ code, language }) => {
   }
 
   return (
-    <div className="my-8 rounded-xl border border-slate-200/90 dark:border-[#2e2747] bg-white dark:bg-[#130f1c] shadow-sm overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-2.5 bg-slate-50 dark:bg-[#1a1528] border-b border-slate-200 dark:border-[#26203b] text-xs font-semibold text-slate-600 dark:text-slate-300">
-        <div className="flex items-center gap-2">
+    <div className="my-8 w-full rounded-2xl border border-slate-200/90 dark:border-[#2e2747] bg-white dark:bg-[#130f1c] shadow-md overflow-hidden">
+      <div className="flex items-center justify-between px-5 py-3 bg-slate-50 dark:bg-[#1a1528] border-b border-slate-200 dark:border-[#26203b] text-xs font-semibold text-slate-700 dark:text-slate-300">
+        <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block animate-pulse" />
-          <span className="font-mono text-[11px] uppercase tracking-wider text-purple-700 dark:text-purple-300 font-bold">
-            Architecture Topology Diagram
+          <span className="font-mono text-xs uppercase tracking-wider text-purple-700 dark:text-purple-300 font-bold">
+            Pele Architecture Vector Topology
           </span>
         </div>
-        <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300">
-          Pele Vector SVG
+        <span className="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-700/50">
+          Interactive SVG
         </span>
       </div>
-      <div className="blueprint-canvas p-6 flex justify-center items-center overflow-x-auto min-h-[160px]">
+      <div className="blueprint-canvas p-6 sm:p-8 flex justify-center items-center overflow-x-auto min-h-[220px] w-full">
         <div
-          className="pele-svg-container w-full flex justify-center"
+          className="pele-svg-container w-full max-w-full flex justify-center"
           dangerouslySetInnerHTML={{ __html: renderedSvg }}
         />
       </div>
@@ -73,11 +73,13 @@ const MarkdownRenderer = ({ children, content, className = '' }) => {
               const isDiagram =
                 language === 'mermaid' ||
                 language === 'pele' ||
+                language === 'architecture' ||
                 trimmed.startsWith('flowchart') ||
                 trimmed.startsWith('graph') ||
                 trimmed.startsWith('sequenceDiagram') ||
                 trimmed.startsWith('stateDiagram') ||
-                trimmed.startsWith('erDiagram');
+                trimmed.startsWith('erDiagram') ||
+                trimmed.startsWith('architecture');
 
               if (isDiagram) {
                 return <PeleDiagram code={trimmed} language={language} />;
