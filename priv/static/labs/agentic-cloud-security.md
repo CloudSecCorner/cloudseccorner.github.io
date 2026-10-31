@@ -22,68 +22,63 @@ To achieve production resilience at the caliber of Cloudflare or Netflix, securi
 
 The diagram below details an enterprise-grade, defense-in-depth architecture for an autonomous operations and incident remediation agent operating within AWS / Azure environments:
 
-```text
-+---------------------------------------------------------------------------------------------------+
-|                                  UNTRUSTED INGRESS & ACTORS                                       |
-|  [ Engineer / On-Call SRE ]        [ Operational Event / Webhook ]       [ Untrusted Third-Party ]|
-+-------------------------------------------------+-------------------------------------------------+
-                                                  |
-                                                  v
-+---------------------------------------------------------------------------------------------------+
-| ZONE 0: INGRESS & MODEL GUARDRAIL GATEWAY (Layer 7 WAF for GenAI)                                 |
-| - Semantic Prompt Inspection (Llama Guard / NeMo Guardrails / Bedrock Guardrails)                 |
-| - PII / Secret Redaction Engine (TruffleHog / Presidio Regex & Entropy Scanners)                  |
-| - Rate Limiting, DDoS Shielding, and Cryptographic Trace Injection (OpenTelemetry W3C Baggage)   |
-+-------------------------------------------------+-------------------------------------------------+
-                                                  | Sanitized Prompt + Trace Context
-                                                  v
-+---------------------------------------------------------------------------------------------------+
-| ZONE 1: AGENT ORCHESTRATOR CONTROL PLANE (Non-Root, Read-Only RootFS, Ephemeral)                  |
-| - Task Planning & ReAct / LangGraph Loop Runtime                                                  |
-| - Ephemeral Memory Store (Redis with KMS-CMK encryption & 60-minute TTL)                          |
-| - Vector DB / RAG Ingestion Filter (Cosine similarity thresholds + Canary token injection)        |
-+------------------------+------------------------------------+-------------------------------------+
-                         |                                    |
-            Tool Call    |                                    | Model Inference Request
-            Intent (JSON)|                                    | (Zero ambient cloud credentials)
-                         v                                    v
-+---------------------------------------+   +-------------------------------------------------------+
-| ZONE 2: L7 MCP TOOL-CALL FIREWALL     |   | ZONE 3: ISOLATED LLM INFERENCE (Private VPC Endpoint) |
-| - Strict JSON Schema Validation       |   | - AWS Bedrock / Azure OpenAI / Self-hosted vLLM       |
-| - OPA / Cedar Policy Engine Evaluation|   | - No Public Internet Ingress/Egress                   |
-| - Scoped Session Token Verification   |   | - Zero Retention / No Training Agreement Guarantee    |
-| - Human-in-the-Loop (HitL) Approvals  |   +-------------------------------------------------------+
-+------------------------+--------------+
-                         | Approved & Sanitized Tool Execution Request
-                         v
-+---------------------------------------------------------------------------------------------------+
-| ZONE 4: EPHEMERAL SANDBOX EXECUTION ENVIRONMENT (Zero Ambient Credentials)                        |
-|                                                                                                   |
-|  +---------------------------------------------------------------------------------------------+  |
-|  | MicroVM / Sandbox Boundary (AWS Firecracker / gVisor runsc / Kata Containers)               |  |
-|  | - Linux Namespaces (User, PID, Network, Mount, IPC, UTS)                                    |  |
-|  | - cgroups v2: 1 vCPU, 512MB RAM, 100 IOPS hard throttle                                     |  |
-|  | - Seccomp-bpf filter: Disallow ptrace, mount, bpf, reboot, chroot                             |  |
-|  | - Local DNS & Network: Isolated bridge, default DROP all egress                             |  |
-|  | - eBPF Tetragon / Falco: Real-time syscall kill on anomalous execve or socket connect        |  |
-|  +----------------------------------------------+----------------------------------------------+  |
-+-------------------------------------------------|-------------------------------------------------+
-                                                  | Egress via Internal Sidecar Proxy Only
-                                                  v
-+---------------------------------------------------------------------------------------------------+
-| ZONE 5: EGRESS TOKEN BROKER & WORKLOAD IDENTITY PROXY (SPIFFE / SPIRE & HashiCorp Vault)          |
-| - Exchanges workload SPIFFE SVID for short-lived (15 min) down-scoped cloud session tokens       |
-| - Enforces AWS STS Session Policies / Azure Entra Workload Identity Federation                    |
-| - Blocks AWS IMDSv2 (169.254.169.254) and Azure IMDS (169.254.169.254) at raw iptables level      |
-+------------------------+------------------------------------+-------------------------------------+
-                         |                                    |
-                         v                                    v
-+---------------------------------------+   +-------------------------------------------------------+
-| INTERNAL CLOUD CONTROL PLANE          |   | ENTERPRISE OBSERVABILITY & SIEM / SOAR                |
-| - AWS IAM / Kubernetes API Server     |   | - Tamper-Evident Ledger (AWS CloudTrail / QLDB)       |
-| - CloudWatch / Grafana Loki Logs      |   | - OpenTelemetry GenAI Spans (Prompt -> Tool -> Cloud)  |
-| - Production Workload Namespaces      |   | - Splunk / Datadog SIEM Real-Time Alerting           |
-+---------------------------------------+   +-------------------------------------------------------+
+```mermaid
+flowchart TD
+  subgraph Untrusted[Zone 0: Ingress & Untrusted Actors]
+    Engineer[On-Call SRE]
+    Webhook[Alert Webhook]
+    User[Untrusted Third Party]
+  end
+
+  subgraph Gateway[Zone 1: GenAI Guardrail Gateway]
+    WAF[Layer 7 WAF & Semantic Guardrails]
+    Redactor[PII & Secret Redaction Engine]
+    Tracer[W3C Trace Baggage Injector]
+  end
+
+  subgraph Orchestrator[Zone 2: Agent Control Plane]
+    Planner[ReAct / LangGraph Planner]
+    Memory[(Encrypted Ephemeral Memory)]
+    RAG[(RAG Vector Store & Canary Filter)]
+  end
+
+  subgraph ToolFirewall[Zone 3: L7 MCP Tool Firewall]
+    Schema[JSON Schema Validator]
+    OPA{OPA / Cedar Policy Engine}
+    HitL[HitL Approval Verifier]
+  end
+
+  subgraph Sandbox[Zone 4: Ephemeral Sandbox]
+    Firecracker[Firecracker MicroVM / gVisor]
+    Tetragon[eBPF Tetragon Syscall Sensor]
+  end
+
+  subgraph Broker[Zone 5: Workload Identity Broker]
+    SPIRE[SPIFFE/SPIRE Token Broker]
+    STS[STS Ephemeral Token Minting]
+  end
+
+  subgraph CloudTarget[Zone 6: Cloud Infrastructure]
+    K8sAPI[Kubernetes API Server]
+    CloudControl[AWS / Azure Control Plane]
+  end
+
+  Engineer --> WAF
+  Webhook --> WAF
+  User --> WAF
+  WAF --> Redactor --> Tracer --> Planner
+  Planner <--> Memory
+  Planner <--> RAG
+  Planner -- Propose Tool Call --> Schema
+  Schema --> OPA
+  OPA -- Mutating Action --> HitL
+  HitL -- Approved --> Firecracker
+  OPA -- Read Action --> Firecracker
+  OPA -- Blocked --> Deny[Reject 403 Forbidden]
+  Firecracker -- Syscall Monitored by --> Tetragon
+  Firecracker -- JIT Credential Request --> SPIRE --> STS
+  STS -- 15m Scoped Token --> CloudControl
+  Firecracker --> K8sAPI
 ```
 
 ---
@@ -94,32 +89,29 @@ Traditional cloud services rely on static instance profiles or long-lived servic
 
 Netflix and Cloudflare solve this with **Down-Scoped, Just-in-Time (JIT) Ephemeral Token Brokering**:
 
-```text
-[ Agent Orchestrator ]
-       |
-       | 1. Request Tool Execution (e.g., "restart_pod" in namespace "payment-prod")
-       v
-[ L7 Tool Firewall ]
-       |
-       | 2. Query OPA Policy Engine with Context (User, IncidentId, ResourceTag)
-       v
-[ Open Policy Agent (OPA) ] ---> Evaluation: PERMIT (Requires HitL if Prod)
-       |
-       | 3. Request Scoped Token from Token Broker (Workload Identity)
-       v
-[ STS Token Broker (SPIFFE/SPIRE) ]
-       |
-       | 4. Call AWS STS AssumeRole with Inline Session Policy:
-       |    - Action: eks:UpdateNodegroupConfig / pods:delete
-       |    - Resource: arn:aws:eks:*:*:cluster/prod/namespaces/payment-prod
-       |    - Expiration: 15 minutes
-       |    - Condition: StringEquals aws:RequestTag/IncidentId = "INC-8492"
-       v
-[ Ephemeral Session Credential (15m TTL) ]
-       |
-       | 5. Inject credential directly into isolated Sandbox Environment
-       v
-[ Firecracker MicroVM Execution ] ---> Executes Kubernetes API Call ---> Cleanses & Destroys VM
+```mermaid
+sequenceDiagram
+  autonumber
+  actor Engineer as On-Call SRE
+  participant Agent as Agent Orchestrator
+  participant FW as MCP Tool Firewall
+  participant OPA as OPA Policy Engine
+  participant Broker as Token Broker (SPIRE)
+  participant STS as AWS STS / Entra ID
+  participant Sandbox as Firecracker MicroVM
+
+  Engineer->>Agent: Remediate Incident INC-8492
+  Agent->>FW: Propose Tool: restart_deployment
+  FW->>OPA: Evaluate Policy (Namespace, Action)
+  OPA-->>FW: Require HitL Signature (Production)
+  FW->>Engineer: Request Cryptographic Signoff
+  Engineer-->>FW: HMAC-SHA256 Signed Approval
+  FW->>Broker: Exchange SPIFFE SVID for JIT Role
+  Broker->>STS: AssumeRoleWithWebIdentity (Inline Session Policy)
+  STS-->>Broker: 15-Minute Scoped Session Token
+  Broker->>Sandbox: Inject Ephemeral Credential
+  Sandbox->>Sandbox: Execute Tool & Null-Route IMDSv2
+  Sandbox-->>Agent: Sanitized Execution Output
 ```
 
 ### Core Identity Principles:
@@ -247,29 +239,30 @@ Netflix and Cloudflare mandate **hardware-assisted microVM virtualization (AWS F
 
 ### Isolation Hierarchy:
 
-```text
-+-----------------------------------------------------------------------------------------------+
-| HOST LINUX KERNEL (Physical Server / EC2 Metal / Bare Metal K8s Node)                         |
-|                                                                                               |
-|  +-----------------------------------------------------------------------------------------+  |
-|  | eBPF Tetragon Sensor (Kernel Ring 0 Sensor)                                             |  |
-|  | - Hooks: sys_enter_execve, sys_enter_connect, sys_enter_openat                           |  |
-|  | - Action: Real-time SIGKILL on /169.254.169.254 egress or unexpected binary execution   |  |
-|  +-----------------------------------------------------------------------------------------+  |
-|                                                                                               |
-|  +-----------------------------------------------------------------------------------------+  |
-|  | Firecracker MicroVM / gVisor Sandboxed Container (Launch time: <15ms)                   |  |
-|  |  +-----------------------------------------------------------------------------------+  |  |
-|  |  | Guest OS / Isolated Microkernel                                                   |  |  |
-|  |  | - Read-Only Root Filesystem (OverlayFS discarded on exit)                          |  |  |
-|  |  | - Memory: 512 MB capped, CPU: 1 vCPU hard pinned                                   |  |  |
-|  |  | - Network: Virtual TAP device with egress NAT strictly filtered via iptables        |  |  |
-|  |  | - IMDS Null-Route: route add 169.254.169.254 gw 127.0.0.1 lo (Blackhole)           |  |  |
-|  |  |                                                                                   |  |  |
-|  |  |  [ Agent Tool Process: python3 tool_runner.py ]                                   |  |  |
-|  |  +-----------------------------------------------------------------------------------+  |  |
-|  +-----------------------------------------------------------------------------------------+  |
-+-----------------------------------------------------------------------------------------------+
+```mermaid
+flowchart TD
+  subgraph HostKernel[Host Linux Kernel Ring 0]
+    Sensor[eBPF Tetragon Sensor]
+    SyscallHook{Syscall Evaluation}
+    ActionKill[Real-time SIGKILL Process Termination]
+  end
+
+  subgraph MicroVM[Firecracker MicroVM / gVisor Sandbox]
+    Proc[Agent Tool Execution Process]
+    RootFS[Read-Only Root Filesystem]
+    Cgroups[cgroups v2: 1 vCPU, 512MB RAM]
+  end
+
+  subgraph EgressTargets[Network Egress Filtering]
+    IMDS[(169.254.169.254 Metadata)]
+    VPC[Internal Workload VPC Endpoint]
+  end
+
+  Proc -- execve / tcp_connect --> Sensor
+  Sensor --> SyscallHook
+  SyscallHook -- Target: 169.254.169.254 --> ActionKill
+  SyscallHook -- Reverse Shell Binary --> ActionKill
+  SyscallHook -- Permitted VPC Endpoint --> VPC
 ```
 
 ### eBPF Tetragon Security Policy: `block-agent-imds-and-egress.yaml`

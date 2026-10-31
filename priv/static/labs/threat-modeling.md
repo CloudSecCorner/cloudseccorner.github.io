@@ -72,6 +72,45 @@ some key participants include :
 Remember the quote -" Threat Modeling is the use of abstractions to aid in thinking about risks?" well there are common way to represent these abstractions in threat modeling , while you could scribble or pros/cons list on a napkin or create 
 an elabtaye corkboard with twine and thumbtacks , using well-known diagrams can help streamline the process and make it more accessible to all parties involved . here are two common diagram types :
 
+#### 1. Threat Modeling Lifecycle Workflow
+
+```mermaid
+flowchart TD
+  A[1. System Decomposition] --> B[2. Data Flow Diagram DFD]
+  B --> C[3. STRIDE Threat Identification]
+  C --> D[4. Risk Scoring CVSS & DREAD]
+  D --> E[5. Security Controls & Mitigations]
+  E --> F[6. Validation & Residual Risk Review]
+```
+
+#### 2. Data Flow Diagram (DFD) with Trust Boundaries
+
+```mermaid
+flowchart LR
+  subgraph PublicZone[Untrusted Public Zone]
+    Client[Web & Mobile Client]
+  end
+
+  subgraph DMZ[Trust Boundary 1: DMZ]
+    WAF[API Gateway / WAF]
+  end
+
+  subgraph ServiceZone[Trust Boundary 2: Microservices]
+    AuthSvc[Auth Service]
+    OrderSvc[Order Service]
+  end
+
+  subgraph SecureDataZone[Trust Boundary 3: Secure Storage]
+    DB[(Customer Database)]
+    KMS[(KMS Vault)]
+  end
+
+  Client -- HTTPS Requests --> WAF
+  WAF -- Validated Tokens --> AuthSvc
+  WAF -- Delegated Context --> OrderSvc
+  OrderSvc -- mTLS Query --> DB
+  AuthSvc -- Key Exchange --> KMS
+```
 
 - Data Flow - Diagram (DFD) - Shows the flow of data between components of a system . its usually the starting points for a threat model diagarm , typically performed in the identification phase (answering) "what are we working on?" DFDs can be 
 represnted at varying levels of details (eg DFD level 0, level 1 , level 2, level 3 ) with different elevels revealing diffent threats 

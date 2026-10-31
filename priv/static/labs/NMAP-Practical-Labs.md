@@ -9,6 +9,17 @@
 
 ##### 2. Phases of an NMAP Scan 
 
+```mermaid
+flowchart TD
+  P1[1. Target Enumeration DNS/CIDR] --> P2[2. Host Discovery Ping Sweep]
+  P2 --> P3[3. Reverse-DNS Resolution]
+  P3 --> P4[4. Port Scanning SYN/Connect]
+  P4 --> P5[5. Version Detection -sV]
+  P5 --> P6[6. OS Detection -O]
+  P6 --> P7[7. Traceroute Routing]
+  P7 --> P8[8. NSE Script Scanning -sC]
+  P8 --> P9[9. Output & Reporting]
+```
 
 1. **Script Pre-scanning**: Optional phase that runs when requested with options like `--script` or `-sC`. It executes scripts that only need to run once per scan, such as broadcast queries to network services.
 
@@ -34,6 +45,23 @@
 
 ##### 3. A Quick Note on Ports 
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor Scanner as Nmap Scanner
+  participant Target as Target Port 443
+
+  Note over Scanner,Target: Standard TCP Connect Handshake (-sT)
+  Scanner->>Target: TCP SYN
+  Target-->>Scanner: TCP SYN/ACK (Port Open)
+  Scanner->>Target: TCP ACK (Connection Established)
+  Scanner->>Target: TCP RST (Disconnect)
+
+  Note over Scanner,Target: SYN Stealth Scan (-sS)
+  Scanner->>Target: TCP SYN
+  Target-->>Scanner: TCP SYN/ACK (Port Open)
+  Scanner->>Target: TCP RST (Half-Open Teardown - Not Logged by App)
+```
 
 1. **Port Basics**: Ports identify specific network applications on a host. If an IP address is like an apartment complex address, ports are the individual unit numbers that direct traffic to specific applications.
 

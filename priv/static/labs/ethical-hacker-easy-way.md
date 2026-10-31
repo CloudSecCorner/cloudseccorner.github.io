@@ -1,5 +1,15 @@
 ## Ethical Hacker Easy Way 
 
+### 5-Phase Penetration Testing Methodology
+
+```mermaid
+flowchart LR
+  P1[1. Reconnaissance & OSINT] --> P2[2. Scanning & Enumeration]
+  P2 --> P3[3. Vulnerability Analysis]
+  P3 --> P4[4. Exploitation & Access]
+  P4 --> P5[5. Post-Exploitation & Reporting]
+```
+
 1. Know the OS 
 
 # Operating system 
@@ -440,6 +450,22 @@ Even it contains  varioys scripts and tools that might have been used in some re
 Further tracing can be dome withe help of ISP and law enforcement agencies the message id will be useful for analyzing mail logs at ISP 
 
 ## Use Kali Linux to gather information 
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor Attacker as Ethical Hacker (Kali Linux)
+  participant Firewall as Perimeter Firewall
+  participant Target as Target Web Server
+
+  Attacker->>Firewall: 1. Port & Service Discovery (SYN Scan)
+  Firewall-->>Attacker: Open Ports (80, 443, 22)
+  Attacker->>Target: 2. Banner Grabbing & Service Version Probe (-sV)
+  Target-->>Attacker: Apache 2.4.49 (Vulnerable)
+  Attacker->>Target: 3. Verify Exploit Path (Path Traversal PoC)
+  Target-->>Attacker: Proof of Exploitability (Evidence Captured)
+  Note over Attacker: Document in Security Remediation Report
+```
 
 Namp and Zenmap 
 

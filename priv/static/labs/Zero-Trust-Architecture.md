@@ -30,6 +30,38 @@ Traditional security worked like a castle with a moat—strong defenses on the o
    - Encrypt sensitive data even within your network
    - Be ready to respond quickly to unusual activity
 
+### Zero Trust Reference Architecture Topology
+
+```mermaid
+flowchart TD
+  subgraph UntrustedZone[Untrusted Subject & Device Zone]
+    User([User / Service Workload])
+    Device[Corporate / BYOD Device]
+  end
+
+  subgraph ControlPlane[Zero Trust Control Plane PDP]
+    PEP[Policy Enforcement Point PEP]
+    PDP[Policy Decision Point PDP Engine]
+    ThreatIntel[(Real-Time Threat Intel)]
+    CDM[(Continuous Device Health & CDM)]
+    PKI[(Enterprise PKI / SPIFFE CA)]
+  end
+
+  subgraph DataPlane[Segmented Data Plane]
+    MicroApp[Microsegmented App Workload]
+    EncryptedDB[(Encrypted Database)]
+  end
+
+  User --> PEP
+  Device --> PEP
+  PEP <--> PDP
+  PDP <--> ThreatIntel
+  PDP <--> CDM
+  PDP <--> PKI
+  PEP -- Authenticated & Verified Session --> MicroApp
+  MicroApp -- Mutual TLS mTLS --> EncryptedDB
+```
+
 ## Practical Steps to Implement Zero Trust
 
 ### Start with Identity
@@ -94,6 +126,26 @@ In today's world:
 These changes mean we can't just trust someone because they're on the company network or have logged in once.
 
 ## Four Ways to Verify Access
+
+### Mutual Attestation & mTLS Workload Identity Flow
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor Client as Client Workload
+  participant Agent as SPIRE / Identity Agent
+  participant PEP as Policy Enforcement Gateway
+  participant Server as Protected Enterprise Resource
+
+  Client->>Agent: Request Cryptographic Attestation
+  Agent-->>Client: Issue Short-Lived X.509 SVID Certificate
+  Client->>PEP: Initiate TLS Handshake (Present Client Certificate)
+  PEP->>PEP: Validate Certificate SAN & SPIFFE Trust Bundle
+  PEP->>PEP: Evaluate Contextual Access Policy (Time, Health, IP)
+  PEP-->>Client: Mutual TLS Handshake Established (Encrypted Tunnel)
+  Client->>Server: Authorized API Transaction
+  Server-->>Client: Response Data
+```
 
 ### 1. Multi-Factor Authentication (MFA)
 
@@ -326,6 +378,31 @@ By watching for attackers, limiting their movement, and having a plan ready, you
 # Network Segmentation: Creating Safety Zones in Your Digital World
 
 ## What Is Network Segmentation?
+
+```mermaid
+flowchart LR
+  subgraph DMZ[Public Ingress Zone]
+    WAF[Cloud WAF & Reverse Proxy]
+  end
+
+  subgraph SegmentApp[App Workload Segment]
+    direction TB
+    App1[API Gateway]
+    App2[Auth Service]
+  end
+
+  subgraph SegmentData[Isolated Data Segment]
+    direction TB
+    DB[(Customer Database)]
+    Secrets[(KMS Secrets Vault)]
+  end
+
+  WAF -- Scoped TLS Only --> App1
+  App1 -- Internal mTLS --> App2
+  App2 -- Strictly Whitelisted SQL --> DB
+  App2 -- Ephemeral Token Only --> Secrets
+  WAF -. Direct Access Blocked .-x DB
+```
 
 Network segmentation means dividing your computer network into separate zones, like creating separate rooms in a house instead of one open space. Each zone has its own walls, doors, and security checks.
 

@@ -652,7 +652,7 @@ function LabDetail() {
           </Link>
           <a
             className="kube-contribute-link"
-            href={`${REPOSITORY_URL}/blob/main/public${lab.path}`}
+            href={`${REPOSITORY_URL}/blob/main/priv/static${lab.path}`}
             target="_blank"
             rel="noreferrer"
           >

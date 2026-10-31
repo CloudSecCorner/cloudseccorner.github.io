@@ -24,6 +24,19 @@ In my experience, successful security programs are built on these fundamental pr
 
 - **Non-repudiation**: Ensuring actions can't be denied later. This is crucial for transactions where accountability matters.
 
+### Defense-in-Depth Architecture Model
+
+```mermaid
+flowchart TD
+  subgraph DefenseInDepth[Cloud Defense-in-Depth Architecture]
+    L1[Layer 1: Edge DDoS & Cloud WAF] --> L2[Layer 2: Identity & Zero Trust IAM]
+    L2 --> L3[Layer 3: Network Microsegmentation]
+    L3 --> L4[Layer 4: Compute & Container Isolation]
+    L4 --> L5[Layer 5: Data Encryption KMS]
+  end
+  L5 --> SIEM[(Centralized SIEM & Audit)]
+```
+
 ## Real-World Applications
 
 Let me share how these principles apply in practice:
@@ -50,6 +63,14 @@ What specific security challenges is your organization facing? I'd be happy to d
 As a security professional who's dealt with countless incidents, I'd like to share some insights on the critical relationship between threats, vulnerabilities, and risks - concepts that form the foundation of effective cybersecurity.
 
 ## The Risk Equation
+
+```mermaid
+flowchart LR
+  Threat[Active Threat Actor] --> Intersection((Exploitable Risk Zone))
+  Vuln[System Vulnerability] --> Intersection
+  Intersection --> Impact[Business Impact & Data Loss]
+  Control[Security Countermeasures] -. Mitigates .-> Intersection
+```
 
 I always tell my students: **Risk exists at the intersection of threats and vulnerabilities**. Let me break this down:
 
