@@ -52,8 +52,14 @@ function LandingPage() {
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link className="kube-button shadow-lg shadow-purple-500/20" to="/labs/Agentic-Cloud-Security">
-                Start Agentic Security Lab <span aria-hidden="true">→</span>
+              <Link className="kube-button shadow-lg shadow-purple-500/20" to="/aws-architectures">
+                <span className="mr-1">⚡</span> 1,000+ AWS Architectures (Pele)
+              </Link>
+              <Link className="kube-button shadow-lg shadow-blue-500/20 bg-blue-600 hover:bg-blue-500 border-blue-400/30 text-white" to="/azure-architectures">
+                <span className="mr-1">🛡️</span> 1,000+ Azure Architectures (Pele)
+              </Link>
+              <Link className="kube-button kube-button-outline" to="/labs/Agentic-Cloud-Security">
+                Start Agentic Lab <span aria-hidden="true">→</span>
               </Link>
               <Link className="kube-button kube-button-outline" to="/tools">
                 <svg className="w-4 h-4 mr-1 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,12 +67,13 @@ function LandingPage() {
                 </svg>
                 Browse 37,000+ Tools
               </Link>
-              <Link className="text-xs font-bold text-purple-300 hover:text-white transition flex items-center gap-1 py-2 px-3" to="/labs/Threat-Modeling">
-                Threat Modeling Guide ↗
-              </Link>
             </div>
 
             <div className="kube-home-proof mt-10 pt-6 border-t border-brand-gray-700/80" aria-label="CloudSecCorner resource summary">
+              <div>
+                <strong className="text-2xl sm:text-3xl font-extrabold text-purple-400">2,064</strong>
+                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Pele Blueprints</span>
+              </div>
               <div>
                 <strong className="text-2xl sm:text-3xl font-extrabold text-white">37,750+</strong>
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Curated Tools</span>
@@ -76,8 +83,8 @@ function LandingPage() {
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Hands-on Labs</span>
               </div>
               <div>
-                <strong className="text-2xl sm:text-3xl font-extrabold text-white">11</strong>
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Defense Domains</span>
+                <strong className="text-2xl sm:text-3xl font-extrabold text-white">48</strong>
+                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Cloud Domains</span>
               </div>
               <div>
                 <strong className="text-2xl sm:text-3xl font-extrabold text-emerald-400">100%</strong>
@@ -191,6 +198,62 @@ function LandingPage() {
             </Link>
             <Link to="/tools" className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-bold text-purple-300 hover:text-white transition">
               All 11 domains →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* AWS Best Practices Architecture Banner (Powered by Obsidian Pele) */}
+      <section className="border-b border-brand-gray-700/60 bg-gradient-to-r from-purple-950/60 via-[#1e142e] to-indigo-950/60 py-8 px-4 sm:px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div className="flex items-start gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-purple-600/20 border border-purple-500/40 text-2xl text-purple-300 shadow-inner">
+              📐
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs font-extrabold uppercase tracking-widest text-purple-400">AWS Architecture Release</span>
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">1,032 PATTERNS</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+                1,000+ AWS Architecture Best Practices with Pele, OPA &amp; Terraform
+              </h2>
+              <p className="mt-1 text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Production-grade AWS Well-Architected and CIS Benchmark defensive blueprints. Rendered with Obsidian Pele's lightning-fast SVG engine, backed by executable OPA Rego policies and ready-to-deploy Terraform IaC modules.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <Link to="/aws-architectures" className="kube-button shadow-lg shadow-purple-500/30">
+              Explore AWS Patterns →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Azure Best Practices Architecture Banner (Powered by Obsidian Pele) */}
+      <section className="border-b border-brand-gray-700/60 bg-gradient-to-r from-blue-950/60 via-[#11192e] to-cyan-950/60 py-8 px-4 sm:px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div className="flex items-start gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-600/20 border border-blue-500/40 text-2xl text-blue-300 shadow-inner">
+              🛡️
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs font-extrabold uppercase tracking-widest text-blue-400">Azure Architecture Release</span>
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">1,032 PATTERNS</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+                1,000+ Azure Architecture Best Practices with Pele, OPA &amp; Terraform
+              </h2>
+              <p className="mt-1 text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Comprehensive Microsoft Azure and CIS Azure Benchmark defensive architectures. Deep multi-tier topologies rendered with Obsidian Pele, verified OPA Rego guardrails, and hardened Terraform IaC templates.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <Link to="/azure-architectures" className="kube-button shadow-lg shadow-blue-500/30 bg-blue-600 hover:bg-blue-500 border-blue-400/30 text-white">
+              Explore Azure Patterns →
             </Link>
           </div>
         </div>
