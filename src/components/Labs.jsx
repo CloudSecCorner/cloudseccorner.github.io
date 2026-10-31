@@ -518,7 +518,25 @@ function LabDetail() {
   const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("");
   const [copiedLink, setCopiedLink] = useState(false);
+  const [fontSize, setFontSize] = useState("normal"); // 'normal' | 'large' | 'xlarge'
+  const [widthMode, setWidthMode] = useState("reading"); // 'reading' (optimal) | 'full' (100% monitor)
+  const [focusMode, setFocusMode] = useState(false); // Zen mode
+  const [scrollProgress, setScrollProgress] = useState(0);
   const navigate = useNavigate();
+
+  // Track window scroll progress for reader bar
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const progress = Math.min(100, Math.max(0, Math.round((window.pageYOffset / totalHeight) * 100)));
+        setScrollProgress(progress);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Parse markdown headings for dynamic Table of Contents
   const headings = useMemo(() => {
@@ -703,197 +721,332 @@ function LabDetail() {
         tags={lab.tags || []}
       />
 
-      {/* Reader Header - Full Wide Layout */}
-      <header className="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c]" id="reader-top">
-        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-          <nav className="kube-lab-breadcrumb" aria-label="Breadcrumb">
-            <Link to="/labs">Labs</Link>
-            <span aria-hidden="true">/</span>
-            <span className="capitalize">{lab.category}</span>
-          </nav>
-          <div className="flex flex-wrap items-center gap-3 mt-3 mb-2">
-            <span className="kube-label !mb-0">Self-paced lab</span>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60">
-              ⏱️ {readingTime} min read
-            </span>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-[#1f1b2e] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-[#2b243f]">
-              {wordCount.toLocaleString()} words
-            </span>
+      {/* Top Floating Reading Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-transparent z-50 pointer-events-none">
+        <div
+          className="h-full bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500 transition-all duration-150 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
+      {/* Reader Header - Full Wide Layout (Hidden in Zen Mode) */}
+      {!focusMode && (
+        <header className="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c]" id="reader-top">
+          <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+            <nav className="kube-lab-breadcrumb" aria-label="Breadcrumb">
+              <Link to="/labs">Labs</Link>
+              <span aria-hidden="true">/</span>
+              <span className="capitalize">{lab.category}</span>
+            </nav>
+            <div className="flex flex-wrap items-center gap-3 mt-3 mb-2">
+              <span className="kube-label !mb-0">Self-paced lab</span>
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60">
+                ⏱️ {readingTime} min read
+              </span>
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-[#1f1b2e] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-[#2b243f]">
+                {wordCount.toLocaleString()} words
+              </span>
+            </div>
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2 mb-3">
+              {lab.title}
+            </h1>
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-4xl leading-relaxed">
+              {lab.description}
+            </p>
+            <div className="kube-lab-reader-tags mt-4" aria-label="Lab topics">
+              {lab.tags && lab.tags.map((tag) => <span key={tag}>{tag}</span>)}
+            </div>
           </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2 mb-3">
-            {lab.title}
-          </h1>
-          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-4xl leading-relaxed">
-            {lab.description}
-          </p>
-          <div className="kube-lab-reader-tags mt-4" aria-label="Lab topics">
-            {lab.tags && lab.tags.map((tag) => <span key={tag}>{tag}</span>)}
+        </header>
+      )}
+
+      {/* Reader Steps Guide (Hidden in Zen Mode) */}
+      {!focusMode && (
+        <section className="kube-lab-steps border-b border-slate-200 dark:border-[#26203b] bg-slate-100/60 dark:bg-[#0f0c18]" aria-label="How to use this lab">
+          <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <ol>
+              <li>
+                <span>1</span>
+                <div>
+                  <strong>Read the concept</strong>
+                  <small>Build the mental model first.</small>
+                </div>
+              </li>
+              <li>
+                <span>2</span>
+                <div>
+                  <strong>Try the commands</strong>
+                  <small>Use a disposable sandboxed environment.</small>
+                </div>
+              </li>
+              <li>
+                <span>3</span>
+                <div>
+                  <strong>Keep the notes</strong>
+                  <small>Return when you need a refresher.</small>
+                </div>
+              </li>
+            </ol>
           </div>
-        </div>
-      </header>
+        </section>
+      )}
 
-      {/* Reader Steps Guide */}
-      <section className="kube-lab-steps border-b border-slate-200 dark:border-[#26203b] bg-slate-100/60 dark:bg-[#0f0c18]" aria-label="How to use this lab">
-        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <ol>
-            <li>
-              <span>1</span>
-              <div>
-                <strong>Read the concept</strong>
-                <small>Build the mental model first.</small>
-              </div>
-            </li>
-            <li>
-              <span>2</span>
-              <div>
-                <strong>Try the commands</strong>
-                <small>Use a disposable sandboxed environment.</small>
-              </div>
-            </li>
-            <li>
-              <span>3</span>
-              <div>
-                <strong>Keep the notes</strong>
-                <small>Return when you need a refresher.</small>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      {/* Reader Shell - Sticky Outline & Full-Width Reading Content */}
-      <article className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-
-          {/* Left Column: Interactive Sticky Navigation & Table of Contents */}
-          <aside className="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6">
-
-            {/* Back link & Actions */}
-            <div className="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs">
+      {/* Ergonomic Reader Sticky Toolbar (Width, Font Size, Zen Mode) */}
+      <div className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-[#26203b] bg-white/95 dark:bg-[#130f1c]/95 backdrop-blur-md transition-all shadow-xs">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+          {/* Left: Quick Breadcrumb / Zen Exit */}
+          <div className="flex items-center gap-3">
+            {focusMode ? (
+              <button
+                type="button"
+                onClick={() => setFocusMode(false)}
+                className="flex items-center gap-1.5 px-3 py-1 rounded-lg font-bold bg-purple-600 text-white hover:bg-purple-700 transition"
+              >
+                <span>✕ Exit Zen Mode</span>
+              </button>
+            ) : (
               <Link
                 to="/labs"
-                className="flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition"
+                className="text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 font-semibold flex items-center gap-1"
               >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                Back to All Labs
+                ← All Labs
               </Link>
+            )}
+            <span className="hidden sm:inline-block text-slate-300 dark:text-[#2e2646]">|</span>
+            <span className="hidden md:inline font-medium text-slate-600 dark:text-slate-300 truncate max-w-xs xl:max-w-md">
+              {lab.title}
+            </span>
+          </div>
 
-              <div className="mt-3 pt-3 border-t border-slate-100 dark:border-[#201a30] flex flex-col gap-2">
-                <button
-                  onClick={handleCopyLink}
-                  type="button"
-                  className="flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-50 dark:bg-[#1a1528] text-slate-700 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-purple-950/40 border border-slate-200 dark:border-[#26203b] transition cursor-pointer"
+          {/* Right: Controls (Scroll %, Width Measure, Font Size, Zen Focus) */}
+          <div className="flex items-center gap-2 sm:gap-4 flex-wrap ml-auto">
+            {/* Scroll % */}
+            <div className="hidden sm:flex items-center gap-1.5 font-mono text-[11px] text-slate-500 dark:text-slate-400">
+              <span>{scrollProgress}% read</span>
+            </div>
+
+            {/* Font Size Selector */}
+            <div className="flex items-center rounded-lg border border-slate-200 dark:border-[#2b243f] p-0.5 bg-slate-100/70 dark:bg-[#1a1528]">
+              <button
+                type="button"
+                title="Default Font (17px)"
+                onClick={() => setFontSize("normal")}
+                className={`px-2 py-0.5 rounded text-xs font-semibold transition ${
+                  fontSize === "normal"
+                    ? "bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                A
+              </button>
+              <button
+                type="button"
+                title="Large Font (19px)"
+                onClick={() => setFontSize("large")}
+                className={`px-2 py-0.5 rounded text-xs font-bold transition ${
+                  fontSize === "large"
+                    ? "bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                A+
+              </button>
+              <button
+                type="button"
+                title="X-Large Font (21px)"
+                onClick={() => setFontSize("xlarge")}
+                className={`px-2 py-0.5 rounded text-xs font-black transition ${
+                  fontSize === "xlarge"
+                    ? "bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                A++
+              </button>
+            </div>
+
+            {/* Width Mode Selector */}
+            <div className="flex items-center rounded-lg border border-slate-200 dark:border-[#2b243f] p-0.5 bg-slate-100/70 dark:bg-[#1a1528]">
+              <button
+                type="button"
+                title="Optimal 75-80 char line length for deep reading"
+                onClick={() => setWidthMode("reading")}
+                className={`px-2.5 py-0.5 rounded text-xs font-medium transition ${
+                  widthMode === "reading"
+                    ? "bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs font-bold"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                Optimal
+              </button>
+              <button
+                type="button"
+                title="Full 100% monitor width"
+                onClick={() => setWidthMode("full")}
+                className={`px-2.5 py-0.5 rounded text-xs font-medium transition ${
+                  widthMode === "full"
+                    ? "bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs font-bold"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                Full Width
+              </button>
+            </div>
+
+            {/* Zen Focus Mode Button */}
+            <button
+              type="button"
+              title="Zen Focus Mode (Hide sidebar and distractions)"
+              onClick={() => setFocusMode(!focusMode)}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs font-medium transition ${
+                focusMode
+                  ? "bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-200 border-purple-300 dark:border-purple-700"
+                  : "bg-white dark:bg-[#1a1528] text-slate-700 dark:text-slate-300 border-slate-200 dark:border-[#2b243f] hover:bg-slate-50 dark:hover:bg-[#231c36]"
+              }`}
+            >
+              <span>{focusMode ? "🧘 Focus Active" : "🧘 Zen Mode"}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Reader Shell - Sticky Outline & Full-Width Reading Content */}
+      <article className={`w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 ${focusMode ? "max-w-4xl" : "max-w-[1600px]"}`}>
+        <div className={`flex ${focusMode ? "flex-col" : "flex-col lg:flex-row gap-8 lg:gap-12"} items-start`}>
+
+          {/* Left Column: Interactive Sticky Navigation & Table of Contents (Hidden in Focus Mode) */}
+          {!focusMode && (
+            <aside className="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6">
+
+              {/* Back link & Actions */}
+              <div className="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs">
+                <Link
+                  to="/labs"
+                  className="flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition"
                 >
-                  <span className="flex items-center gap-1.5">
-                    <svg className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                    </svg>
-                    {copiedLink ? "Link Copied!" : "Copy Lab Link"}
-                  </span>
-                  {copiedLink && (
-                    <span className="text-[10px] text-emerald-500 font-bold">✓</span>
-                  )}
-                </button>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  Back to All Labs
+                </Link>
 
+                <div className="mt-3 pt-3 border-t border-slate-100 dark:border-[#201a30] flex flex-col gap-2">
+                  <button
+                    onClick={handleCopyLink}
+                    type="button"
+                    className="flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-50 dark:bg-[#1a1528] text-slate-700 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-purple-950/40 border border-slate-200 dark:border-[#26203b] transition cursor-pointer"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <svg className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                      </svg>
+                      {copiedLink ? "Link Copied!" : "Copy Lab Link"}
+                    </span>
+                    {copiedLink && (
+                      <span className="text-[10px] text-emerald-500 font-bold">✓</span>
+                    )}
+                  </button>
+
+                  <a
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-300 transition"
+                    href={`${REPOSITORY_URL}/blob/main/priv/static${lab.path}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                    Edit on GitHub →
+                  </a>
+                </div>
+              </div>
+
+              {/* Dynamic Table of Contents */}
+              {headings.length > 0 && (
+                <nav className="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs" aria-label="Table of Contents">
+                  <div className="flex items-center gap-2 mb-3 pb-2 border-b border-slate-100 dark:border-[#201a30]">
+                    <span className="w-2 h-2 rounded-full bg-purple-500" />
+                    <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                      On This Page
+                    </span>
+                    <span className="ml-auto text-[10px] font-mono text-slate-400 dark:text-slate-500">
+                      {headings.length} sections
+                    </span>
+                  </div>
+
+                  <div className="space-y-1 max-h-[50vh] overflow-y-auto pr-1 text-xs">
+                    {headings.map(({ level, text, slug }) => {
+                      const isActive = activeSection === slug;
+                      return (
+                        <button
+                          key={slug}
+                          onClick={() => scrollToHeading(slug)}
+                          type="button"
+                          className={`w-full text-left py-1.5 px-2.5 rounded-md transition flex items-start gap-2 cursor-pointer ${
+                            level === 3 ? "pl-5 text-slate-500 dark:text-slate-400" : "font-medium"
+                          } ${
+                            isActive
+                              ? "bg-purple-100 dark:bg-purple-900/50 text-purple-900 dark:text-purple-200 font-bold border-l-2 border-purple-600 dark:border-purple-400"
+                              : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1c172b] hover:text-slate-900 dark:hover:text-white"
+                          }`}
+                        >
+                          <span className="truncate">{text}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </nav>
+              )}
+
+              {/* Contribution Guide */}
+              <div className="px-2">
                 <a
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-300 transition"
-                  href={`${REPOSITORY_URL}/blob/main/priv/static${lab.path}`}
+                  className="text-xs text-slate-500 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-300 transition flex items-center gap-1.5"
+                  href={`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                  </svg>
-                  Edit on GitHub →
+                  <span>📖</span> Community contribution guide →
                 </a>
               </div>
-            </div>
+            </aside>
+          )}
 
-            {/* Dynamic Table of Contents */}
-            {headings.length > 0 && (
-              <nav className="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs" aria-label="Table of Contents">
-                <div className="flex items-center gap-2 mb-3 pb-2 border-b border-slate-100 dark:border-[#201a30]">
-                  <span className="w-2 h-2 rounded-full bg-purple-500" />
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    On This Page
-                  </span>
-                  <span className="ml-auto text-[10px] font-mono text-slate-400 dark:text-slate-500">
-                    {headings.length} sections
-                  </span>
-                </div>
-
-                <div className="space-y-1 max-h-[50vh] overflow-y-auto pr-1 text-xs">
-                  {headings.map(({ level, text, slug }) => {
-                    const isActive = activeSection === slug;
-                    return (
-                      <button
-                        key={slug}
-                        onClick={() => scrollToHeading(slug)}
-                        type="button"
-                        className={`w-full text-left py-1.5 px-2.5 rounded-md transition flex items-start gap-2 cursor-pointer ${
-                          level === 3 ? "pl-5 text-slate-500 dark:text-slate-400" : "font-medium"
-                        } ${
-                          isActive
-                            ? "bg-purple-100 dark:bg-purple-900/50 text-purple-900 dark:text-purple-200 font-bold border-l-2 border-purple-600 dark:border-purple-400"
-                            : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1c172b] hover:text-slate-900 dark:hover:text-white"
-                        }`}
-                      >
-                        <span className="truncate">{text}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </nav>
-            )}
-
-            {/* Contribution Guide */}
-            <div className="px-2">
-              <a
-                className="text-xs text-slate-500 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-300 transition flex items-center gap-1.5"
-                href={`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>📖</span> Community contribution guide →
-              </a>
-            </div>
-          </aside>
-
-          {/* Right Column: Lab Reading Content */}
+          {/* Right Column: Lab Reading Content with Ergonomic Reader Measure */}
           <main className="flex-1 min-w-0 w-full">
-            <div className="rounded-xl border border-purple-200 dark:border-purple-900/60 bg-purple-50/70 dark:bg-[#1a1429] p-4 sm:p-5 mb-8 text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-xs">
-              <strong className="text-slate-900 dark:text-white font-bold block mb-1">
-                🛡️ Production Safety Protocol:
-              </strong>
-              Review all commands, security policies, and network sweeps before executing. Never run intrusive scans or automated agents against production VPCs without verified written authorization and change-window approval.
-            </div>
-
-            <div className="kube-markdown w-full text-base leading-relaxed bg-white dark:bg-[#130f1c] rounded-2xl border border-slate-200 dark:border-[#26203b] p-6 sm:p-10 shadow-sm">
-              <MarkdownRenderer content={content} />
-            </div>
-
-            {/* Reader Footer Navigation */}
-            <footer className="mt-12 pt-6 border-t border-slate-200 dark:border-[#26203b] flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div>
-                <p className="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
-                  Ready for another topic?
-                </p>
-                <Link
-                  to="/labs"
-                  className="text-sm font-bold text-purple-600 dark:text-purple-400 hover:underline mt-1 inline-block"
-                >
-                  Browse full cloud AI security curriculum →
-                </Link>
+            <div className={widthMode === "reading" && !focusMode ? "reader-measure-reading" : "reader-measure-full"}>
+              <div className="rounded-xl border border-purple-200 dark:border-purple-900/60 bg-purple-50/70 dark:bg-[#1a1429] p-4 sm:p-5 mb-8 text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-xs">
+                <strong className="text-slate-900 dark:text-white font-bold block mb-1">
+                  🛡️ Production Safety Protocol:
+                </strong>
+                Review all commands, security policies, and network sweeps before executing. Never run intrusive scans or automated agents against production VPCs without verified written authorization and change-window approval.
               </div>
-              <a
-                href="#reader-top"
-                className="px-4 py-2 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-[#1f1b2e] hover:bg-slate-200 dark:hover:bg-[#2b243f] transition border border-slate-200 dark:border-[#2b243f]"
-              >
-                Back to top ↑
-              </a>
-            </footer>
+
+              <div className="kube-markdown w-full bg-white dark:bg-[#130f1c] rounded-2xl border border-slate-200 dark:border-[#26203b] p-6 sm:p-10 shadow-sm">
+                <MarkdownRenderer content={content} fontSize={fontSize} />
+              </div>
+
+              {/* Reader Footer Navigation */}
+              <footer className="mt-12 pt-6 border-t border-slate-200 dark:border-[#26203b] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
+                    Ready for another topic?
+                  </p>
+                  <Link
+                    to="/labs"
+                    className="text-sm font-bold text-purple-600 dark:text-purple-400 hover:underline mt-1 inline-block"
+                  >
+                    Browse full cloud AI security curriculum →
+                  </Link>
+                </div>
+                <a
+                  href="#reader-top"
+                  className="px-4 py-2 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-[#1f1b2e] hover:bg-slate-200 dark:hover:bg-[#2b243f] transition border border-slate-200 dark:border-[#2b243f]"
+                >
+                  Back to top ↑
+                </a>
+              </footer>
+            </div>
           </main>
         </div>
       </article>

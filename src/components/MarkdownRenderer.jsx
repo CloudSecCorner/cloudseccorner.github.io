@@ -18,7 +18,7 @@ const PeleDiagram = ({ code, language }) => {
 
   if (!renderedSvg) {
     return (
-      <div className="relative my-7 overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-900 text-slate-100 p-4 font-mono text-xs">
+      <div className="relative my-8 overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-900 text-slate-100 p-4 font-mono text-xs">
         <div className="text-[10px] uppercase font-bold text-amber-400 mb-2">Diagram Source</div>
         <pre className="overflow-x-auto">{code}</pre>
       </div>
@@ -26,8 +26,8 @@ const PeleDiagram = ({ code, language }) => {
   }
 
   return (
-    <div className="my-8 w-full rounded-2xl border border-slate-200/90 dark:border-[#2e2747] bg-white dark:bg-[#130f1c] shadow-md overflow-hidden">
-      <div className="flex items-center justify-between px-5 py-3 bg-slate-50 dark:bg-[#1a1528] border-b border-slate-200 dark:border-[#26203b] text-xs font-semibold text-slate-700 dark:text-slate-300">
+    <div className="my-10 w-full rounded-2xl border border-slate-200/90 dark:border-[#2e2747] bg-white dark:bg-[#130f1c] shadow-md overflow-hidden">
+      <div className="flex items-center justify-between px-5 py-3.5 bg-slate-50 dark:bg-[#1a1528] border-b border-slate-200 dark:border-[#26203b] text-xs font-semibold text-slate-700 dark:text-slate-300">
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block animate-pulse" />
           <span className="font-mono text-xs uppercase tracking-wider text-purple-700 dark:text-purple-300 font-bold">
@@ -38,9 +38,9 @@ const PeleDiagram = ({ code, language }) => {
           Interactive SVG
         </span>
       </div>
-      <div className="blueprint-canvas p-6 sm:p-8 flex justify-center items-center overflow-x-auto min-h-[220px] w-full">
+      <div className="blueprint-canvas p-6 sm:p-10 flex justify-center items-center overflow-x-auto min-h-[260px] w-full">
         <div
-          className="pele-svg-container w-full max-w-full flex justify-center"
+          className="pele-svg-container w-full max-w-5xl flex justify-center"
           dangerouslySetInnerHTML={{ __html: renderedSvg }}
         />
       </div>
@@ -72,7 +72,7 @@ function slugify(text) {
 }
 
 // Enhanced Code Block with Language Badge & Copy Button
-const CodeBlock = ({ language, codeElement, rawCode }) => {
+const CodeBlock = ({ language, rawCode }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -84,7 +84,7 @@ const CodeBlock = ({ language, codeElement, rawCode }) => {
   };
 
   return (
-    <div className="relative my-6 overflow-hidden rounded-xl border border-slate-200 dark:border-[#2e2747] bg-slate-950 dark:bg-[#0c0915] shadow-md group">
+    <div className="relative my-8 overflow-hidden rounded-xl border border-slate-200 dark:border-[#2e2747] bg-slate-950 dark:bg-[#0c0915] shadow-md group">
       {/* Code Header Bar */}
       <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900 dark:bg-[#161224] border-b border-slate-800 text-xs select-none">
         <div className="flex items-center gap-2">
@@ -121,30 +121,61 @@ const CodeBlock = ({ language, codeElement, rawCode }) => {
           )}
         </button>
       </div>
-      <pre className="overflow-x-auto p-4 sm:p-5 text-xs sm:text-sm leading-relaxed text-slate-200 font-mono">
-        {codeElement}
+      <pre className="overflow-x-auto p-4 sm:p-5 text-[13.5px] sm:text-[14.5px] leading-relaxed text-slate-100 font-mono bg-transparent m-0 border-0">
+        <code className="bg-transparent text-slate-100 p-0 border-0 font-mono leading-relaxed block">{rawCode}</code>
       </pre>
     </div>
   );
 };
 
-// Anchor-enabled Heading Component
-const Heading = ({ level, children, ...props }) => {
+// Anchor-enabled Heading Component with Dynamic Sizing
+const Heading = ({ level, fontSize = 'normal', children, ...props }) => {
   const text = getChildrenText(children);
   const slug = slugify(text);
   const Tag = `h${level}`;
 
-  const styles = {
-    1: 'scroll-mt-24 text-slate-900 dark:text-white font-extrabold text-2xl sm:text-3xl mt-10 mb-5 border-b border-slate-200 dark:border-slate-800 pb-3',
-    2: 'scroll-mt-24 text-slate-900 dark:text-white font-bold text-xl sm:text-2xl mt-10 mb-4 border-b border-slate-200/70 dark:border-slate-800/60 pb-2.5',
-    3: 'scroll-mt-24 text-slate-900 dark:text-slate-100 font-bold text-lg sm:text-xl mt-8 mb-3',
-    4: 'scroll-mt-24 text-slate-800 dark:text-slate-200 font-semibold text-base sm:text-lg mt-6 mb-2',
-    5: 'scroll-mt-24 text-slate-800 dark:text-slate-200 font-semibold text-sm sm:text-base mt-4 mb-2',
-    6: 'scroll-mt-24 text-slate-700 dark:text-slate-300 font-semibold text-xs sm:text-sm mt-3 mb-1 uppercase tracking-wider',
+  // Adaptive font scales based on reader setting
+  const scaleMaps = {
+    normal: {
+      1: 'text-2xl sm:text-3xl lg:text-4xl mt-10 mb-5 pb-3',
+      2: 'text-xl sm:text-2xl lg:text-3xl mt-10 mb-4 pb-2.5',
+      3: 'text-lg sm:text-xl lg:text-2xl mt-8 mb-3',
+      4: 'text-base sm:text-lg lg:text-xl mt-6 mb-2',
+      5: 'text-sm sm:text-base lg:text-lg mt-4 mb-2',
+      6: 'text-xs sm:text-sm lg:text-base mt-3 mb-1 uppercase tracking-wider',
+    },
+    large: {
+      1: 'text-3xl sm:text-4xl lg:text-5xl mt-12 mb-6 pb-4',
+      2: 'text-2xl sm:text-3xl lg:text-4xl mt-12 mb-5 pb-3',
+      3: 'text-xl sm:text-2xl lg:text-3xl mt-10 mb-4',
+      4: 'text-lg sm:text-xl lg:text-2xl mt-8 mb-3',
+      5: 'text-base sm:text-lg lg:text-xl mt-5 mb-2',
+      6: 'text-sm sm:text-base lg:text-lg mt-4 mb-2 uppercase tracking-wider',
+    },
+    xlarge: {
+      1: 'text-4xl sm:text-5xl lg:text-6xl mt-14 mb-7 pb-4',
+      2: 'text-3xl sm:text-4xl lg:text-5xl mt-14 mb-6 pb-3',
+      3: 'text-2xl sm:text-3xl lg:text-4xl mt-11 mb-4',
+      4: 'text-xl sm:text-2xl lg:text-3xl mt-9 mb-3',
+      5: 'text-lg sm:text-xl lg:text-2xl mt-6 mb-2',
+      6: 'text-base sm:text-lg lg:text-xl mt-4 mb-2 uppercase tracking-wider',
+    },
+  };
+
+  const currentScale = scaleMaps[fontSize] || scaleMaps.normal;
+  const sizeClasses = currentScale[level] || currentScale[2];
+
+  const baseStyles = {
+    1: 'scroll-mt-24 text-slate-900 dark:text-white font-extrabold border-b border-slate-200 dark:border-slate-800 tracking-tight',
+    2: 'scroll-mt-24 text-slate-900 dark:text-white font-bold border-b border-slate-200/70 dark:border-slate-800/60 tracking-tight',
+    3: 'scroll-mt-24 text-slate-900 dark:text-slate-100 font-bold tracking-tight',
+    4: 'scroll-mt-24 text-slate-800 dark:text-slate-200 font-semibold',
+    5: 'scroll-mt-24 text-slate-800 dark:text-slate-200 font-semibold',
+    6: 'scroll-mt-24 text-slate-700 dark:text-slate-300 font-semibold',
   };
 
   return (
-    <Tag id={slug} className={`group flex items-center justify-between ${styles[level] || styles[2]}`} {...props}>
+    <Tag id={slug} className={`group flex items-center justify-between ${baseStyles[level] || baseStyles[2]} ${sizeClasses}`} {...props}>
       <span>{children}</span>
       {slug && (
         <a
@@ -160,9 +191,15 @@ const Heading = ({ level, children, ...props }) => {
 };
 
 // Callout / Blockquote with GitHub-Style Alerts
-const Blockquote = ({ children, ...props }) => {
+const Blockquote = ({ fontSize = 'normal', children, ...props }) => {
   const text = getChildrenText(children);
   const alertMatch = text.match(/^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/i);
+
+  const textSize = {
+    normal: 'text-[16px] sm:text-[17px] leading-[1.8]',
+    large: 'text-[18px] sm:text-[19px] leading-[1.85]',
+    xlarge: 'text-[20px] sm:text-[21px] leading-[1.9]',
+  }[fontSize] || 'text-[16px] sm:text-[17px] leading-[1.8]';
 
   if (alertMatch) {
     const type = alertMatch[1].toUpperCase();
@@ -211,13 +248,13 @@ const Blockquote = ({ children, ...props }) => {
     };
 
     return (
-      <div className={`my-6 rounded-xl border-l-4 ${config.border} ${config.bg} p-4 sm:p-5 shadow-xs`}>
-        <div className="flex items-center gap-2 mb-2">
-          <span className={`px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider ${config.badge}`}>
+      <div className={`my-8 rounded-xl border-l-4 ${config.border} ${config.bg} p-5 sm:p-6 shadow-xs`}>
+        <div className="flex items-center gap-2 mb-2.5">
+          <span className={`px-2.5 py-0.5 rounded text-[11px] font-extrabold uppercase tracking-wider ${config.badge}`}>
             {config.title}
           </span>
         </div>
-        <div className={`text-sm sm:text-base leading-relaxed ${config.text} [&>p:first-child]:mt-0 [&>p:last-child]:mb-0`}>
+        <div className={`${textSize} ${config.text} [&>p:first-child]:mt-0 [&>p:last-child]:mb-0`}>
           {children}
         </div>
       </div>
@@ -225,17 +262,29 @@ const Blockquote = ({ children, ...props }) => {
   }
 
   return (
-    <blockquote className="rounded-r-xl border-l-4 border-purple-500 bg-purple-50/60 dark:bg-[#1f1930] py-3.5 px-5 my-6 text-slate-700 dark:text-slate-300 italic shadow-xs" {...props}>
+    <blockquote className={`rounded-r-xl border-l-4 border-purple-500 bg-purple-50/60 dark:bg-[#1f1930] py-4 px-6 my-8 text-slate-700 dark:text-slate-300 italic shadow-xs ${textSize}`} {...props}>
       {children}
     </blockquote>
   );
 };
 
-const MarkdownRenderer = ({ children, content, className = '' }) => {
+const MarkdownRenderer = ({ children, content, fontSize = 'normal', className = '' }) => {
   const markdownText = children || content || '';
 
+  const paragraphSize = {
+    normal: 'text-[17px] leading-[1.85] my-5',
+    large: 'text-[19px] leading-[1.9] my-6',
+    xlarge: 'text-[21px] leading-[2.0] my-7',
+  }[fontSize] || 'text-[17px] leading-[1.85] my-5';
+
+  const listSize = {
+    normal: 'text-[17px] leading-[1.8]',
+    large: 'text-[19px] leading-[1.85]',
+    xlarge: 'text-[21px] leading-[1.95]',
+  }[fontSize] || 'text-[17px] leading-[1.8]';
+
   return (
-    <div className={`prose dark:prose-invert max-w-none text-slate-800 dark:text-slate-200 ${className}`}>
+    <div className={`markdown-body w-full max-w-none text-slate-800 dark:text-slate-200 ${className}`}>
       <ReactMarkdown
         skipHtml
         components={{
@@ -272,37 +321,28 @@ const MarkdownRenderer = ({ children, content, className = '' }) => {
             return (
               <CodeBlock
                 language={language}
-                codeElement={codeElement}
                 rawCode={rawCode}
               />
             );
           },
           code: ({ children: code, className: codeClassName, ...props }) => {
-            const isInline = !codeClassName;
-            if (isInline) {
-              return (
-                <code
-                  className="rounded bg-slate-100 dark:bg-[#1f1b2e] px-1.5 py-0.5 text-xs sm:text-sm font-mono text-purple-700 dark:text-purple-300 border border-slate-200 dark:border-[#2e2747]"
-                  {...props}
-                >
-                  {code}
-                </code>
-              );
-            }
             return (
-              <code className={codeClassName} {...props}>
+              <code
+                className="rounded bg-slate-100 dark:bg-[#1f1b2e] px-1.5 py-0.5 text-[0.88em] font-mono font-semibold text-purple-700 dark:text-purple-300 border border-slate-200/80 dark:border-[#2e2747]"
+                {...props}
+              >
                 {code}
               </code>
             );
           },
-          h1: (props) => <Heading level={1} {...props} />,
-          h2: (props) => <Heading level={2} {...props} />,
-          h3: (props) => <Heading level={3} {...props} />,
-          h4: (props) => <Heading level={4} {...props} />,
-          h5: (props) => <Heading level={5} {...props} />,
-          h6: (props) => <Heading level={6} {...props} />,
+          h1: (props) => <Heading level={1} fontSize={fontSize} {...props} />,
+          h2: (props) => <Heading level={2} fontSize={fontSize} {...props} />,
+          h3: (props) => <Heading level={3} fontSize={fontSize} {...props} />,
+          h4: (props) => <Heading level={4} fontSize={fontSize} {...props} />,
+          h5: (props) => <Heading level={5} fontSize={fontSize} {...props} />,
+          h6: (props) => <Heading level={6} fontSize={fontSize} {...props} />,
           p: ({ children: paragraph, ...props }) => (
-            <p className="leading-relaxed my-4 text-slate-700 dark:text-slate-300 text-sm sm:text-base" {...props}>
+            <p className={`text-slate-800 dark:text-slate-200 ${paragraphSize}`} {...props}>
               {paragraph}
             </p>
           ),
@@ -313,23 +353,23 @@ const MarkdownRenderer = ({ children, content, className = '' }) => {
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
-                className="text-purple-600 dark:text-purple-400 font-semibold hover:underline"
+                className="text-purple-600 dark:text-purple-400 font-semibold hover:underline decoration-2 underline-offset-4"
                 {...props}
               >
                 {label}
               </a>
             );
           },
-          blockquote: (props) => <Blockquote {...props} />,
+          blockquote: (props) => <Blockquote fontSize={fontSize} {...props} />,
           table: ({ children: rows, ...props }) => (
-            <div className="my-8 overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
+            <div className="my-10 w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
               <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-left" {...props}>
                 {rows}
               </table>
             </div>
           ),
           thead: ({ children: rows, ...props }) => (
-            <thead className="bg-slate-100 dark:bg-[#1a1528] text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider" {...props}>
+            <thead className="bg-slate-100 dark:bg-[#1a1528] text-slate-900 dark:text-white font-bold text-xs sm:text-sm uppercase tracking-wider" {...props}>
               {rows}
             </thead>
           ),
@@ -339,43 +379,43 @@ const MarkdownRenderer = ({ children, content, className = '' }) => {
             </tbody>
           ),
           th: ({ children: value, ...props }) => (
-            <th className="px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200" {...props}>
+            <th className="px-5 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white" {...props}>
               {value}
             </th>
           ),
           td: ({ children: value, ...props }) => (
-            <td className="px-4 py-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300" {...props}>
+            <td className={`px-5 py-3.5 text-slate-800 dark:text-slate-200 ${listSize}`} {...props}>
               {value}
             </td>
           ),
           ul: ({ children: items, ...props }) => (
-            <ul className="my-4 list-disc space-y-2 pl-6 text-slate-700 dark:text-slate-300 text-sm sm:text-base" {...props}>
+            <ul className="my-5 list-disc space-y-2.5 pl-6 sm:pl-8 text-slate-800 dark:text-slate-200" {...props}>
               {items}
             </ul>
           ),
           ol: ({ children: items, ...props }) => (
-            <ol className="my-4 list-decimal space-y-2 pl-6 text-slate-700 dark:text-slate-300 text-sm sm:text-base" {...props}>
+            <ol className="my-5 list-decimal space-y-2.5 pl-6 sm:pl-8 text-slate-800 dark:text-slate-200" {...props}>
               {items}
             </ol>
           ),
           li: ({ children: item, ...props }) => (
-            <li className="pl-1 leading-relaxed" {...props}>{item}</li>
+            <li className={`pl-1.5 leading-relaxed ${listSize}`} {...props}>{item}</li>
           ),
-          hr: (props) => <hr className="my-8 border-slate-200 dark:border-slate-800" {...props} />,
+          hr: (props) => <hr className="my-10 border-slate-200 dark:border-slate-800" {...props} />,
           img: ({ src, alt = '', ...props }) => (
-            <span className="my-6 block">
+            <span className="my-8 block">
               <img
                 src={src}
                 alt={alt}
-                className="mx-auto max-w-full rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm"
+                className="mx-auto max-w-full rounded-xl border border-slate-200 dark:border-slate-800 shadow-md"
                 loading="lazy"
                 {...props}
               />
-              {alt && <span className="mt-2 block text-center text-xs text-slate-500 dark:text-slate-400">{alt}</span>}
+              {alt && <span className="mt-2.5 block text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400">{alt}</span>}
             </span>
           ),
           strong: ({ children: value, ...props }) => (
-            <strong className="font-bold text-slate-900 dark:text-white" {...props}>{value}</strong>
+            <strong className="font-bold text-slate-950 dark:text-white" {...props}>{value}</strong>
           ),
           em: ({ children: value, ...props }) => (
             <em className="italic text-purple-700 dark:text-purple-300" {...props}>{value}</em>

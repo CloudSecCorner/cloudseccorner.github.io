@@ -1,3 +1,8 @@
+<!-- Top Floating Reading Progress Bar -->
+<div class="fixed top-0 left-0 right-0 h-1 bg-transparent z-50 pointer-events-none">
+  <div id="reading-progress-bar" class="h-full bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500 transition-all duration-150 ease-out" style="width: 0%"></div>
+</div>
+
 <header class="kube-lab-reader-header w-full border-b border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c]" id="reader-top">
   <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
     <nav class="kube-lab-breadcrumb" aria-label="Breadcrumb">
@@ -26,7 +31,7 @@
   </div>
 </header>
 
-<section class="kube-lab-steps border-b border-slate-200 dark:border-[#26203b] bg-slate-100/60 dark:bg-[#0f0c18]" aria-label="How to use this lab">
+<section class="kube-lab-steps border-b border-slate-200 dark:border-[#26203b] bg-slate-100/60 dark:bg-[#0f0c18]" id="reader-steps" aria-label="How to use this lab">
   <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <ol>
       <li><span>1</span><div><strong>Read the concept</strong><small>Build the mental model first.</small></div></li>
@@ -36,11 +41,97 @@
   </div>
 </section>
 
-<article class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-  <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+<!-- Ergonomic Reader Sticky Toolbar (Width, Font Size, Zen Mode) -->
+<div class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-[#26203b] bg-white/95 dark:bg-[#130f1c]/95 backdrop-blur-md transition-all shadow-xs" id="reader-toolbar">
+  <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+    <!-- Left: Quick Breadcrumb / Zen Exit -->
+    <div class="flex items-center gap-3">
+      <a
+        href="/labs/"
+        id="reader-back-link"
+        class="text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 font-semibold flex items-center gap-1"
+      >
+        ← All Labs
+      </a>
+      <span class="hidden sm:inline-block text-slate-300 dark:text-[#2e2646]">|</span>
+      <span class="hidden md:inline font-medium text-slate-600 dark:text-slate-300 truncate max-w-xs xl:max-w-md">
+        {@lab["title"]}
+      </span>
+    </div>
+
+    <!-- Right: Controls (Scroll %, Width Measure, Font Size, Zen Focus) -->
+    <div class="flex items-center gap-2 sm:gap-4 flex-wrap ml-auto">
+      <!-- Scroll % -->
+      <div class="hidden sm:flex items-center gap-1.5 font-mono text-[11px] text-slate-500 dark:text-slate-400">
+        <span id="reading-percent-text">0% read</span>
+      </div>
+
+      <!-- Font Size Selector -->
+      <div class="flex items-center rounded-lg border border-slate-200 dark:border-[#2b243f] p-0.5 bg-slate-100/70 dark:bg-[#1a1528]" id="font-size-group">
+        <button
+          type="button"
+          id="btn-font-normal"
+          title="Default Font (17px)"
+          class="font-btn active px-2 py-0.5 rounded text-xs font-semibold bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs cursor-pointer"
+        >
+          A
+        </button>
+        <button
+          type="button"
+          id="btn-font-large"
+          title="Large Font (19px)"
+          class="font-btn px-2 py-0.5 rounded text-xs font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+        >
+          A+
+        </button>
+        <button
+          type="button"
+          id="btn-font-xlarge"
+          title="X-Large Font (21px)"
+          class="font-btn px-2 py-0.5 rounded text-xs font-black text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+        >
+          A++
+        </button>
+      </div>
+
+      <!-- Width Mode Selector -->
+      <div class="flex items-center rounded-lg border border-slate-200 dark:border-[#2b243f] p-0.5 bg-slate-100/70 dark:bg-[#1a1528]" id="width-mode-group">
+        <button
+          type="button"
+          id="btn-width-reading"
+          title="Optimal 75-80 char line length for deep reading"
+          class="width-btn active px-2.5 py-0.5 rounded text-xs font-bold bg-white dark:bg-[#2a223f] text-purple-700 dark:text-purple-300 shadow-xs cursor-pointer"
+        >
+          Optimal
+        </button>
+        <button
+          type="button"
+          id="btn-width-full"
+          title="Full 100% monitor width"
+          class="width-btn px-2.5 py-0.5 rounded text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+        >
+          Full Width
+        </button>
+      </div>
+
+      <!-- Zen Focus Mode Button -->
+      <button
+        type="button"
+        id="btn-zen-mode"
+        title="Zen Focus Mode (Hide sidebar and distractions)"
+        class="flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs font-medium bg-white dark:bg-[#1a1528] text-slate-700 dark:text-slate-300 border-slate-200 dark:border-[#2b243f] hover:bg-slate-50 dark:hover:bg-[#231c36] cursor-pointer"
+      >
+        <span id="zen-btn-label">🧘 Zen Mode</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<article id="reader-article" class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+  <div id="reader-flex-container" class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
     <!-- Left Column: Interactive Navigation & TOC -->
-    <aside class="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6">
+    <aside id="reader-aside" class="w-full lg:w-72 xl:w-80 shrink-0 lg:sticky lg:top-24 max-h-[calc(100vh-7rem)] lg:overflow-y-auto space-y-6">
       <div class="rounded-xl border border-slate-200 dark:border-[#26203b] bg-white dark:bg-[#130f1c] p-4 shadow-xs">
         <a href="/labs/" class="flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -101,32 +192,34 @@
       </div>
     </aside>
 
-    <!-- Right Column: Lab Content -->
-    <main class="flex-1 min-w-0 w-full">
-      <div class="rounded-xl border border-purple-200 dark:border-purple-900/60 bg-purple-50/70 dark:bg-[#1a1429] p-4 sm:p-5 mb-8 text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-xs">
-        <strong class="text-slate-900 dark:text-white font-bold block mb-1">
-          🛡️ Production Safety Protocol:
-        </strong>
-        Review all commands, security policies, and network sweeps before executing. Never run intrusive scans or automated agents against production VPCs without verified written authorization and change-window approval.
-      </div>
-
-      <div class="kube-markdown w-full text-base leading-relaxed bg-white dark:bg-[#130f1c] rounded-2xl border border-slate-200 dark:border-[#26203b] p-6 sm:p-10 shadow-sm">
-        {raw(@content_html)}
-      </div>
-
-      <footer class="mt-12 pt-6 border-t border-slate-200 dark:border-[#26203b] flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div>
-          <p class="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
-            Ready for another topic?
-          </p>
-          <a href="/labs/" class="text-sm font-bold text-purple-600 dark:text-purple-400 hover:underline mt-1 inline-block">
-            Browse full cloud AI security curriculum →
-          </a>
+    <!-- Right Column: Lab Content with Ergonomic Reader Measure -->
+    <main id="reader-main" class="flex-1 min-w-0 w-full">
+      <div id="lab-prose-container" class="reader-measure-reading">
+        <div class="rounded-xl border border-purple-200 dark:border-purple-900/60 bg-purple-50/70 dark:bg-[#1a1429] p-4 sm:p-5 mb-8 text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-xs">
+          <strong class="text-slate-900 dark:text-white font-bold block mb-1">
+            🛡️ Production Safety Protocol:
+          </strong>
+          Review all commands, security policies, and network sweeps before executing. Never run intrusive scans or automated agents against production VPCs without verified written authorization and change-window approval.
         </div>
-        <a href="#reader-top" class="px-4 py-2 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-[#1f1b2e] hover:bg-slate-200 dark:hover:bg-[#2b243f] transition border border-slate-200 dark:border-[#2b243f]">
-          Back to top ↑
-        </a>
-      </footer>
+
+        <div id="lab-markdown-body" class="kube-markdown w-full text-base leading-relaxed bg-white dark:bg-[#130f1c] rounded-2xl border border-slate-200 dark:border-[#26203b] p-6 sm:p-10 shadow-sm">
+          {raw(@content_html)}
+        </div>
+
+        <footer class="mt-12 pt-6 border-t border-slate-200 dark:border-[#26203b] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <p class="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400">
+              Ready for another topic?
+            </p>
+            <a href="/labs/" class="text-sm font-bold text-purple-600 dark:text-purple-400 hover:underline mt-1 inline-block">
+              Browse full cloud AI security curriculum →
+            </a>
+          </div>
+          <a href="#reader-top" class="px-4 py-2 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-[#1f1b2e] hover:bg-slate-200 dark:hover:bg-[#2b243f] transition border border-slate-200 dark:border-[#2b243f]">
+            Back to top ↑
+          </a>
+        </footer>
+      </div>
     </main>
   </div>
 </article>
@@ -275,5 +368,133 @@
       });
       pre.appendChild(copyCodeBtn);
     });
+
+    // 5. Scroll Progress Bar & Indicator
+    var progressBar = document.getElementById("reading-progress-bar");
+    var percentText = document.getElementById("reading-percent-text");
+    function updateScrollProgress() {
+      var totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        var progress = Math.min(100, Math.max(0, Math.round((window.pageYOffset / totalHeight) * 100)));
+        if (progressBar) progressBar.style.width = progress + "%";
+        if (percentText) percentText.textContent = progress + "% read";
+      }
+    }
+    window.addEventListener("scroll", updateScrollProgress, { passive: true });
+    updateScrollProgress();
+
+    // 6. Font Size Switching
+    var proseEl = document.getElementById("lab-prose-container");
+    var markdownBodyEl = document.getElementById("lab-markdown-body");
+    var btnFontNormal = document.getElementById("btn-font-normal");
+    var btnFontLarge = document.getElementById("btn-font-large");
+    var btnFontXlarge = document.getElementById("btn-font-xlarge");
+    var fontButtons = [btnFontNormal, btnFontLarge, btnFontXlarge];
+
+    function setFontSize(size) {
+      if (!markdownBodyEl) return;
+      markdownBodyEl.classList.remove("text-base", "text-lg", "text-xl");
+      fontButtons.forEach(function (btn) {
+        if (!btn) return;
+        btn.classList.remove("bg-white", "dark:bg-[#2a223f]", "text-purple-700", "dark:text-purple-300", "shadow-xs");
+        btn.classList.add("text-slate-600", "dark:text-slate-400");
+      });
+
+      if (size === "large") {
+        markdownBodyEl.classList.add("text-lg");
+        if (btnFontLarge) {
+          btnFontLarge.classList.add("bg-white", "dark:bg-[#2a223f]", "text-purple-700", "dark:text-purple-300", "shadow-xs");
+          btnFontLarge.classList.remove("text-slate-600", "dark:text-slate-400");
+        }
+      } else if (size === "xlarge") {
+        markdownBodyEl.classList.add("text-xl");
+        if (btnFontXlarge) {
+          btnFontXlarge.classList.add("bg-white", "dark:bg-[#2a223f]", "text-purple-700", "dark:text-purple-300", "shadow-xs");
+          btnFontXlarge.classList.remove("text-slate-600", "dark:text-slate-400");
+        }
+      } else {
+        markdownBodyEl.classList.add("text-base");
+        if (btnFontNormal) {
+          btnFontNormal.classList.add("bg-white", "dark:bg-[#2a223f]", "text-purple-700", "dark:text-purple-300", "shadow-xs");
+          btnFontNormal.classList.remove("text-slate-600", "dark:text-slate-400");
+        }
+      }
+    }
+
+    if (btnFontNormal) btnFontNormal.addEventListener("click", function () { setFontSize("normal"); });
+    if (btnFontLarge) btnFontLarge.addEventListener("click", function () { setFontSize("large"); });
+    if (btnFontXlarge) btnFontXlarge.addEventListener("click", function () { setFontSize("xlarge"); });
+
+    // 7. Width Mode Switching (Optimal vs Full Width)
+    var btnWidthReading = document.getElementById("btn-width-reading");
+    var btnWidthFull = document.getElementById("btn-width-full");
+
+    function setWidthMode(mode) {
+      if (!proseEl) return;
+      if (mode === "full") {
+        proseEl.classList.remove("reader-measure-reading");
+        proseEl.classList.add("reader-measure-full");
+        if (btnWidthFull) {
+          btnWidthFull.classList.add("bg-white", "dark:bg-[#2a223f]", "text-purple-700", "dark:text-purple-300", "shadow-xs", "font-bold");
+          btnWidthFull.classList.remove("text-slate-600", "dark:text-slate-400", "font-medium");
+        }
+        if (btnWidthReading) {
+          btnWidthReading.classList.remove("bg-white", "dark:bg-[#2a223f]", "text-purple-700", "dark:text-purple-300", "shadow-xs", "font-bold");
+          btnWidthReading.classList.add("text-slate-600", "dark:text-slate-400", "font-medium");
+        }
+      } else {
+        proseEl.classList.remove("reader-measure-full");
+        proseEl.classList.add("reader-measure-reading");
+        if (btnWidthReading) {
+          btnWidthReading.classList.add("bg-white", "dark:bg-[#2a223f]", "text-purple-700", "dark:text-purple-300", "shadow-xs", "font-bold");
+          btnWidthReading.classList.remove("text-slate-600", "dark:text-slate-400", "font-medium");
+        }
+        if (btnWidthFull) {
+          btnWidthFull.classList.remove("bg-white", "dark:bg-[#2a223f]", "text-purple-700", "dark:text-purple-300", "shadow-xs", "font-bold");
+          btnWidthFull.classList.add("text-slate-600", "dark:text-slate-400", "font-medium");
+        }
+      }
+    }
+
+    if (btnWidthReading) btnWidthReading.addEventListener("click", function () { setWidthMode("reading"); });
+    if (btnWidthFull) btnWidthFull.addEventListener("click", function () { setWidthMode("full"); });
+
+    // 8. Zen Focus Mode
+    var btnZen = document.getElementById("btn-zen-mode");
+    var zenLabel = document.getElementById("zen-btn-label");
+    var readerHeader = document.getElementById("reader-top");
+    var readerSteps = document.getElementById("reader-steps");
+    var readerAside = document.getElementById("reader-aside");
+    var readerArticle = document.getElementById("reader-article");
+    var isZen = false;
+
+    if (btnZen) {
+      btnZen.addEventListener("click", function () {
+        isZen = !isZen;
+        if (isZen) {
+          if (readerHeader) readerHeader.classList.add("hidden");
+          if (readerSteps) readerSteps.classList.add("hidden");
+          if (readerAside) readerAside.classList.add("hidden");
+          if (readerArticle) {
+            readerArticle.classList.remove("max-w-[1600px]");
+            readerArticle.classList.add("max-w-4xl");
+          }
+          if (zenLabel) zenLabel.textContent = "✕ Exit Zen Mode";
+          btnZen.classList.add("bg-purple-100", "dark:bg-purple-900/50", "text-purple-800", "dark:text-purple-200", "border-purple-300", "dark:border-purple-700");
+          btnZen.classList.remove("bg-white", "dark:bg-[#1a1528]", "text-slate-700", "dark:text-slate-300");
+        } else {
+          if (readerHeader) readerHeader.classList.remove("hidden");
+          if (readerSteps) readerSteps.classList.remove("hidden");
+          if (readerAside) readerAside.classList.remove("hidden");
+          if (readerArticle) {
+            readerArticle.classList.add("max-w-[1600px]");
+            readerArticle.classList.remove("max-w-4xl");
+          }
+          if (zenLabel) zenLabel.textContent = "🧘 Zen Mode";
+          btnZen.classList.remove("bg-purple-100", "dark:bg-purple-900/50", "text-purple-800", "dark:text-purple-200", "border-purple-300", "dark:border-purple-700");
+          btnZen.classList.add("bg-white", "dark:bg-[#1a1528]", "text-slate-700", "dark:text-slate-300");
+        }
+      });
+    }
   });
 </script>

@@ -2952,7 +2952,7 @@ html {
 }
 
 
-/* Pele SVG Diagrams Theming */
+/* Pele SVG Diagrams Theming & Fullscreen Scaling */
 .pele {
   --pele-bg: #ffffff;
   --pele-fg: #0f172a;
@@ -2966,6 +2966,66 @@ html {
   --pele-radius: 6px;
   max-width: 100%;
   height: auto;
+}
+
+.pele-svg-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.pele-svg-container svg {
+  width: 100% !important;
+  max-width: 1100px !important;
+  min-width: 280px;
+  height: auto !important;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Widescreen & Fullscreen Reader Ergonomics */
+.reader-measure-reading {
+  max-width: 58rem; /* ~928px: optimal 75-80 char measure */
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reader-measure-full {
+  max-width: 100%;
+  width: 100%;
+}
+
+.markdown-body {
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+.markdown-body p {
+  color: #1e293b;
+}
+
+.dark .markdown-body p {
+  color: #e2e8f0;
+}
+
+.markdown-body strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.dark .markdown-body strong {
+  color: #ffffff;
+}
+
+.markdown-body li {
+  color: #1e293b;
+}
+
+.dark .markdown-body li {
+  color: #e2e8f0;
 }
 
 .dark .pele {
