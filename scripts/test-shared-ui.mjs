@@ -56,6 +56,8 @@ assert.match(nav, /href="\/tools"/);
 assert.match(nav, /dev-brand-mark/);
 const Footer = (await load('src/components/Footer.jsx')).default;
 const footer = render(Footer, '/tools');
+assert.match(footer, /<site-visit-counter aria-live="polite">/);
+assert.match(footer, /href="https:\/\/hits.sh\/cloudsecuritycorner.com\/"/);
 for (const route of ['/tools', '/labs', '/blog', '/about', '/aws-architectures', '/azure-architectures', '/gcp-architectures', '/kspm-architectures']) assert(footer.includes(`href="${route}"`));
 const labs = read('src/components/Labs.jsx');
 assert(labs.indexOf('<section id="lab-library"') < labs.indexOf('className="dev-roadmap'), 'Lab catalog must precede the learning roadmap');

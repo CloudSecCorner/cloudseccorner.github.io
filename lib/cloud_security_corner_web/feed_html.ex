@@ -11,7 +11,7 @@ defmodule CloudSecurityCornerWeb.FeedHTML do
         <div><p class="dev-eyebrow">Field Notes / Cloud security research</p><h2>Daily Cloud Security Feed</h2><p>Cloud security headlines from the original publishers. Open an article to read it at the source.</p></div>
         <div class="cloud-feed-actions"><a href="/feeds/cloud-security.xml">Subscribe via RSS</a><a href="/feeds/cloud-security.opml" download>Download OPML</a><a :if={@compact} href="/blog#cloud-feed">All headlines →</a></div>
       </div>
-      <p class="cloud-feed-meta">Updated daily · <%= if @snapshot["updated_at"] do %>Latest successful import <time datetime={@snapshot["updated_at"]}>{display_time(@snapshot["updated_at"])}</time><% else %>Waiting for the first successful import.<% end %></p>
+      <p class="cloud-feed-meta">{length(@snapshot["sources"])} publishers · Updated daily · <%= if @snapshot["updated_at"] do %>Latest successful import <time datetime={@snapshot["updated_at"]}>{display_time(@snapshot["updated_at"])}</time><% else %>Waiting for the first successful import.<% end %></p>
       <p :if={Enum.any?(@snapshot["sources"], &(&1["status"] != "ok"))} class="cloud-feed-status">Some sources are temporarily unavailable. Previously imported headlines are retained when available.</p>
       <p :if={@snapshot["items"] == []} class="cloud-feed-empty">No recent cloud security headlines are available yet.</p>
       <ol class="cloud-feed-list">

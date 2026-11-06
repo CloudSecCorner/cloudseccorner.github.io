@@ -22,6 +22,7 @@
     <link rel="alternate" type="application/rss+xml" title="CloudSecCorner Cloud Security Feed" href="/feeds/cloud-security.xml" />
     <link id="elixir-fallback-css" rel="stylesheet" href="/assets/app.css?v=20261031_04" />
     <script src="/assets/initialize-theme.js"></script>
+    <script defer src="/assets/site-visits.js?v=1"></script>
     <script :if={!frontend} defer src="/site.js?v=20261031_04"></script>
     <%= if frontend do %>
       <link :for={href <- frontend.stylesheets} rel="stylesheet" crossorigin href={href} />
@@ -460,6 +461,10 @@
       <div class="border-t border-brand-gray-700/60 py-6 text-center text-xs text-brand-gray-400">
         <div class="mx-auto flex max-w-screen-xl flex-col sm:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 gap-2">
           <p>© CloudSecCorner · Built for the security community.</p>
+          <a class="site-visit-counter inline-flex items-center gap-2" href="https://hits.sh/cloudsecuritycorner.com/" target="_blank" rel="noopener noreferrer" title="Site-wide visits since November 2026. Repeat page loads are included.">
+            <span>Site visits</span>
+            <site-visit-counter aria-live="polite">View statistics ↗</site-visit-counter>
+          </a>
           <p>Learn openly. Build securely. Built with Elixir, Phoenix &amp; React.</p>
         </div>
       </div>

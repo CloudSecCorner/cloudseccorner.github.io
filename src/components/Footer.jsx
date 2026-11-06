@@ -84,6 +84,10 @@ function Footer() {
       {/* Bottom Bar */}
       <div className="kube-footer-bottom">
         <p>© Cloud Security Corner. Built for the cloud security and AI community.</p>
+        <a className="site-visit-counter" href="https://hits.sh/cloudsecuritycorner.com/" target="_blank" rel="noopener noreferrer" title="Site-wide visits since November 2026. Repeat page loads are included.">
+          <span>Site visits</span>
+          <site-visit-counter aria-live="polite">View statistics ↗</site-visit-counter>
+        </a>
         <p>Learn openly. Defend confidently.</p>
       </div>
     </footer>

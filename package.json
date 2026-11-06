@@ -11,7 +11,7 @@
     "generate:references": "node scripts/generate-reference-architectures.mjs",
     "content:sync": "node scripts/sync-learning-content.mjs",
     "preview": "vite preview",
-    "test": "node scripts/validate-content.mjs && node scripts/validate-diagrams.mjs && node scripts/test-developer-architectures.mjs && node scripts/test-landing-page.mjs && node scripts/test-shared-ui.mjs && node scripts/test-learning-content.mjs && node scripts/test-cloud-feed.mjs",
+    "test": "node scripts/validate-content.mjs && node scripts/validate-diagrams.mjs && node scripts/test-developer-architectures.mjs && node scripts/test-landing-page.mjs && node scripts/test-shared-ui.mjs && node scripts/test-learning-content.mjs && node scripts/test-cloud-feed.mjs && node scripts/test-site-visits.mjs",
     "check": "npm test && npm run build",
     "test:export": "node scripts/validate-site-export.mjs"
   },

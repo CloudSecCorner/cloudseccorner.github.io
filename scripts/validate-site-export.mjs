@@ -41,6 +41,9 @@ for (const route of [...routes, "/404.html"]) {
   }
   assert.match(html, /<main[\s>]/, `${route}: no server-rendered page content`);
   assert.match(html, /<title>[^<]+<\/title>/, `${route}: no server-rendered title`);
+  assert.match(html, /<script defer src="\/assets\/site-visits\.js\?v=1"><\/script>/, `${route}: missing shared visit counter`);
+  assert.match(html, /<site-visit-counter aria-live="polite">/, `${route}: missing visit counter fallback`);
+  assert(!html.includes('src="https://hits.sh/'), `${route}: a fallback image would count again when React loads`);
   assert(!html.includes("/src/main.jsx"), `${route}: points at source instead of built React`);
   assert(!/<script[^>]+src="(?:\/site\.js|\/tools\.js|\/assets\/(?:pele\.global|(?:aws|azure|gcp|kspm)-architectures)\.js)/.test(html), `${route}: legacy JavaScript competes with React`);
   if (route !== "/404.html") {
@@ -65,6 +68,7 @@ for (const data of ["aws", "azure", "gcp", "kspm"]) {
 }
 await publicFile("assets/app.css");
 await publicFile("assets/initialize-theme.js");
+await publicFile("assets/site-visits.js");
 const cloudFeed = JSON.parse(await readFile(await publicFile("data/cloud-security-feed.json"), "utf8"));
 assert.equal(cloudFeed.version, 1);
 assert(cloudFeed.items.length > 0, "Cloud security feed is empty");

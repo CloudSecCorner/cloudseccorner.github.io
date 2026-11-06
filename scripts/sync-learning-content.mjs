@@ -15,4 +15,6 @@ const feed = path.join(root, 'priv/data/cloud-security-feed.json');
 if (fs.existsSync(feed)) {
   for (const target of ['public/data', 'priv/static/data']) fs.copyFileSync(feed, path.join(root, target, 'cloud-security-feed.json'));
 }
-console.log('Synchronized learning content and cloud security feed snapshots for React and Elixir.');
+fs.mkdirSync(path.join(root, 'priv/static/assets'), { recursive: true });
+fs.copyFileSync(path.join(root, 'public/assets/site-visits.js'), path.join(root, 'priv/static/assets/site-visits.js'));
+console.log('Synchronized learning content, cloud feed snapshots, and the shared visit counter for React and Elixir.');

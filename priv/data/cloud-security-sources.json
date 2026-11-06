@@ -39,6 +39,113 @@
       "site_url": "https://securitylabs.datadoghq.com/",
       "allowed_hosts": ["securitylabs.datadoghq.com"],
       "cloud_only": false
+    },
+    {
+      "id": "aqua",
+      "name": "Aqua Security",
+      "feed_url": "https://www.aquasec.com/feed/",
+      "site_url": "https://www.aquasec.com/blog/",
+      "allowed_hosts": ["www.aquasec.com"],
+      "cloud_only": true
+    },
+    {
+      "id": "sysdig",
+      "name": "Sysdig Threat Research",
+      "feed_url": "https://www.sysdig.com/blog/rss.xml",
+      "site_url": "https://www.sysdig.com/blog",
+      "allowed_hosts": ["www.sysdig.com", "webflow.sysdig.com"],
+      "article_host_aliases": {"webflow.sysdig.com": "www.sysdig.com"},
+      "cloud_only": false,
+      "security_only": true
+    },
+    {
+      "id": "unit42",
+      "name": "Palo Alto Networks Unit 42",
+      "feed_url": "https://unit42.paloaltonetworks.com/feed/",
+      "site_url": "https://unit42.paloaltonetworks.com/",
+      "allowed_hosts": ["unit42.paloaltonetworks.com"],
+      "cloud_only": false
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare Security",
+      "feed_url": "https://blog.cloudflare.com/rss/",
+      "site_url": "https://blog.cloudflare.com/",
+      "allowed_hosts": ["blog.cloudflare.com"],
+      "cloud_only": false,
+      "security_only": true
+    },
+    {
+      "id": "sentinellabs",
+      "name": "SentinelLabs",
+      "feed_url": "https://www.sentinelone.com/labs/feed/",
+      "site_url": "https://www.sentinelone.com/labs/",
+      "allowed_hosts": ["www.sentinelone.com"],
+      "cloud_only": false
+    },
+    {
+      "id": "snyk",
+      "name": "Snyk Security Research",
+      "feed_url": "https://snyk.io/blog/feed/",
+      "site_url": "https://snyk.io/blog/",
+      "allowed_hosts": ["snyk.io"],
+      "cloud_only": false
+    },
+    {
+      "id": "sonrai",
+      "name": "Sonrai Security",
+      "feed_url": "https://sonraisecurity.com/feed/",
+      "site_url": "https://sonraisecurity.com/blog/",
+      "allowed_hosts": ["sonraisecurity.com"],
+      "cloud_only": true
+    },
+    {
+      "id": "tenable",
+      "name": "Tenable Research",
+      "feed_url": "https://www.tenable.com/blog/feed",
+      "site_url": "https://www.tenable.com/blog",
+      "allowed_hosts": ["www.tenable.com"],
+      "cloud_only": false
+    },
+    {
+      "id": "crowdstrike",
+      "name": "CrowdStrike",
+      "feed_url": "https://www.crowdstrike.com/en-us/blog/feed",
+      "site_url": "https://www.crowdstrike.com/en-us/blog/",
+      "allowed_hosts": ["www.crowdstrike.com"],
+      "cloud_only": false
+    },
+    {
+      "id": "trailofbits",
+      "name": "Trail of Bits",
+      "feed_url": "https://blog.trailofbits.com/index.xml",
+      "site_url": "https://blog.trailofbits.com/",
+      "allowed_hosts": ["blog.trailofbits.com"],
+      "cloud_only": false
+    },
+    {
+      "id": "csa",
+      "name": "Cloud Security Alliance",
+      "feed_url": "https://cloudsecurityalliance.org/feed/",
+      "site_url": "https://cloudsecurityalliance.org/blog",
+      "allowed_hosts": ["cloudsecurityalliance.org"],
+      "cloud_only": true
+    },
+    {
+      "id": "securityweek",
+      "name": "SecurityWeek",
+      "feed_url": "https://www.securityweek.com/feed/",
+      "site_url": "https://www.securityweek.com/",
+      "allowed_hosts": ["www.securityweek.com"],
+      "cloud_only": false
+    },
+    {
+      "id": "hackernews",
+      "name": "The Hacker News",
+      "feed_url": "https://feeds.feedburner.com/TheHackersNews",
+      "site_url": "https://thehackernews.com/",
+      "allowed_hosts": ["feeds.feedburner.com", "thehackernews.com"],
+      "cloud_only": false
     }
   ]
 }

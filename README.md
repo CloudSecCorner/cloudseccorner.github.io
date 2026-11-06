@@ -82,7 +82,7 @@ All six labs were reviewed on **2026-11-06**. Downloadable Python exercises incl
 
 ### Daily Cloud Security Feed
 
-[Field Notes](https://cloudsecuritycorner.com/blog#cloud-feed) includes a cloud-security-only headline reader with publisher/topic filters, search, original publication dates, and links to the original articles. Sources are AWS Security Blog, Google Cloud Security, Microsoft Security, Wiz, and Datadog Security Labs. Broad security feeds are filtered for cloud topics; article bodies are not copied.
+[Field Notes](https://cloudsecuritycorner.com/blog#cloud-feed) includes a cloud-security-only headline reader with publisher/topic filters, search, original publication dates, and links to the original articles. The source directory includes AWS, Google Cloud, Microsoft, Wiz, Datadog Security Labs, Aqua, Sysdig, Unit 42, Cloudflare, SentinelLabs, Snyk, Sonrai, Tenable, CrowdStrike, Trail of Bits, Cloud Security Alliance, SecurityWeek, and The Hacker News. Broad security feeds are filtered for cloud topics; mixed cloud technology feeds also require security relevance. Article bodies are not copied. The publisher filter shows each source's number of recent headlines, including zero when its latest feed has no eligible cloud security articles.
 
 The GitHub Pages workflow runs the Elixir importer daily at **00:30 UTC (06:00 IST)**, then builds and publishes both Elixir and React. It also refreshes on pushes and manual workflow runs. Scheduled runs commit only the validated feed snapshots and subscription files, preserving the latest data for subsequent runs; publisher failures retain recent cached headlines and show source status. These daily content commits also keep the public repository active for GitHub's scheduled-workflow policy. The reader checks the published snapshot every 15 minutes while visible and when returning to the tab.
 
@@ -91,7 +91,13 @@ The GitHub Pages workflow runs the Elixir importer daily at **00:30 UTC (06:00 I
 - Edit publisher addresses and allowed domains in `priv/data/cloud-security-sources.json`.
 - Refresh locally with `mix feeds.refresh`; use `--require-fresh` to fail if no publisher can refresh. The command writes the canonical snapshot and public JSON/RSS/OPML assets. `--input-dir PATH` supports saved XML fixtures without network access.
 
-The importer validates HTTPS publisher domains and redirects, disables XML DTD/entities, preserves publication dates, removes tracked duplicate URLs, limits the feed to 80 recent headlines, and retains stories for up to 90 days. It requires only Erlang/OTP libraries; no API keys or browser-side requests to external RSS services are needed.
+The importer validates HTTPS publisher domains and redirects, disables XML DTD/entities, preserves publication dates, removes tracked duplicate URLs, limits the feed to 300 recent headlines (20 per publisher), and retains stories for up to 90 days. Verified publisher host aliases normalize Sysdig's Webflow feed links to its official canonical domain. It requires only Erlang/OTP libraries; no API keys or browser-side requests to external RSS services are needed.
+
+### Site Visit Counter
+
+The shared footer displays a persistent [Hits total](https://hits.sh/cloudsecuritycorner.com/) for the production site. This counts full page visits from this integration's launch in November 2026, including repeat visits; it is not a historical or unique-visitor estimate. The same badge image is reused across the Elixir-to-React handoff, React remounts, and client-side navigation so these do not generate extra increments. Local development and preview hosts do not contact the service. If the counter service fails, the footer shows an unavailable state and keeps its statistics link.
+
+The locally hosted `assets/site-visits.js` uses an image request, requires no credentials, and sends no referrer. [Hits documents its counter privacy policy](https://hits.sh/privacy/). The badge service is independent of the daily Elixir feed refresh.
 
 Prerequisites: Elixir/OTP (`>= 1.16`), Node.js 22, npm, Python 3.10+, and OpenSSL 1.1.1+. Install Nmap to run the complete network-audit lab.
 

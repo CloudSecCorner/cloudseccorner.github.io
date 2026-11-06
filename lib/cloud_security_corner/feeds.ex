@@ -92,7 +92,7 @@ defmodule CloudSecurityCorner.Feeds do
       items
       |> Enum.uniq_by(& &1["url"])
       |> Enum.sort_by(&{&1["published_at"], &1["url"]}, :desc)
-      |> Enum.take(80)
+      |> Enum.take(300)
 
     %{
       "version" => 1,

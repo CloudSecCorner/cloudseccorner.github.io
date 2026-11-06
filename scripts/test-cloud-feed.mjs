@@ -15,7 +15,7 @@ const sources = JSON.parse(read('priv/data/cloud-security-sources.json')).source
 assert.equal(snapshot.version, 1);
 assert.equal(snapshot.refresh_interval_hours, 24);
 assert.equal(snapshot.sources.length, sources.length);
-assert(snapshot.items.length > 0 && snapshot.items.length <= 80);
+assert(snapshot.items.length > 0 && snapshot.items.length <= 300);
 assert(Number.isFinite(Date.parse(snapshot.updated_at)));
 for (const mirror of ['public/data', 'priv/static/data']) assert.equal(read(`${mirror}/cloud-security-feed.json`), read('priv/data/cloud-security-feed.json'));
 for (const file of ['cloud-security.xml', 'cloud-security.opml']) assert.equal(read(`public/feeds/${file}`), read(`priv/static/feeds/${file}`));

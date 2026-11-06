@@ -31,6 +31,8 @@ export function CloudFeedView({ snapshot = initialFeed, compact = false, query =
   const visible = filtered.slice(0, compact ? 3 : limit);
   const topics = [...new Set(snapshot.items.map(item => item.topic))].sort();
   const unavailable = snapshot.sources.filter(item => item.status !== 'ok');
+  const publishers = [...snapshot.sources].sort((a, b) => a.name.localeCompare(b.name));
+  const sourceCounts = snapshot.items.reduce((counts, item) => ({ ...counts, [item.source_id]: (counts[item.source_id] || 0) + 1 }), {});
   const stale = snapshot.updated_at && Date.now() - Date.parse(snapshot.updated_at) > 36 * 60 * 60 * 1000;
 
   if (compact) {
@@ -47,20 +49,20 @@ export function CloudFeedView({ snapshot = initialFeed, compact = false, query =
       <div><p className="dev-eyebrow">Field Notes / Cloud security research</p><h2 id={`${id}-title`}>Daily Cloud Security Feed</h2><p>Cloud security headlines from the original publishers. Open an article to read it at the source.</p></div>
       <div className="cloud-feed-actions"><a href="/feeds/cloud-security.xml">Subscribe via RSS</a><a href="/feeds/cloud-security.opml" download>Download OPML</a><button type="button" onClick={onRefresh} disabled={refreshing}>{refreshing ? 'Checking…' : 'Check for updates'}</button></div>
     </div>
-    <p className="cloud-feed-meta">Updated daily · {snapshot.updated_at ? <>Latest successful import <time dateTime={snapshot.updated_at}>{date(snapshot.updated_at, true)}</time></> : 'Waiting for the first successful import.'}</p>
+    <p className="cloud-feed-meta">{publishers.length} publishers · Updated daily · {snapshot.updated_at ? <>Latest successful import <time dateTime={snapshot.updated_at}>{date(snapshot.updated_at, true)}</time></> : 'Waiting for the first successful import.'}</p>
     {stale && <p className="cloud-feed-status" role="status">The last successful import is over 36 hours old. These are the most recent available headlines.</p>}
     {unavailable.length > 0 && <p className="cloud-feed-status" role="status">{unavailable.length} {unavailable.length === 1 ? 'source is' : 'sources are'} temporarily unavailable. Previously imported headlines are retained when available.</p>}
     {error && <p className="cloud-feed-status" role="status">{error}</p>}
     <div className="cloud-feed-controls" role="search" aria-label="Search cloud security headlines">
       <label htmlFor={`${id}-query`}>Search headlines<input id={`${id}-query`} type="search" value={query} onChange={event => onQuery?.(event.target.value)} placeholder="AWS, identity, Kubernetes…" /></label>
-      <label htmlFor={`${id}-source`}>Publisher<select id={`${id}-source`} value={source} onChange={event => onSource?.(event.target.value)}><option value="all">All publishers</option>{snapshot.sources.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
+      <label htmlFor={`${id}-source`}>Publisher<select id={`${id}-source`} value={source} onChange={event => onSource?.(event.target.value)}><option value="all">All publishers</option>{publishers.map(item => <option key={item.id} value={item.id}>{item.name} ({sourceCounts[item.id] || 0})</option>)}</select></label>
       <label htmlFor={`${id}-topic`}>Topic<select id={`${id}-topic`} value={topic} onChange={event => onTopic?.(event.target.value)}><option value="all">All cloud security topics</option>{topics.map(item => <option key={item} value={item}>{item}</option>)}</select></label>
     </div>
     <p className="cloud-feed-meta" role="status">{filtered.length} {filtered.length === 1 ? 'headline' : 'headlines'} · Newest first</p>
     <ol className="cloud-feed-list">{visible.map(item => <li key={item.id} className="cloud-feed-item"><div className="cloud-feed-item-meta"><span>{item.source_name}</span><span>{item.topic}</span><time dateTime={item.published_at}>{date(item.published_at)}</time></div><h3><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}<span aria-hidden="true"> ↗</span></a></h3></li>)}</ol>
     {visible.length === 0 && <p className="cloud-feed-empty">{snapshot.items.length === 0 ? 'No recent cloud security headlines have been imported yet.' : 'No headlines match these filters. Try another search or publisher.'}</p>}
     {filtered.length > visible.length && <button className="cloud-feed-more" type="button" onClick={onMore}>Show more headlines</button>}
-    <details className="cloud-feed-sources"><summary>Feed addresses and source status</summary><p>Broad security feeds are filtered for cloud topics. Source publication dates are preserved; imported headlines are not CloudSecCorner-authored articles.</p><ul>{snapshot.sources.map(item => <li key={item.id}><a href={item.feed_url} target="_blank" rel="noopener noreferrer">{item.name} RSS ↗</a><span>{item.status === 'ok' ? 'Import successful' : item.status === 'cached' ? 'Showing cached headlines' : 'Currently unavailable'}{item.last_success_at && <> · Last success <time dateTime={item.last_success_at}>{date(item.last_success_at, true)}</time></>}</span></li>)}</ul></details>
+    <details className="cloud-feed-sources"><summary>Feed addresses and source status</summary><p>Broad security feeds are filtered for cloud topics. Source publication dates are preserved; imported headlines are not CloudSecCorner-authored articles.</p><ul>{publishers.map(item => <li key={item.id}><a href={item.feed_url} target="_blank" rel="noopener noreferrer">{item.name} RSS ↗</a><span>{sourceCounts[item.id] || 0} recent headlines · {item.status === 'ok' ? 'Import successful' : item.status === 'cached' ? 'Showing cached headlines' : 'Currently unavailable'}{item.last_success_at && <> · Last success <time dateTime={item.last_success_at}>{date(item.last_success_at, true)}</time></>}</span></li>)}</ul></details>
   </section>;
 }
 

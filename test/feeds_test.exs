@@ -87,6 +87,46 @@ defmodule CloudSecurityCorner.FeedsTest do
     assert {:ok, []} = Parser.parse(rss(invalid), @source, @now)
   end
 
+  test "general cloud publishers must also have security relevance" do
+    source = Map.put(@source, "security_only", true)
+
+    xml =
+      rss([
+        %{
+          title: "Cloudflare improves image caching",
+          url: "https://publisher.example/cache",
+          description: "The author explains faster static image delivery."
+        },
+        %{
+          title: "Cloudflare encrypts identity tokens",
+          url: "https://publisher.example/security"
+        }
+      ])
+
+    assert {:ok, [item]} = Parser.parse(xml, source, @now)
+    assert item["url"] == "https://publisher.example/security"
+  end
+
+  test "maps verified publisher aliases while enforcing both allowed hosts" do
+    source =
+      @source
+      |> Map.put("allowed_hosts", ["publisher.example", "staging.publisher.example"])
+      |> Map.put("article_host_aliases", %{
+        "staging.publisher.example" => "publisher.example",
+        "attacker.example" => "publisher.example"
+      })
+
+    assert Parser.canonical_url("https://staging.publisher.example/cloud?utm_source=rss", source) ==
+             "https://publisher.example/cloud"
+
+    refute Parser.canonical_url("https://attacker.example/cloud", source)
+
+    refute Parser.canonical_url(
+             "https://publisher.example/cloud",
+             Map.put(source, "article_host_aliases", %{"publisher.example" => "attacker.example"})
+           )
+  end
+
   test "rejects DTD/entity declarations, invalid XML, HTML pages and oversized payloads" do
     for xml <- [
           "<!DOCTYPE rss [<!ENTITY secret SYSTEM 'file:///etc/passwd'>]><rss>&secret;</rss>",
@@ -102,6 +142,8 @@ defmodule CloudSecurityCorner.FeedsTest do
     assert {:ok, ~U[2026-11-05 07:30:00Z]} = Parser.parse_date("Thu, 05 Nov 2026 13:00:00 +0530")
     assert {:ok, ~U[2026-11-05 10:00:00Z]} = Parser.parse_date("Thu, 05 Nov 2026 10:00:00 GMT")
     assert {:error, _} = Parser.parse_date("Thu, 05 Nov 2026 10:00:00 +9960")
+    assert {:ok, ~U[2026-11-05 06:00:00Z]} = Parser.parse_date("Nov 05, 2026 00:00:00-0600")
+    assert {:error, _} = Parser.parse_date("Nov 05, 2026 00:00:00+9960")
   end
 
   test "deduplicates tracked links and bounds each publisher's output" do
@@ -115,6 +157,35 @@ defmodule CloudSecurityCorner.FeedsTest do
     assert {:ok, items} = Parser.parse(rss(duplicates), @source, @now)
     assert length(items) == 20
     assert length(Enum.uniq_by(items, & &1["url"])) == 20
+  end
+
+  test "expanded publisher collection stays bounded and newest first" do
+    sources = for id <- 1..18, do: Map.put(@source, "id", "publisher-#{id}")
+
+    snapshot =
+      Feeds.refresh(
+        sources,
+        Feeds.empty(),
+        fn source ->
+          items =
+            for i <- 1..20,
+                do: %{
+                  title: "AWS cloud security #{i}",
+                  url: "https://publisher.example/#{source["id"]}/#{i}",
+                  date: @now |> DateTime.add(-i * 3600) |> DateTime.to_iso8601()
+                }
+
+          {:ok, rss(items)}
+        end,
+        @now
+      )
+
+    assert length(snapshot["items"]) == 300
+    assert length(snapshot["sources"]) == 18
+    assert Enum.all?(snapshot["sources"], &(&1["status"] == "ok"))
+    assert length(Enum.uniq_by(snapshot["items"], & &1["url"])) == 300
+    dates = Enum.map(snapshot["items"], & &1["published_at"])
+    assert dates == Enum.sort(dates, :desc)
   end
 
   test "successful refresh merges a shortened feed with recent cached articles" do

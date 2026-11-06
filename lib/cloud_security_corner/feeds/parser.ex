@@ -2,7 +2,8 @@ defmodule CloudSecurityCorner.Feeds.Parser do
   @moduledoc "RSS/Atom metadata parsing. Article HTML is never republished."
 
   @max_bytes 5_000_000
-  @cloud ~r/\b(?:aws|amazon|azure|entra|gcp|google cloud|kubernetes|k8s|cloud|iam|eks|aks|gke|serverless|terraform|containers?|workload identity|cnapp|cspm|saas|s3)\b/i
+  @cloud ~r/\b(?:aws|amazon|azure|entra|gcp|google cloud|kubernetes|k8s|cloud|cloudflare|iam|eks|aks|gke|serverless|terraform|containers?|workload identity|cnapp|cspm|saas|s3|zero trust|oauth|oidc)\b/i
+  @security ~r/secur|threat|attack|vulnerab|malware|ransomware|phish|authentic|authoriz|\bauth\b|\boauth\b|\boidc\b|identity|zero trust|encrypt|privacy|privilege|\biam\b|compliance|protect|defen|secrets?|credential|risk/i
   @months ~w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
 
   def parse(xml, source, now \\ DateTime.utc_now()) do
@@ -24,9 +25,10 @@ defmodule CloudSecurityCorner.Feeds.Parser do
   def canonical_url(value, source) when is_binary(value) do
     value = String.trim(value)
     uri = source["feed_url"] |> URI.merge(value)
+    host = Map.get(source["article_host_aliases"] || %{}, uri.host, uri.host)
 
     if value != "" and uri.scheme == "https" and uri.host in source["allowed_hosts"] and
-         uri.userinfo == nil and uri.port == 443 do
+         host in source["allowed_hosts"] and uri.userinfo == nil and uri.port == 443 do
       query =
         (uri.query || "")
         |> URI.decode_query()
@@ -36,7 +38,12 @@ defmodule CloudSecurityCorner.Feeds.Parser do
         |> Enum.sort()
         |> URI.encode_query()
 
-      URI.to_string(%{uri | fragment: nil, query: if(query == "", do: nil, else: query)})
+      URI.to_string(%{
+        uri
+        | host: host,
+          fragment: nil,
+          query: if(query == "", do: nil, else: query)
+      })
     end
   rescue
     _ -> nil
@@ -49,7 +56,7 @@ defmodule CloudSecurityCorner.Feeds.Parser do
 
     case DateTime.from_iso8601(value) do
       {:ok, date, _} -> {:ok, DateTime.truncate(date, :second)}
-      _ -> parse_rfc_date(value)
+      _ -> value |> normalize_publisher_date() |> parse_rfc_date()
     end
   end
 
@@ -120,7 +127,8 @@ defmodule CloudSecurityCorner.Feeds.Parser do
          url when is_binary(url) <- canonical_url(link, source),
          {:ok, date} <- parse_date(published),
          age when age >= -300 and age <= 90 * 86_400 <- DateTime.diff(now, date),
-         true <- source["cloud_only"] == true or Regex.match?(@cloud, context) do
+         true <- source["cloud_only"] == true or Regex.match?(@cloud, context),
+         true <- source["security_only"] != true or Regex.match?(@security, context) do
       %{
         "id" => :crypto.hash(:sha256, url) |> Base.encode16(case: :lower) |> binary_part(0, 20),
         "title" =>
@@ -197,6 +205,17 @@ defmodule CloudSecurityCorner.Feeds.Parser do
 
       true ->
         "Cloud Security"
+    end
+  end
+
+  # Some publishers use a month-first date with no space before the UTC offset.
+  defp normalize_publisher_date(value) do
+    case Regex.run(
+           ~r/^([A-Za-z]{3})\s+(\d{1,2}),\s+(\d{4})\s+(\d{2}:\d{2}:\d{2})\s*(GMT|UTC|[+-]\d{4})$/,
+           value
+         ) do
+      [_, month, day, year, time, zone] -> "#{day} #{month} #{year} #{time} #{zone}"
+      _ -> value
     end
   end
 

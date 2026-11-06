@@ -4,4 +4,17 @@
 <outline type="rss" text="Google Cloud Security" title="Google Cloud Security" xmlUrl="https://cloudblog.withgoogle.com/products/identity-security/rss/" htmlUrl="https://cloud.google.com/blog/products/identity-security/" />
 <outline type="rss" text="Microsoft Security" title="Microsoft Security" xmlUrl="https://www.microsoft.com/en-us/security/blog/feed/" htmlUrl="https://www.microsoft.com/en-us/security/blog/" />
 <outline type="rss" text="Wiz Cloud Security" title="Wiz Cloud Security" xmlUrl="https://www.wiz.io/feed/rss.xml" htmlUrl="https://www.wiz.io/blog" />
-<outline type="rss" text="Datadog Security Labs" title="Datadog Security Labs" xmlUrl="https://securitylabs.datadoghq.com/rss/feed.xml" htmlUrl="https://securitylabs.datadoghq.com/" /></outline></body></opml>
+<outline type="rss" text="Datadog Security Labs" title="Datadog Security Labs" xmlUrl="https://securitylabs.datadoghq.com/rss/feed.xml" htmlUrl="https://securitylabs.datadoghq.com/" />
+<outline type="rss" text="Aqua Security" title="Aqua Security" xmlUrl="https://www.aquasec.com/feed/" htmlUrl="https://www.aquasec.com/blog/" />
+<outline type="rss" text="Sysdig Threat Research" title="Sysdig Threat Research" xmlUrl="https://www.sysdig.com/blog/rss.xml" htmlUrl="https://www.sysdig.com/blog" />
+<outline type="rss" text="Palo Alto Networks Unit 42" title="Palo Alto Networks Unit 42" xmlUrl="https://unit42.paloaltonetworks.com/feed/" htmlUrl="https://unit42.paloaltonetworks.com/" />
+<outline type="rss" text="Cloudflare Security" title="Cloudflare Security" xmlUrl="https://blog.cloudflare.com/rss/" htmlUrl="https://blog.cloudflare.com/" />
+<outline type="rss" text="SentinelLabs" title="SentinelLabs" xmlUrl="https://www.sentinelone.com/labs/feed/" htmlUrl="https://www.sentinelone.com/labs/" />
+<outline type="rss" text="Snyk Security Research" title="Snyk Security Research" xmlUrl="https://snyk.io/blog/feed/" htmlUrl="https://snyk.io/blog/" />
+<outline type="rss" text="Sonrai Security" title="Sonrai Security" xmlUrl="https://sonraisecurity.com/feed/" htmlUrl="https://sonraisecurity.com/blog/" />
+<outline type="rss" text="Tenable Research" title="Tenable Research" xmlUrl="https://www.tenable.com/blog/feed" htmlUrl="https://www.tenable.com/blog" />
+<outline type="rss" text="CrowdStrike" title="CrowdStrike" xmlUrl="https://www.crowdstrike.com/en-us/blog/feed" htmlUrl="https://www.crowdstrike.com/en-us/blog/" />
+<outline type="rss" text="Trail of Bits" title="Trail of Bits" xmlUrl="https://blog.trailofbits.com/index.xml" htmlUrl="https://blog.trailofbits.com/" />
+<outline type="rss" text="Cloud Security Alliance" title="Cloud Security Alliance" xmlUrl="https://cloudsecurityalliance.org/feed/" htmlUrl="https://cloudsecurityalliance.org/blog" />
+<outline type="rss" text="SecurityWeek" title="SecurityWeek" xmlUrl="https://www.securityweek.com/feed/" htmlUrl="https://www.securityweek.com/" />
+<outline type="rss" text="The Hacker News" title="The Hacker News" xmlUrl="https://feeds.feedburner.com/TheHackersNews" htmlUrl="https://thehackernews.com/" /></outline></body></opml>

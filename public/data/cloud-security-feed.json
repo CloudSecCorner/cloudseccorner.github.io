@@ -1,6 +1,42 @@
 {
-  "attempted_at": "2026-11-06T18:45:19Z",
+  "attempted_at": "2026-11-06T19:10:27Z",
   "items": [
+    {
+      "id": "654880eef9c958b1e540",
+      "published_at": "2026-11-06T14:03:00Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "Integrate Aquasec and Jenkins to Stop Unsafe Images Before They Run",
+      "topic": "Kubernetes & Containers",
+      "url": "https://www.aquasec.com/blog/integrate-aquasec-and-jenkins-to-stop-unsafe-images-before-they-run/"
+    },
+    {
+      "id": "723c8043ff185c0dd871",
+      "published_at": "2026-11-06T12:00:00Z",
+      "source_id": "trailofbits",
+      "source_name": "Trail of Bits",
+      "title": "After Binance, check what your signing systems can approve",
+      "topic": "Kubernetes & Containers",
+      "url": "https://blog.trailofbits.com/2026/11/06/after-binance-check-what-your-signing-systems-can-approve/"
+    },
+    {
+      "id": "6d2937ae59e93a212700",
+      "published_at": "2026-11-06T09:33:51Z",
+      "source_id": "securityweek",
+      "source_name": "SecurityWeek",
+      "title": "OpenAI Model Wrote Its Own Network Code to Get Around Sandbox Restrictions",
+      "topic": "Cloud Security",
+      "url": "https://www.securityweek.com/openai-model-wrote-its-own-network-code-to-get-around-sandbox-restrictions/"
+    },
+    {
+      "id": "4b6abbdbb70347fe3aef",
+      "published_at": "2026-11-05T23:46:50Z",
+      "source_id": "microsoft",
+      "source_name": "Microsoft Security",
+      "title": "Threat actors use agentic AI tooling to find and abuse exposed secrets",
+      "topic": "Threat Detection & Response",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+    },
     {
       "id": "f5f83e103db1afbd1560",
       "published_at": "2026-11-05T19:21:56Z",
@@ -9,6 +45,24 @@
       "title": "Introducing AWS account access manager: IAM role flexibility with centralized workforce access",
       "topic": "Identity & Access",
       "url": "https://aws.amazon.com/blogs/security/introducing-aws-account-access-manager-iam-role-flexibility-with-centralized-workforce-access/"
+    },
+    {
+      "id": "ec33a6be6a3032446515",
+      "published_at": "2026-11-05T18:45:39Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "AI Governance Isn't a Chore Problem. It's an Architecture Problem.",
+      "topic": "Threat Detection & Response",
+      "url": "https://cloudsecurityalliance.org/articles/ai-governance-isn-t-a-chore-problem-it-s-an-architecture-problem"
+    },
+    {
+      "id": "13a8dfd3c6c3192e6198",
+      "published_at": "2026-11-05T00:00:00Z",
+      "source_id": "sysdig",
+      "source_name": "Sysdig Threat Research",
+      "title": "Refreshing the 555 Benchmark for Cloud Detection and Response in the AI era",
+      "topic": "Threat Detection & Response",
+      "url": "https://www.sysdig.com/blog/refreshing-the-555-benchmark-for-cloud-detection-and-response-in-the-ai-era"
     },
     {
       "id": "be2474b88ac58f6f077a",
@@ -20,6 +74,51 @@
       "url": "https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era/"
     },
     {
+      "id": "d13fbfe75d78ae195ccf",
+      "published_at": "2026-11-04T14:00:00Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "See the agents, set the terms: new visibility and control for personal agents",
+      "topic": "Cloud Security",
+      "url": "https://blog.cloudflare.com/personal-agents-visibility-control/"
+    },
+    {
+      "id": "d0dba3aa16bfe8cfb2a9",
+      "published_at": "2026-11-04T06:00:00Z",
+      "source_id": "crowdstrike",
+      "source_name": "CrowdStrike",
+      "title": "New Falcon Cloud Security Innovations Secure the Cloud AI Runs On",
+      "topic": "Cloud Security",
+      "url": "https://www.crowdstrike.com/en-us/blog/falcon-cloud-security-innovations-secure-cloud-ai-runs-on/"
+    },
+    {
+      "id": "0cf18fd8c7d5fc12db2c",
+      "published_at": "2026-11-04T00:00:00Z",
+      "source_id": "sysdig",
+      "source_name": "Sysdig Threat Research",
+      "title": "Introducing Sysdig AI Defense: See, stop, and prove what agents do",
+      "topic": "Cloud Security",
+      "url": "https://www.sysdig.com/blog/introducing-sysdig-ai-defense"
+    },
+    {
+      "id": "c5631e1fe7c280d41ea0",
+      "published_at": "2026-11-03T15:41:53Z",
+      "source_id": "hackernews",
+      "source_name": "The Hacker News",
+      "title": "Google Warns LLMjacking Attacks Are Costing Some Enterprises Up to $1 Million in Cloud Charges",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://thehackernews.com/2026/11/google-warns-llmjacking-attacks-are.html"
+    },
+    {
+      "id": "e581154108f523de51d2",
+      "published_at": "2026-11-03T14:00:00Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "Introducing Zero Wire, a hub for investigating critical Internet vulnerabilities",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://blog.cloudflare.com/zero-wire/"
+    },
+    {
       "id": "ef9f1ef54cec721cfd89",
       "published_at": "2026-11-03T13:00:00Z",
       "source_id": "wiz",
@@ -27,6 +126,15 @@
       "title": "The ROI of Agentic Remediation: Real-World Results with Wiz Green Agent",
       "topic": "Cloud Security",
       "url": "https://www.wiz.io/blog/green-agent-agentic-remediation"
+    },
+    {
+      "id": "77fe036d80c8d24a88bf",
+      "published_at": "2026-11-03T08:00:00Z",
+      "source_id": "crowdstrike",
+      "source_name": "CrowdStrike",
+      "title": "CrowdStrike Advances AI Security and Safety from Endpoint to Cloud",
+      "topic": "Cloud Security",
+      "url": "https://www.crowdstrike.com/en-us/blog/crowdstrike-advances-ai-security-and-safety-falcon-guardian/"
     },
     {
       "id": "55c608bbd8f2b6606127",
@@ -38,6 +146,15 @@
       "url": "https://aws.amazon.com/blogs/security/beyond-dkim-key-rotation-understanding-email-replay-attacks/"
     },
     {
+      "id": "772d27d38d32d9015ad1",
+      "published_at": "2026-11-02T14:46:05Z",
+      "source_id": "hackernews",
+      "source_name": "The Hacker News",
+      "title": "DarkBlinders Compromises Israeli Target and Iraqi Kurdish Government Cloud Environment",
+      "topic": "Threat Detection & Response",
+      "url": "https://thehackernews.com/2026/11/darkblinders-compromises-israeli-target.html"
+    },
+    {
       "id": "31f91ca44be3b887b6cc",
       "published_at": "2026-11-02T13:13:46Z",
       "source_id": "wiz",
@@ -45,6 +162,15 @@
       "title": "From Reactive to Proactive: Empowering SOC Teams with the Wiz Red and Blue Agents",
       "topic": "Threat Detection & Response",
       "url": "https://www.wiz.io/blog/soc-alerts-red-and-blue-agents"
+    },
+    {
+      "id": "da6be5dd01c88e050058",
+      "published_at": "2026-11-02T05:30:53Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "The Adversary Economy: How Threat Actors Are Reacting to PHP2Shell",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://cloudsecurityalliance.org/articles/the-adversary-economy-how-threat-actors-are-reacting-to-php2shell"
     },
     {
       "id": "9a4f4d04fb08d5f6646e",
@@ -65,6 +191,24 @@
       "url": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms"
     },
     {
+      "id": "46377df52764d6fd77d3",
+      "published_at": "2026-10-30T17:38:50Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "4 real? Tracking exploitation and patching of eMudhra’s weak keys",
+      "topic": "Cloud Security",
+      "url": "https://blog.cloudflare.com/emudhra-patching/"
+    },
+    {
+      "id": "4d4206ade98bad0ac970",
+      "published_at": "2026-10-30T14:23:43Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "Cloudflare services for private origins is now generally available",
+      "topic": "Cloud Security",
+      "url": "https://blog.cloudflare.com/private-origins-public-to-private/"
+    },
+    {
       "id": "f37fa8ee7ba135be647f",
       "published_at": "2026-10-30T12:57:42Z",
       "source_id": "wiz",
@@ -72,6 +216,15 @@
       "title": "Key Takeaways: AI Threat Readiness Survey Report 2026",
       "topic": "Threat Detection & Response",
       "url": "https://www.wiz.io/blog/ai-threat-readiness-survey-report-2026"
+    },
+    {
+      "id": "ba9ce4df4e5d55df9b3e",
+      "published_at": "2026-10-30T01:42:06Z",
+      "source_id": "tenable",
+      "source_name": "Tenable Research",
+      "title": "php2shell one week later: Why one exploit doesn’t work everywhere",
+      "topic": "Kubernetes & Containers",
+      "url": "https://www.tenable.com/blog/php2shell-one-week-later-why-one-exploit-doesnt-work-everywhere"
     },
     {
       "id": "df9b3b56e8502c319465",
@@ -90,6 +243,24 @@
       "title": "The Rise of Agentic Attacks: What They Look Like, and Where They're Headed",
       "topic": "Threat Detection & Response",
       "url": "https://www.wiz.io/blog/the-rise-of-agentic-attacks"
+    },
+    {
+      "id": "af9d2c473296f678383c",
+      "published_at": "2026-10-29T13:24:23Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "Integrate Aquasec and Prometheus for Greater Visibility Into Runtime Security Operations",
+      "topic": "Threat Detection & Response",
+      "url": "https://www.aquasec.com/blog/integrate-aquasec-and-prometheus-for-greater-visibility-into-runtime-security-operations/"
+    },
+    {
+      "id": "93dde8cc7b16e73253cc",
+      "published_at": "2026-10-29T12:55:00Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "Cloudflare DDoS Threat Report 2026 Q3: More swarms, fewer giants",
+      "topic": "Threat Detection & Response",
+      "url": "https://blog.cloudflare.com/ddos-threat-report-2026-q3/"
     },
     {
       "id": "27fb00d39be7f27db978",
@@ -137,6 +308,69 @@
       "url": "https://www.wiz.io/blog/php2shell-exploitation-so-far"
     },
     {
+      "id": "dfcc83fa6523adbf3a1a",
+      "published_at": "2026-10-27T13:17:22Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "HTTP2Shell Vulnerability: How Should Security Teams Assess and Reduce Exposure?",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://www.aquasec.com/blog/http2shell-vulnerability-how-should-security-teams-assess-and-reduce-exposure/"
+    },
+    {
+      "id": "8c8bdde41b6d99fcf015",
+      "published_at": "2026-10-27T13:00:00Z",
+      "source_id": "tenable",
+      "source_name": "Tenable Research",
+      "title": "Whole-of-state defense: How SLED agencies can secure critical infrastructure in the AI era",
+      "topic": "Identity & Access",
+      "url": "https://www.tenable.com/blog/whole-of-state-security-sled-critical-infrastructure"
+    },
+    {
+      "id": "b98b75e5e3efe8c183df",
+      "published_at": "2026-10-27T13:00:00Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "Introducing the Cloudflare PHP Capture the Flag challenge",
+      "topic": "Cloud Security",
+      "url": "https://blog.cloudflare.com/php-ctf/"
+    },
+    {
+      "id": "ad135a5a019083dfc858",
+      "published_at": "2026-10-27T01:42:09Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "Cloud Security Alliance Launches STAR for AI Level 2 to Strengthen AI Governance and Trust",
+      "topic": "Threat Detection & Response",
+      "url": "https://cloudsecurityalliance.org/articles/cloud-security-alliance-launches-star-for-ai-level-2-to-strengthen-ai-governance-and-trust"
+    },
+    {
+      "id": "e74144bce34b9c22178a",
+      "published_at": "2026-10-27T01:19:40Z",
+      "source_id": "tenable",
+      "source_name": "Tenable Research",
+      "title": "Brotli2Shell: Frequently asked questions for Google Brotli decoder vulnerability (CVE-2026-111497)",
+      "topic": "Kubernetes & Containers",
+      "url": "https://www.tenable.com/blog/brotli2shell-frequently-asked-questions-for-google-brotli-decoder-cve-2026-111497"
+    },
+    {
+      "id": "1bd1c7eafad3a991750d",
+      "published_at": "2026-10-26T19:48:07Z",
+      "source_id": "tenable",
+      "source_name": "Tenable Research",
+      "title": "Discover and remediate PHP2Shell exposure with Tenable",
+      "topic": "Kubernetes & Containers",
+      "url": "https://www.tenable.com/blog/discover-and-remediate-php2shell-exposure-with-tenable"
+    },
+    {
+      "id": "5ddf3a458a9a7f823980",
+      "published_at": "2026-10-26T19:02:59Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "How Absorption Rate Reveals Vulnerability Management Health",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://cloudsecurityalliance.org/articles/how-absorption-rate-reveals-vulnerability-management-health"
+    },
+    {
       "id": "94220a8ed8818ca380a2",
       "published_at": "2026-10-26T13:24:12Z",
       "source_id": "wiz",
@@ -164,6 +398,15 @@
       "url": "https://www.wiz.io/blog/cve-2026-111497-brotli-rce-node-js"
     },
     {
+      "id": "70bdd870b2ac82df6eaf",
+      "published_at": "2026-10-23T18:06:56Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "Bringing post-quantum cryptography to geographically fenced key management",
+      "topic": "Threat Detection & Response",
+      "url": "https://blog.cloudflare.com/post-quantum-geo-key-manager/"
+    },
+    {
       "id": "8b6a8a14bd9443e0334f",
       "published_at": "2026-10-22T22:51:55Z",
       "source_id": "wiz",
@@ -173,6 +416,15 @@
       "url": "https://www.wiz.io/blog/aspm-ai-era-pt-2-prioritize-appsec-risk"
     },
     {
+      "id": "c59df92f9aff8257d9bb",
+      "published_at": "2026-10-22T17:00:25Z",
+      "source_id": "unit42",
+      "source_name": "Palo Alto Networks Unit 42",
+      "title": "The Current Landscape of OAuth Attacks",
+      "topic": "Threat Detection & Response",
+      "url": "https://unit42.paloaltonetworks.com/current-landscape-oauth-attacks/"
+    },
+    {
       "id": "50a6596df902bdb26468",
       "published_at": "2026-10-22T13:05:31Z",
       "source_id": "wiz",
@@ -180,6 +432,24 @@
       "title": "ARTEX in the Wild: Storm-0940 Expands Targeting of IT and Software Vendors",
       "topic": "Identity & Access",
       "url": "https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors"
+    },
+    {
+      "id": "fd5513dd5d436289be30",
+      "published_at": "2026-10-22T13:00:00Z",
+      "source_id": "tenable",
+      "source_name": "Tenable Research",
+      "title": "How to contain shadow AI, as it takes on multiple forms and spreads throughout your environment",
+      "topic": "Identity & Access",
+      "url": "https://www.tenable.com/blog/how-to-contain-shadow-ai-as-it-takes-on-multiple-forms-and-spreads-throughout-your-environment"
+    },
+    {
+      "id": "405699f87f1c074465d9",
+      "published_at": "2026-10-22T13:00:00Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "Localizing compliance at scale: achieving South Korea’s ISMS certification",
+      "topic": "Cloud Security",
+      "url": "https://blog.cloudflare.com/k-isms/"
     },
     {
       "id": "4b2d636a48551795a2af",
@@ -200,6 +470,69 @@
       "url": "https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/"
     },
     {
+      "id": "630277014af03c424887",
+      "published_at": "2026-10-21T20:51:37Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "Input Privacy vs. Output Privacy: Choosing a PET",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://cloudsecurityalliance.org/articles/input-privacy-vs-output-privacy-choosing-a-pet"
+    },
+    {
+      "id": "bf16a49ae318373f9e06",
+      "published_at": "2026-10-21T20:50:49Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "The CSA Triangle Chapter's Year of Innovation and Strategic Partnerships: 2026 Highlights",
+      "topic": "Cloud Security",
+      "url": "https://cloudsecurityalliance.org/articles/the-csa-triangle-chapter-s-year-of-innovation-and-strategic-partnerships-2026-highlights"
+    },
+    {
+      "id": "4071739a4311c5c9eb44",
+      "published_at": "2026-10-21T20:50:24Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "7 DNS Security Lessons from the CubePilot Hijacking",
+      "topic": "Identity & Access",
+      "url": "https://cloudsecurityalliance.org/articles/7-dns-security-lessons-from-the-cubepilot-hijacking"
+    },
+    {
+      "id": "251a90eef8bbc3c7baae",
+      "published_at": "2026-10-21T20:49:34Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "Identity-Defined Reachability: Reducing Exposure and Connectivity Friction in an Age of Machine-Speed Attack",
+      "topic": "Identity & Access",
+      "url": "https://cloudsecurityalliance.org/articles/identity-defined-reachability-reducing-exposure-and-connectivity-friction-in-an-age-of-machine-speed-attack"
+    },
+    {
+      "id": "b2146b3bce7e641abac9",
+      "published_at": "2026-10-21T20:49:21Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "AI Agents: Securing the Path from Intent to Action",
+      "topic": "Cloud Security",
+      "url": "https://cloudsecurityalliance.org/articles/ai-agents-securing-the-path-from-intent-to-action"
+    },
+    {
+      "id": "025f08226902e05f1296",
+      "published_at": "2026-10-21T20:48:20Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "Your CLI and IDE Are the New Attack Surface: Governing AI Coding Agents on the Endpoint",
+      "topic": "Identity & Access",
+      "url": "https://cloudsecurityalliance.org/articles/your-cli-and-ide-are-the-new-attack-surface-governing-ai-coding-agents-on-the-endpoint"
+    },
+    {
+      "id": "6c4b5839cc0081966304",
+      "published_at": "2026-10-21T19:50:31Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "PHP2Shell: How to Protect Vulnerable PHP Workloads While Patching",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://www.aquasec.com/blog/php2shell-how-to-protect-vulnerable-php-workloads-while-patching/"
+    },
+    {
       "id": "90b9569e8d2397e3e803",
       "published_at": "2026-10-21T17:03:50Z",
       "source_id": "aws",
@@ -207,6 +540,15 @@
       "title": "Best practices for integrating IAM Roles Anywhere with your PKI",
       "topic": "Identity & Access",
       "url": "https://aws.amazon.com/blogs/security/best-practices-for-integrating-iam-roles-anywhere-with-your-pki/"
+    },
+    {
+      "id": "59c87ea544e0e5db59d1",
+      "published_at": "2026-10-21T14:10:42Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "Introducing full transaction detection for Cloudflare WAF",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://blog.cloudflare.com/full-transaction-waf/"
     },
     {
       "id": "258689a4f349387504d3",
@@ -227,6 +569,15 @@
       "url": "https://www.wiz.io/blog/php2shell-php-rce"
     },
     {
+      "id": "4a59615041b968ae61d1",
+      "published_at": "2026-10-21T13:56:45Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "Cloudflare deploys protections against php2shell vulnerability",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://blog.cloudflare.com/php-vulnerabilities-waf-protection/"
+    },
+    {
       "id": "859a2ca12c0c52e96881",
       "published_at": "2026-10-21T13:44:12Z",
       "source_id": "wiz",
@@ -245,6 +596,15 @@
       "url": "https://cloud.google.com/blog/topics/ai-infrastructure/confidential-g4-gpus-are-ga/"
     },
     {
+      "id": "d3583521232ef9054f38",
+      "published_at": "2026-10-21T09:01:24Z",
+      "source_id": "tenable",
+      "source_name": "Tenable Research",
+      "title": "php2shell (CVE-2026-109618, CVE-2026-109619): Frequently asked questions about critical PHP remote code execution vulnerabilities",
+      "topic": "Kubernetes & Containers",
+      "url": "https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote"
+    },
+    {
       "id": "5f26da1fa59c7063e230",
       "published_at": "2026-10-21T00:00:00Z",
       "source_id": "datadog",
@@ -252,6 +612,15 @@
       "title": "LiteLLM supply chain compromise: What you need to know",
       "topic": "Kubernetes & Containers",
       "url": "https://securitylabs.datadoghq.com/articles/litellm-compromised-pypi-docker/"
+    },
+    {
+      "id": "c78cf468160e1a455080",
+      "published_at": "2026-10-20T22:20:16Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "8 eMudhra certificates are compromised. Here's what you need to know",
+      "topic": "Threat Detection & Response",
+      "url": "https://blog.cloudflare.com/emudhra-certificate-compromise/"
     },
     {
       "id": "dd3748ba727dc64db3c9",
@@ -281,6 +650,15 @@
       "url": "https://aws.amazon.com/blogs/security/managing-identity-source-transition-for-aws-iam-identity-center/"
     },
     {
+      "id": "f68525cddf53b3594c02",
+      "published_at": "2026-10-20T13:30:08Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "How Do Financial Institutions Measure and Control Cyber Risk?",
+      "topic": "Cloud Security",
+      "url": "https://www.aquasec.com/blog/how-do-financial-institutions-measure-and-control-cyber-risk/"
+    },
+    {
       "id": "9c11e495de5db37c2532",
       "published_at": "2026-10-20T00:00:00Z",
       "source_id": "datadog",
@@ -297,6 +675,15 @@
       "title": "Supply Chain Zero Days: Closing the Gap Between Publication and Detection",
       "topic": "Threat Detection & Response",
       "url": "https://www.wiz.io/blog/detect-supply-chain-zero-days-at-publication"
+    },
+    {
+      "id": "eb4003abe76172767577",
+      "published_at": "2026-10-19T13:17:00Z",
+      "source_id": "tenable",
+      "source_name": "Tenable Research",
+      "title": "Unmasking the robots: Why it’s critical to discover AI agent identities and how Tenable helps you secure them",
+      "topic": "Identity & Access",
+      "url": "https://www.tenable.com/blog/secure-ai-agent-identities-microsoft-entra-agent-id-tenable-one"
     },
     {
       "id": "8d83bef58987d7f993f6",
@@ -317,6 +704,15 @@
       "url": "https://cloud.google.com/blog/products/identity-security/wiz-sensor-for-gke-turnkey-threat-detection-for-kubernetes/"
     },
     {
+      "id": "90aabf5fff3ecfb830c3",
+      "published_at": "2026-10-15T16:45:41Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "MCP Tool Exposure is a Privilege Grant: A Two-Gate Authorization Model for Agentic AI",
+      "topic": "Identity & Access",
+      "url": "https://cloudsecurityalliance.org/articles/mcp-tool-exposure-is-a-privilege-grant-a-two-gate-authorization-model-for-agentic-ai"
+    },
+    {
       "id": "248be7019c94baf843ed",
       "published_at": "2026-10-15T16:10:14Z",
       "source_id": "aws",
@@ -333,6 +729,15 @@
       "title": "Modernizing perimeter security: Scalable perimeters with VPC Service Controls",
       "topic": "Identity & Access",
       "url": "https://cloud.google.com/blog/products/identity-security/introducing-new-scalable-perimeter-options-with-vpc-service-controls/"
+    },
+    {
+      "id": "e60ad06b0b3eddcdf292",
+      "published_at": "2026-10-15T13:59:49Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "Japan’s Cyber Emergency Is a Warning for the World",
+      "topic": "Cloud Security",
+      "url": "https://www.aquasec.com/blog/japans-cyber-emergency-is-a-warning-for-the-world/"
     },
     {
       "id": "0a6437aaf9356b19e4be",
@@ -353,6 +758,24 @@
       "url": "https://www.wiz.io/blog/aspm-ai-era-pt-1-centralize-appsec-scanners"
     },
     {
+      "id": "dd9335316b900a4fa795",
+      "published_at": "2026-10-14T19:00:00Z",
+      "source_id": "sonrai",
+      "source_name": "Sonrai Security",
+      "title": "Improving Security Outcomes: Announcing AWS IAM account access manager",
+      "topic": "Identity & Access",
+      "url": "https://sonraisecurity.com/blog/improving-security-outcomes-announcing-aws-iam-account-access-manager/"
+    },
+    {
+      "id": "c871830bf33b9509a545",
+      "published_at": "2026-10-14T18:51:28Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "AI Agents - You Can’t Govern What You Can’t Discover",
+      "topic": "Identity & Access",
+      "url": "https://cloudsecurityalliance.org/articles/ai-agents-you-can-t-govern-what-you-can-t-discover"
+    },
+    {
       "id": "78b57fd2b821518f75fb",
       "published_at": "2026-10-14T16:00:00Z",
       "source_id": "google",
@@ -369,6 +792,24 @@
       "title": "Securing the Mission at Machine Speed: Wiz AI Agents Arrive in Wiz for Gov",
       "topic": "Cloud Security",
       "url": "https://www.wiz.io/blog/wiz-for-gov-agents-fedramp"
+    },
+    {
+      "id": "664a99950228d053fcfc",
+      "published_at": "2026-10-14T11:00:00Z",
+      "source_id": "trailofbits",
+      "source_name": "Trail of Bits",
+      "title": "Package managers have an integrity problem",
+      "topic": "Kubernetes & Containers",
+      "url": "https://blog.trailofbits.com/2026/10/14/package-managers-have-an-integrity-problem/"
+    },
+    {
+      "id": "b711a4af13109c66a6ef",
+      "published_at": "2026-10-13T23:02:00Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "I Love Google’s Agentic AI Security Roadmap: Adding MAESTRO Will Make It More Powerful — An Open Letter to Google",
+      "topic": "Threat Detection & Response",
+      "url": "https://cloudsecurityalliance.org/articles/i-love-google-s-agentic-ai-security-roadmap-adding-maestro-will-make-it-more-powerful-an-open-letter-to-google"
     },
     {
       "id": "d4d4c831f29f527e457b",
@@ -405,6 +846,78 @@
       "title": "Quantum-resistant signing on AWS, Part 1: Build a software supply chain with ML-DSA",
       "topic": "Threat Detection & Response",
       "url": "https://aws.amazon.com/blogs/security/quantum-resistant-signing-on-aws-part-1-build-a-software-supply-chain-with-ml-dsa/"
+    },
+    {
+      "id": "ec038bc9d054936ea65b",
+      "published_at": "2026-10-09T22:25:52Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "New Cloud Security Alliance Survey Finds Data Loss Prevention (DLP) Often Detects Data Loss Only After It Happens",
+      "topic": "Threat Detection & Response",
+      "url": "https://cloudsecurityalliance.org/articles/new-cloud-security-alliance-survey-finds-data-loss-prevention-dlp-often-detects-data-loss-only-after-it-happens"
+    },
+    {
+      "id": "2d1f48a85325b9000b44",
+      "published_at": "2026-10-09T10:43:19Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "Introducing The Builder Exchange: Inside Security Stories From the Companies Building Fastest With AI",
+      "topic": "Cloud Security",
+      "url": "https://cloudsecurityalliance.org/articles/introducing-the-builder-exchange-inside-security-stories-from-the-companies-building-fastest-with-ai"
+    },
+    {
+      "id": "b972a2888302066ff475",
+      "published_at": "2026-10-08T22:31:23Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "Everyone Wants SPIFFE. Almost No One Can Afford to Build It Right.",
+      "topic": "Identity & Access",
+      "url": "https://cloudsecurityalliance.org/articles/everyone-wants-spiffe-almost-no-one-can-afford-to-build-it-right"
+    },
+    {
+      "id": "0929b07a26c3702780a5",
+      "published_at": "2026-10-08T22:30:43Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "The Enterprise Accountability Gap: Who Should Own AI Governance?",
+      "topic": "Threat Detection & Response",
+      "url": "https://cloudsecurityalliance.org/articles/the-enterprise-accountability-gap-who-should-own-ai-governance"
+    },
+    {
+      "id": "c79075d475b417403f81",
+      "published_at": "2026-10-08T22:30:19Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "How Security Teams Can Earn Board Trust With Exposure Management",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://cloudsecurityalliance.org/articles/how-security-teams-can-earn-board-trust-with-exposure-management"
+    },
+    {
+      "id": "e998fb5a9d579657f495",
+      "published_at": "2026-10-08T22:30:13Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "Why Hybrid Environments Need Unified Visibility",
+      "topic": "Threat Detection & Response",
+      "url": "https://cloudsecurityalliance.org/articles/why-hybrid-environments-need-unified-visibility"
+    },
+    {
+      "id": "5bb6f798914c73768831",
+      "published_at": "2026-10-08T22:30:01Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "Cloud Observability Has Never Had More Data. It Still Can’t Tell You What Actually Broke.",
+      "topic": "Threat Detection & Response",
+      "url": "https://cloudsecurityalliance.org/articles/cloud-observability-has-never-had-more-data-it-still-can-t-tell-you-what-actually-broke"
+    },
+    {
+      "id": "157b397d74a55ee57a84",
+      "published_at": "2026-10-07T22:00:16Z",
+      "source_id": "unit42",
+      "source_name": "Palo Alto Networks Unit 42",
+      "title": "Evolution of Web3 in Cloud Supply Chain Attacks",
+      "topic": "Threat Detection & Response",
+      "url": "https://unit42.paloaltonetworks.com/web3-cloud-supply-chain-attacks/"
     },
     {
       "id": "719dd2ca5f23d45bb285",
@@ -452,6 +965,15 @@
       "url": "https://aws.amazon.com/blogs/security/improving-spire-security-and-resiliency-with-aws-managed-services/"
     },
     {
+      "id": "f9ee1e41e3b739177582",
+      "published_at": "2026-10-06T13:00:53Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "Can Vulnerability Scanning Tell You What You’re Exposed to Right Now?",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://www.aquasec.com/blog/can-vulnerability-scanning-tell-you-what-youre-exposed-to-right-now/"
+    },
+    {
       "id": "d763ab895a166bbb2e96",
       "published_at": "2026-10-06T00:00:00Z",
       "source_id": "datadog",
@@ -470,6 +992,15 @@
       "url": "https://securitylabs.datadoghq.com/articles/kubernetes-rbac-built-in-principals-dangerous-permissions/"
     },
     {
+      "id": "5d01854630409adea047",
+      "published_at": "2026-10-02T13:12:39Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "Integrate Aqua and Jira to Turn Security Findings Into Action",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://www.aquasec.com/blog/integrate-aqua-and-jira-to-turn-security-findings-into-action/"
+    },
+    {
       "id": "b177000b26d072d35aa7",
       "published_at": "2026-09-30T16:00:00Z",
       "source_id": "google",
@@ -477,6 +1008,15 @@
       "title": "Cloud CISO Perspectives: How cybersecurity startups can win CISOs",
       "topic": "Identity & Access",
       "url": "https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-how-cybersecurity-startups-can-win-cisos/"
+    },
+    {
+      "id": "e9000031e0ca8d35c369",
+      "published_at": "2026-09-30T12:47:21Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "Supply Chain Security Has the Operating Model Backwards",
+      "topic": "Cloud Security",
+      "url": "https://www.aquasec.com/blog/supply-chain-security-has-the-operating-model-backwards/"
     },
     {
       "id": "27d563ac597927eb60b0",
@@ -488,6 +1028,42 @@
       "url": "https://cloud.google.com/blog/products/identity-security/google-cloud-partners-deliver-new-security-agents-and-ai-defenses-with-gemini-enterprise/"
     },
     {
+      "id": "c54dc6688854003d7369",
+      "published_at": "2026-09-29T10:00:48Z",
+      "source_id": "unit42",
+      "source_name": "Palo Alto Networks Unit 42",
+      "title": "OperTraitors: How Kubernetes Operators Betray Your Security Posture",
+      "topic": "Kubernetes & Containers",
+      "url": "https://unit42.paloaltonetworks.com/agentic-ai-kubernetes-operator-risks/"
+    },
+    {
+      "id": "3c908d4f959ad715bc86",
+      "published_at": "2026-09-25T11:00:00Z",
+      "source_id": "trailofbits",
+      "source_name": "Trail of Bits",
+      "title": "Don't let TEEs break your MPC",
+      "topic": "Identity & Access",
+      "url": "https://blog.trailofbits.com/2026/09/25/dont-let-tees-break-your-mpc/"
+    },
+    {
+      "id": "18101c471ea4136383bf",
+      "published_at": "2026-09-24T13:35:39Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "Fewer Findings, Faster Answers: How ActiveState and Trivy Turn a Scan Into a Verdict",
+      "topic": "Kubernetes & Containers",
+      "url": "https://www.aquasec.com/blog/fewer-findings-faster-answers-how-activestate-and-trivy-turn-a-scan-into-a-verdict/"
+    },
+    {
+      "id": "3a7ac51812607f17f2ee",
+      "published_at": "2026-09-22T00:00:00Z",
+      "source_id": "sysdig",
+      "source_name": "Sysdig Threat Research",
+      "title": "Risky identities continue to plague cloud infrastructures",
+      "topic": "Identity & Access",
+      "url": "https://www.sysdig.com/blog/risky-identities-continue-to-plague-cloud-infrastructures"
+    },
+    {
       "id": "36e71f42f38feb65412f",
       "published_at": "2026-09-21T16:00:00Z",
       "source_id": "google",
@@ -497,6 +1073,15 @@
       "url": "https://cloud.google.com/blog/products/identity-security/strengthen-your-cicd-pipeline-with-new-secure-source-manager-capabilities/"
     },
     {
+      "id": "070eb6728548fcc67835",
+      "published_at": "2026-09-21T11:00:00Z",
+      "source_id": "trailofbits",
+      "source_name": "Trail of Bits",
+      "title": "SAML: A fractal of bad design",
+      "topic": "Identity & Access",
+      "url": "https://blog.trailofbits.com/2026/09/21/saml-a-fractal-of-bad-design/"
+    },
+    {
       "id": "0991f88ab0692a5fcd57",
       "published_at": "2026-09-19T01:00:00Z",
       "source_id": "google",
@@ -504,6 +1089,15 @@
       "title": "Changing the game: Using agentic AI to secure infrastructure code",
       "topic": "Vulnerabilities & Exposure",
       "url": "https://cloud.google.com/blog/topics/systems/using-ai-agents-to-secure-google-infrastructure/"
+    },
+    {
+      "id": "f8cd1c4977b33be253a3",
+      "published_at": "2026-09-18T17:00:16Z",
+      "source_id": "sentinellabs",
+      "source_name": "SentinelLabs",
+      "title": "Don’t Call Us, We’ll Call Your APIs | TraderTraitor Backdoors Resurface on Victim With No Crypto Ties",
+      "topic": "Cloud Security",
+      "url": "https://www.sentinelone.com/labs/dont-call-us-well-call-your-apis-tradertraitor-backdoors-resurface-on-victim-with-no-crypto-ties/"
     },
     {
       "id": "459c8c68672ee077a730",
@@ -524,6 +1118,24 @@
       "url": "https://cloud.google.com/blog/products/identity-security/google-named-a-leader-in-the-external-threat-intelligence-service-forrester-wave/"
     },
     {
+      "id": "e3df4d89864933e4f026",
+      "published_at": "2026-09-17T00:00:00Z",
+      "source_id": "sysdig",
+      "source_name": "Sysdig Threat Research",
+      "title": "Getting started with runtime security and Falco",
+      "topic": "Cloud Security",
+      "url": "https://www.sysdig.com/blog/intro-runtime-security-falco"
+    },
+    {
+      "id": "b2e6e89b7212e650dd64",
+      "published_at": "2026-09-16T16:31:38Z",
+      "source_id": "sonrai",
+      "source_name": "Sonrai Security",
+      "title": "Nobody Reviews Delete Permissions. That's How Clouds Get Erased.",
+      "topic": "Identity & Access",
+      "url": "https://sonraisecurity.com/blog/nobody-reviews-delete-permissions-thats-how-clouds-get-erased/"
+    },
+    {
       "id": "2574ddf8dd64b2fd6408",
       "published_at": "2026-09-16T16:00:00Z",
       "source_id": "google",
@@ -533,6 +1145,15 @@
       "url": "https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-how-google-monitors-ai-threats-advances-ai-defenses/"
     },
     {
+      "id": "dc598bef7d0df57e6cf3",
+      "published_at": "2026-09-16T00:00:00Z",
+      "source_id": "sysdig",
+      "source_name": "Sysdig Threat Research",
+      "title": "Closing the cloud security gap with runtime security",
+      "topic": "Threat Detection & Response",
+      "url": "https://www.sysdig.com/blog/closing-the-cloud-security-gap-with-runtime-security"
+    },
+    {
       "id": "e96460f5ef3026d5f431",
       "published_at": "2026-09-15T17:30:00Z",
       "source_id": "google",
@@ -540,6 +1161,33 @@
       "title": "Introducing new session management tools with native, granular controls",
       "topic": "Identity & Access",
       "url": "https://cloud.google.com/blog/products/identity-security/introducing-new-session-management-tools-with-native-granular-controls/"
+    },
+    {
+      "id": "0a8daf7bb19b03bd7f56",
+      "published_at": "2026-09-11T00:00:00Z",
+      "source_id": "sysdig",
+      "source_name": "Sysdig Threat Research",
+      "title": "Machine speed, hold the AI: Hand-rolled marimo CVE-2026-39987 exploit",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://www.sysdig.com/blog/machine-speed-hold-the-ai-hand-rolled-marimo-cve-2026-39987-exploit"
+    },
+    {
+      "id": "4302ebf02678850ff230",
+      "published_at": "2026-09-08T00:00:00Z",
+      "source_id": "sysdig",
+      "source_name": "Sysdig Threat Research",
+      "title": "How runtime insights helps with container security",
+      "topic": "Kubernetes & Containers",
+      "url": "https://www.sysdig.com/blog/how-runtime-insights-help-with-container-security"
+    },
+    {
+      "id": "0564c813e4a684cfc6ca",
+      "published_at": "2026-09-04T00:00:00Z",
+      "source_id": "sysdig",
+      "source_name": "Sysdig Threat Research",
+      "title": "Cloud security and the power of runtime insights",
+      "topic": "Cloud Security",
+      "url": "https://www.sysdig.com/blog/cloud-security-and-the-power-of-runtime-insights"
     },
     {
       "id": "e18d6cc6b165481972dc",
@@ -587,6 +1235,15 @@
       "url": "https://cloud.google.com/blog/products/networking/introducing-google-cloud-fault-injection-testing-in-preview/"
     },
     {
+      "id": "c38b25f9253921f41ed8",
+      "published_at": "2026-08-26T00:00:00Z",
+      "source_id": "sysdig",
+      "source_name": "Sysdig Threat Research",
+      "title": "Kubernetes 1.37 - New security features",
+      "topic": "Kubernetes & Containers",
+      "url": "https://www.sysdig.com/blog/kubernetes-1-37-new-security-features"
+    },
+    {
       "id": "dbf2352def934d7346c1",
       "published_at": "2026-08-24T16:00:00Z",
       "source_id": "google",
@@ -594,6 +1251,24 @@
       "title": "Empowering autonomous agents with advanced security governance",
       "topic": "Identity & Access",
       "url": "https://cloud.google.com/blog/topics/ai-infrastructure/state-of-ai-infrastructure-report-agent-governance-and-security/"
+    },
+    {
+      "id": "9c3475e7851dc7c08d17",
+      "published_at": "2026-08-11T17:30:00Z",
+      "source_id": "trailofbits",
+      "source_name": "Trail of Bits",
+      "title": "How Trail of Bits helps verify the integrity of your Signal chats",
+      "topic": "Threat Detection & Response",
+      "url": "https://blog.trailofbits.com/2026/08/11/how-trail-of-bits-helps-verify-the-integrity-of-your-signal-chats/"
+    },
+    {
+      "id": "f15bb46fdd125e24a56c",
+      "published_at": "2026-08-10T00:00:00Z",
+      "source_id": "snyk",
+      "source_name": "Snyk Security Research",
+      "title": "Show, Don't Tell: What Evo Continuous Offensive Security Found in a Real Enterprise SaaS",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://snyk.io/blog/what-evo-cos-found-real-enterprise-saas/"
     }
   ],
   "refresh_interval_hours": 24,
@@ -602,7 +1277,7 @@
       "error": null,
       "feed_url": "https://aws.amazon.com/blogs/security/feed/",
       "id": "aws",
-      "last_success_at": "2026-11-06T18:45:19Z",
+      "last_success_at": "2026-11-06T19:10:27Z",
       "name": "AWS Security Blog",
       "site_url": "https://aws.amazon.com/blogs/security/",
       "status": "ok"
@@ -611,7 +1286,7 @@
       "error": null,
       "feed_url": "https://cloudblog.withgoogle.com/products/identity-security/rss/",
       "id": "google",
-      "last_success_at": "2026-11-06T18:45:19Z",
+      "last_success_at": "2026-11-06T19:10:27Z",
       "name": "Google Cloud Security",
       "site_url": "https://cloud.google.com/blog/products/identity-security/",
       "status": "ok"
@@ -620,7 +1295,7 @@
       "error": null,
       "feed_url": "https://www.microsoft.com/en-us/security/blog/feed/",
       "id": "microsoft",
-      "last_success_at": "2026-11-06T18:45:19Z",
+      "last_success_at": "2026-11-06T19:10:27Z",
       "name": "Microsoft Security",
       "site_url": "https://www.microsoft.com/en-us/security/blog/",
       "status": "ok"
@@ -629,7 +1304,7 @@
       "error": null,
       "feed_url": "https://www.wiz.io/feed/rss.xml",
       "id": "wiz",
-      "last_success_at": "2026-11-06T18:45:19Z",
+      "last_success_at": "2026-11-06T19:10:27Z",
       "name": "Wiz Cloud Security",
       "site_url": "https://www.wiz.io/blog",
       "status": "ok"
@@ -638,12 +1313,129 @@
       "error": null,
       "feed_url": "https://securitylabs.datadoghq.com/rss/feed.xml",
       "id": "datadog",
-      "last_success_at": "2026-11-06T18:45:19Z",
+      "last_success_at": "2026-11-06T19:10:27Z",
       "name": "Datadog Security Labs",
       "site_url": "https://securitylabs.datadoghq.com/",
       "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://www.aquasec.com/feed/",
+      "id": "aqua",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "Aqua Security",
+      "site_url": "https://www.aquasec.com/blog/",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://www.sysdig.com/blog/rss.xml",
+      "id": "sysdig",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "Sysdig Threat Research",
+      "site_url": "https://www.sysdig.com/blog",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://unit42.paloaltonetworks.com/feed/",
+      "id": "unit42",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "Palo Alto Networks Unit 42",
+      "site_url": "https://unit42.paloaltonetworks.com/",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://blog.cloudflare.com/rss/",
+      "id": "cloudflare",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "Cloudflare Security",
+      "site_url": "https://blog.cloudflare.com/",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://www.sentinelone.com/labs/feed/",
+      "id": "sentinellabs",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "SentinelLabs",
+      "site_url": "https://www.sentinelone.com/labs/",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://snyk.io/blog/feed/",
+      "id": "snyk",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "Snyk Security Research",
+      "site_url": "https://snyk.io/blog/",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://sonraisecurity.com/feed/",
+      "id": "sonrai",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "Sonrai Security",
+      "site_url": "https://sonraisecurity.com/blog/",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://www.tenable.com/blog/feed",
+      "id": "tenable",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "Tenable Research",
+      "site_url": "https://www.tenable.com/blog",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://www.crowdstrike.com/en-us/blog/feed",
+      "id": "crowdstrike",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "CrowdStrike",
+      "site_url": "https://www.crowdstrike.com/en-us/blog/",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://blog.trailofbits.com/index.xml",
+      "id": "trailofbits",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "Trail of Bits",
+      "site_url": "https://blog.trailofbits.com/",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://cloudsecurityalliance.org/feed/",
+      "id": "csa",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "Cloud Security Alliance",
+      "site_url": "https://cloudsecurityalliance.org/blog",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://www.securityweek.com/feed/",
+      "id": "securityweek",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "SecurityWeek",
+      "site_url": "https://www.securityweek.com/",
+      "status": "ok"
+    },
+    {
+      "error": null,
+      "feed_url": "https://feeds.feedburner.com/TheHackersNews",
+      "id": "hackernews",
+      "last_success_at": "2026-11-06T19:10:27Z",
+      "name": "The Hacker News",
+      "site_url": "https://thehackernews.com/",
+      "status": "ok"
     }
   ],
-  "updated_at": "2026-11-06T18:45:19Z",
+  "updated_at": "2026-11-06T19:10:27Z",
   "version": 1
 }
