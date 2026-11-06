@@ -206,7 +206,8 @@ defmodule CloudSecurityCorner.Feeds.Parser do
 
     with [_, day, month, year, hour, minute, second, zone] <- Regex.run(pattern, value),
          month_index when is_integer(month_index) <- Enum.find_index(@months, &(&1 == month)),
-         {:ok, date} <- Date.new(String.to_integer(year), month_index + 1, String.to_integer(day)),
+         {:ok, date} <-
+           Date.new(String.to_integer(year), month_index + 1, String.to_integer(day)),
          {:ok, time} <-
            Time.new(String.to_integer(hour), String.to_integer(minute), String.to_integer(second)),
          {:ok, datetime} <- DateTime.new(date, time, "Etc/UTC") do
