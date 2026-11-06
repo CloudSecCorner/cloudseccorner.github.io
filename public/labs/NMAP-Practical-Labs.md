@@ -19,10 +19,12 @@ Nmap (Network Mapper) remains the de facto standard tool for network asset disco
 
 ```mermaid
 flowchart LR
-    A["1. Discovery<br><b>Host Ping Sweeps</b>"] --> B["2. Layer 4 Interrogation<br><b>SYN / UDP State Mapping</b>"]
-    B --> C["3. Fingerprinting<br><b>Service & OS Extraction</b>"]
-    C --> D["4. Vulnerability Auditing<br><b>Custom Lua NSE</b>"]
-    D --> E["5. Defensive Hardening<br><b>iptables / Suricata Rules</b>"]
+      scope[Confirm approved hosts and scan window] --> discovery[Host discovery with recorded scope]
+      discovery --> ports[Map TCP and UDP states separately]
+      ports --> versions[Probe service versions with bounded retries]
+      versions --> validate[Validate findings; select relevant NSE scripts]
+      validate --> harden[Restrict exposed listeners and firewall rules]
+      harden --> retest[Repeat scan and compare saved results]
 ```
 
 ---
@@ -31,57 +33,41 @@ flowchart LR
 
 The blueprint below models an enterprise multi-tier network perimeter under audit from an internal auditing node, traversing stateful packet inspection firewalls to reach isolated containerized services and an emulated cloud metadata daemon:
 
-```architecture
-architecture-beta
-  group scanner(terminal)[Auditing Security Station]
-  service nmap_cli(terminal)[Nmap Engine CLI] in scanner
-
-  group perimeter(cloud)[Trust Boundary 1: Perimeter Edge]
-  service fw(firewall)[Stateful Linux Firewall] in perimeter
-  service ids(detector)[Suricata NIDS Sensor] in perimeter
-
-  group dmz(server)[Trust Boundary 2: Audited Services]
-  service web_svc(server)[Nginx Ingress :80/:443] in dmz
-  service ssh_svc(lock)[SSH Bastion Daemon :2222] in dmz
-  service db_svc(database)[PostgreSQL Server :5432] in dmz
-  service metadata_svc(cloud)[Cloud Metadata Daemon :8080] in dmz
-
-  nmap_cli:R -- L:fw
-  fw:B -- T:ids
-  fw:R -- L:web_svc
-  fw:B -- T:ssh_svc
-  web_svc:R -- L:db_svc
-  web_svc:B -- T:metadata_svc
+```mermaid
+flowchart TB
+      scanner@{ icon: "logos:container-docker", label: "Authorized Nmap scanner", h: 64 }
+      target@{ icon: "logos:container-docker", label: "Lab target: 172.28.0.10", h: 64 }
+      scanner -->|Docker bridge; target container IP| target
+      target -->|TCP 80| web[Nginx lab listener]
+      target -->|TCP 2222| ssh[SSH lab listener]
+      target -->|TCP 8080| mock[Python HTTP lab service]
+      host[Host published ports] -.->|8080 maps to target 80| web
+      host -.->|8888 maps to target 8080| mock
+      observer[Optional packet capture or IDS] -.->|Observes copied traffic; not an inline hop| target
+      note[Host port numbers differ from container scan ports] -.-> target
 ```
 
 ### TCP Three-Way Handshake vs. SYN Half-Open Scan
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    participant Scanner as Nmap Scanner Node
-    participant TargetOpen as Target Host (Port 80 OPEN)
-    participant TargetClosed as Target Host (Port 443 CLOSED)
-    participant Firewall as Stateful Firewall (FILTERED)
-
-    Note over Scanner,TargetOpen: 1. Full Connect Scan (-sT)
-    Scanner->>TargetOpen: TCP SYN (Seq=X)
-    TargetOpen-->>Scanner: TCP SYN-ACK (Seq=Y, Ack=X+1)
-    Scanner->>TargetOpen: TCP ACK (Seq=X+1, Ack=Y+1)
-    Scanner->>TargetOpen: TCP RST-ACK (Clean Teardown)
-
-    Note over Scanner,TargetOpen: 2. Stealth SYN Half-Open Scan (-sS)
-    Scanner->>TargetOpen: TCP SYN (Seq=X)
-    TargetOpen-->>Scanner: TCP SYN-ACK (Seq=Y, Ack=X+1)
-    Scanner->>TargetOpen: TCP RST (Connection Aborted before OS socket opens)
-
-    Note over Scanner,TargetClosed: 3. Interrogating Closed Port
-    Scanner->>TargetClosed: TCP SYN (Seq=X)
-    TargetClosed-->>Scanner: TCP RST-ACK (Port Rejected)
-
-    Note over Scanner,Firewall: 4. Interrogating Filtered Port (Firewall Drop)
-    Scanner->>Firewall: TCP SYN (Seq=X)
-    Firewall--xScanner: Packet Dropped (No Response / Timeout)
+      autonumber
+      participant Scanner as Authorized Nmap scanner
+      participant Open as Open TCP listener
+      participant Closed as Closed TCP port
+      participant Filter as Filtering device
+      Note over Scanner,Open: Connect scan -sT completes the TCP handshake
+      Scanner->>Open: SYN
+      Open-->>Scanner: SYN-ACK
+      Scanner->>Open: ACK, followed by connection close or reset
+      Note over Scanner,Open: SYN scan -sS requires raw-packet privileges
+      Scanner->>Open: SYN
+      Open-->>Scanner: SYN-ACK
+      Scanner->>Open: RST, handshake not completed
+      Scanner->>Closed: SYN
+      Closed-->>Scanner: RST-ACK, report closed
+      Scanner->>Filter: SYN to filtered target
+      Note over Scanner,Filter: Drop: no reply after retries, or applicable ICMP error, report filtered
 ```
 
 ---

@@ -23,64 +23,50 @@ In modern cloud-native architectures, security engineers address two critical fa
 
 The Pele architecture diagram below illustrates an enterprise-grade cryptographic key hierarchy and SLSA Level 3 container build pipeline:
 
-```architecture
-architecture-beta
-  group cicd(server)[Trust Boundary 1: Hardened Build Pipeline]
-  service runner(cpu)[Isolated CI/CD Build Runner] in cicd
-  service cosign(lock)[Cosign OIDC Signer] in cicd
-  service syft(search)[Syft SBOM Generator] in cicd
-
-  group registry(cloud)[Trust Boundary 2: Artifact Registry]
-  service ecr(disk)[Immutable Container Registry] in registry
-  service attestation(shield)[Cosign Signature Store] in registry
-
-  group cloud_runtime(cloud)[Trust Boundary 3: Cloud Production]
-  service kms(key)[Hardware KMS Key HSM] in cloud_runtime
-  service app_svc(server)[Microservice Container Pod] in cloud_runtime
-  service admission(firewall)[OPA Kyverno Image Verifier] in cloud_runtime
-  service db(database)[Encrypted RDS Database] in cloud_runtime
-
-  runner:R -- L:cosign
-  runner:B -- T:syft
-  cosign:R -- L:ecr
-  cosign:B -- T:attestation
-  ecr:R -- L:admission
-  attestation:R -- L:admission
-  admission:B -- T:app_svc
-  app_svc:R -- L:kms
-  app_svc:B -- T:db
+```mermaid
+flowchart TB
+      runner[Isolated build runner] -->|Build and push image digest| registry[OCI artifact registry]
+      runner --> sbom[Generate SBOM and build provenance]
+      signer@{ icon: "logos:container-cosign", label: "Cosign: trusted CI identity", h: 64 }
+      sbom --> signer
+      signer -->|Publish digest-bound signatures and attestations| registry
+      deploy[Deployment request with immutable digest] --> verifier[Admission signature and policy verifier]
+      registry -->|Image metadata and verification material| verifier
+      verifier -->|Allow only after verification| app[Runtime application]
+      kms@{ icon: "logos:aws-security-kms", label: "AWS KMS: key policy and data-key operations", h: 64 }
+      app -->|Authorized GenerateDataKey or Decrypt| kms
+      app -->|Ciphertext and wrapped data key| db[Encrypted application data store]
+      note[Signing alone does not establish a SLSA build level] -.-> verifier
 ```
 
 ### SLSA Level 3 Provenance & Envelope Encryption Flow
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    actor Dev as Developer
-    participant Git as GitHub Repository
-    participant CI as Hardened CI/CD Runner
-    participant Syft as Syft SBOM Engine
-    participant Cosign as Cosign Signer (Fulcio/Rekor)
-    participant KMS as AWS / GCP Cloud KMS (HSM)
-    participant ECR as Artifact Registry (OCI)
-    participant K8s as Kubernetes Admission Gate
-
-    Dev->>Git: Signed Git Commit (SSH / GPG)
-    Git->>CI: Trigger Isolated Build Workflow
-    CI->>CI: Compile Hermetic Container Image
-    CI->>Syft: Generate CycloneDX SBOM (Software Bill of Materials)
-    CI->>Cosign: Sign Container Digest & Bind SBOM Attestation
-    Cosign->>ECR: Push Image + Signed Provenance Predicate
-    Note over ECR,K8s: Runtime Deployment Verification
-    K8s->>ECR: Intercept Deployment Request
-    K8s->>K8s: Verify Signature against Cosign Root Key
-    K8s->>K8s: Block unsigned or non-SLSA compliant images
-    Note over K8s,KMS: Runtime Data Protection (Envelope Encryption)
-    K8s->>KMS: Request GenerateDataKey (AES-256)
-    KMS-->>K8s: Plaintext DEK + Ciphertext Encrypted DEK (EDEK)
-    K8s->>K8s: Encrypt Payload with Plaintext DEK (AES-256-GCM)
-    K8s->>K8s: Zeroize Plaintext DEK from RAM
-    K8s->>K8s: Store Ciphertext Payload + EDEK in Database
+      autonumber
+      participant CI as Trusted build workflow
+      participant Registry as OCI registry
+      participant Signer as Cosign with CI identity
+      participant Admission as Admission verifier
+      participant App as Runtime application
+      participant KMS as AWS KMS
+      participant DB as Application data store
+      CI->>CI: Build image, generate SBOM and provenance
+      CI->>Registry: Push immutable image digest
+      CI->>Signer: Sign digest and attestations with approved CI identity
+      Signer->>Registry: Publish signature and attestation material
+      Admission->>Registry: Fetch verification material for deployment digest
+      Admission->>Admission: Verify issuer, signer identity, digest and policy predicates
+      alt Verification failed
+        Admission-->>CI: Reject deployment
+      else Verification passed
+        Admission-->>CI: Admit deployment request
+      end
+      Note over Admission,App: Runtime controllers start only admitted workloads
+      App->>KMS: GenerateDataKey with authorized key and encryption context
+      KMS-->>App: Plaintext data key and wrapped data key
+      App->>App: Encrypt payload locally, discard plaintext key when no longer needed
+      App->>DB: Store ciphertext, nonce, authentication tag and wrapped data key
 ```
 
 ---

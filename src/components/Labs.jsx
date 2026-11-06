@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import MarkdownRenderer from "./MarkdownRenderer";
 import OpenGraph from "./OpenGraph";
+import PageHeader from './PageHeader';
 import { REPOSITORY_URL, SITE_URL } from "../utils/socialSharing";
 
 // Fallback data in case the fetch fails
@@ -212,33 +213,101 @@ function LabsList() {
 
   return (
     <>
-      {/* KubeDaily Library Header */}
-      <header className="kube-library-header">
-        <div className="kube-library-container">
-          <p className="kube-label">The CloudSecCorner workshop</p>
-          <h1>
-            Less theory.<br />
-            <span>More hands-on understanding.</span>
-          </h1>
-          <p className="kube-library-intro">
-            Explore cloud and agentic security at your own pace. Start with Security Engineering Fundamentals, inspect agent boundaries, and build up to zero-trust architectures.
-          </p>
-          <div className="kube-library-links">
-            <Link to="/labs/Agentic-Cloud-Security">Start with Agentic Security →</Link>
-            <Link to="/blog">Looking for an explanation? Read the guides →</Link>
+      <PageHeader title="Hands-On Labs" description="Practical exercises in cloud identity, application security, agent tool boundaries, and network auditing." stats={[{ label: "Labs", value: labsData.length || "--" }, { label: "Learning Tracks", value: roadmapTiers.length }]} />
+
+      <section id="lab-library" className="kube-library-container kube-library-section">
+        <div className="kube-library-toolbar">
+          <div>
+            <p className="kube-label">Practice &amp; explore</p>
+            <h2>Choose your next lab</h2>
+          </div>
+          <div className="kube-library-search">
+            <label htmlFor="lab-search">Find a lab</label>
+            <input
+              id="lab-search"
+              type="search"
+              placeholder="Search Agentic, Threat, Zero-Trust…"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
         </div>
-      </header>
+
+        {/* Category Filter Pills */}
+        <div className="dev-filter-options flex flex-wrap gap-2 mt-6">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              aria-pressed={activeCategory === cat}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition capitalize ${
+                activeCategory === cat
+                  ? "bg-purple text-white shadow-sm"
+                  : "bg-slate-100 dark:bg-[#31373b] text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[#3d4449]"
+              }`}
+            >
+              {cat === "all" ? "All Labs" : cat}
+            </button>
+          ))}
+        </div>
+
+        <p className="kube-library-count" role="status">
+          {filteredLabs.length} {filteredLabs.length === 1 ? "lab" : "labs"} to explore
+        </p>
+
+        {/* Labs Grid */}
+        <div className="kube-labs-grid">
+          {loading ? (
+            <div className="col-span-full py-16 text-center text-slate-500">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-purple-500 border-t-transparent mx-auto mb-3" />
+              Loading labs…
+            </div>
+          ) : filteredLabs.length === 0 ? (
+            <div className="col-span-full rounded-xl border border-dashed border-slate-300 dark:border-[#3d4449] p-10 text-center text-slate-600 dark:text-slate-400">
+              No labs match that search. Try another query or clear the filter to see everything.
+            </div>
+          ) : (
+            filteredLabs.map((lab) => (
+              <article key={lab.id} className="kube-lab-card group">
+                <div className="kube-lab-card-top">
+                  <span className="kube-lab-number" aria-hidden="true">&gt;_</span>
+                  <p className="kube-label">{lab.category}</p>
+                </div>
+                <h3>
+                  <Link to={`/labs/${lab.id}`}>{lab.title}</Link>
+                </h3>
+                <p>{lab.description}</p>
+                <div className="kube-lab-card-tags" aria-label="Topics">
+                  {lab.tags && lab.tags.slice(0, 3).map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+                <Link className="kube-lab-card-link" to={`/labs/${lab.id}`}>
+                  Open lab <span aria-hidden="true">→</span>
+                </Link>
+              </article>
+            ))
+          )}
+        </div>
+
+        {/* Good Habit Callout */}
+        <div className="kube-library-practice">
+          <strong>A good defense habit</strong>
+          <p>
+            Use a disposable sandboxed environment. Verify IAM trust boundaries, read policies before applying them, and clean up temporary test resources when finished.
+          </p>
+        </div>
+      </section>
 
       {/* Cloud AI Security Engineer Career & Learning Roadmap */}
-      <section className="kube-library-container my-10" aria-label="Cloud AI Security Engineer Roadmap">
+      <section className="dev-roadmap kube-library-container my-10" aria-label="Cloud AI Security Engineer Roadmap">
         <div className="rounded-2xl border border-slate-200/90 dark:border-[#26203b] bg-white dark:bg-[#13111c] p-6 sm:p-8 shadow-sm">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-100 dark:border-[#26203b]">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-950/40 border border-purple-200/60 dark:border-purple-800/40 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider mb-3">
                 <span className="w-2 h-2 rounded-full bg-purple-600 dark:bg-purple-400 animate-pulse" />
-                Industry Roadmap • Cloudflare &amp; Netflix Engineering Caliber
+                Cloud security learning tracks
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
                 Cloud AI Security Engineer Curriculum
@@ -409,89 +478,6 @@ function LabsList() {
       </section>
 
       {/* KubeDaily Library Section */}
-      <section id="lab-library" className="kube-library-container kube-library-section">
-        <div className="kube-library-toolbar">
-          <div>
-            <p className="kube-label">Practice &amp; explore</p>
-            <h2>Choose your next lab</h2>
-          </div>
-          <div className="kube-library-search">
-            <label htmlFor="lab-search">Find a lab</label>
-            <input
-              id="lab-search"
-              type="search"
-              placeholder="Search Agentic, Threat, Zero-Trust…"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </div>
-
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap gap-2 mt-6">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-3 py-1.5 rounded-full text-xs font-bold transition capitalize ${
-                activeCategory === cat
-                  ? "bg-purple text-white shadow-sm"
-                  : "bg-slate-100 dark:bg-[#31373b] text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[#3d4449]"
-              }`}
-            >
-              {cat === "all" ? "All Labs" : cat}
-            </button>
-          ))}
-        </div>
-
-        <p className="kube-library-count" role="status">
-          {filteredLabs.length} {filteredLabs.length === 1 ? "lab" : "labs"} to explore
-        </p>
-
-        {/* Labs Grid */}
-        <div className="kube-labs-grid">
-          {loading ? (
-            <div className="col-span-full py-16 text-center text-slate-500">
-              <div className="h-8 w-8 animate-spin rounded-full border-2 border-purple-500 border-t-transparent mx-auto mb-3" />
-              Loading labs…
-            </div>
-          ) : filteredLabs.length === 0 ? (
-            <div className="col-span-full rounded-xl border border-dashed border-slate-300 dark:border-[#3d4449] p-10 text-center text-slate-600 dark:text-slate-400">
-              No labs match that search. Try another query or clear the filter to see everything.
-            </div>
-          ) : (
-            filteredLabs.map((lab) => (
-              <article key={lab.id} className="kube-lab-card group">
-                <div className="kube-lab-card-top">
-                  <span className="kube-lab-number" aria-hidden="true">&gt;_</span>
-                  <p className="kube-label">{lab.category}</p>
-                </div>
-                <h3>
-                  <Link to={`/labs/${lab.id}`}>{lab.title}</Link>
-                </h3>
-                <p>{lab.description}</p>
-                <div className="kube-lab-card-tags" aria-label="Topics">
-                  {lab.tags && lab.tags.slice(0, 3).map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-                <Link className="kube-lab-card-link" to={`/labs/${lab.id}`}>
-                  Open lab <span aria-hidden="true">→</span>
-                </Link>
-              </article>
-            ))
-          )}
-        </div>
-
-        {/* Good Habit Callout */}
-        <div className="kube-library-practice">
-          <strong>A good defense habit</strong>
-          <p>
-            Use a disposable sandboxed environment. Verify IAM trust boundaries, read policies before applying them, and clean up temporary test resources when finished.
-          </p>
-        </div>
-      </section>
-
       {/* Library Footer */}
       <section className="kube-library-container kube-library-footer">
         <div>
@@ -788,7 +774,7 @@ function LabDetail() {
       {/* Top Floating Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-transparent z-50 pointer-events-none">
         <div
-          className="h-full bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500 transition-all duration-150 ease-out"
+          className="dev-reader-progress h-full transition-all duration-150 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
@@ -1301,7 +1287,7 @@ function LabDetail() {
 // Main Component Router
 function Labs() {
   const { labId } = useParams();
-  return !labId ? <LabsList /> : <LabDetail />;
+  return <div className="dev-page dev-labs">{!labId ? <LabsList /> : <LabDetail />}</div>;
 }
 
 export default Labs;

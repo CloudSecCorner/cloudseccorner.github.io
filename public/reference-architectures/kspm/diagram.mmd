@@ -1,0 +1,18 @@
+flowchart TB
+      client@{ icon: "logos:k8s-pod", label: "Same namespace pod: role client", h: 64, pos: "b" }
+      service@{ icon: "logos:k8s-service", label: "ClusterIP Service: web", h: 64, pos: "b" }
+      pods@{ icon: "logos:k8s-deployment", label: "Deployment: two web replicas", h: 64, pos: "b" }
+      policy@{ icon: "logos:k8s-networkpolicy", label: "Allow role client on TCP 8080", h: 64, pos: "b" }
+      egress@{ icon: "logos:k8s-networkpolicy", label: "Namespace egress allow to web TCP 8080", h: 64, pos: "b" }
+      deny@{ icon: "logos:k8s-networkpolicy", label: "Default deny ingress and egress", h: 64, pos: "b" }
+      untrusted@{ icon: "logos:k8s-pod", label: "Other pod", h: 64, pos: "b" }
+      psa@{ icon: "logos:k8s-psa", label: "Restricted Pod Security Admission", h: 64, pos: "b" }
+      client[Same namespace pod: role client] -->|TCP 80| service[ClusterIP Service: web]
+      service -->|targetPort 8080| pods[Deployment: two web replicas]
+      policy[Allow role client on TCP 8080] -.->|CNI enforces on pods| pods
+      egress[Namespace egress allow to web TCP 8080] -.-> client
+      deny[Default deny ingress and egress] -.-> pods
+      untrusted[Other pod] -->|No matching allow| blocked[Connection blocked]
+      psa[Restricted Pod Security Admission] -.->|Admission checks| pods
+      pods -->|Writable scratch only| tmp[emptyDir mounted at /tmp]
+      root[Non-root and read-only root filesystem] -.-> pods

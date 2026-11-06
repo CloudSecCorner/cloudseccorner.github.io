@@ -6,9 +6,11 @@
   "homepage": "https://cloudsecuritycorner.com/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/generate-reference-architectures.mjs && node scripts/generate-lab-diagrams.mjs && node scripts/generate-home-catalog.mjs && vite build",
+    "diagrams:update": "node scripts/update-diagrams.mjs && node scripts/generate-reference-architectures.mjs && node scripts/generate-lab-diagrams.mjs && node scripts/generate-home-catalog.mjs",
+    "generate:references": "node scripts/generate-reference-architectures.mjs",
     "preview": "vite preview",
-    "test": "node scripts/validate-content.mjs",
+    "test": "node scripts/validate-content.mjs && node scripts/validate-diagrams.mjs && node scripts/test-developer-architectures.mjs && node scripts/test-landing-page.mjs && node scripts/test-shared-ui.mjs",
     "check": "npm test && npm run build"
   },
   "dependencies": {

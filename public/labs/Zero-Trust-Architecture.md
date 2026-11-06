@@ -24,67 +24,53 @@ Zero-Trust Architecture (ZTA) treats network locality as entirely hostile. In ac
 
 The Pele architecture diagram below illustrates a production Zero-Trust control plane deploying SPIFFE/SPIRE for cryptographic workload attestation, Envoy sidecars for mutual TLS (mTLS), and Open Policy Agent (OPA) for fine-grained authorization:
 
-```architecture
-architecture-beta
-  group control_plane(cloud)[Trust Boundary 1: Zero-Trust Control Plane]
-  service spire_server(lock)[SPIRE Identity Authority] in control_plane
-  service oidc_broker(key)[OIDC Token Issuer] in control_plane
-  service policy_engine(shield)[Centralized OPA Decision Engine] in control_plane
-
-  group node_boundary(server)[Trust Boundary 2: Hardened Compute Node]
-  service spire_agent(cpu)[SPIRE Node Attestation Agent] in node_boundary
-  service uds_socket(disk)[Workload API /spire/agent.sock] in node_boundary
-  service client_app(server)[Downstream Frontend Workload] in node_boundary
-  service envoy_client(firewall)[Envoy mTLS Sidecar Proxy] in node_boundary
-
-  group target_boundary(server)[Trust Boundary 3: Secure Service Mesh]
-  service envoy_server(firewall)[Envoy Ingress mTLS Proxy] in target_boundary
-  service opa_sidecar(shield)[Local OPA Sidecar] in target_boundary
-  service api_backend(server)[Upstream Payment API] in target_boundary
-  service secure_db(database)[Encrypted Data Store] in target_boundary
-
-  spire_server:B -- T:spire_agent
-  spire_agent:R -- L:uds_socket
-  client_app:B -- T:uds_socket
-  client_app:R -- L:envoy_client
-  envoy_client:R -- L:envoy_server
-  envoy_server:B -- T:opa_sidecar
-  envoy_server:R -- L:api_backend
-  api_backend:R -- L:secure_db
-  policy_engine:B -- T:opa_sidecar
+```mermaid
+flowchart TB
+      spire[SPIRE Server: attestation and SVID signing] -->|Attested agent session| agent[SPIRE Agent and Workload API]
+      agent -->|SDS identity and trust bundle updates| clientproxy[Client Envoy]
+      agent -->|SDS identity and trust bundle updates| serverproxy[Server Envoy]
+      client@{ icon: "logos:k8s-pod", label: "Frontend workload", h: 64 }
+      backend@{ icon: "logos:k8s-pod", label: "Payment API workload", h: 64 }
+      client --> clientproxy
+      clientproxy -->|mTLS with peer identity verification| serverproxy
+      serverproxy -->|Authorization query| opa[Local OPA decision engine]
+      opa -->|Allow or deny| serverproxy
+      serverproxy -->|Allowed requests only| backend
+      backend -->|Authenticated database connection| db[Data store]
+      bundles[Signed policy bundle distribution] -.-> opa
+      agent -.->|Workload attestation over local socket| client
 ```
 
 ### SPIFFE Workload Attestation & mTLS Connection Sequence
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    participant Workload as Downstream Workload (Pod)
-    participant Agent as SPIRE Agent (/spire/agent.sock)
-    participant Server as SPIRE Server (CA)
-    participant EnvoyClient as Envoy Client Sidecar
-    participant EnvoyServer as Envoy Server Sidecar
-    participant OPA as OPA Authorization Engine
-
-    Note over Workload,Agent: Phase 1: Workload Attestation
-    Workload->>Agent: Query SPIFFE Workload API (Unix Domain Socket)
-    Agent->>Agent: Inspect caller PID, cgroup, UID, K8s ServiceAccount
-    Agent->>Server: Request SVID for attestation attributes
-    Server-->>Agent: Mint X.509 SVID (spiffe://corp.internal/ns/prod/sa/frontend)
-    Agent-->>Workload: Deliver X.509 Certificate Chain + Private Key via memory
-    Agent->>EnvoyClient: Push SVID via Envoy Secret Discovery Service (SDS)
-
-    Note over EnvoyClient,EnvoyServer: Phase 2: Mutual TLS Handshake (mTLS)
-    EnvoyClient->>EnvoyServer: ClientHello + Present Client X.509 SVID
-    EnvoyServer->>EnvoyClient: ServerHello + Present Server X.509 SVID
-    EnvoyClient->>EnvoyClient: Verify Server SPIFFE ID (spiffe://corp.internal/ns/prod/sa/payment-api)
-    EnvoyServer->>EnvoyServer: Verify Client SPIFFE ID against Trust Domain Bundle
-    Note over EnvoyClient,EnvoyServer: Cryptographic Channel Established (TLS 1.3)
-
-    Note over EnvoyServer,OPA: Phase 3: Fine-Grained Authorization
-    EnvoyServer->>OPA: Query Policy: Can 'frontend' execute 'POST /v1/charge'?
-    OPA-->>EnvoyServer: Allow: True (Least Privilege Confirmed)
-    EnvoyServer->>Workload: Forward Sanitized Request to Local API Backend
+      autonumber
+      participant Agent as SPIRE Agent
+      participant Server as SPIRE Server
+      participant Client as Client Envoy
+      participant Proxy as Server Envoy
+      participant OPA as Local authorization policy
+      participant API as Payment API
+      Agent->>Server: Authenticate attested node, request authorized workload SVIDs
+      Server-->>Agent: Short-lived SVIDs and trust material
+      Client->>Agent: Subscribe to SDS credentials and trust bundles
+      Agent-->>Client: Identity, private key and bundle updates
+      Note over Agent,Proxy: Server Envoy obtains its own identity through its local agent
+      Client->>Proxy: Begin TLS handshake
+      Proxy-->>Client: Exchange certificates and complete mutual authentication
+      Note over Client,Proxy: Validate certificate chains and expected SPIFFE identities
+      Client->>Proxy: HTTP request over established mTLS channel
+      Proxy->>OPA: Evaluate peer identity, method, path and request context
+      alt Explicitly allowed
+        OPA-->>Proxy: Allow
+        Proxy->>API: Forward authorized request
+        API-->>Proxy: Application response
+        Proxy-->>Client: Response over mTLS
+      else Denied or policy error
+        OPA-->>Proxy: Deny or evaluation failure
+        Proxy-->>Client: Reject request without calling backend
+      end
 ```
 
 ---

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { render } from 'pele';
+import { refreshDiagramCollection } from './lib/control-diagrams.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
@@ -597,6 +598,7 @@ ${sc.regoBody}`,
   }
 }
 
+refreshDiagramCollection('azure', allBestPractices);
 const elapsedMs = Date.now() - startTime;
 console.log(`Generated and rendered ${allBestPractices.length} DEEP Azure architecture diagrams with REAL AZURE ICONS in ${elapsedMs}ms!`);
 

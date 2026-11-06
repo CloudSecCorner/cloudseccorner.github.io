@@ -1,0 +1,7 @@
+.developer-catalog #architecture-catalog { padding-top: 24px; }
+.developer-catalog [data-architecture-card] { border-radius: 8px; }
+.developer-catalog [data-architecture-card] > div:first-child > div:first-child { flex-wrap: wrap; }
+.architecture-card-tabs { flex-wrap: wrap; gap: 8px; }
+.architecture-card-tabs > div:first-child { flex-wrap: wrap; }
+.architecture-card-tabs button { display: inline-flex; align-items: center; gap: 5px; min-height: 32px; }
+.developer-catalog .diagram-tabs button { letter-spacing: 0; }

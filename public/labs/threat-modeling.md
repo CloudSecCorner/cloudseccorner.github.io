@@ -23,9 +23,11 @@ Every threat modeling engagement in this lab executes against the industry-stand
 
 ```mermaid
 flowchart LR
-    Q1["1. What are we building?<br><b>(System Decomposition & DFD)</b>"] --> Q2["2. What can go wrong?<br><b>(STRIDE & Attack Trees)</b>"]
-    Q2 --> Q3["3. What are we doing about it?<br><b>(Security Controls & Policy-as-Code)</b>"]
-    Q3 --> Q4["4. Did we do a good enough job?<br><b>(Auditable Verification & Metrics)</b>"]
+      scope[Define system, assets and assumptions] --> boundaries[Map data flows and trust boundaries]
+      boundaries --> threats[Identify credible threats and abuse cases]
+      threats --> controls[Assign mitigations, owners and verification tests]
+      controls --> evidence[Validate residual risk with evidence]
+      evidence -->|Architecture or assumptions change| scope
 ```
 
 ---
@@ -34,64 +36,51 @@ flowchart LR
 
 The blueprint below models a production-grade multi-tier cloud banking and AI advisory system across five explicit trust perimeters:
 
-```architecture
-architecture-beta
-  group internet(internet)[Untrusted External Clients]
-  service web(user)[Web Client] in internet
-  service api_consumer(user)[Partner API Client] in internet
-
-  group edge(cloud)[Trust Boundary 1: Perimeter Edge]
-  service waf(firewall)[Cloud WAF & DDoS Shield] in edge
-  service ingress(server)[Ingress Envoy Gateway] in edge
-
-  group app_tier(server)[Trust Boundary 2: Hardened Compute]
-  service auth_svc(lock)[Auth & Token Broker] in app_tier
-  service account_svc(server)[Core Account Service] in app_tier
-  service ai_agent(cpu)[Advisory AI Agent Service] in app_tier
-
-  group data_tier(database)[Trust Boundary 3: Secure Data Stores]
-  service trans_db(database)[Encrypted Transaction DB] in data_tier
-  service secret_vault(key)[KMS & Secret Manager] in data_tier
-  service audit_lake(disk)[WORM Audit Log Bucket] in data_tier
-
-  web:R -- L:waf
-  api_consumer:R -- L:waf
-  waf:R -- L:ingress
-  ingress:B -- T:auth_svc
-  ingress:R -- L:account_svc
-  ingress:B -- T:ai_agent
-  account_svc:R -- L:trans_db
-  auth_svc:B -- T:secret_vault
-  account_svc:B -- T:audit_lake
-  ai_agent:R -- L:account_svc
+```mermaid
+flowchart TB
+      client[External user or partner] -->|HTTPS and bearer token| ingress[Ingress with WAF rules]
+      ingress --> api[Account API]
+      api -->|Verify issuer, audience, expiry and scopes| auth[Identity provider keys and authorization policy]
+      api -->|Authorized transaction only| db[Transaction database]
+      api -->|Minimized advisory context| ai[AI advisory service]
+      ai -->|Untrusted advisory output| validation[Schema and business-rule validation]
+      validation --> api
+      kms@{ icon: "logos:aws-security-kms", label: "Key and secret services", h: 64 }
+      api -->|Scoped credential or cryptographic operation| kms
+      audit@{ icon: "logos:aws-logging-cloudtrail", label: "Configured application and platform audit sinks", h: 64 }
+      api -.-> audit
+      note[WAF filtering does not replace token or transaction authorization] -.-> api
 ```
 
 ### Data Flow & Trust Perimeter Interactions
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    actor Client as External Client
-    participant WAF as Perimeter WAF / Ingress
-    participant Auth as Token Broker (OAuth2/OIDC)
-    participant Core as Core Account Microservice
-    participant Agent as Autonomous AI Agent
-    participant DB as Encrypted Database
-    participant KMS as KMS Key Vault
-
-    Client->>WAF: HTTPS POST /v1/transfer (Bearer JWT)
-    WAF->>Core: Forward Sanitized Request
-    Core->>Auth: Validate Token Signature & Scopes
-    Auth->>KMS: Retrieve Public Key / Verify HSM Signature
-    KMS-->>Auth: Verified Cryptographic Identity
-    Auth-->>Core: Claims Context (spiffe://corp.internal/ns/prod/sa/core)
-    alt AI Analysis Requested
-        Core->>Agent: Stream Transaction for Fraud Analysis (L7 MCP)
-        Agent-->>Core: Sanitized Fraud Risk Score (Deterministic Output)
-    end
-    Core->>DB: Atomic Ledger Write (AES-256-GCM)
-    DB-->>Core: Commit Confirmed
-    Core-->>Client: 200 OK { transaction_id, status: "settled" }
+      autonumber
+      actor Client as External client
+      participant Ingress as TLS ingress and WAF
+      participant API as Account API
+      participant Keys as Cached issuer JWKS
+      participant Policy as Authorization policy
+      participant AI as Advisory AI service
+      participant DB as Transaction database
+      Client->>Ingress: HTTPS transfer request with bearer token and idempotency key
+      Ingress->>API: Forward request after configured perimeter checks
+      API->>Keys: Obtain signing keys, refresh on unknown key ID
+      API->>API: Validate signature, issuer, audience and expiry
+      API->>Policy: Check user scope and account ownership
+      alt Invalid token or unauthorized account
+        API-->>Client: Reject, no ledger mutation
+      else Authorized request
+        opt Advisory fraud analysis enabled
+          API->>AI: Send minimized context
+          AI-->>API: Advisory result
+          API->>API: Validate result against schema and business rules
+        end
+        API->>DB: Execute authorized idempotent transaction over protected connection
+        DB-->>API: Commit result
+        API-->>Client: Return application result
+      end
 ```
 
 ---
@@ -153,29 +142,26 @@ System decomposition translates architectural topology into formal Data Flow Dia
 
 ```mermaid
 flowchart TD
-    subgraph InternetZone[Internet Untrusted Zone]
-        Client[External Banking Client]
-    end
-
-    subgraph DMZZone[Perimeter Edge DMZ]
-        WAF[API Gateway / WAF]
-    end
-
-    subgraph ServiceMesh[Compute Mesh Trust Boundary]
-        API[Core Account Service]
-        AI[AI Fraud Detection Agent]
-    end
-
-    subgraph StorageZone[Isolated Data Boundary]
-        DB[(Transaction Database)]
-        KMS[(KMS Key Engine)]
-    end
-
-    Client -->|HTTPS:443| WAF
-    WAF -->|mTLS:8443| API
-    API -->|gRPC / Local IPC| AI
-    API -->|mTLS Encrypted| DB
-    API -->|REST over TLS| KMS
+      subgraph external["External trust boundary"]
+        client[Banking client]
+      end
+      subgraph perimeter["Perimeter boundary"]
+        ingress[TLS termination and configured WAF rules]
+      end
+      subgraph services["Application identity boundary"]
+        api[Account API and transaction authorization]
+        ai[Advisory AI service]
+      end
+      subgraph data["Data access boundary"]
+        db[Transaction database]
+        keys[Key and secret service]
+      end
+      client -->|HTTPS| ingress
+      ingress -->|Configured authenticated backend connection| api
+      api -->|Minimized input over authenticated channel| ai
+      ai -->|Untrusted result; validate before use| api
+      api -->|Scoped database identity and TLS| db
+      api -->|Authorized key or secret operation| keys
 ```
 
 ---

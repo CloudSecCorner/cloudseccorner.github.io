@@ -19,10 +19,12 @@ In modern cloud and container environments, the perimeter has dissolved. Attacke
 
 ```mermaid
 flowchart LR
-    P1["1. Reconnaissance<br><b>Passive & Active OSINT</b>"] --> P2["2. Scanning<br><b>Service & Attack Surface</b>"]
-    P2 --> P3["3. Exploitation<br><b>Container Escape & PrivEsc</b>"]
-    P3 --> P4["4. Lateral Movement<br><b>Network Sniffing & MitM</b>"]
-    P4 --> P5["5. Defense Validation<br><b>OPA Rego & Kernel Hardening</b>"]
+      scope[Written scope and isolated lab targets] --> discovery[Reconnaissance and service inventory]
+      discovery --> validation[Validate exposures with bounded tests]
+      validation --> exploit[Demonstrate impact only inside approved scope]
+      exploit --> evidence[Record evidence and affected prerequisites]
+      evidence --> remediate[Remove dangerous mounts and tighten permissions]
+      remediate --> retest[Retest exploit path and normal application behavior]
 ```
 
 ---
@@ -31,53 +33,42 @@ flowchart LR
 
 The blueprint below models a realistic cloud container environment under authorized penetration testing: an external attacker gaining ingress, compromising an unprivileged worker container, escaping via host filesystem mounts, and attacking internal datastores:
 
-```architecture
-architecture-beta
-  group attacker(terminal)[Offensive Security Workstation]
-  service kali(terminal)[Kali Linux CLI & Toolkit] in attacker
-
-  group edge(cloud)[Trust Boundary 1: Cloud Perimeter]
-  service ingress(firewall)[Cloud Ingress WAF] in edge
-  service lb(server)[Application Load Balancer] in edge
-
-  group k8s_node(server)[Trust Boundary 2: Kubernetes Node]
-  service web_pod(server)[Compromised Web Container] in k8s_node
-  service socket(disk)[Mounted /var/run/docker.sock] in k8s_node
-  service host_kernel(cpu)[Host Linux Kernel Namespaces] in k8s_node
-
-  group internal_mesh(database)[Trust Boundary 3: Internal Mesh]
-  service db(database)[Production Customer DB] in internal_mesh
-  service metadata(cloud)[Instance Metadata Service IMDS] in internal_mesh
-
-  kali:R -- L:ingress
-  ingress:R -- L:lb
-  lb:B -- T:web_pod
-  web_pod:R -- L:socket
-  socket:B -- T:host_kernel
-  host_kernel:R -- L:db
-  host_kernel:B -- T:metadata
+```mermaid
+flowchart TB
+      tester[Authorized tester in isolated lab] -->|Approved test request| ingress[Lab application endpoint]
+      pod@{ icon: "logos:container-docker", label: "Intentionally vulnerable web container", h: 64 }
+      ingress --> pod
+      pod --> prerequisite{Host Docker socket exposed and usable?}
+      prerequisite -->|No| blocked[This breakout path is unavailable]
+      prerequisite -->|Yes| daemon[Host Docker daemon API]
+      daemon -->|If daemon permissions allow| host[Host filesystem exposure]
+      host --> scope[Impact limited by actual host and cloud permissions]
+      defense[Remove socket mount; restrict daemon access and container privileges] -.-> prerequisite
 ```
 
 ### Container Breakout Execution Sequence
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    actor Attacker as Ethical Hacker
-    participant WebApp as Web Container (Low-Priv)
-    participant Sock as /var/run/docker.sock
-    participant Daemon as Host Docker Daemon
-    participant Host as Linux Host Kernel
-    participant IMDS as Cloud Metadata Service
-
-    Attacker->>WebApp: 1. Remote Code Execution via Ingress (Low-Priv Shell)
-    WebApp->>WebApp: 2. Enumerate Local Mounts (`mount | grep docker`)
-    WebApp->>Sock: 3. Issue Docker API Call (`POST /containers/create` with rootfs mount)
-    Sock->>Daemon: 4. Daemon spawns privileged container mounting `/` as `/host`
-    Daemon->>Host: 5. Execute chroot into `/host` (Host Node Root Takeover)
-    Host->>IMDS: 6. Query Instance Metadata for Node IAM Role Tokens
-    IMDS-->>Host: 7. Return Node Instance Profile Credentials
-    Host-->>Attacker: 8. Full Cluster Node & Cloud IAM Compromise
+      autonumber
+      actor Tester as Authorized lab tester
+      participant Container as Vulnerable lab container
+      participant Daemon as Host Docker daemon
+      participant Host as Lab host
+      participant Metadata as Optional metadata mock
+      Tester->>Container: Run approved exposure checks
+      Container->>Container: Inspect mount and socket access prerequisites
+      alt Socket absent or daemon denies access
+        Container-->>Tester: Breakout path blocked
+      else Socket is exposed to a privileged daemon
+        Container->>Daemon: Approved lab request demonstrating host mount exposure
+        Daemon->>Host: Expose filesystem according to daemon permissions
+        Host-->>Tester: Record scoped impact evidence
+        opt Metadata mock reachable and credentials exposed
+          Host->>Metadata: Test configured mock endpoint
+          Metadata-->>Host: Mock response, not proof of full cloud compromise
+        end
+      end
 ```
 
 ---
@@ -261,16 +252,20 @@ In cloud environments with shared Layer 2 segments, attackers execute ARP poison
 
 ```mermaid
 sequenceDiagram
-    participant Attacker as Attacker Node (172.29.0.100)
-    participant Gateway as Default Gateway (172.29.0.1)
-    participant Target as Target Web Pod (172.29.0.5)
-
-    Note over Attacker: ARP Spoofing Loop
-    Attacker->>Gateway: Gratuitous ARP: "172.29.0.5 is at Attacker_MAC"
-    Attacker->>Target: Gratuitous ARP: "172.29.0.1 is at Attacker_MAC"
-    Note over Target,Gateway: Traffic now routes through Attacker
-    Target->>Attacker: Outbound HTTP / Credentials
-    Attacker->>Gateway: Forward Packet (Sniffed & Logged)
+      participant Tester as Authorized L2 lab tester
+      participant Gateway as Lab bridge gateway
+      participant Client as Lab client
+      Note over Tester,Client: Requires a shared L2 segment, not a universal cloud VPC behavior
+      Tester->>Gateway: Test ARP update claiming client IP
+      Tester->>Client: Test ARP update claiming gateway IP
+      alt Peers accept updates and forwarding is configured
+        Client->>Tester: Traffic sent to substituted MAC
+        Tester->>Gateway: Forward packet to maintain connectivity
+        Note over Tester,Client: Properly validated TLS still protects application payloads
+      else Bindings or L2 protections reject changes
+        Client->>Gateway: Continue using legitimate neighbor binding
+      end
+      Note over Tester,Gateway: Restore neighbor state and verify connectivity after the test
 ```
 
 #### Defending Against ARP Spoofing:

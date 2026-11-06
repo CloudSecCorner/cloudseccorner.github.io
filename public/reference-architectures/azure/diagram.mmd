@@ -1,0 +1,9 @@
+flowchart TB
+      account@{ icon: "logos:azure-blob", label: "StorageV2 account", h: 64, pos: "b" }
+      identity@{ icon: "logos:azure-ad", label: "Shared Key disabled: Entra identity required", h: 64, pos: "b" }
+      arm[Terraform authenticated with Azure] -->|Management plane| account[StorageV2 account]
+      internet[Public data-plane request] -->|Public networking disabled| denied[Access denied]
+      account -->|Account controls| controls[TLS 1.2 and HTTPS only]
+      controls --> identity[Shared Key disabled: Entra identity required]
+      future[Private endpoint and DNS: not provisioned] -.-> account
+      rbac[Data-plane RBAC: not provisioned] -.-> identity

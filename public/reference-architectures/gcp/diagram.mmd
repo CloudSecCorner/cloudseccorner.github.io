@@ -1,0 +1,9 @@
+flowchart TB
+      bucket@{ icon: "logos:gcp-gcs", label: "Versioned Cloud Storage bucket", h: 64, pos: "b" }
+      client[Authenticated workload] -->|HTTPS OAuth token| iam{Bucket or inherited IAM permits?}
+      iam -->|Yes| bucket[Versioned Cloud Storage bucket]
+      iam -->|No| denied[Access denied]
+      public[allUsers or allAuthenticatedUsers grant] -->|Public access prevention enforced| denied
+      acl[Per-object ACL] -->|Disabled by uniform bucket-level access| disabled[No object ACL authorization]
+      bucket --> encryption[Google-managed encryption at rest]
+      perimeter[VPC Service Controls: not provisioned] -.-> bucket

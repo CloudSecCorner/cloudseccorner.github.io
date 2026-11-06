@@ -1,0 +1,102 @@
+{
+  "providers": [
+    {
+      "id": "aws",
+      "name": "AWS",
+      "route": "/aws-architectures",
+      "logo": "/images/provider-logos/aws.svg",
+      "scope": "S3, Lambda, SQS, IAM, and VPC integration patterns.",
+      "profileCount": 1033,
+      "serviceCount": 24,
+      "exampleCount": 1
+    },
+    {
+      "id": "azure",
+      "name": "Azure",
+      "route": "/azure-architectures",
+      "logo": "/images/provider-logos/azure.svg",
+      "scope": "Blob Storage, Functions, Service Bus, identity, and networking.",
+      "profileCount": 1033,
+      "serviceCount": 24,
+      "exampleCount": 1
+    },
+    {
+      "id": "gcp",
+      "name": "Google Cloud",
+      "route": "/gcp-architectures",
+      "logo": "/images/provider-logos/gcp.svg",
+      "scope": "Cloud Storage, Cloud Run, Pub/Sub, IAM, and GKE.",
+      "profileCount": 1033,
+      "serviceCount": 24,
+      "exampleCount": 1
+    },
+    {
+      "id": "kspm",
+      "name": "Kubernetes",
+      "route": "/kspm-architectures",
+      "logo": "/images/provider-logos/kspm.svg",
+      "scope": "Workloads, Services, admission, RBAC, and network policy.",
+      "profileCount": 1033,
+      "serviceCount": 24,
+      "exampleCount": 1
+    }
+  ],
+  "labs": [
+    {
+      "id": "Agentic-Cloud-Security",
+      "title": "Agentic Cloud Security Essentials",
+      "category": "Agentic Security",
+      "description": "Tool-call schemas, scoped credentials, external policy decisions, and audit evidence.",
+      "route": "/labs/Agentic-Cloud-Security"
+    },
+    {
+      "id": "Zero-Trust-Architecture",
+      "title": "Zero-Trust Architecture",
+      "category": "Security Engineering",
+      "description": "SPIFFE workload identity, mutual TLS, and request authorization.",
+      "route": "/labs/Zero-Trust-Architecture"
+    },
+    {
+      "id": "Threat-Modeling",
+      "title": "Threat Modeling Practical Guide",
+      "category": "Security Engineering",
+      "description": "Trust boundaries, data flows, threat scenarios, and verifiable mitigations.",
+      "route": "/labs/Threat-Modeling"
+    },
+    {
+      "id": "Security-Engineering-Fundamentals",
+      "title": "Security Engineering Fundamentals",
+      "category": "Security Engineering",
+      "description": "Envelope encryption, artifact signatures, and build provenance.",
+      "route": "/labs/Security-Engineering-Fundamentals"
+    },
+    {
+      "id": "Nmap-Practical-Labs",
+      "title": "NMAP Practical Auditing Labs",
+      "category": "Network Security",
+      "description": "Port states, service discovery, and repeatable network audits.",
+      "route": "/labs/Nmap-Practical-Labs"
+    },
+    {
+      "id": "ethical-hacker-easy-way",
+      "title": "Ethical Hacker Practical Lab",
+      "category": "Ethical Hacking",
+      "description": "Isolated container testing and hardening validation.",
+      "route": "/labs/ethical-hacker-easy-way"
+    }
+  ],
+  "blogs": [
+    {
+      "id": "Safeguarding-the-AI-Frontier",
+      "title": "Safeguarding the AI Frontier: An In-Depth Analysis of Straiker's Revolutionary Security Solutions",
+      "category": "Agentic Security",
+      "route": "/blog/Safeguarding-the-AI-Frontier"
+    }
+  ],
+  "counts": {
+    "profiles": 4132,
+    "examples": 4,
+    "labs": 6,
+    "tools": 37750
+  }
+}

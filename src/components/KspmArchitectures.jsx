@@ -1,3 +1,7 @@
+import ArchitectureHeader from "./ArchitectureHeader";
+import { Network, ShieldCheck, Braces, FileCode, BookOpen } from "lucide-react";
+import referenceArchitectures from "../data/reference-architectures.json";
+import DiagramViewer from "./DiagramViewer";
 import React, { useEffect, useState, useMemo } from "react";
 import OpenGraph from "./OpenGraph";
 
@@ -23,7 +27,7 @@ export default function KspmArchitectures() {
         return res.json();
       })
       .then((items) => {
-        setData(items);
+        setData([...referenceArchitectures.kspm, ...items]);
         setLoading(false);
       })
       .catch((err) => {
@@ -147,6 +151,7 @@ export default function KspmArchitectures() {
           item.title.toLowerCase().includes(q) ||
           item.service.toLowerCase().includes(q) ||
           item.description.toLowerCase().includes(q) ||
+          (item.developer_guide && [item.developer_guide.name, item.developer_guide.contract, ...item.developer_guide.dependencies, ...item.developer_guide.failures].join(" ").toLowerCase().includes(q)) ||
           (item.pillar && item.pillar.toLowerCase().includes(q)) ||
           (item.compliance && item.compliance.some((c) => c.toLowerCase().includes(q)));
         if (!match) return false;
@@ -247,84 +252,14 @@ export default function KspmArchitectures() {
   const isFiltered = selectedDomain !== "all" || category !== "all" || pillar !== "all" || severity !== "all" || compliance !== "all" || query;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-slate-100 font-sans transition-colors">
+    <div className="dev-page developer-catalog min-h-screen bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-slate-100 font-sans transition-colors">
       <OpenGraph
-        title="1,000+ KSPM Kubernetes Architecture Best Practices | Obsidian Pele & OPA"
-        description="Explore 1,000+ Kubernetes Security Posture Management (KSPM) and in-depth pod-level defensive blueprints rendered with Obsidian Pele, verified OPA Rego policies, and hardened manifests."
+        title="Kubernetes Developer Architectures | CloudSecCorner"
+        description="Kubernetes application integration patterns with service dependencies, deployment workflows, integration tests and debugging notes."
         tags={["KSPM", "Kubernetes Architecture", "Pod Security", "Obsidian Pele", "OPA Rego", "CIS Kubernetes Benchmark"]}
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-slate-200 dark:border-white/[0.08] bg-gradient-to-b from-blue-50/70 via-white to-slate-50 dark:from-[#09152a] dark:via-[#081020] dark:to-[#060a14] py-16 px-4 sm:px-6 lg:px-10 transition-colors">
-        <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-gradient-to-r from-blue-600/15 via-indigo-500/10 to-cyan-600/15 blur-3xl rounded-full" />
-
-        <div className="relative mx-auto max-w-7xl">
-          <div className="flex flex-col items-start gap-4">
-            <div className="inline-flex flex-wrap items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-500/15 text-blue-700 dark:text-blue-200 border border-blue-300 dark:border-blue-500/30 shadow-sm backdrop-blur-md">
-              <span className="flex items-center gap-1.5 text-blue-700 dark:text-blue-300">
-                <span className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse" />
-                Obsidian Pele Engine
-              </span>
-              <span className="opacity-40">•</span>
-              <span className="flex items-center gap-1 text-cyan-700 dark:text-cyan-300 font-mono">
-                Pod &amp; Kind-Level Defense
-              </span>
-              <span className="opacity-40">•</span>
-              <span className="text-slate-900 dark:text-white font-mono font-bold">1,032 Architecture Blueprints</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-              1,000+ KSPM Kubernetes Architecture <br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 dark:from-blue-400 dark:via-indigo-300 dark:to-cyan-300 bg-clip-text text-transparent">
-                with Pele, OPA &amp; Pod Hardening
-              </span>
-            </h1>
-
-            <p className="mt-2 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl font-normal">
-              In-depth Kubernetes Security Posture Management (KSPM) and pod-level defensive architecture blueprints across each Kubernetes Kind. Every blueprint features responsive multi-tier vector SVG diagrams rendered with Obsidian Pele, paired with production OPA Rego admission policies and hardened Kubernetes manifests.
-            </p>
-
-            {/* Quick Stats Grid */}
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 w-full">
-              <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] p-4 sm:p-5 shadow-sm dark:shadow-none backdrop-blur-md">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
-                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Topologies</span>
-                </div>
-                <strong className="block text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">1,032</strong>
-                <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 block">Vector Pele SVGs</span>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] p-4 sm:p-5 shadow-sm dark:shadow-none backdrop-blur-md">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="h-2 w-2 rounded-full bg-cyan-500" />
-                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Kubernetes Kinds</span>
-                </div>
-                <strong className="block text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">24 Kinds</strong>
-                <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 block">Pod &amp; Kind-Level Icons</span>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] p-4 sm:p-5 shadow-sm dark:shadow-none backdrop-blur-md">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="h-2 w-2 rounded-full bg-rose-500" />
-                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Admission Guardrails</span>
-                </div>
-                <strong className="block text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">1,032</strong>
-                <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 block">OPA Rego Rules</span>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] p-4 sm:p-5 shadow-sm dark:shadow-none backdrop-blur-md">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Manifests</span>
-                </div>
-                <strong className="block text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">1,032</strong>
-                <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 block">Hardened K8s YAML</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ArchitectureHeader provider="Kubernetes" count={data.length} services={new Set(data.map(item => item.category)).size} references={referenceArchitectures.kspm.length} />
 
       {/* Explorer Main Section */}
       <section id="architecture-catalog" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10">
@@ -339,7 +274,7 @@ export default function KspmArchitectures() {
                 setQuery(e.target.value);
                 setPage(1);
               }}
-              placeholder="Search by K8s Kind, pod securityContext, OPA rule, CIS benchmark, or CVE..."
+              placeholder="Search services, integration patterns, dependencies, or controls..."
               className="w-full rounded-2xl border border-slate-300 dark:border-white/10 bg-white dark:bg-white/[0.04] px-4 py-3.5 pl-11 pr-24 text-sm text-slate-900 dark:text-white placeholder-slate-400 shadow-sm dark:shadow-inner focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition"
             />
             <svg className="absolute left-4 top-4 h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -577,6 +512,7 @@ export default function KspmArchitectures() {
                 return (
                   <div
                     key={item.id}
+                  data-architecture-card
                     className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.02] shadow-sm hover:shadow-md transition flex flex-col justify-between overflow-hidden"
                   >
                     {/* Card Header */}
@@ -607,9 +543,8 @@ export default function KspmArchitectures() {
                         </button>
                       </div>
 
-                      <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug line-clamp-2">
-                        {item.title}
-                      </h3>
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug line-clamp-2">{item.developer_guide ? item.developer_guide.name : item.title}</h3>
+                      <p className="mt-1.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">{item.reference ? item.description : item.title}</p>
 
                       <div className="mt-2.5 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                         {item.icon_url && <img src={item.icon_url} alt="" className="h-4 w-4 rounded" />}
@@ -625,7 +560,7 @@ export default function KspmArchitectures() {
                     </div>
 
                     {/* View Tabs Bar */}
-                    <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/[0.06] bg-slate-50 dark:bg-white/[0.02] px-4 py-1.5 text-xs">
+                    <div className="architecture-card-tabs flex items-center justify-between border-b border-slate-100 dark:border-white/[0.06] bg-slate-50 dark:bg-white/[0.02] px-4 py-1.5 text-xs">
                       <div className="flex items-center gap-1">
                         <button
                           onClick={() => setActiveTabs((prev) => ({ ...prev, [item.id]: "diagram" }))}
@@ -635,7 +570,7 @@ export default function KspmArchitectures() {
                               : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                           }`}
                         >
-                          📐 Pele Architecture
+                          <Network size={14} /> Architecture
                         </button>
                         <button
                           onClick={() => setActiveTabs((prev) => ({ ...prev, [item.id]: "opa" }))}
@@ -645,7 +580,7 @@ export default function KspmArchitectures() {
                               : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                           }`}
                         >
-                          🛡️ OPA Rego
+                          <ShieldCheck size={14} /> Policy
                         </button>
                         <button
                           onClick={() => setActiveTabs((prev) => ({ ...prev, [item.id]: "yaml" }))}
@@ -655,7 +590,7 @@ export default function KspmArchitectures() {
                               : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                           }`}
                         >
-                          📄 Hardened Manifest
+                          <FileCode size={14} /> Manifest
                         </button>
                         <button
                           onClick={() => setActiveTabs((prev) => ({ ...prev, [item.id]: "compliance" }))}
@@ -665,7 +600,7 @@ export default function KspmArchitectures() {
                               : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                           }`}
                         >
-                          📋 Compliance
+                          <BookOpen size={14} /> Context
                         </button>
                       </div>
 
@@ -705,10 +640,7 @@ export default function KspmArchitectures() {
                     {/* Tab Content Body */}
                     <div className="p-4 bg-slate-950 flex-1 flex flex-col justify-center min-h-[260px] overflow-x-auto text-slate-100">
                       {activeTab === "diagram" && (
-                        <div
-                          className="pele-svg-wrapper flex items-center justify-center w-full overflow-hidden"
-                          dangerouslySetInnerHTML={{ __html: item.svg }}
-                        />
+                        <DiagramViewer svg={item.svg} title={item.title} filename={item.id} reference={item.reference} details={item.diagram_details} architecture={item} />
                       )}
 
                       {activeTab === "opa" && (
@@ -878,10 +810,7 @@ export default function KspmArchitectures() {
 
             {/* Modal Body with Architecture Diagram */}
             <div className="p-6 overflow-y-auto flex-1 bg-slate-950 text-slate-100 flex flex-col justify-center items-center min-h-[380px]">
-              <div
-                className="pele-svg-wrapper w-full flex items-center justify-center p-4"
-                dangerouslySetInnerHTML={{ __html: modalItem.svg }}
-              />
+              <DiagramViewer svg={modalItem.svg} title={modalItem.title} filename={modalItem.id} reference={modalItem.reference} details={modalItem.diagram_details} architecture={modalItem} />
             </div>
 
             {/* Modal Footer with Actions */}

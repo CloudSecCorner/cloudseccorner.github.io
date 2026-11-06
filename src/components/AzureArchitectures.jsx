@@ -1,3 +1,7 @@
+import ArchitectureHeader from "./ArchitectureHeader";
+import { Network, ShieldCheck, Braces, FileCode, BookOpen } from "lucide-react";
+import referenceArchitectures from "../data/reference-architectures.json";
+import DiagramViewer from "./DiagramViewer";
 import React, { useEffect, useState, useMemo } from "react";
 import OpenGraph from "./OpenGraph";
 
@@ -23,7 +27,7 @@ export default function AzureArchitectures() {
         return res.json();
       })
       .then((items) => {
-        setData(items);
+        setData([...referenceArchitectures.azure, ...items]);
         setLoading(false);
       })
       .catch((err) => {
@@ -124,6 +128,7 @@ export default function AzureArchitectures() {
           item.title.toLowerCase().includes(q) ||
           item.service.toLowerCase().includes(q) ||
           item.description.toLowerCase().includes(q) ||
+          (item.developer_guide && [item.developer_guide.name, item.developer_guide.contract, ...item.developer_guide.dependencies, ...item.developer_guide.failures].join(" ").toLowerCase().includes(q)) ||
           (item.compliance && item.compliance.some((c) => c.toLowerCase().includes(q)));
         if (!match) return false;
       }
@@ -224,84 +229,14 @@ export default function AzureArchitectures() {
   const isFiltered = selectedDomain !== "all" || category !== "all" || pillar !== "all" || severity !== "all" || compliance !== "all" || query;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-slate-100 font-sans transition-colors">
+    <div className="dev-page developer-catalog min-h-screen bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-slate-100 font-sans transition-colors">
       <OpenGraph
-        title="1,000+ Azure Architecture Best Practices | Obsidian Pele, OPA & Terraform"
-        description="Explore 1,000+ Microsoft Azure defensive architecture blueprints rendered with Obsidian Pele, verified OPA Rego policies, and hardened Terraform IaC modules across 7 Core Security Domains."
+        title="Azure Developer Architectures | CloudSecCorner"
+        description="Azure application integration patterns with service dependencies, deployment workflows, integration tests and debugging notes."
         tags={["Azure Architecture", "Obsidian Pele", "Azure Best Practices", "OPA Rego", "Terraform", "CIS Azure Benchmark"]}
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-slate-200 dark:border-white/[0.08] bg-gradient-to-b from-blue-50/70 via-white to-slate-50 dark:from-[#091124] dark:via-[#080d1c] dark:to-[#060a14] py-16 px-4 sm:px-6 lg:px-10 transition-colors">
-        <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-gradient-to-r from-blue-600/15 via-cyan-500/10 to-indigo-600/15 blur-3xl rounded-full" />
-
-        <div className="relative mx-auto max-w-7xl">
-          <div className="flex flex-col items-start gap-4">
-            <div className="inline-flex flex-wrap items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-500/15 text-blue-700 dark:text-blue-200 border border-blue-300 dark:border-blue-500/30 shadow-sm backdrop-blur-md">
-              <span className="flex items-center gap-1.5 text-blue-700 dark:text-blue-300">
-                <span className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse" />
-                Obsidian Pele Engine
-              </span>
-              <span className="opacity-40">•</span>
-              <span className="flex items-center gap-1 text-cyan-700 dark:text-cyan-300 font-mono">
-                Official Azure SVG Icons
-              </span>
-              <span className="opacity-40">•</span>
-              <span className="text-slate-900 dark:text-white font-mono font-bold">1,032 Architecture Blueprints</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-              1,000+ Azure Architecture Best Practices <br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-600 dark:from-blue-400 dark:via-cyan-300 dark:to-indigo-300 bg-clip-text text-transparent">
-                with Pele, OPA &amp; Terraform
-              </span>
-            </h1>
-
-            <p className="mt-2 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl font-normal">
-              Enterprise Microsoft Azure defensive architecture blueprints organized across 7 Core Security Domains and 24 Azure services. Every blueprint features responsive multi-tier vector SVG diagrams rendered with Obsidian Pele, paired with production OPA Rego policies and hardened Terraform IaC templates.
-            </p>
-
-            {/* Quick Stats Grid */}
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 w-full">
-              <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] p-4 sm:p-5 shadow-sm dark:shadow-none backdrop-blur-md">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
-                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Topologies</span>
-                </div>
-                <strong className="block text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">1,032</strong>
-                <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 block">Vector Pele SVGs</span>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] p-4 sm:p-5 shadow-sm dark:shadow-none backdrop-blur-md">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="h-2 w-2 rounded-full bg-cyan-500" />
-                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Security Domains</span>
-                </div>
-                <strong className="block text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">7 Core / 24 Svcs</strong>
-                <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 block">Official Service Icons</span>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] p-4 sm:p-5 shadow-sm dark:shadow-none backdrop-blur-md">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="h-2 w-2 rounded-full bg-rose-500" />
-                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Guardrails</span>
-                </div>
-                <strong className="block text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">1,032</strong>
-                <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 block">OPA Rego Policies</span>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] p-4 sm:p-5 shadow-sm dark:shadow-none backdrop-blur-md">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Infrastructure</span>
-                </div>
-                <strong className="block text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">1,032</strong>
-                <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 block">Terraform IaC Modules</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ArchitectureHeader provider="Azure" count={data.length} services={new Set(data.map(item => item.category)).size} references={referenceArchitectures.azure.length} />
 
       {/* Explorer Main Section */}
       <section id="architecture-catalog" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10">
@@ -316,7 +251,7 @@ export default function AzureArchitectures() {
                 setQuery(e.target.value);
                 setPage(1);
               }}
-              placeholder="Search by Azure service, defensive title, OPA rule, CIS benchmark, or NIST control..."
+              placeholder="Search services, integration patterns, dependencies, or controls..."
               className="w-full rounded-2xl border border-slate-300 dark:border-white/10 bg-white dark:bg-white/[0.04] px-4 py-3.5 pl-11 pr-24 text-sm text-slate-900 dark:text-white placeholder-slate-400 shadow-sm dark:shadow-inner focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition"
             />
             <svg className="absolute left-4 top-4 h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -578,6 +513,7 @@ export default function AzureArchitectures() {
               return (
                 <div
                   key={item.id}
+                  data-architecture-card
                   className="flex flex-col rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] shadow-sm dark:shadow-xl hover:border-blue-500/50 hover:shadow-md dark:hover:border-blue-500/40 transition-all duration-300 overflow-hidden"
                 >
                   {/* Card Header */}
@@ -608,12 +544,12 @@ export default function AzureArchitectures() {
                       </div>
                     </div>
 
-                    <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug">{item.title}</h3>
-                    <p className="mt-1.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">{item.description}</p>
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug">{item.developer_guide ? item.developer_guide.name : item.title}</h3>
+                    <p className="mt-1.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">{item.reference ? item.description : item.title}</p>
                   </div>
 
                   {/* Segmented Tabs Bar */}
-                  <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] bg-slate-100/90 dark:bg-[#050811] px-4 py-2">
+                  <div className="architecture-card-tabs flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] bg-slate-100/90 dark:bg-[#050811] px-4 py-2">
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => setActiveTabs({ ...activeTabs, [item.id]: "diagram" })}
@@ -621,7 +557,7 @@ export default function AzureArchitectures() {
                           activeTab === "diagram" ? "bg-blue-600 text-white font-bold" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                         }`}
                       >
-                        📐 Blueprint Diagram
+                        <Network size={14} /> Architecture
                       </button>
                       <button
                         onClick={() => setActiveTabs({ ...activeTabs, [item.id]: "opa" })}
@@ -629,7 +565,7 @@ export default function AzureArchitectures() {
                           activeTab === "opa" ? "bg-blue-600 text-white font-bold" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                         }`}
                       >
-                        🛡️ OPA Rego
+                        <ShieldCheck size={14} /> Policy
                       </button>
                       <button
                         onClick={() => setActiveTabs({ ...activeTabs, [item.id]: "tf" })}
@@ -637,7 +573,7 @@ export default function AzureArchitectures() {
                           activeTab === "tf" ? "bg-blue-600 text-white font-bold" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                         }`}
                       >
-                        🏗️ Terraform IaC
+                        <Braces size={14} /> Terraform
                       </button>
                       <button
                         onClick={() => setActiveTabs({ ...activeTabs, [item.id]: "compliance" })}
@@ -645,7 +581,7 @@ export default function AzureArchitectures() {
                           activeTab === "compliance" ? "bg-blue-600 text-white font-bold" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                         }`}
                       >
-                        📋 Compliance
+                        <BookOpen size={14} /> Context
                       </button>
                     </div>
 
@@ -677,10 +613,7 @@ export default function AzureArchitectures() {
                           backgroundSize: "20px 20px"
                         }}
                       >
-                        <div
-                          className="w-full flex items-center justify-center [&>svg]:max-w-full [&>svg]:h-auto"
-                          dangerouslySetInnerHTML={{ __html: item.svg }}
-                        />
+                        <DiagramViewer svg={item.svg} title={item.title} filename={item.id} reference={item.reference} details={item.diagram_details} architecture={item} />
                       </div>
                     )}
 
@@ -829,10 +762,7 @@ export default function AzureArchitectures() {
                   backgroundSize: "24px 24px"
                 }}
               >
-                <div
-                  className="w-full flex items-center justify-center [&>svg]:max-w-full [&>svg]:h-auto"
-                  dangerouslySetInnerHTML={{ __html: modalItem.svg }}
-                />
+                <DiagramViewer svg={modalItem.svg} title={modalItem.title} filename={modalItem.id} reference={modalItem.reference} details={modalItem.diagram_details} architecture={modalItem} />
               </div>
 
               <div>

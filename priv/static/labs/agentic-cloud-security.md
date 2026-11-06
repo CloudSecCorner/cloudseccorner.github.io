@@ -25,74 +25,44 @@ To achieve production resilience at the caliber of Cloudflare or Netflix, securi
 
 The Pele architecture diagram below details an enterprise-grade defense envelope for an autonomous operations and incident remediation agent:
 
-```architecture
-architecture-beta
-  group cloud(cloud)[AWS Cloud Platform]
-  service waf(firewall)[GenAI Guardrail WAF] in cloud
-  service agent(server)[Agent Orchestrator Control Plane] in cloud
-  service rag(search)[Runbook Vector Retrieval Store] in cloud
-  service mcp(shield)[L7 MCP Tool Firewall] in cloud
-  service broker(key)[SPIFFE Workload Token Broker] in cloud
-  service sandbox(cpu)[Firecracker MicroVM Sandbox] in cloud
-  service audit(disk)[WORM Audit Log Vault] in cloud
-  service k8s(server)[EKS Kubernetes Cluster] in cloud
-  service user(user)[On-Call Incident SRE]
-  service internet(internet)[External Threat Actors]
-
-  user:R -- L:waf
-  internet:R -- L:waf
-  waf:R -- L:agent
-  agent:L -- R:rag
-  agent:B -- T:mcp
-  mcp:B -- T:broker
-  mcp:R -- L:sandbox
-  sandbox:B -- T:k8s
-  agent:R -- L:audit
+```mermaid
+flowchart TB
+      operator[Authenticated operator or signed alert] --> gateway[Ingress authentication and request limits]
+      gateway --> agent[Agent orchestrator]
+      retrieval[Untrusted retrieved documents] -.->|Context, never authorization| agent
+      agent -->|Proposed tool call| proxy[Tool proxy validates schema and target scope]
+      proxy --> policy{External policy allows action?}
+      policy -->|No| deny[Deny and record decision]
+      policy -->|Yes| approval{Approval required?}
+      approval -->|Yes| human[Obtain action-bound human approval]
+      approval -->|No| broker[Issue short-lived scoped credentials]
+      human --> broker
+      sandbox@{ icon: "logos:container-docker", label: "Constrained executor; local lab simulates isolation", h: 64 }
+      broker --> sandbox
+      target@{ icon: "logos:k8s-apiserver", label: "Approved API or mock target", h: 64 }
+      sandbox -->|Allowlisted operation and egress| target
+      audit@{ icon: "logos:aws-logging-cloudtrail", label: "Decision and execution audit evidence", h: 64 }
+      proxy -.-> audit
+      sandbox -.-> audit
 ```
 
 ### Defense-in-Depth Control Plane Flow
 
 ```mermaid
 flowchart TD
-  subgraph Untrusted[Zone 0: Ingress & Untrusted Actors]
-    Engineer[On-Call SRE]
-    Webhook[Alert Webhook]
-    User[Untrusted Third Party]
-  end
-
-  subgraph Gateway[Zone 1: GenAI Guardrail Gateway]
-    WAF[Cloudflare / AWS WAF]
-    PIIFilter[Presidio PII Redactor]
-    JailbreakDetector[Dual-LLM Guardrail Evaluator]
-  end
-
-  subgraph Orchestrator[Zone 2: Agent Control Plane]
-    AgentCore[Agent Orchestrator Core]
-    VectorDB[(Pinecone / pgvector)]
-  end
-
-  subgraph ToolBoundary[Zone 3: L7 MCP Tool Firewall]
-    MCPProxy[MCP Reverse Proxy Engine]
-    OPAPolicy[Open Policy Agent / Cedar Engine]
-    TokenBroker[SPIFFE / STS Token Broker]
-  end
-
-  subgraph Sandbox[Zone 4: Hardened Execution Sandbox]
-    MicroVM[Firecracker / gVisor MicroVM]
-    eBPF[eBPF Tetragon Kernel Sensor]
-  end
-
-  subgraph CloudFabric[Zone 5: Production Infrastructure]
-    K8sAPI[Kubernetes Control Plane]
-    CloudAPIs[AWS / Azure / GCP APIs]
-    DB[(Production Databases)]
-  end
-
-  Untrusted --> Gateway
-  Gateway --> Orchestrator
-  Orchestrator --> ToolBoundary
-  ToolBoundary --> Sandbox
-  Sandbox --> CloudFabric
+      input[Operator request and untrusted context] --> model[Agent proposes a tool and arguments]
+      model --> schema{Tool name and schema valid?}
+      schema -->|No| deny[Reject call; record reason]
+      schema -->|Yes| policy{Identity, target, operation and budget allowed?}
+      policy -->|No| deny
+      policy -->|Yes| approval{Required approval is present and bound to this action?}
+      approval -->|No| wait[Request approval; do not execute]
+      approval -->|Yes or not required| token[Acquire short-lived least-privilege token]
+      token --> executor[Execute with explicit timeout and egress limits]
+      executor --> result[Validate result; redact sensitive fields]
+      result --> evidence[Return bounded result and append audit evidence]
+      deny -.-> evidence
+      wait -.-> evidence
 ```
 
 ---

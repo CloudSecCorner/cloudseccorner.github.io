@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { REPOSITORY_URL } from "../utils/socialSharing";
+import homeCatalog from '../data/home-catalog.json';
 
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDesktopArchitecturesOpen, setIsDesktopArchitecturesOpen] = useState(false);
   const headerRef = useRef(null);
   const [bannerDismissed, setBannerDismissed] = useState(() => {
-    return sessionStorage.getItem("kube-banner-dismissed") === "true";
+    return typeof window !== 'undefined' && window.sessionStorage.getItem("kube-banner-dismissed") === "true";
   });
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== "undefined") {
@@ -129,67 +130,15 @@ function Nav() {
     { path: "/about", label: "About" }
   ];
 
-  const architectureLinks = [
-    {
-      path: "/aws-architectures",
-      label: "AWS Architectures",
-      sublabel: "1,000+ threat models & IAM controls",
-      badge: "1,000+",
-      badgeClass: "bg-amber-500/15 text-amber-500 dark:text-amber-300 border border-amber-500/30",
-      iconBg: "bg-amber-500/15 text-amber-500 dark:text-amber-300",
-      icon: (
-        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-        </svg>
-      )
-    },
-    {
-      path: "/azure-architectures",
-      label: "Azure Architectures",
-      sublabel: "1,000+ cloud security blueprints",
-      badge: "1,000+",
-      badgeClass: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30",
-      iconBg: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-300",
-      icon: (
-        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        </svg>
-      )
-    },
-    {
-      path: "/gcp-architectures",
-      label: "GCP Architectures",
-      sublabel: "1,000+ Google Cloud patterns",
-      badge: "1,000+",
-      badgeClass: "bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30",
-      iconBg: "bg-emerald-500/15 text-emerald-600 dark:text-emerald-300",
-      icon: (
-        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="12 2 2 7 12 12 22 7 12 2" />
-          <polyline points="2 17 12 22 22 17" />
-          <polyline points="2 12 12 17 22 12" />
-        </svg>
-      )
-    },
-    {
-      path: "/kspm-architectures",
-      label: "KSPM Kubernetes",
-      sublabel: "1,000+ pod & posture rules",
-      badge: "1,000+",
-      badgeClass: "bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30",
-      iconBg: "bg-blue-500/15 text-blue-600 dark:text-blue-300",
-      icon: (
-        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <circle cx="12" cy="12" r="4" />
-          <line x1="4.93" y1="4.93" x2="9.17" y2="9.17" />
-          <line x1="14.83" y1="9.17" x2="19.07" y2="4.93" />
-          <line x1="14.83" y1="14.83" x2="19.07" y2="19.07" />
-          <line x1="4.93" y1="19.07" x2="9.17" y2="14.83" />
-        </svg>
-      )
-    }
-  ];
+  const architectureLinks = homeCatalog.providers.map(provider => ({
+    path: provider.route,
+    label: provider.name + " Architectures",
+    sublabel: provider.profileCount.toLocaleString("en-US") + " implementation profiles",
+    badge: provider.profileCount.toLocaleString("en-US"),
+    badgeClass: "border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300",
+    iconBg: "dev-provider-icon",
+    icon: <img src={provider.logo} alt="" width="24" height="24" />
+  }));
 
   const exploreLinks = [
     {
@@ -263,9 +212,9 @@ function Nav() {
       {/* Top Pick-up / Announcement Bar */}
       {!bannerDismissed && (
         <div id="pick-up" role="region" aria-label="Announcement">
-          <span>⚡ Want to pick up where you left off? Practice Agentic Cloud Defense</span>
+          <span>CloudSecCorner engineering library</span>
           <Link to="/labs/Agentic-Cloud-Security" onClick={dismissBanner}>
-            Take me there
+            Agentic security lab
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
@@ -288,7 +237,7 @@ function Nav() {
         <nav className="kube-header-inner" aria-label="Main navigation">
           {/* Brand */}
           <Link to="/" className="kube-brand" aria-label="Cloud Security Corner Home">
-            <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-400 text-white shadow-md shadow-purple-500/25" aria-hidden="true">
+            <span className="dev-brand-mark flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center text-white" aria-hidden="true">
               <svg className="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 32 32" fill="none" stroke="currentColor">
                 <path d="M16 3.5l10 4.2v7.1c0 6.2-3.9 11-10 13.7-6.1-2.7-10-7.5-10-13.7V7.7L16 3.5z" strokeWidth="1.8" strokeLinejoin="round" />
                 <circle cx="16" cy="11" r="2" fill="currentColor" stroke="none" />
@@ -299,9 +248,9 @@ function Nav() {
             </span>
             <div className="flex flex-col text-left leading-none min-w-0">
               <span className="text-slate-900 dark:text-white font-extrabold text-base sm:text-lg tracking-tight whitespace-nowrap">
-                CloudSec<span className="text-[#8b5cf6]">Corner</span>
+                CloudSec<span className="dev-brand-accent">Corner</span>
               </span>
-              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.12em] sm:tracking-[0.16em] text-[#7c6f89] dark:text-[#caa2f5] mt-0.5 sm:mt-1 whitespace-nowrap">
+              <span className="dev-brand-tagline mt-1">
                 Cloud &amp; Agentic Security
               </span>
             </div>
@@ -332,9 +281,7 @@ function Nav() {
                 aria-haspopup="true"
               >
                 <span>Architectures</span>
-                <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold leading-none bg-purple-500/15 text-purple-600 dark:text-purple-300 border border-purple-500/30">
-                  4,000+
-                </span>
+                <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold leading-none bg-purple-500/15 text-purple-600 dark:text-purple-300 border border-purple-500/30">{homeCatalog.counts.profiles.toLocaleString("en-US")}</span>
                 <svg
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
                     isDesktopArchitecturesOpen ? "rotate-180 text-purple-600 dark:text-purple-300" : "text-slate-400"
@@ -360,9 +307,7 @@ function Nav() {
                     <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       Cloud Security Blueprints
                     </span>
-                    <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">
-                      4,000+ Total
-                    </span>
+                    <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">{homeCatalog.counts.profiles.toLocaleString("en-US")}</span>
                   </div>
                   <div className="space-y-1">
                     {architectureLinks.map((item) => {
@@ -370,6 +315,7 @@ function Nav() {
                       return (
                         <Link
                           key={item.path}
+                          aria-current={active ? "page" : undefined}
                           to={item.path}
                           onClick={() => setIsDesktopArchitecturesOpen(false)}
                           className={`flex items-center justify-between px-3 py-2.5 rounded-xl transition ${
@@ -530,9 +476,7 @@ function Nav() {
                     <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       Architecture Catalog
                     </span>
-                    <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">
-                      4,000+
-                    </span>
+                    <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">{homeCatalog.counts.profiles.toLocaleString("en-US")}</span>
                   </div>
                   <div className="space-y-1">
                     {architectureLinks.map((item) => {
@@ -540,6 +484,7 @@ function Nav() {
                       return (
                         <Link
                           key={item.path}
+                          aria-current={active ? "page" : undefined}
                           to={item.path}
                           onClick={() => setIsMenuOpen(false)}
                           className={`flex items-center justify-between px-3 py-2 rounded-xl text-sm transition min-h-[44px] ${
@@ -580,6 +525,7 @@ function Nav() {
                       return (
                         <Link
                           key={item.path}
+                          aria-current={active ? "page" : undefined}
                           to={item.path}
                           onClick={() => setIsMenuOpen(false)}
                           className={`flex items-center justify-between px-3 py-2 rounded-xl text-sm transition min-h-[44px] ${

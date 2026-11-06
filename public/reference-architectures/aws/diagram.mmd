@@ -1,0 +1,11 @@
+flowchart TB
+      client@{ icon: "logos:iam-access", label: "Existing IAM principal", h: 64, pos: "b" }
+      bucket@{ icon: "logos:storage-s3", label: "Versioned S3 document bucket", h: 64, pos: "b" }
+      client[Existing IAM principal] -->|HTTPS and SigV4| auth{IAM allows request?}
+      auth -->|Yes| tls{SecureTransport?}
+      auth -->|No| denied[Access denied]
+      tls -->|No: explicit deny| denied
+      tls -->|Yes| bucket[Versioned S3 document bucket]
+      public[Anonymous public request] -->|Blocked by public access settings| denied
+      bucket -->|Default encryption at rest| encryption[SSE-S3 AES256]
+      note[Public service endpoint: not a private network] -.-> bucket

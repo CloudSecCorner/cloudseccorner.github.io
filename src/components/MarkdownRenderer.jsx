@@ -1,20 +1,24 @@
 import React, { useMemo, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { render as renderPele } from 'pele';
+import DiagramViewer from './DiagramViewer';
+import labDiagrams from '../data/lab-diagrams.json';
 
 // Safe Pele Vector Diagram Component
 const PeleDiagram = ({ code, language }) => {
-  let renderedSvg = null;
+  const renderedSvg = useMemo(() => {
   try {
     if (code && typeof code === 'string') {
       const cleanCode = code.trim();
+      if (labDiagrams[cleanCode]) return labDiagrams[cleanCode];
       const result = renderPele(cleanCode);
-      renderedSvg = result?.svg || null;
+      return result?.svg || null;
     }
   } catch (err) {
     console.warn('Pele diagram render error:', err);
-    renderedSvg = null;
   }
+  return null;
+  }, [code]);
 
   if (!renderedSvg) {
     return (
@@ -26,24 +30,8 @@ const PeleDiagram = ({ code, language }) => {
   }
 
   return (
-    <div className="my-10 w-full rounded-2xl border border-slate-200/90 dark:border-[#2e2747] bg-white dark:bg-[#130f1c] shadow-md overflow-hidden">
-      <div className="flex items-center justify-between px-5 py-3.5 bg-slate-50 dark:bg-[#1a1528] border-b border-slate-200 dark:border-[#26203b] text-xs font-semibold text-slate-700 dark:text-slate-300">
-        <div className="flex items-center gap-2.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block animate-pulse" />
-          <span className="font-mono text-xs uppercase tracking-wider text-purple-700 dark:text-purple-300 font-bold">
-            Pele Architecture Vector Topology
-          </span>
-        </div>
-        <span className="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-700/50">
-          Interactive SVG
-        </span>
-      </div>
-      <div className="blueprint-canvas p-6 sm:p-10 flex justify-center items-center overflow-x-auto min-h-[260px] w-full">
-        <div
-          className="pele-svg-container w-full max-w-full flex justify-center"
-          dangerouslySetInnerHTML={{ __html: renderedSvg }}
-        />
-      </div>
+    <div className="my-8">
+      <DiagramViewer svg={renderedSvg} title="Lab diagram" filename="lab-diagram" />
     </div>
   );
 };

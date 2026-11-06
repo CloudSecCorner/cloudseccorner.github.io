@@ -5,7 +5,6 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import OpenGraph from "./components/OpenGraph";
 import JoinCommunityPopup from "./components/JoinCommunityPopup";
-import { REPOSITORY_URL } from "./utils/socialSharing";
 
 const LandingPage = lazy(() => import("./components/LandingPage"));
 const AwsArchitectures = lazy(() => import("./components/AwsArchitectures"));
@@ -15,6 +14,7 @@ const KspmArchitectures = lazy(() => import("./components/KspmArchitectures"));
 const ToolsSection = lazy(() => import("./components/ToolsSection"));
 const Blog = lazy(() => import("./components/Blog"));
 const Labs = lazy(() => import("./components/Labs"));
+const AboutPage = lazy(() => import("./components/AboutPage"));
 
 function RouteFallback() {
   return (
@@ -27,7 +27,7 @@ function RouteFallback() {
 
 function NotFound() {
   return (
-    <main className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center px-4 text-center">
+    <main className="dev-page dev-not-found mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center px-4 text-center">
       <OpenGraph
         title="Page not found | Cloud Security Corner"
         description="The requested Cloud Security Corner page could not be found."
@@ -45,7 +45,7 @@ function NotFound() {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-white dark:bg-[#18131f] text-slate-900 dark:text-white flex flex-col transition-colors duration-200">
+      <div className="developer-shell min-h-screen flex flex-col transition-colors duration-200">
         <Nav />
         <div className="flex-1">
           <Suspense fallback={<RouteFallback />}>
@@ -53,9 +53,9 @@ function App() {
               <Route path="/" element={
                 <>
                   <OpenGraph 
-                    title="Cloud Security Corner | Agentic AI & Cloud Security"
-                    description="Practical tools, labs, and guidance for securing AI agents, autonomous cloud workloads, identities, toolchains, and runtime behavior."
-                    tags={["Agentic AI Security", "AI Agent Security", "Cloud Security", "Runtime Security", "AI Governance"]}
+                    title="Cloud Security Corner | Developer Architectures & Security Labs"
+                    description="Application integration patterns for AWS, Azure, Google Cloud and Kubernetes, with configuration examples, hands-on security labs and a searchable tool directory."
+                    tags={["Developer Architecture", "Cloud Security", "AWS", "Azure", "Google Cloud", "Kubernetes", "Security Engineering"]}
                   />
                   <LandingPage />
                 </>
@@ -69,42 +69,7 @@ function App() {
               <Route path="/labs/:labId" element={<Labs />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:postId" element={<Blog />} />
-              <Route path="/about" element={
-                <div className="w-full">
-                  <OpenGraph 
-                    title="About Cloud Security Corner"
-                    description="Cloud Security Corner is an open community focused on securing AI agents and the cloud systems they can access."
-                    tags={["About", "Agentic AI Security", "Cloud Security Community", "Mission"]}
-                  />
-                  <section className="container kube-reading mx-auto px-5 py-16">
-                    <p className="kube-label">About CloudSecCorner</p>
-                    <h1>Making agentic cloud security practical and bounded</h1>
-                    <p className="kube-dek">
-                      CloudSecCorner is an open community focused on a fast-growing challenge: AI agents can now use credentials, invoke tools, inspect sensitive data, and modify cloud infrastructure.
-                    </p>
-                    <p>
-                      Our mission is to make agentic cloud security practical. We create and curate guidance for identity, authorization, tool isolation, runtime defense, threat modeling, evaluations, governance, and incident response.
-                    </p>
-                    <p>
-                      We bring together security practitioners, cloud engineers, AI builders, and governance teams to develop controls that keep autonomous systems useful, observable, and bounded.
-                    </p>
-                    <div className="mt-12 grid gap-6 sm:grid-cols-3">
-                      <div className="rounded-xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-brand-gray-800 p-6 text-center shadow-sm">
-                        <strong className="block text-3xl font-extrabold text-purple-600 dark:text-brand-purple-100">37,000+</strong>
-                        <span className="text-xs font-bold text-slate-500 dark:text-brand-gray-400 uppercase tracking-wider mt-1 block">Curated Security Tools</span>
-                      </div>
-                      <div className="rounded-xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-brand-gray-800 p-6 text-center shadow-sm">
-                        <strong className="block text-3xl font-extrabold text-purple-600 dark:text-brand-purple-100">6</strong>
-                        <span className="text-xs font-bold text-slate-500 dark:text-brand-gray-400 uppercase tracking-wider mt-1 block">Hands-on Defense Labs</span>
-                      </div>
-                      <div className="rounded-xl border border-slate-200 dark:border-brand-gray-700 bg-white dark:bg-brand-gray-800 p-6 text-center shadow-sm">
-                        <strong className="block text-3xl font-extrabold text-purple-600 dark:text-brand-purple-100">100%</strong>
-                        <span className="text-xs font-bold text-slate-500 dark:text-brand-gray-400 uppercase tracking-wider mt-1 block">Open Source &amp; Free</span>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              } />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

@@ -2,9 +2,17 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { entries } from "../data/entries.js";
 import OpenGraph from "./OpenGraph";
+import PageHeader from './PageHeader';
+import { Github, Layers, Bot, Cloud, ShieldCheck, PackageCheck, KeyRound, ScanSearch, Compass, Network, Radar, FileSearch, Binary, Fingerprint } from 'lucide-react';
 import { REPOSITORY_URL } from "../utils/socialSharing";
 
 const PAGE_SIZE = 30;
+const categoryIcons = { all: Layers, 'agentic-ai': Bot, 'cloud-container': Cloud, 'app-api': ShieldCheck, 'devsecops-supplychain': PackageCheck, 'identity-access': KeyRound, 'vuln-cve': ScanSearch, 'pentest-redteam': Compass, 'network-perimeter': Network, 'threat-intel-osint': Radar, 'forensics-ir': FileSearch, 'malware-reverse': Binary, 'crypto-privacy': Fingerprint };
+
+function CategoryIcon({ category }) {
+  const Icon = categoryIcons[category] || Layers;
+  return <Icon size={14} aria-hidden="true" />;
+}
 
 export const TOOL_CATEGORIES = [
   {
@@ -505,119 +513,17 @@ function ToolsSection() {
   const isFiltering = Boolean(query || category || sort === "za");
 
   return (
-    <div className="w-full">
+    <div className="dev-page dev-tools w-full">
       <OpenGraph
         title="Security & Agentic Tools Directory | Cloud Security Corner"
         description="Search CloudSecCorner's curated collection of 37,000+ open-source tools across AI agent security, cloud defense, identity, runtime monitoring, and governance."
         tags={["AI Agent Security Tools", "Cloud Security Tools", "Runtime Security", "Zero Trust"]}
       />
 
-      {/* Hero */}
-      <section className="kube-tools-hero">
-        <div className="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
-          <div className="kube-tools-hero-copy">
-            <p className="kube-label">Security &amp; Agentic Ecosystem Directory</p>
-            <h1>
-              Find the tools that help teams <span>secure cloud and AI agents.</span>
-            </h1>
-            <p>
-              Search CloudSecCorner’s curated collection of 37,000+ projects across AI agent security, cloud defense, identity, runtime monitoring, and governance.
-            </p>
-            <a className="kube-tools-star" href={REPOSITORY_URL} target="_blank" rel="noreferrer">
-              <span aria-hidden="true">★</span>
-              <strong>
-                {githubStars !== null ? `${githubStars.toLocaleString()} GitHub stars` : "GitHub"}
-              </strong>
-              <small>Star CloudSecCorner on GitHub ↗</small>
-            </a>
-          </div>
-        </div>
-      </section>
+      <PageHeader title="Security Tool Directory" description="Projects for cloud infrastructure, application security, identity, observability, and agentic systems." stats={[{ label: "Tool Entries", value: entries.length }, { label: "Security Domains", value: TOOL_CATEGORIES.length - 1 }]} actions={<a href={REPOSITORY_URL} target="_blank" rel="noreferrer"><Github size={15} />{githubStars !== null ? githubStars.toLocaleString() + " stars" : "Source on GitHub"}</a>} />
 
       {/* Main Directory Container */}
-      <section className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
-        {/* Directory Heading */}
-        <div className="kube-tools-directory-heading">
-          <div>
-            <p className="kube-label">Explore the directory</p>
-            <h2>Search by project or category.</h2>
-          </div>
-          <p>
-            Filter by curated security domains, sort alphabetically, and share the URL to keep your filters. Every result links to the official project.
-          </p>
-        </div>
-
-        {/* Quick Category Filter Pills */}
-        <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Curated security category filters">
-          {TOOL_CATEGORIES.map((cat) => {
-            const isActive =
-              cat.id === "all"
-                ? !category || category === "all"
-                : category === cat.id ||
-                  category.toLowerCase() === cat.label.toLowerCase() ||
-                  category.toLowerCase() === cat.shortLabel.toLowerCase();
-
-            const count = categoryCounts[cat.id];
-
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => handleCategorySelect(cat.id)}
-                className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition ${
-                  isActive
-                    ? "bg-purple text-white shadow-md ring-2 ring-purple/30 scale-105"
-                    : "bg-slate-100 dark:bg-[#31373b] text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[#3d4449]"
-                }`}
-              >
-                <span aria-hidden="true">{cat.icon}</span>
-                <span>{cat.shortLabel}</span>
-                {count !== undefined && (
-                  <span
-                    className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
-                      isActive
-                        ? "bg-white/25 text-white"
-                        : "bg-slate-200/80 dark:bg-[#22272e] text-slate-500 dark:text-slate-400"
-                    }`}
-                  >
-                    {count.toLocaleString()}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Active Category Description Notice */}
-        {activeCategoryObj && activeCategoryObj.id !== "all" && (
-          <div className="mt-5 rounded-2xl border border-purple/30 bg-gradient-to-r from-purple/10 via-purple/5 to-transparent dark:from-purple/20 dark:via-purple/10 dark:to-transparent p-4 sm:p-5 text-slate-800 dark:text-brand-purple-100 shadow-sm transition">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-              <div className="flex items-start sm:items-center gap-3">
-                <span className="text-2xl" aria-hidden="true">{activeCategoryObj.icon}</span>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
-                      {activeCategoryObj.label}
-                    </h3>
-                    <span className="rounded-full bg-purple text-white px-2 py-0.5 text-[11px] font-bold">
-                      {categoryCounts[activeCategoryObj.id]?.toLocaleString() || 0} tools
-                    </span>
-                  </div>
-                  <p className="mt-1 text-xs text-slate-600 dark:text-slate-300 max-w-2xl">
-                    {activeCategoryObj.description}
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => handleCategorySelect("all")}
-                className="inline-flex items-center gap-1.5 self-start sm:self-center rounded-lg border border-purple/30 bg-white dark:bg-[#22272e] px-3 py-1.5 text-xs font-bold text-purple-700 dark:text-brand-purple-100 hover:bg-purple/10 transition shrink-0"
-              >
-                ✕ Clear category
-              </button>
-            </div>
-          </div>
-        )}
-
+      <section className="kube-tools-content mx-auto max-w-screen-xl">
         {/* Tool Controls Form */}
         <form
           className="kube-tool-controls mt-6"
@@ -649,7 +555,7 @@ function ToolsSection() {
               <optgroup label="Core Security Domains (12)">
                 {TOOL_CATEGORIES.map((cat) => (
                   <option key={cat.id} value={cat.id === "all" ? "" : cat.id}>
-                    {cat.icon} {cat.label} ({categoryCounts[cat.id]?.toLocaleString() || 0})
+                    {cat.label} ({categoryCounts[cat.id]?.toLocaleString() || 0})
                   </option>
                 ))}
               </optgroup>
@@ -676,6 +582,78 @@ function ToolsSection() {
             </select>
           </label>
         </form>
+
+        {/* Quick Category Filter Pills */}
+        <div className="dev-filter-options flex flex-wrap gap-2" role="group" aria-label="Curated security category filters">
+          {TOOL_CATEGORIES.map((cat) => {
+            const isActive =
+              cat.id === "all"
+                ? !category || category === "all"
+                : category === cat.id ||
+                  category.toLowerCase() === cat.label.toLowerCase() ||
+                  category.toLowerCase() === cat.shortLabel.toLowerCase();
+
+            const count = categoryCounts[cat.id];
+
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => handleCategorySelect(cat.id)}
+                aria-pressed={isActive}
+                className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition ${
+                  isActive
+                    ? "bg-purple text-white shadow-md ring-2 ring-purple/30 scale-105"
+                    : "bg-slate-100 dark:bg-[#31373b] text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[#3d4449]"
+                }`}
+              >
+                <CategoryIcon category={cat.id} />
+                <span>{cat.shortLabel}</span>
+                {count !== undefined && (
+                  <span
+                    className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
+                      isActive
+                        ? "bg-white/25 text-white"
+                        : "bg-slate-200/80 dark:bg-[#22272e] text-slate-500 dark:text-slate-400"
+                    }`}
+                  >
+                    {count.toLocaleString()}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active Category Description Notice */}
+        {activeCategoryObj && activeCategoryObj.id !== "all" && (
+          <div className="dev-category-notice mt-5 rounded-2xl border border-purple/30 bg-gradient-to-r from-purple/10 via-purple/5 to-transparent dark:from-purple/20 dark:via-purple/10 dark:to-transparent p-4 sm:p-5 text-slate-800 dark:text-brand-purple-100 shadow-sm transition">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="flex items-start sm:items-center gap-3">
+                <CategoryIcon category={activeCategoryObj.id} />
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+                      {activeCategoryObj.label}
+                    </h3>
+                    <span className="rounded-full bg-purple text-white px-2 py-0.5 text-[11px] font-bold">
+                      {categoryCounts[activeCategoryObj.id]?.toLocaleString() || 0} tools
+                    </span>
+                  </div>
+                  <p className="mt-1 text-xs text-slate-600 dark:text-slate-300 max-w-2xl">
+                    {activeCategoryObj.description}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => handleCategorySelect("all")}
+                className="inline-flex items-center gap-1.5 self-start sm:self-center rounded-lg border border-purple/30 bg-white dark:bg-[#22272e] px-3 py-1.5 text-xs font-bold text-purple-700 dark:text-brand-purple-100 hover:bg-purple/10 transition shrink-0"
+              >
+                ✕ Clear category
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Active Filter Chips */}
         {isFiltering && (

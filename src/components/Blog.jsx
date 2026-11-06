@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import MarkdownRenderer from "./MarkdownRenderer";
 import OpenGraph from "./OpenGraph";
+import PageHeader from './PageHeader';
 import { getAbsoluteUrl, REPOSITORY_URL, SITE_URL } from "../utils/socialSharing";
 
 const fallbackBlogData = [
@@ -18,7 +19,7 @@ const fallbackBlogData = [
 ];
 
 // Blog List View (Matching KubeDaily Blog Library)
-function BlogList({ blogPosts }) {
+export function BlogList({ blogPosts }) {
   const [selectedTag, setSelectedTag] = useState("all");
 
   const allTags = ["all", ...new Set(blogPosts.flatMap(post => post.tags || []))];
@@ -29,22 +30,13 @@ function BlogList({ blogPosts }) {
 
   return (
     <>
-      {/* KubeDaily Blog Hero */}
-      <section className="kube-blog-hero">
-        <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-10 lg:py-20">
-          <div className="kube-blog-hero-copy">
-            <span className="kube-label">Field Notes &amp; Research</span>
-            <h1>
-              Agentic Security &amp; <span>Cloud Defense Guides.</span>
-            </h1>
-            <p>
-              Practical guides, threat analyses, and field notes on securing autonomous workloads, credential delegation, and runtime cloud guardrails.
-            </p>
+      <PageHeader title="Field Notes" description="Engineering guides on application security, workload identity, agent boundaries, and cloud systems." stats={[{ label: "Published Guides", value: blogPosts.length }, { label: "Topics", value: allTags.length - 1 }]} >
             <div className="kube-blog-topics" aria-label="Popular topics">
               {allTags.slice(0, 6).map((tag) => (
                 <button
                   key={tag}
                   onClick={() => setSelectedTag(tag)}
+                  aria-pressed={selectedTag === tag}
                   className={`rounded-full border px-3 py-1.5 text-xs font-bold transition capitalize ${
                     selectedTag === tag
                       ? "border-brand-purple-300 bg-brand-purple-800 text-white"
@@ -55,12 +47,10 @@ function BlogList({ blogPosts }) {
                 </button>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
+      </PageHeader>
 
       {/* Main Blog Grid */}
-      <section className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+      <section className="dev-blog-content mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
         <div className="kube-blog-section-heading">
           <div>
             <p className="kube-label">The Library</p>
@@ -272,11 +262,11 @@ function Blog() {
     ? blogPosts.find((p) => p.id.toLowerCase() === postId.toLowerCase())
     : null;
 
-  return postId && currentPost ? (
+  return <div className="dev-page dev-blog">{postId && currentPost ? (
     <BlogPostDetail post={currentPost} />
   ) : (
     <BlogList blogPosts={blogPosts} />
-  );
+  )}</div>;
 }
 
 export default Blog;
