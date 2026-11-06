@@ -16,6 +16,7 @@ defmodule CloudSecurityCornerWeb.PageController do
       architecture_count: architecture_count,
       lab_count: length(CloudSecurityCorner.Content.labs()),
       post_count: length(CloudSecurityCorner.Content.blog_posts()),
+      feed: CloudSecurityCorner.Feeds.snapshot(),
       categories: CloudSecurityCorner.Content.curated_categories(),
       category_counts: CloudSecurityCorner.Content.category_counts()
     )

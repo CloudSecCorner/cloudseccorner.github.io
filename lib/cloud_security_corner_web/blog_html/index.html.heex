@@ -1,15 +1,17 @@
 <header class="kube-library-header">
   <div class="kube-library-container">
     <p class="kube-label">The CloudSecCorner journal</p>
-    <h1>Understand more.<br /><span>Build with confidence.</span></h1>
-    <p class="kube-library-intro">Practical explanations of AI agent security, cloud architecture, and the decisions behind defensive engineering. Pick a topic, take your time, and keep a useful guide close.</p>
+    <h1>Field Notes</h1>
+    <p class="kube-library-intro">Daily cloud security research, threat analysis, identity and access guidance, and practical cloud defense engineering.</p>
     <div class="kube-library-links"><a href="#guide-library">Browse {length(@posts)} guides ↓</a><a href="/labs/">Prefer hands-on practice? Explore labs →</a></div>
   </div>
 </header>
 
+<div class="kube-library-container kube-library-section"><CloudSecurityCornerWeb.FeedHTML.headlines snapshot={@feed} /></div>
+
 <section id="guide-library" class="kube-library-container kube-library-section" data-content-library>
   <div class="kube-library-toolbar">
-    <div><p class="kube-label">Read &amp; understand</p><h2>The field guide library</h2></div>
+    <div><p class="kube-label">CloudSecCorner Library</p><h2>Cloud Security Guides</h2></div>
     <div class="kube-library-search" hidden data-library-controls>
       <label for="guide-search">Find a guide</label>
       <input id="guide-search" type="search" placeholder="Search titles, topics, or keywords…" data-library-search />

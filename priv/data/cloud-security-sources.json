@@ -1,0 +1,44 @@
+{
+  "sources": [
+    {
+      "id": "aws",
+      "name": "AWS Security Blog",
+      "feed_url": "https://aws.amazon.com/blogs/security/feed/",
+      "site_url": "https://aws.amazon.com/blogs/security/",
+      "allowed_hosts": ["aws.amazon.com"],
+      "cloud_only": true
+    },
+    {
+      "id": "google",
+      "name": "Google Cloud Security",
+      "feed_url": "https://cloudblog.withgoogle.com/products/identity-security/rss/",
+      "site_url": "https://cloud.google.com/blog/products/identity-security/",
+      "allowed_hosts": ["cloudblog.withgoogle.com", "cloud.google.com"],
+      "cloud_only": true
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft Security",
+      "feed_url": "https://www.microsoft.com/en-us/security/blog/feed/",
+      "site_url": "https://www.microsoft.com/en-us/security/blog/",
+      "allowed_hosts": ["www.microsoft.com", "techcommunity.microsoft.com"],
+      "cloud_only": false
+    },
+    {
+      "id": "wiz",
+      "name": "Wiz Cloud Security",
+      "feed_url": "https://www.wiz.io/feed/rss.xml",
+      "site_url": "https://www.wiz.io/blog",
+      "allowed_hosts": ["www.wiz.io"],
+      "cloud_only": true
+    },
+    {
+      "id": "datadog",
+      "name": "Datadog Security Labs",
+      "feed_url": "https://securitylabs.datadoghq.com/rss/feed.xml",
+      "site_url": "https://securitylabs.datadoghq.com/",
+      "allowed_hosts": ["securitylabs.datadoghq.com"],
+      "cloud_only": false
+    }
+  ]
+}

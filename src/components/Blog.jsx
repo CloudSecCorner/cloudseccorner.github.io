@@ -5,6 +5,7 @@ import OpenGraph from "./OpenGraph";
 import PageHeader from './PageHeader';
 import { getAbsoluteUrl, REPOSITORY_URL, SITE_URL } from "../utils/socialSharing";
 import blogIndex from "../../priv/data/blog.json";
+import CloudSecurityFeed from './CloudSecurityFeed';
 
 const fallbackBlogData = blogIndex.blogs;
 
@@ -20,7 +21,17 @@ export function BlogList({ blogPosts }) {
 
   return (
     <>
-      <PageHeader title="Field Notes" description="Engineering guides on application security, workload identity, agent boundaries, and cloud systems." stats={[{ label: "Published Guides", value: blogPosts.length }, { label: "Topics", value: allTags.length - 1 }]} >
+      <OpenGraph title="Field Notes | Daily Cloud Security" description="Daily cloud security research, threat analysis, identity and access guidance, and practical cloud defense engineering." url="/blog" />
+      <PageHeader title="Field Notes" description="Daily cloud security research, threat analysis, identity and access guidance, and practical cloud defense engineering." stats={[{ label: "Cloud Security Guides", value: blogPosts.length }, { label: "Coverage", value: "AWS · Azure · Google Cloud · Kubernetes" }]} />
+
+      <div className="dev-container"><CloudSecurityFeed /></div>
+
+      {/* Original field guides remain available alongside the daily publisher feed. */}
+      <section className="dev-blog-content mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+        <div className="kube-blog-section-heading">
+          <div><p className="kube-label">CloudSecCorner Library</p><h2>Cloud Security Guides</h2></div>
+          <p>{filteredPosts.length} {filteredPosts.length === 1 ? "guide" : "guides"} available</p>
+        </div>
             <div className="kube-blog-topics" aria-label="Popular topics">
               {allTags.map((tag) => (
                 <button
@@ -37,18 +48,6 @@ export function BlogList({ blogPosts }) {
                 </button>
               ))}
             </div>
-      </PageHeader>
-
-      {/* Main Blog Grid */}
-      <section className="dev-blog-content mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
-        <div className="kube-blog-section-heading">
-          <div>
-            <p className="kube-label">The Library</p>
-            <h2>All Guides &amp; Research</h2>
-          </div>
-          <p>{filteredPosts.length} {filteredPosts.length === 1 ? "guide" : "guides"} available</p>
-        </div>
-
         <div className="kube-blog-grid">
           {filteredPosts.map((post) => (
             <article key={post.id} className="kube-blog-card group">

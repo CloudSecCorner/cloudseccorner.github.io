@@ -65,6 +65,13 @@ for (const data of ["aws", "azure", "gcp", "kspm"]) {
 }
 await publicFile("assets/app.css");
 await publicFile("assets/initialize-theme.js");
+const cloudFeed = JSON.parse(await readFile(await publicFile("data/cloud-security-feed.json"), "utf8"));
+assert.equal(cloudFeed.version, 1);
+assert(cloudFeed.items.length > 0, "Cloud security feed is empty");
+await publicFile("feeds/cloud-security.xml");
+await publicFile("feeds/cloud-security.opml");
+const fieldNotes = await readFile(path.join(output, "blog/index.html"), "utf8");
+assert(fieldNotes.includes('id="cloud-feed"') && fieldNotes.includes('href="/feeds/cloud-security.xml"'), "Field Notes lacks server-rendered cloud headlines or RSS discovery");
 const labs = JSON.parse(await readFile(await publicFile("data/labs.json"), "utf8")).labs;
 const blogs = JSON.parse(await readFile(await publicFile("data/blog.json"), "utf8")).blogs;
 for (const content of [...labs.map((lab) => lab.path), ...blogs.map((post) => post.file)]) {

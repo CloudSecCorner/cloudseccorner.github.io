@@ -7,6 +7,7 @@ import referenceArchitectures from '../data/reference-architectures.json';
 import { selectedHomeProvider, toolsSearchPath } from '../lib/home-navigation';
 import { REPOSITORY_URL, getAbsoluteUrl } from '../utils/socialSharing';
 import './LandingPage.css';
+import CloudSecurityFeed from './CloudSecurityFeed';
 
 const number = value => value.toLocaleString('en-US');
 const queries = ['Kubernetes', 'OPA', 'MCP', 'SBOM', 'Zero Trust'];
@@ -119,6 +120,7 @@ export default function LandingPage() {
       <section className="home-notes-band" aria-labelledby="home-notes-title">
         <div className="home-inner">
           <div className="home-section-heading"><h2 id="home-notes-title">Field Notes</h2><Link to="/blog" className="home-text-link">All notes<ArrowRight size={16} /></Link></div>
+          <CloudSecurityFeed compact />
           {catalog.blogs.map(post => <Link key={post.id} to={post.route} className="home-field-note"><BookOpen size={19} aria-hidden="true" /><div><span className="home-lab-category">{post.category}</span><h3>{post.title}</h3></div><ArrowUpRight size={16} aria-hidden="true" /></Link>)}
           <div className="home-community"><p>Contribute a pattern, improve a lab, or report an issue.</p><a href={`${REPOSITORY_URL}/blob/main/CONTRIBUTING.md`} target="_blank" rel="noreferrer">Contribution guide<ArrowUpRight size={14} /></a><a href={`${REPOSITORY_URL}/issues`} target="_blank" rel="noreferrer">Issues<ArrowUpRight size={14} /></a><a href="/llm.txt">Machine-readable index<ArrowUpRight size={14} /></a></div>
         </div>

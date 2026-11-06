@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '30 0 * * *'
 
 permissions:
   contents: read
@@ -17,6 +19,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
 
     steps:
       - name: Check out repository
@@ -59,6 +64,9 @@ jobs:
       - name: Compile Elixir dependencies
         run: mix deps.compile
 
+      - name: Refresh cloud security feeds with Elixir
+        run: mix feeds.refresh
+
       - name: Run Elixir tests
         run: mix test
 
@@ -73,6 +81,15 @@ jobs:
 
       - name: Verify combined Pages artifact
         run: npm run test:export
+
+      - name: Save validated daily feed snapshot
+        if: github.event_name == 'schedule'
+        run: |
+          git add priv/data/cloud-security-feed.json public/data/cloud-security-feed.json priv/static/data/cloud-security-feed.json public/feeds/cloud-security.xml public/feeds/cloud-security.opml priv/static/feeds/cloud-security.xml priv/static/feeds/cloud-security.opml
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'content: refresh daily cloud security feed [skip ci]'
+            git push origin HEAD:main
+          fi
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

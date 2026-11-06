@@ -14,7 +14,7 @@ defmodule CloudSecurityCorner.MixProject do
 
   def application do
     [
-      extra_applications: [:logger, :runtime_tools],
+      extra_applications: [:logger, :runtime_tools, :inets, :ssl, :xmerl],
       mod: {CloudSecurityCorner.Application, []}
     ]
   end

@@ -3,9 +3,10 @@ defmodule CloudSecurityCornerWeb.BlogController do
 
   def index(conn, _params) do
     render(conn, :index,
-      page_title: "Agentic Cloud Security Blog",
+      page_title: "Field Notes — Daily Cloud Security Feed",
       description:
-        "Research and practical guidance for securing agents and cloud infrastructure.",
+        "Daily cloud security research from AWS, Google Cloud, Microsoft, Wiz and Datadog, alongside practical cloud defense guides.",
+      feed: CloudSecurityCorner.Feeds.snapshot(),
       posts: CloudSecurityCorner.Content.blog_posts()
     )
   end

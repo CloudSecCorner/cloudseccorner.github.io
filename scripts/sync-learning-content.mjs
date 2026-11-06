@@ -11,4 +11,8 @@ for (const name of ['blog', 'labs']) {
   }
   fs.cpSync(path.join(root, 'public', name), path.join(root, 'priv/static', name), { recursive: true });
 }
-console.log('Synchronized learning indexes, articles, labs, and exercise downloads for React and Elixir.');
+const feed = path.join(root, 'priv/data/cloud-security-feed.json');
+if (fs.existsSync(feed)) {
+  for (const target of ['public/data', 'priv/static/data']) fs.copyFileSync(feed, path.join(root, target, 'cloud-security-feed.json'));
+}
+console.log('Synchronized learning content and cloud security feed snapshots for React and Elixir.');

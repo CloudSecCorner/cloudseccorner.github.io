@@ -1,4 +1,36 @@
 :root { --dev-bg: #fff; --dev-panel: #f5f7f8; --dev-text: #17212b; --dev-muted: #53616d; --dev-line: #dce2e6; --dev-accent: #087f8c; --dev-soft: #e4f3f3; --dev-mark: #d85142; }
+.cloud-feed { scroll-margin-top: 110px; color: var(--dev-text); }
+.cloud-feed-heading, .cloud-feed-actions, .cloud-feed-preview-heading { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.cloud-feed-heading h2 { margin: 0; font-size: 22px; font-weight: 650; }
+.cloud-feed-heading > div > p:last-child { color: var(--dev-muted); max-width: 650px; margin: 8px 0 0; font-size: 13px; line-height: 1.7; }
+.cloud-feed-actions { justify-content: flex-start; align-items: center; gap: 12px; font-size: 12px; }
+.cloud-feed :is(a, button), .cloud-feed-preview a { color: var(--dev-accent); }
+.cloud-feed-actions button, .cloud-feed-more { background: var(--dev-panel); border: 1px solid var(--dev-line); padding: 8px 12px; border-radius: 5px; font-size: 12px; cursor: pointer; }
+.cloud-feed-actions button:disabled { opacity: .65; cursor: wait; }
+.cloud-feed-meta { font-size: 12px; color: var(--dev-muted); margin: 12px 0; }
+.cloud-feed-status { border-left: 3px solid var(--dev-mark); padding: 8px 12px; background: var(--dev-panel); color: var(--dev-text); font-size: 12px; line-height: 1.7; margin: 10px 0; }
+.cloud-feed-controls { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; padding: 18px 0 8px; }
+.cloud-feed-controls label { display: grid; gap: 7px; font-size: 11px; color: var(--dev-muted); }
+.cloud-feed-controls :is(input, select) { width: 100%; min-width: 0; min-height: 40px; border: 1px solid var(--dev-line); border-radius: 5px; padding: 9px 11px; background: var(--dev-bg); color: var(--dev-text); font: inherit; font-size: 12px; }
+.cloud-feed-list { list-style: none; padding: 0; margin: 8px 0 16px; border-top: 1px solid var(--dev-line); }
+.cloud-feed-item { padding: 17px 0; border-bottom: 1px solid var(--dev-line); }
+.cloud-feed-item-meta { display: flex; flex-wrap: wrap; gap: 7px 16px; font-size: 11px; color: var(--dev-muted); }
+.cloud-feed-item-meta time { margin-left: auto; }
+.cloud-feed-item h3 { font-size: 16px; line-height: 1.5; margin: 7px 0 0; font-weight: 550; overflow-wrap: anywhere; }
+.cloud-feed-empty { padding: 24px 0; color: var(--dev-muted); font-size: 13px; }
+.cloud-feed-sources { border: 1px solid var(--dev-line); border-radius: 6px; padding: 14px; margin: 22px 0 8px; font-size: 12px; }
+.cloud-feed-sources summary { cursor: pointer; font-weight: 600; }
+.cloud-feed-sources p { color: var(--dev-muted); margin: 12px 0; line-height: 1.7; }
+.cloud-feed-sources ul { list-style: none; margin: 0; padding: 0; }
+.cloud-feed-sources li { display: grid; gap: 4px; padding: 9px 0; }
+.cloud-feed-sources li span { color: var(--dev-muted); font-size: 11px; }
+.cloud-feed-preview { border: 1px solid var(--dev-line); background: var(--dev-bg); padding: 18px; border-radius: 6px; margin-bottom: 18px; }
+.cloud-feed-preview-heading h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.cloud-feed-preview-heading a { font-size: 12px; }
+.cloud-feed-preview-list { list-style: none; margin: 0; padding: 0; }
+.cloud-feed-preview-list a { display: grid; grid-template-columns: 150px 1fr auto; gap: 12px; align-items: start; padding: 10px 0; border-top: 1px solid var(--dev-line); font-size: 13px; line-height: 1.6; }
+.cloud-feed-preview-list a span:first-child { font-size: 11px; color: var(--dev-muted); }
+@media (max-width: 700px) { .cloud-feed-controls { grid-template-columns: 1fr; gap: 12px; } .cloud-feed-item-meta time { margin-left: 0; } .cloud-feed-preview-list a { grid-template-columns: 1fr auto; gap: 4px 10px; } .cloud-feed-preview-list a span:first-child { grid-column: 1 / -1; } }
 .dark { --dev-bg: #14181c; --dev-panel: #1b2025; --dev-text: #edf2f4; --dev-muted: #b0bcc5; --dev-line: #39434c; --dev-accent: #6ad9d8; --dev-soft: #193638; --dev-mark: #ff9d8f; }
 .developer-shell { background: var(--dev-bg); color: var(--dev-text); }
 .developer-shell .dev-page, .developer-shell .developer-catalog { min-width: 0; background: var(--dev-bg); color: var(--dev-text); }

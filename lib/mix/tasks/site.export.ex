@@ -52,6 +52,7 @@ defmodule Mix.Tasks.Site.Export do
 
     # 3. Ensure assets directory exists
     File.mkdir_p!(Path.join(output, "assets"))
+    CloudSecurityCorner.Feeds.export!(CloudSecurityCorner.Feeds.snapshot(), output)
 
     # 4. Render all public routes into static HTML
     Enum.each(routes(), &write_page(output, &1))

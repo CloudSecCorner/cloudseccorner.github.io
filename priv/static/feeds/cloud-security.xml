@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CloudSecCorner Field Notes — Cloud Security Feed</title>
+    <link>https://cloudsecuritycorner.com/blog#cloud-feed</link>
+    <description>Daily cloud security headlines from the original publishers.</description>
+    <language>en</language>
+    <ttl>1440</ttl>
+    <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Nov 2026 18:45:19 GMT</lastBuildDate>
+    <item>
+  <title>Introducing AWS account access manager: IAM role flexibility with centralized workforce access</title>
+  <link>https://aws.amazon.com/blogs/security/introducing-aws-account-access-manager-iam-role-flexibility-with-centralized-workforce-access/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/introducing-aws-account-access-manager-iam-role-flexibility-with-centralized-workforce-access/</guid>
+  <pubDate>Thu, 05 Nov 2026 19:21:56 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Helping you build and defend at machine-speed in the agentic era</title>
+  <link>https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era/</guid>
+  <pubDate>Wed, 04 Nov 2026 17:00:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>The ROI of Agentic Remediation: Real-World Results with Wiz Green Agent</title>
+  <link>https://www.wiz.io/blog/green-agent-agentic-remediation</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/green-agent-agentic-remediation</guid>
+  <pubDate>Tue, 03 Nov 2026 13:00:00 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Beyond DKIM key rotation: understanding email replay attacks</title>
+  <link>https://aws.amazon.com/blogs/security/beyond-dkim-key-rotation-understanding-email-replay-attacks/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/beyond-dkim-key-rotation-understanding-email-replay-attacks/</guid>
+  <pubDate>Mon, 02 Nov 2026 18:06:28 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>From Reactive to Proactive: Empowering SOC Teams with the Wiz Red and Blue Agents</title>
+  <link>https://www.wiz.io/blog/soc-alerts-red-and-blue-agents</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/soc-alerts-red-and-blue-agents</guid>
+  <pubDate>Mon, 02 Nov 2026 13:13:46 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Inside a successful AWS European Sovereign Cloud exercise to demonstrate independent operation</title>
+  <link>https://aws.amazon.com/blogs/security/inside-a-successful-aws-european-sovereign-cloud-exercise-to-demonstrate-independent-operation/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/inside-a-successful-aws-european-sovereign-cloud-exercise-to-demonstrate-independent-operation/</guid>
+  <pubDate>Mon, 02 Nov 2026 03:37:30 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>“Black October” for AI Developer Platforms</title>
+  <link>https://www.wiz.io/blog/black-october-for-ai-developer-platforms</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/black-october-for-ai-developer-platforms</guid>
+  <pubDate>Fri, 30 Oct 2026 22:51:44 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Key Takeaways: AI Threat Readiness Survey Report 2026</title>
+  <link>https://www.wiz.io/blog/ai-threat-readiness-survey-report-2026</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/ai-threat-readiness-survey-report-2026</guid>
+  <pubDate>Fri, 30 Oct 2026 12:57:42 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Cloud CISO Perspectives: Introducing new $250,000 tier for Google Cloud VRP (Q&amp;A)</title>
+  <link>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-introducing-new-tier-for-google-cloud-vrp/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-introducing-new-tier-for-google-cloud-vrp/</guid>
+  <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>The Rise of Agentic Attacks: What They Look Like, and Where They&#39;re Headed</title>
+  <link>https://www.wiz.io/blog/the-rise-of-agentic-attacks</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/the-rise-of-agentic-attacks</guid>
+  <pubDate>Thu, 29 Oct 2026 14:26:22 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Introducing Route 53 Resolved IP Validation for AWS Network Firewall</title>
+  <link>https://aws.amazon.com/blogs/security/introducing-route-53-resolved-ip-validation-for-aws-network-firewall/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/introducing-route-53-resolved-ip-validation-for-aws-network-firewall/</guid>
+  <pubDate>Tue, 27 Oct 2026 23:46:13 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>AWS becomes first CSP to complete the Cloud High profile assessment with 172 services and features in scope</title>
+  <link>https://aws.amazon.com/blogs/security/aws-becomes-first-csp-to-complete-the-cloud-high-profile-assessment-with-172-services-and-features-in-scope/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/aws-becomes-first-csp-to-complete-the-cloud-high-profile-assessment-with-172-services-and-features-in-scope/</guid>
+  <pubDate>Tue, 27 Oct 2026 17:50:05 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Part 3 – Cybersecurity journeys: The work behind the work</title>
+  <link>https://aws.amazon.com/blogs/security/part-3-cybersecurity-journeys-the-work-behind-the-work/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/part-3-cybersecurity-journeys-the-work-behind-the-work/</guid>
+  <pubDate>Tue, 27 Oct 2026 17:00:07 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Scale agents securely with IAM Helper Agent Skills and MCP Tools</title>
+  <link>https://cloud.google.com/blog/products/identity-security/scale-agents-securely-with-iam-helper-agent-skills-and-mcp-tools/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/scale-agents-securely-with-iam-helper-agent-skills-and-mcp-tools/</guid>
+  <pubDate>Tue, 27 Oct 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>PHP2Shell: Exploitation Attempts and Remediation Trends</title>
+  <link>https://www.wiz.io/blog/php2shell-exploitation-so-far</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/php2shell-exploitation-so-far</guid>
+  <pubDate>Tue, 27 Oct 2026 13:21:45 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>The Pwn Request Reckoning: What Still Works Against GitHub Actions</title>
+  <link>https://www.wiz.io/blog/github-actions-security-pwn-request-reckoning</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/github-actions-security-pwn-request-reckoning</guid>
+  <pubDate>Mon, 26 Oct 2026 13:24:12 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Gheist: Attempted Scaled Abuse of Stolen GitHub Tokens Stumbles</title>
+  <link>https://www.wiz.io/blog/gheist-attempted-scaled-abuse-of-stolen-github-tokens-stumbles</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/gheist-attempted-scaled-abuse-of-stolen-github-tokens-stumbles</guid>
+  <pubDate>Sun, 25 Oct 2026 17:55:33 GMT</pubDate>
+  <category>Data Protection</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Broccoli2shell: Everything You Need To Know About The Critical Brotli Decoder Vulnerability</title>
+  <link>https://www.wiz.io/blog/cve-2026-111497-brotli-rce-node-js</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/cve-2026-111497-brotli-rce-node-js</guid>
+  <pubDate>Sun, 25 Oct 2026 14:46:53 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>ASPM in the AI Era Part 2: Prioritize Exploitable Risks with Code-to-Cloud Context</title>
+  <link>https://www.wiz.io/blog/aspm-ai-era-pt-2-prioritize-appsec-risk</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/aspm-ai-era-pt-2-prioritize-appsec-risk</guid>
+  <pubDate>Thu, 22 Oct 2026 22:51:55 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>ARTEX in the Wild: Storm-0940 Expands Targeting of IT and Software Vendors</title>
+  <link>https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors</guid>
+  <pubDate>Thu, 22 Oct 2026 13:05:31 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Using AWS WAF to apply mitigations for PHP2Shell RCE vulnerabilities (CVE-2026-109618 and CVE-2026-109619)</title>
+  <link>https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/</guid>
+  <pubDate>Thu, 22 Oct 2026 00:50:04 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Amazon Threat Intelligence identifies PHP2Shell exploitation prior to public disclosure in MadPot</title>
+  <link>https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/</guid>
+  <pubDate>Wed, 21 Oct 2026 22:36:26 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Best practices for integrating IAM Roles Anywhere with your PKI</title>
+  <link>https://aws.amazon.com/blogs/security/best-practices-for-integrating-iam-roles-anywhere-with-your-pki/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/best-practices-for-integrating-iam-roles-anywhere-with-your-pki/</guid>
+  <pubDate>Wed, 21 Oct 2026 17:03:50 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Responding to core PHP vulnerabilities CVE-2026-109618 and CVE-2026-109619</title>
+  <link>https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619/</guid>
+  <pubDate>Wed, 21 Oct 2026 14:00:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>PHP2Shell: AI uncovers critical RCE vulnerabilities affecting 70% of the Internet</title>
+  <link>https://www.wiz.io/blog/php2shell-php-rce</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/php2shell-php-rce</guid>
+  <pubDate>Wed, 21 Oct 2026 13:59:59 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>LiteLLM Compromised, Steals Credentials</title>
+  <link>https://www.wiz.io/blog/litellm-compromised-steals-credentials</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/litellm-compromised-steals-credentials</guid>
+  <pubDate>Wed, 21 Oct 2026 13:44:12 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Hardware-backed security at global scale: Confidential G4 with NVIDIA Blackwell is GA</title>
+  <link>https://cloud.google.com/blog/topics/ai-infrastructure/confidential-g4-gpus-are-ga/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/topics/ai-infrastructure/confidential-g4-gpus-are-ga/</guid>
+  <pubDate>Wed, 21 Oct 2026 11:30:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>LiteLLM supply chain compromise: What you need to know</title>
+  <link>https://securitylabs.datadoghq.com/articles/litellm-compromised-pypi-docker/</link>
+  <guid isPermaLink="true">https://securitylabs.datadoghq.com/articles/litellm-compromised-pypi-docker/</guid>
+  <pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Datadog Security Labs. Read the original article at the publisher.</description>
+  <source url="https://securitylabs.datadoghq.com/rss/feed.xml">Datadog Security Labs</source>
+</item>
+
+<item>
+  <title>Wiz Sensor on GKE. 1-Click Runtime Protection, Now Native.</title>
+  <link>https://www.wiz.io/blog/wiz-sensor-on-gke-1-click-runtime-protection-now-native</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/wiz-sensor-on-gke-1-click-runtime-protection-now-native</guid>
+  <pubDate>Tue, 20 Oct 2026 22:02:42 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>From Phishing to LLMjacking: Threat Actors Targeting Cloud Billing Accounts for LLM Usage</title>
+  <link>https://www.wiz.io/blog/from-phishing-to-llmjacking</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/from-phishing-to-llmjacking</guid>
+  <pubDate>Tue, 20 Oct 2026 20:03:10 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Managing identity source transition for AWS IAM Identity Center</title>
+  <link>https://aws.amazon.com/blogs/security/managing-identity-source-transition-for-aws-iam-identity-center/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/managing-identity-source-transition-for-aws-iam-identity-center/</guid>
+  <pubDate>Tue, 20 Oct 2026 16:47:02 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Introducing pathrunner: An AWS privilege escalation framework</title>
+  <link>https://securitylabs.datadoghq.com/articles/introducing-pathrunner-aws-privilege-escalation-framework/</link>
+  <guid isPermaLink="true">https://securitylabs.datadoghq.com/articles/introducing-pathrunner-aws-privilege-escalation-framework/</guid>
+  <pubDate>Tue, 20 Oct 2026 00:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Datadog Security Labs. Read the original article at the publisher.</description>
+  <source url="https://securitylabs.datadoghq.com/rss/feed.xml">Datadog Security Labs</source>
+</item>
+
+<item>
+  <title>Supply Chain Zero Days: Closing the Gap Between Publication and Detection</title>
+  <link>https://www.wiz.io/blog/detect-supply-chain-zero-days-at-publication</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/detect-supply-chain-zero-days-at-publication</guid>
+  <pubDate>Mon, 19 Oct 2026 14:39:29 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Loud, Fast, and Everywhere: Anatomy of a Real AI-Driven Cloud Attack</title>
+  <link>https://www.wiz.io/blog/anatomy-of-ai-driven-cloud-attacks</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/anatomy-of-ai-driven-cloud-attacks</guid>
+  <pubDate>Mon, 19 Oct 2026 11:26:53 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Announcing Wiz Runtime Sensor add-on for GKE: Turnkey threat detection for Kubernetes</title>
+  <link>https://cloud.google.com/blog/products/identity-security/wiz-sensor-for-gke-turnkey-threat-detection-for-kubernetes/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/wiz-sensor-for-gke-turnkey-threat-detection-for-kubernetes/</guid>
+  <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>AWS Security Agent (now part of AWS Continuum) exploited 33 of 37 new real-world CVEs</title>
+  <link>https://aws.amazon.com/blogs/security/aws-security-agent-now-part-of-aws-continuum-exploited-33-of-37-new-real-world-cves/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/aws-security-agent-now-part-of-aws-continuum-exploited-33-of-37-new-real-world-cves/</guid>
+  <pubDate>Thu, 15 Oct 2026 16:10:14 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Modernizing perimeter security: Scalable perimeters with VPC Service Controls</title>
+  <link>https://cloud.google.com/blog/products/identity-security/introducing-new-scalable-perimeter-options-with-vpc-service-controls/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/introducing-new-scalable-perimeter-options-with-vpc-service-controls/</guid>
+  <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Penetration testing every deployment with AWS Continuum</title>
+  <link>https://aws.amazon.com/blogs/security/penetration-testing-every-deployment-with-aws-continuum/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/penetration-testing-every-deployment-with-aws-continuum/</guid>
+  <pubDate>Wed, 14 Oct 2026 20:21:52 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>ASPM in the AI Era Part 1: Unified Visibility Across Your Stack</title>
+  <link>https://www.wiz.io/blog/aspm-ai-era-pt-1-centralize-appsec-scanners</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/aspm-ai-era-pt-1-centralize-appsec-scanners</guid>
+  <pubDate>Wed, 14 Oct 2026 20:13:53 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Cloud CISO Perspectives: New Gemini Notebook can help CISOs and policymakers prepare for PQC</title>
+  <link>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-new-gemini-notebook-can-help-cisos-policymakers-prepare-for-pqc/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-new-gemini-notebook-can-help-cisos-policymakers-prepare-for-pqc/</guid>
+  <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Securing the Mission at Machine Speed: Wiz AI Agents Arrive in Wiz for Gov</title>
+  <link>https://www.wiz.io/blog/wiz-for-gov-agents-fedramp</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/wiz-for-gov-agents-fedramp</guid>
+  <pubDate>Wed, 14 Oct 2026 11:00:02 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Part 2 – Cybersecurity journeys: What even is this job?</title>
+  <link>https://aws.amazon.com/blogs/security/part-2-cybersecurity-journeys-what-even-is-this-job/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/part-2-cybersecurity-journeys-what-even-is-this-job/</guid>
+  <pubDate>Tue, 13 Oct 2026 20:58:01 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>GuardDuty Extended Threat Detection has added five new indicators to surface attack sequences</title>
+  <link>https://aws.amazon.com/blogs/security/guardduty-extended-threat-detection-has-added-five-new-indicators-to-surface-attack-sequences/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/guardduty-extended-threat-detection-has-added-five-new-indicators-to-surface-attack-sequences/</guid>
+  <pubDate>Mon, 12 Oct 2026 21:58:44 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Quantum-resistant signing on AWS, Part 2: Enforce your ML-DSA algorithm policy with SCPs and IAM</title>
+  <link>https://aws.amazon.com/blogs/security/quantum-resistant-signing-on-aws-part-2-enforce-your-ml-dsa-algorithm-policy-with-scps-and-iam/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/quantum-resistant-signing-on-aws-part-2-enforce-your-ml-dsa-algorithm-policy-with-scps-and-iam/</guid>
+  <pubDate>Mon, 12 Oct 2026 20:13:06 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Quantum-resistant signing on AWS, Part 1: Build a software supply chain with ML-DSA</title>
+  <link>https://aws.amazon.com/blogs/security/quantum-resistant-signing-on-aws-part-1-build-a-software-supply-chain-with-ml-dsa/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/quantum-resistant-signing-on-aws-part-1-build-a-software-supply-chain-with-ml-dsa/</guid>
+  <pubDate>Mon, 12 Oct 2026 20:12:53 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Configuring your AI vulnerability harness, Part 2: The steering file</title>
+  <link>https://aws.amazon.com/blogs/security/configuring-your-ai-vulnerability-harness-part-2-the-steering-file/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/configuring-your-ai-vulnerability-harness-part-2-the-steering-file/</guid>
+  <pubDate>Wed, 07 Oct 2026 21:49:50 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Building your AI vulnerability harness, Part 1</title>
+  <link>https://aws.amazon.com/blogs/security/building-your-ai-vulnerability-harness-part-1/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/building-your-ai-vulnerability-harness-part-1/</guid>
+  <pubDate>Wed, 07 Oct 2026 21:49:43 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Part 1 – Cybersecurity journeys: I didn’t plan this</title>
+  <link>https://aws.amazon.com/blogs/security/part-1-cybersecurity-journeys-i-didnt-plan-this/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/part-1-cybersecurity-journeys-i-didnt-plan-this/</guid>
+  <pubDate>Wed, 07 Oct 2026 16:21:19 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>How the Wiz Red Agent caught a Fortune 500 firm’s data exposure (that other tools missed)</title>
+  <link>https://www.wiz.io/blog/red-agent-financial-services-data-exposure</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/red-agent-financial-services-data-exposure</guid>
+  <pubDate>Wed, 07 Oct 2026 14:53:27 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Improving SPIRE security and resiliency with AWS managed services</title>
+  <link>https://aws.amazon.com/blogs/security/improving-spire-security-and-resiliency-with-aws-managed-services/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/improving-spire-security-and-resiliency-with-aws-managed-services/</guid>
+  <pubDate>Tue, 06 Oct 2026 18:52:25 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Beyond valid credentials: How exposed AWS keys are tested for Amazon Bedrock access</title>
+  <link>https://securitylabs.datadoghq.com/articles/beyond-valid-credentials-how-exposed-aws-keys-are-tested-for-amazon-bedrock-access/</link>
+  <guid isPermaLink="true">https://securitylabs.datadoghq.com/articles/beyond-valid-credentials-how-exposed-aws-keys-are-tested-for-amazon-bedrock-access/</guid>
+  <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Datadog Security Labs. Read the original article at the publisher.</description>
+  <source url="https://securitylabs.datadoghq.com/rss/feed.xml">Datadog Security Labs</source>
+</item>
+
+<item>
+  <title>Guarding the gates: Assessing dangerous permissions granted to Kubernetes built-in principals</title>
+  <link>https://securitylabs.datadoghq.com/articles/kubernetes-rbac-built-in-principals-dangerous-permissions/</link>
+  <guid isPermaLink="true">https://securitylabs.datadoghq.com/articles/kubernetes-rbac-built-in-principals-dangerous-permissions/</guid>
+  <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Datadog Security Labs. Read the original article at the publisher.</description>
+  <source url="https://securitylabs.datadoghq.com/rss/feed.xml">Datadog Security Labs</source>
+</item>
+
+<item>
+  <title>Cloud CISO Perspectives: How cybersecurity startups can win CISOs</title>
+  <link>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-how-cybersecurity-startups-can-win-cisos/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-how-cybersecurity-startups-can-win-cisos/</guid>
+  <pubDate>Wed, 30 Sep 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Google Cloud partners deliver new security agents and AI defenses with Gemini Enterprise</title>
+  <link>https://cloud.google.com/blog/products/identity-security/google-cloud-partners-deliver-new-security-agents-and-ai-defenses-with-gemini-enterprise/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/google-cloud-partners-deliver-new-security-agents-and-ai-defenses-with-gemini-enterprise/</guid>
+  <pubDate>Tue, 29 Sep 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Strengthen your CI/CD pipeline with new Secure Source Manager capabilities</title>
+  <link>https://cloud.google.com/blog/products/identity-security/strengthen-your-cicd-pipeline-with-new-secure-source-manager-capabilities/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/strengthen-your-cicd-pipeline-with-new-secure-source-manager-capabilities/</guid>
+  <pubDate>Mon, 21 Sep 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Changing the game: Using agentic AI to secure infrastructure code</title>
+  <link>https://cloud.google.com/blog/topics/systems/using-ai-agents-to-secure-google-infrastructure/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/topics/systems/using-ai-agents-to-secure-google-infrastructure/</guid>
+  <pubDate>Sat, 19 Sep 2026 01:00:00 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Attacker infrastructure, but vibe-coded: tracking the evolution of credential harvesting platforms</title>
+  <link>https://securitylabs.datadoghq.com/articles/attacker-infrastructure-but-vibe-coded/</link>
+  <guid isPermaLink="true">https://securitylabs.datadoghq.com/articles/attacker-infrastructure-but-vibe-coded/</guid>
+  <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Datadog Security Labs. Read the original article at the publisher.</description>
+  <source url="https://securitylabs.datadoghq.com/rss/feed.xml">Datadog Security Labs</source>
+</item>
+
+<item>
+  <title>Google named a Leader in the External Threat Intelligence Service Forrester Wave™</title>
+  <link>https://cloud.google.com/blog/products/identity-security/google-named-a-leader-in-the-external-threat-intelligence-service-forrester-wave/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/google-named-a-leader-in-the-external-threat-intelligence-service-forrester-wave/</guid>
+  <pubDate>Thu, 17 Sep 2026 17:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Cloud CISO Perspectives: How Google monitors AI threats and advances AI defenses</title>
+  <link>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-how-google-monitors-ai-threats-advances-ai-defenses/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-how-google-monitors-ai-threats-advances-ai-defenses/</guid>
+  <pubDate>Wed, 16 Sep 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Introducing new session management tools with native, granular controls</title>
+  <link>https://cloud.google.com/blog/products/identity-security/introducing-new-session-management-tools-with-native-granular-controls/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/introducing-new-session-management-tools-with-native-granular-controls/</guid>
+  <pubDate>Tue, 15 Sep 2026 17:30:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Getting started with Mantis, our open-source bug finding-and-fixing harness</title>
+  <link>https://cloud.google.com/blog/products/identity-security/getting-started-with-the-mantis-harness-to-find-and-fix-bugs/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/getting-started-with-the-mantis-harness-to-find-and-fix-bugs/</guid>
+  <pubDate>Wed, 02 Sep 2026 16:00:00 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>How BlackLine simplifies perimeter policy intelligence with VPC Service Controls</title>
+  <link>https://cloud.google.com/blog/topics/customers/how-blackline-prevents-data-exfiltration-with-vpc-service-controls/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/topics/customers/how-blackline-prevents-data-exfiltration-with-vpc-service-controls/</guid>
+  <pubDate>Tue, 01 Sep 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Cloud CISO Perspectives: Tips on securing the water sector in the AI era</title>
+  <link>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-tips-on-securing-water-sector-ai-era/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-tips-on-securing-water-sector-ai-era/</guid>
+  <pubDate>Mon, 31 Aug 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Password spraying campaign targets AWS root user accounts across 150+ organizations</title>
+  <link>https://securitylabs.datadoghq.com/articles/aws-root-user-bruteforce-campaign/</link>
+  <guid isPermaLink="true">https://securitylabs.datadoghq.com/articles/aws-root-user-bruteforce-campaign/</guid>
+  <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Datadog Security Labs. Read the original article at the publisher.</description>
+  <source url="https://securitylabs.datadoghq.com/rss/feed.xml">Datadog Security Labs</source>
+</item>
+
+<item>
+  <title>Simplify your resilience testing strategy with Fault Injection Testing</title>
+  <link>https://cloud.google.com/blog/products/networking/introducing-google-cloud-fault-injection-testing-in-preview/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/networking/introducing-google-cloud-fault-injection-testing-in-preview/</guid>
+  <pubDate>Wed, 26 Aug 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Empowering autonomous agents with advanced security governance</title>
+  <link>https://cloud.google.com/blog/topics/ai-infrastructure/state-of-ai-infrastructure-report-agent-governance-and-security/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/topics/ai-infrastructure/state-of-ai-infrastructure-report-agent-governance-and-security/</guid>
+  <pubDate>Mon, 24 Aug 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+  </channel>
+</rss>

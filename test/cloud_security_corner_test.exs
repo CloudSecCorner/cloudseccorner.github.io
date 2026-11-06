@@ -115,6 +115,27 @@ defmodule CloudSecurityCornerTest do
     assert conn.resp_body =~ "Page not found"
   end
 
+  test "serves the daily cloud security reader and subscription assets through Elixir" do
+    page = Plug.Test.conn(:get, "/blog") |> Endpoint.call(Endpoint.init([]))
+    assert page.status == 200
+    assert page.resp_body =~ "Daily Cloud Security Feed"
+    assert page.resp_body =~ ~s(id="cloud-feed")
+    assert page.resp_body =~ "Feed addresses and source status"
+    assert page.resp_body =~ ~s(href="/feeds/cloud-security.xml")
+
+    data =
+      Plug.Test.conn(:get, "/data/cloud-security-feed.json") |> Endpoint.call(Endpoint.init([]))
+
+    assert data.status == 200
+    assert Jason.decode!(data.resp_body) == CloudSecurityCorner.Feeds.snapshot()
+
+    for path <- ["/feeds/cloud-security.xml", "/feeds/cloud-security.opml"] do
+      response = Plug.Test.conn(:get, path) |> Endpoint.call(Endpoint.init([]))
+      assert response.status == 200
+      assert response.resp_body =~ "<?xml"
+    end
+  end
+
   defp assert_frontend_or_legacy(conn, legacy_script) do
     if assets = CloudSecurityCorner.Frontend.assets() do
       assert conn.resp_body =~ ~s(src="#{assets.entry}")

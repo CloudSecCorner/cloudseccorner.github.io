@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0"><head><title>CloudSecCorner Cloud Security Sources</title></head>
+<body><outline text="Cloud security"><outline type="rss" text="AWS Security Blog" title="AWS Security Blog" xmlUrl="https://aws.amazon.com/blogs/security/feed/" htmlUrl="https://aws.amazon.com/blogs/security/" />
+<outline type="rss" text="Google Cloud Security" title="Google Cloud Security" xmlUrl="https://cloudblog.withgoogle.com/products/identity-security/rss/" htmlUrl="https://cloud.google.com/blog/products/identity-security/" />
+<outline type="rss" text="Microsoft Security" title="Microsoft Security" xmlUrl="https://www.microsoft.com/en-us/security/blog/feed/" htmlUrl="https://www.microsoft.com/en-us/security/blog/" />
+<outline type="rss" text="Wiz Cloud Security" title="Wiz Cloud Security" xmlUrl="https://www.wiz.io/feed/rss.xml" htmlUrl="https://www.wiz.io/blog" />
+<outline type="rss" text="Datadog Security Labs" title="Datadog Security Labs" xmlUrl="https://securitylabs.datadoghq.com/rss/feed.xml" htmlUrl="https://securitylabs.datadoghq.com/" /></outline></body></opml>

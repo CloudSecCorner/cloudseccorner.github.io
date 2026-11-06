@@ -80,6 +80,19 @@ All six labs were reviewed on **2026-11-06**. Downloadable Python exercises incl
 
 ## 💻 Run Locally
 
+### Daily Cloud Security Feed
+
+[Field Notes](https://cloudsecuritycorner.com/blog#cloud-feed) includes a cloud-security-only headline reader with publisher/topic filters, search, original publication dates, and links to the original articles. Sources are AWS Security Blog, Google Cloud Security, Microsoft Security, Wiz, and Datadog Security Labs. Broad security feeds are filtered for cloud topics; article bodies are not copied.
+
+The GitHub Pages workflow runs the Elixir importer daily at **00:30 UTC (06:00 IST)**, then builds and publishes both Elixir and React. It also refreshes on pushes and manual workflow runs. Scheduled runs commit only the validated feed snapshots and subscription files, preserving the latest data for subsequent runs; publisher failures retain recent cached headlines and show source status. These daily content commits also keep the public repository active for GitHub's scheduled-workflow policy. The reader checks the published snapshot every 15 minutes while visible and when returning to the tab.
+
+- [Subscribe to the combined RSS feed](https://cloudsecuritycorner.com/feeds/cloud-security.xml)
+- [Download the source OPML list](https://cloudsecuritycorner.com/feeds/cloud-security.opml)
+- Edit publisher addresses and allowed domains in `priv/data/cloud-security-sources.json`.
+- Refresh locally with `mix feeds.refresh`; use `--require-fresh` to fail if no publisher can refresh. The command writes the canonical snapshot and public JSON/RSS/OPML assets. `--input-dir PATH` supports saved XML fixtures without network access.
+
+The importer validates HTTPS publisher domains and redirects, disables XML DTD/entities, preserves publication dates, removes tracked duplicate URLs, limits the feed to 80 recent headlines, and retains stories for up to 90 days. It requires only Erlang/OTP libraries; no API keys or browser-side requests to external RSS services are needed.
+
 Prerequisites: Elixir/OTP (`>= 1.16`), Node.js 22, npm, Python 3.10+, and OpenSSL 1.1.1+. Install Nmap to run the complete network-audit lab.
 
 Elixir/Phoenix renders each route, its metadata, and a readable HTML fallback.
