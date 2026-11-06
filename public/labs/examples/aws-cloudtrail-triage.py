@@ -66,7 +66,7 @@ def triage(events):
         queue.append({
             "event_id": event_id, "time": date.isoformat(), "region": event.get("awsRegion", "unknown"),
             "action": event["eventName"], "reasons": reasons,
-            "outcome": "failed_request" if event.get("errorCode") else "no_error_recorded",
+            "outcome": "failed_request" if event.get("errorCode") or event.get("errorMessage") else "no_error_recorded",
             "principal": identity.get("arn") or identity.get("principalId", "unknown"),
             "session_key_id": identity.get("accessKeyId"),
             "issuer_role": identity.get("sessionContext", {}).get("sessionIssuer", {}).get("arn"),
@@ -97,6 +97,10 @@ class TriageTests(unittest.TestCase):
 
     def test_denied_stop_is_not_a_successful_stop(self):
         self.assertEqual(triage(unpack(sample()))[1]["outcome"], "failed_request")
+        records = unpack(sample())
+        records[1].pop("errorCode")
+        records[1]["errorMessage"] = "The request was denied"
+        self.assertEqual(triage(records)[1]["outcome"], "failed_request")
 
     def test_role_binding_is_visible_without_a_passrole_event(self):
         row = triage(unpack(sample()))[0]
