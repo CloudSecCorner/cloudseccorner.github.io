@@ -1,9 +1,9 @@
 <header class="kube-library-header">
   <div class="kube-library-container">
-    <p class="kube-label">Reviewed 2026-11-06</p>
+    <p class="kube-label">CloudSecCorner / Practice</p>
     <h1>Hands-on Security Labs</h1>
-    <p class="kube-library-intro">Executable exercises for agent authorization, workload identity, RAG data boundaries, artifact verification, container policy, and network exposure. Each lab includes prerequisites, failure cases, evidence, and cleanup.</p>
-    <div class="kube-library-links"><a href="/blog/">Read the current field notes →</a></div>
+    <p class="kube-library-intro">Executable exercises for AWS identity reviews, deployment boundaries, private storage, CloudTrail investigations, and agent runtime controls. Each lab includes prerequisites, failure cases, evidence, and cleanup.</p>
+    <div class="kube-library-links"><a href="#aws-defender-path">Start the AWS Defender path →</a><a href="/blog/">Read the current field notes →</a></div>
   </div>
 </header>
 
@@ -35,4 +35,17 @@
       <a :if={lab["exercise"]} class="kube-lab-card-link" href={lab["exercise"]} download>Download exercise</a>
     </article>
   </div>
+</section>
+
+<section id="aws-defender-path" class="aws-defender-path kube-library-container my-10" aria-labelledby="aws-defender-title">
+  <div class="aws-defender-heading"><div><p class="dev-eyebrow">A practical starting path</p><h2 id="aws-defender-title">AWS Defender Practice Path</h2></div><p>Start with local evidence and regression tests. Extend to authorized AWS exports and a reviewed Terraform plan when ready.</p></div>
+  <ol class="aws-defender-steps">
+    <li :for={lab <- @aws_defender}>
+      <span class="aws-defender-step">Step {lab["track_order"]} · {lab["duration"]}</span>
+      <h3><a href={"/labs/" <> lab["id"]}>{lab["title"]}</a></h3>
+      <p>{lab["description"]}</p>
+      <div><a href={"/labs/" <> lab["id"]}>Open lab →</a><a href={lab["guide"]}>Read field note →</a></div>
+    </li>
+  </ol>
+  <p class="aws-defender-note">The local exercises require Python 3.10+. They include their own sample evidence and do not create cloud resources.</p>
 </section>

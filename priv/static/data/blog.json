@@ -1,6 +1,50 @@
 {
   "blogs": [
     {
+      "id": "AWS-Credential-Review",
+      "title": "AWS Credential Reviews: From Report to Owned Remediation",
+      "date": "November 7, 2026",
+      "updated": "2026-11-07",
+      "excerpt": "Build an evidence-based identity review with report timestamps, credential owners, explicit thresholds, and verification steps.",
+      "author": "CloudSecCorner",
+      "file": "/blog/aws-credential-review.md",
+      "category": "Cloud Identity",
+      "tags": ["AWS", "IAM", "Credential Reports"]
+    },
+    {
+      "id": "AWS-Role-Delegation",
+      "title": "Review the Deployment Identity, the Function, and the Role Together",
+      "date": "November 7, 2026",
+      "updated": "2026-11-07",
+      "excerpt": "Review role delegation, Lambda code changes, service trust, and runtime access as connected cloud security boundaries.",
+      "author": "CloudSecCorner",
+      "file": "/blog/aws-role-delegation.md",
+      "category": "Cloud Identity",
+      "tags": ["AWS", "IAM", "PassRole", "Lambda"]
+    },
+    {
+      "id": "AWS-S3-Plan-Review",
+      "title": "A Private S3 Bucket Is a Contract You Can Review Before Apply",
+      "date": "November 7, 2026",
+      "updated": "2026-11-07",
+      "excerpt": "Connect resolved Terraform plan values with storage access controls, encryption, transport, recovery, and post-deployment evidence.",
+      "author": "CloudSecCorner",
+      "file": "/blog/aws-s3-plan-review.md",
+      "category": "Data Security",
+      "tags": ["AWS", "S3", "Terraform", "Data Protection"]
+    },
+    {
+      "id": "AWS-CloudTrail-Triage",
+      "title": "CloudTrail Triage Starts With Coverage and a Defensible Timeline",
+      "date": "November 7, 2026",
+      "updated": "2026-11-07",
+      "excerpt": "Preserve event outcomes, acting sessions, collection boundaries, and corroboration when investigating cloud changes.",
+      "author": "CloudSecCorner",
+      "file": "/blog/aws-cloudtrail-triage.md",
+      "category": "Cloud Detection",
+      "tags": ["AWS", "CloudTrail", "Incident Response"]
+    },
+    {
       "id": "MCP-Security-2026",
       "title": "MCP Security After the July 2026 Protocol Revision",
       "date": "November 6, 2026",

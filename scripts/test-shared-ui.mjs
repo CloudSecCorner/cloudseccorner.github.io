@@ -60,6 +60,15 @@ assert.match(footer, /<site-visit-counter aria-live="polite">/);
 assert.match(footer, /href="https:\/\/hits.sh\/cloudsecuritycorner.com\/"/);
 for (const route of ['/tools', '/labs', '/blog', '/about', '/aws-architectures', '/azure-architectures', '/gcp-architectures', '/kspm-architectures']) assert(footer.includes(`href="${route}"`));
 const labs = read('src/components/Labs.jsx');
+const AwsDefenderPath = (await load('src/components/AwsDefenderPath.jsx')).default;
+const pathLabs = JSON.parse(read('priv/data/labs.json')).labs;
+const awsPath = render(AwsDefenderPath, '/labs', { labs: pathLabs });
+assert.match(awsPath, /AWS Defender Practice Path/);
+for (const lab of pathLabs.filter(lab => lab.track === 'AWS Defender')) {
+  assert(awsPath.includes(`href="/labs/${lab.id}"`));
+  assert(awsPath.includes(`href="${lab.guide}"`));
+}
+assert.equal((awsPath.match(/<li>/g) || []).length, 4);
 assert(labs.indexOf('<section id="lab-library"') < labs.indexOf('className="dev-roadmap'), 'Lab catalog must precede the learning roadmap');
 assert(labs.includes('dev-reader-progress'));
 console.log('Validated shared UI surfaces, light/dark styles, tool query/category/sort and empty states, field-note links, About, navigation and footer rendering.');

@@ -80,6 +80,12 @@ All six labs were reviewed on **2026-11-06**. Downloadable Python exercises incl
 
 ## 💻 Run Locally
 
+### AWS Defender Practice Path
+
+[Start the four-lab path](https://cloudsecuritycorner.com/labs#aws-defender-path): credential evidence review, deployment role boundaries, private S3 plan review, and CloudTrail evidence triage. Each lab has a paired field note, a downloadable Python exercise with eight regression cases, original AWS-logo diagrams, expected evidence, and cleanup. The S3 lab also includes a Terraform configuration.
+
+The exercises run locally without an AWS account. Optional workflows show how to export authorized AWS evidence and review a real Terraform plan; they do not promise hosted cloud sandboxes or automatically apply changes. The material was independently written around topics highlighted in [Cybr's public IAM](https://cybr.com/hands-on-labs/iam/), [S3](https://cybr.com/hands-on-labs/s3/), and [detection](https://cybr.com/hands-on-labs/aws-monitoring-detection/) catalogs, with technical references to AWS and HashiCorp documentation.
+
 ### Daily Cloud Security Feed
 
 [Field Notes](https://cloudsecuritycorner.com/blog#cloud-feed) includes a cloud-security-only headline reader with publisher/topic filters, search, original publication dates, and links to the original articles. The source directory includes AWS, Google Cloud, Microsoft, Wiz, Datadog Security Labs, Aqua, Sysdig, Unit 42, Cloudflare, SentinelLabs, Snyk, Sonrai, Tenable, CrowdStrike, Trail of Bits, Cloud Security Alliance, SecurityWeek, and The Hacker News. Broad security feeds are filtered for cloud topics; mixed cloud technology feeds also require security relevance. Article bodies are not copied. The publisher filter shows each source's number of recent headlines, including zero when its latest feed has no eligible cloud security articles.

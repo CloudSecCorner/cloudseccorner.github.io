@@ -1,6 +1,17 @@
 :root { --dev-bg: #fff; --dev-panel: #f5f7f8; --dev-text: #17212b; --dev-muted: #53616d; --dev-line: #dce2e6; --dev-accent: #087f8c; --dev-soft: #e4f3f3; --dev-mark: #d85142; }
 .site-visit-counter { display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; color: var(--dev-muted); font-size: 12px; text-decoration: none; }
 .site-visit-counter:hover { color: var(--dev-accent); }
+.aws-defender-path { scroll-margin-top: 110px; color: var(--dev-text); }
+.aws-defender-heading { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 22px; }
+.aws-defender-heading h2 { margin: 6px 0 0; font-size: 24px; font-weight: 650; }
+.aws-defender-heading > p { max-width: 490px; color: var(--dev-muted); font-size: 13px; line-height: 1.7; }
+.aws-defender-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; list-style: none; padding: 0; }
+.aws-defender-steps li { border: 1px solid var(--dev-line); border-radius: 6px; padding: 22px; background: var(--dev-panel); }
+.aws-defender-step { color: var(--dev-accent); font: 11px ui-monospace, monospace; }
+.aws-defender-steps h3 { font-size: 17px; margin: 12px 0; font-weight: 650; }
+.aws-defender-steps li > p, .aws-defender-note { color: var(--dev-muted); font-size: 12px; line-height: 1.8; }
+.aws-defender-steps li > div { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; margin-top: 18px; color: var(--dev-accent); }
+@media (max-width: 640px) { .aws-defender-steps { grid-template-columns: 1fr; } }
 site-visit-counter { display: inline-flex; align-items: center; min-height: 20px; font-variant-numeric: tabular-nums; }
 .cloud-feed { scroll-margin-top: 110px; color: var(--dev-text); }
 .cloud-feed-heading, .cloud-feed-actions, .cloud-feed-preview-heading { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 14px; }

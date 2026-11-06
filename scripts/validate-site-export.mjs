@@ -83,6 +83,12 @@ for (const content of [...labs.map((lab) => lab.path), ...blogs.map((post) => po
 }
 for (const lab of labs) {
   if (lab.exercise) await publicFile(lab.exercise);
+  for (const download of lab.downloads || []) await publicFile(download);
+}
+const labLibrary = await readFile(path.join(output, "labs/index.html"), "utf8");
+assert(labLibrary.includes('id="aws-defender-path"'), "Missing server-rendered AWS Defender path");
+for (const lab of labs.filter(lab => lab.track === 'AWS Defender')) {
+  assert(labLibrary.includes(`href="/labs/${lab.id}"`) && labLibrary.includes(`href="${lab.guide}"`), `Missing path step: ${lab.id}`);
 }
 await publicFile(".nojekyll");
 assert.equal(await readFile(path.join(output, "CNAME"), "utf8"), "cloudsecuritycorner.com\n");

@@ -43,6 +43,34 @@
   ],
   "labs": [
     {
+      "id": "AWS-Credential-Review",
+      "title": "AWS Credential Evidence Review",
+      "category": "AWS Defense",
+      "description": "Review IAM credential-report CSV, distinguish unknown usage from inactivity, and turn findings into owned remediation decisions.",
+      "route": "/labs/AWS-Credential-Review"
+    },
+    {
+      "id": "AWS-Role-Delegation",
+      "title": "AWS Deployment Role Boundaries",
+      "category": "AWS Defense",
+      "description": "Test PassRole scope, destination-service conditions, Lambda deployment access, and execution-role trust as distinct review boundaries.",
+      "route": "/labs/AWS-Role-Delegation"
+    },
+    {
+      "id": "AWS-S3-Plan-Review",
+      "title": "Private S3 Terraform Plan Review",
+      "category": "AWS Defense",
+      "description": "Check a real Terraform plan for bucket-bound public-access controls, ownership, encryption, versioning, and the transport-policy contract.",
+      "route": "/labs/AWS-S3-Plan-Review"
+    },
+    {
+      "id": "AWS-CloudTrail-Triage",
+      "title": "AWS CloudTrail Evidence Triage",
+      "category": "AWS Defense",
+      "description": "Normalize CLI and trail exports, separate failed requests from outcomes, deduplicate events, and preserve session-level investigation evidence.",
+      "route": "/labs/AWS-CloudTrail-Triage"
+    },
+    {
       "id": "Agentic-Cloud-Security",
       "title": "Agentic Cloud Security Essentials",
       "category": "Agentic Security",
@@ -87,6 +115,30 @@
   ],
   "blogs": [
     {
+      "id": "AWS-Credential-Review",
+      "title": "AWS Credential Reviews: From Report to Owned Remediation",
+      "category": "Cloud Identity",
+      "route": "/blog/AWS-Credential-Review"
+    },
+    {
+      "id": "AWS-Role-Delegation",
+      "title": "Review the Deployment Identity, the Function, and the Role Together",
+      "category": "Cloud Identity",
+      "route": "/blog/AWS-Role-Delegation"
+    },
+    {
+      "id": "AWS-S3-Plan-Review",
+      "title": "A Private S3 Bucket Is a Contract You Can Review Before Apply",
+      "category": "Data Security",
+      "route": "/blog/AWS-S3-Plan-Review"
+    },
+    {
+      "id": "AWS-CloudTrail-Triage",
+      "title": "CloudTrail Triage Starts With Coverage and a Defensible Timeline",
+      "category": "Cloud Detection",
+      "route": "/blog/AWS-CloudTrail-Triage"
+    },
+    {
       "id": "MCP-Security-2026",
       "title": "MCP Security After the July 2026 Protocol Revision",
       "category": "Agentic Security",
@@ -126,7 +178,7 @@
   "counts": {
     "profiles": 4132,
     "examples": 4,
-    "labs": 6,
+    "labs": 10,
     "tools": 37750
   }
 }

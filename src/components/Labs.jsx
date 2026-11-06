@@ -4,6 +4,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import MarkdownRenderer from "./MarkdownRenderer";
 import OpenGraph from "./OpenGraph";
 import PageHeader from './PageHeader';
+import AwsDefenderPath from './AwsDefenderPath';
 import { REPOSITORY_URL, SITE_URL } from "../utils/socialSharing";
 import labIndex from "../../priv/data/labs.json";
 
@@ -158,7 +159,7 @@ function LabsList() {
 
   return (
     <>
-      <PageHeader title="Hands-On Labs" description="Practical exercises in cloud identity, application security, agent tool boundaries, and network auditing." stats={[{ label: "Labs", value: labsData.length || "--" }, { label: "Learning Tracks", value: roadmapTiers.length }]} />
+      <PageHeader title="Hands-On Labs" description="Practice AWS identity reviews, deployment boundaries, private storage, CloudTrail investigations, and agent runtime controls." stats={[{ label: "Labs", value: labsData.length || "--" }, { label: "Curriculum tiers", value: roadmapTiers.length }]} actions={<a href="#aws-defender-path">Start the AWS Defender path →</a>} />
 
       <section id="lab-library" className="kube-library-container kube-library-section">
         <div className="kube-library-toolbar">
@@ -171,7 +172,7 @@ function LabsList() {
             <input
               id="lab-search"
               type="search"
-              placeholder="Search Agentic, Threat, Zero-Trust…"
+              placeholder="Search IAM, S3, CloudTrail, Agentic…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -244,6 +245,8 @@ function LabsList() {
           </p>
         </div>
       </section>
+
+      <AwsDefenderPath labs={labsData} />
 
       {/* Cloud AI Security Engineer Career & Learning Roadmap */}
       <section className="dev-roadmap kube-library-container my-10" aria-label="Cloud AI Security Engineer Roadmap">
@@ -476,6 +479,10 @@ function LabDetail() {
   const [outlineOpen, setOutlineOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!window.location.hash) window.scrollTo(0, 0);
+  }, [labId]);
 
   const toggleFocusMode = () => {
     setFocusMode((prev) => {

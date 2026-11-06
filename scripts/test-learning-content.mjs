@@ -8,10 +8,17 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const blogs = JSON.parse(read('priv/data/blog.json')).blogs;
 const labs = JSON.parse(read('priv/data/labs.json')).labs;
-assert.equal(blogs.length, 6);
-assert.equal(labs.length, 6);
+assert(blogs.length >= 10 && labs.length >= 10);
+const awsPath = ['AWS-Credential-Review', 'AWS-Role-Delegation', 'AWS-S3-Plan-Review', 'AWS-CloudTrail-Triage'];
+for (const [index, id] of awsPath.entries()) {
+  const lab = labs.find(item => item.id === id);
+  assert(lab && blogs.some(item => item.id === id), `${id}: missing paired guide/lab`);
+  assert.equal(lab.track, 'AWS Defender');
+  assert.equal(lab.track_order, index + 1);
+  assert.equal(lab.guide, `/blog/${id}`);
+}
 const routes = new Set(['/', '/blog', '/labs', ...blogs.map(p => `/blog/${p.id}`), ...labs.map(p => `/labs/${p.id}`)].map(p => p.toLowerCase()));
-const primaryHosts = new Set(['modelcontextprotocol.io', 'blog.modelcontextprotocol.io', 'genai.owasp.org', 'cheatsheetseries.owasp.org', 'spiffe.io', 'slsa.dev', 'docs.sigstore.dev', 'docs.github.com', 'kubernetes.io', 'nmap.org', 'www.first.org', 'www.cisa.gov']);
+const primaryHosts = new Set(['docs.aws.amazon.com', 'developer.hashicorp.com', 'modelcontextprotocol.io', 'blog.modelcontextprotocol.io', 'genai.owasp.org', 'cheatsheetseries.owasp.org', 'spiffe.io', 'slsa.dev', 'docs.sigstore.dev', 'docs.github.com', 'kubernetes.io', 'nmap.org', 'www.first.org', 'www.cisa.gov']);
 for (const [name, items, field] of [['blog', blogs, 'file'], ['labs', labs, 'path']]) {
   for (const mirror of ['public/data', 'priv/static/data']) {
     assert.equal(read(`${mirror}/${name}.json`), read(`priv/data/${name}.json`), `${name}: index drift`);
@@ -42,6 +49,7 @@ for (const [name, items, field] of [['blog', blogs, 'file'], ['labs', labs, 'pat
       }
       assert(/clean\s*up/i.test(prose), `${item.id}: missing cleanup`);
       const source = read(`public${item.exercise}`);
+      for (const download of item.downloads || []) assert.equal(read(`public${download}`), read(`priv/static${download}`), `${item.id}: download mirror drift`);
       assert.equal(source, read(`priv/static${item.exercise}`), `${item.id}: exercise mirror drift`);
       const result = spawnSync('python3', [path.join(root, 'public', item.exercise)], { cwd: root, encoding: 'utf8', timeout: 60000, env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' } });
       assert.equal(result.status, 0, `${item.id}: exercise failed\n${result.stdout}\n${result.stderr}`);
@@ -52,4 +60,4 @@ for (const [name, items, field] of [['blog', blogs, 'file'], ['labs', labs, 'pat
     }
   }
 }
-console.log('Validated six reviewed field notes, six labs, primary references, internal links, mirrors, and executable exercise downloads.');
+console.log(`Validated ${blogs.length} reviewed field notes, ${labs.length} labs, the ordered AWS Defender path, primary references, internal links, mirrors, and executable exercise downloads.`);

@@ -12,6 +12,10 @@ defmodule CloudSecurityCornerWeb.LabsController do
       query: query,
       category: category,
       categories: CloudSecurityCorner.Content.lab_categories(),
+      aws_defender:
+        CloudSecurityCorner.Content.labs()
+        |> Enum.filter(&(&1["track"] == "AWS Defender"))
+        |> Enum.sort_by(& &1["track_order"]),
       labs: labs
     )
   end

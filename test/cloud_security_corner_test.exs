@@ -6,12 +6,29 @@ defmodule CloudSecurityCornerTest do
 
   test "loads the existing tools, labs, and blog catalogue" do
     assert Content.tool_count() > 30_000
-    assert length(Content.labs()) == 6
-    assert length(Content.blog_posts()) == 6
+    assert length(Content.labs()) >= 10
+    assert length(Content.blog_posts()) >= 10
     assert Content.aws_best_practice_count() >= 1000
     assert Content.azure_best_practice_count() >= 1000
     assert Content.gcp_best_practice_count() >= 1000
     assert Content.kspm_best_practice_count() >= 1000
+  end
+
+  test "renders the AWS Defender path, paired field notes, and downloadable examples" do
+    conn = Plug.Test.conn(:get, "/labs") |> Endpoint.call(Endpoint.init([]))
+    assert conn.status == 200
+    assert conn.resp_body =~ "AWS Defender Practice Path"
+
+    for id <-
+          ~w(AWS-Credential-Review AWS-Role-Delegation AWS-S3-Plan-Review AWS-CloudTrail-Triage) do
+      assert {:ok, lab, html} = Content.lab(id)
+      assert lab["track"] == "AWS Defender"
+      assert html =~ "Expected evidence"
+      assert {:ok, _, note} = Content.blog_post(id)
+      assert note =~ "Reviewed: 2026-11-07"
+      assert conn.resp_body =~ "/labs/#{id}"
+      assert conn.resp_body =~ "/blog/#{id}"
+    end
   end
 
   test "renders aws architectures route and loads best practices" do

@@ -1,4 +1,42 @@
 export const labDiagrams = {
+  'aws-credential-review.md': [
+    `flowchart LR
+      iam@{ icon: "logos:iam-access", label: "AWS IAM: authorized credential report", h: 64 }
+      iam -->|CSV and generation timestamp| local[Local evidence review]
+      local -->|Unknown evidence remains unknown| queue[Review queue with credential owner]
+      queue --> change[Approved replacement or retirement decision]
+      change --> verify[Fresh evidence and dependency verification]
+      note[Local exercise makes no AWS calls] -.-> local`
+  ],
+  'aws-role-delegation.md': [
+    `flowchart LR
+      deployer[Deployment principal and its policies] -->|PassRole and deployment action review| function
+      function@{ icon: "logos:aws-serverless-lambda", label: "Approved Lambda function", h: 64 }
+      trust@{ icon: "logos:iam-access", label: "Execution role: service trust", h: 64 }
+      function -->|Lambda assumes role| trust
+      trust --> permissions[Runtime identity policies and applicable guardrails]
+      permissions --> data[Approved application resources]
+      code[Existing function code-update access is a separate path] -.-> function`
+  ],
+  'aws-s3-plan-review.md': [
+    `flowchart LR
+      source[Terraform source and locked provider] -->|Plan; no apply| plan[Saved plan JSON]
+      plan --> gate[Review known bucket-bound control values]
+      gate --> approved[Separate deployment approval and saved-plan apply]
+      approved --> bucket
+      bucket@{ icon: "logos:aws-storage-s3", label: "Private application bucket", h: 64 }
+      bucket --> verify[Authorized API inspection and access tests]
+      note[Offline tests validate the contract, not a deployed AWS account] -.-> gate`
+  ],
+  'aws-cloudtrail-triage.md': [
+    `flowchart LR
+      logs@{ icon: "logos:aws-logging-cloudtrail", label: "Owned CloudTrail evidence", h: 64 }
+      logs -->|Raw exports and collection scope| parser[Normalize and deduplicate events]
+      parser --> queue[Review leads with request outcome and session identity]
+      queue --> analyst[Corroborate change record and current resource state]
+      analyst --> response[Owned response decision and evidence retention]
+      gap[Missing data-event coverage limits object-access conclusions] -.-> analyst`
+  ],
   'NMAP-Practical-Labs.md': [
     `flowchart LR
       scope[Confirm approved hosts and scan window] --> discovery[Host discovery with recorded scope]
