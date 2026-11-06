@@ -32,9 +32,11 @@ python3 public/labs/examples/aws-cloudtrail-triage.py --sample > cloudtrail.json
 python3 public/labs/examples/aws-cloudtrail-triage.py --events cloudtrail.json
 ```
 
-Expect eight tests to pass. The synthetic queue contains a Lambda role binding and a denied logging-stop request. The latter must say `failed_request`, not that logging stopped. An event without an error says `no_error_recorded`; the checker does not infer downstream completion or attacker intent.
+Expect nine tests to pass. The synthetic queue contains a Lambda role binding and a denied logging-stop request. The latter must say `failed_request`, not that logging stopped. An event without an error says `no_error_recorded`; the checker does not infer downstream completion or attacker intent.
 
 The parser extracts only a small evidence summary. It preserves the acting session's key identifier separately from the issuer role. Two events with the same issuer role need not come from the same session. Identical event IDs deduplicate; conflicting records with one event ID produce an input error for review.
+
+[Lambda's CloudTrail event names](https://docs.aws.amazon.com/lambda/latest/dg/logging-using-cloudtrail.html) can include a date and version suffix, such as `CreateFunction20150331`. The exercise recognizes the documented creation/configuration/code-update names and retains both the original event name and its mapped API action.
 
 ## Exercise 2: collect a bounded, authorized export
 
@@ -66,6 +68,6 @@ The [CLI lookup operation](https://docs.aws.amazon.com/cli/latest/reference/clou
 
 ## Expected evidence and cleanup
 
-Keep eight passing tests, a sorted queue, one verified failed request, and a coverage note listing account, region, time window, event types, and gaps. An empty queue means the supplied records did not match these few rules. It does not establish a clean account.
+Keep nine passing tests, a sorted queue, one verified failed request, and a coverage note listing account, region, time window, event types, and gaps. An empty queue means the supplied records did not match these few rules. It does not establish a clean account.
 
 The script performs no API calls, containment, or credential changes. Remove temporary exports according to your evidence-retention process; retain authorized incident evidence where required. Finish the path with the [CloudTrail field note](/blog/AWS-CloudTrail-Triage) and revisit [credential ownership](/labs/AWS-Credential-Review) when a suspicious identity needs review.

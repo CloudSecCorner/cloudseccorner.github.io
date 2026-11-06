@@ -19,6 +19,13 @@ SIGNALS = {
     ("s3.amazonaws.com", "PutBucketPolicy"): "BUCKET_POLICY_CHANGED",
     ("lambda.amazonaws.com", "CreateFunction"): "FUNCTION_ROLE_BINDING",
     ("lambda.amazonaws.com", "UpdateFunctionConfiguration"): "FUNCTION_CONFIGURATION_CHANGED",
+    ("lambda.amazonaws.com", "UpdateFunctionCode"): "FUNCTION_CODE_CHANGED",
+}
+
+LAMBDA_NAMES = {
+    "CreateFunction20150331": "CreateFunction",
+    "UpdateFunctionConfiguration20150331v2": "UpdateFunctionConfiguration",
+    "UpdateFunctionCode20150331v2": "UpdateFunctionCode",
 }
 
 
@@ -56,7 +63,9 @@ def triage(events):
         if not isinstance(identity, dict):
             raise ValueError("Invalid userIdentity")
         reasons = []
-        signal = SIGNALS.get((event["eventSource"], event["eventName"]))
+        action = (LAMBDA_NAMES.get(event["eventName"], event["eventName"])
+                  if event["eventSource"] == "lambda.amazonaws.com" else event["eventName"])
+        signal = SIGNALS.get((event["eventSource"], action))
         if signal:
             reasons.append(signal)
         if identity.get("type") == "Root":
@@ -65,7 +74,7 @@ def triage(events):
             continue
         queue.append({
             "event_id": event_id, "time": date.isoformat(), "region": event.get("awsRegion", "unknown"),
-            "action": event["eventName"], "reasons": reasons,
+            "action": event["eventName"], "api_action": action, "reasons": reasons,
             "outcome": "failed_request" if event.get("errorCode") or event.get("errorMessage") else "no_error_recorded",
             "principal": identity.get("arn") or identity.get("principalId", "unknown"),
             "session_key_id": identity.get("accessKeyId"),
@@ -81,7 +90,7 @@ def sample():
                     "arn": "arn:aws:iam::111122223333:role/csc-deployer"}}}
     return {"Records": [
         {"eventID": "lab-event-1", "eventTime": "2026-11-07T09:00:00Z", "eventSource": "lambda.amazonaws.com",
-         "eventName": "CreateFunction", "awsRegion": "us-east-1", "userIdentity": identity,
+         "eventName": "CreateFunction20150331", "awsRegion": "us-east-1", "userIdentity": identity,
          "requestParameters": {"role": "arn:aws:iam::111122223333:role/csc-runtime"}},
         {"eventID": "lab-event-2", "eventTime": "2026-11-07T09:01:00Z", "eventSource": "cloudtrail.amazonaws.com",
          "eventName": "StopLogging", "awsRegion": "us-east-1", "userIdentity": identity,
@@ -110,6 +119,16 @@ class TriageTests(unittest.TestCase):
     def test_duplicate_event_ids_are_deduplicated(self):
         records = unpack(sample())
         self.assertEqual(len(triage(records + records)), 2)
+
+    def test_versioned_lambda_names_preserve_raw_evidence(self):
+        for name, api in LAMBDA_NAMES.items():
+            event = copy.deepcopy(sample()["Records"][0])
+            event["eventName"] = name
+            row = triage([event])[0]
+            self.assertEqual(row["action"], name)
+            self.assertEqual(row["api_action"], api)
+            event["eventSource"] = "unrelated.amazonaws.com"
+            self.assertEqual(triage([event]), [])
 
     def test_conflicting_duplicate_is_rejected(self):
         records = unpack(sample())

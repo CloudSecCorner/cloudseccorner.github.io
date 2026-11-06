@@ -82,7 +82,7 @@ All six labs were reviewed on **2026-11-06**. Downloadable Python exercises incl
 
 ### AWS Defender Practice Path
 
-[Start the four-lab path](https://cloudsecuritycorner.com/labs#aws-defender-path): credential evidence review, deployment role boundaries, private S3 plan review, and CloudTrail evidence triage. Each lab has a paired field note, a downloadable Python exercise with eight regression cases, original AWS-logo diagrams, expected evidence, and cleanup. The S3 lab also includes a Terraform configuration.
+[Start the four-lab path](https://cloudsecuritycorner.com/labs#aws-defender-path): credential evidence review, deployment role boundaries, private S3 plan review, and CloudTrail evidence triage. Each lab has a paired field note, a downloadable Python exercise with regression cases, original AWS-logo diagrams, expected evidence, and cleanup. The S3 lab also includes a Terraform configuration.
 
 The exercises run locally without an AWS account. Optional workflows show how to export authorized AWS evidence and review a real Terraform plan; they do not promise hosted cloud sandboxes or automatically apply changes. The material was independently written around topics highlighted in [Cybr's public IAM](https://cybr.com/hands-on-labs/iam/), [S3](https://cybr.com/hands-on-labs/s3/), and [detection](https://cybr.com/hands-on-labs/aws-monitoring-detection/) catalogs, with technical references to AWS and HashiCorp documentation.
 

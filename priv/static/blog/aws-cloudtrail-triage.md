@@ -12,7 +12,9 @@ An empty result can reflect a collection gap, a query limit, or the absence of o
 
 ## Preserve distinctions during normalization
 
-The [CloudTrail triage lab](/labs/AWS-CloudTrail-Triage) handles both trail `Records` and nested CLI lookup exports. Its eight tests cover failed requests, duplicate events, changed role bindings, root activity, and sessions that share a role without sharing a key identifier.
+The [CloudTrail triage lab](/labs/AWS-CloudTrail-Triage) handles both trail `Records` and nested CLI lookup exports. Its regression tests cover failed requests, duplicate events, changed role bindings, root activity, and sessions that share a role without sharing a key identifier.
+
+Account for [Lambda's versioned event names](https://docs.aws.amazon.com/lambda/latest/dg/logging-using-cloudtrail.html), such as `CreateFunction20150331`. Preserve the raw name as evidence while mapping documented variants to the API action used by your review rules.
 
 The review queue uses `failed_request` when the event records an error. Otherwise it says `no_error_recorded`, leaving downstream completion and intent for corroboration. The [event-record reference](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html) explains why fields must be interpreted in the context of the service and event.
 
