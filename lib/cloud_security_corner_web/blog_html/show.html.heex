@@ -2,6 +2,7 @@
   <div class="mx-auto max-w-screen-xl px-4 py-9 sm:px-6 lg:px-10 lg:py-16">
     <a class="kube-article-back" href="/blog/"><span aria-hidden="true">←</span> Back to the blog</a>
     <p class="kube-label">{@post["category"] || "Field notes"} · {@post["date"]}</p>
+    <p :if={@post["updated"]}>Reviewed <time datetime={@post["updated"]}>{@post["updated"]}</time></p>
     <h1>{@post["title"]}</h1>
     <p class="kube-dek">{@post["excerpt"]}</p>
     <div class="kube-article-byline"><span>By <strong>{@post["author"] || "CloudSecCorner"}</strong></span><span aria-hidden="true">•</span><span>Practical field guide</span></div>

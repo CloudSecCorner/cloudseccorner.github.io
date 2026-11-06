@@ -70,6 +70,9 @@ const blogs = JSON.parse(await readFile(await publicFile("data/blog.json"), "utf
 for (const content of [...labs.map((lab) => lab.path), ...blogs.map((post) => post.file)]) {
   await publicFile(content);
 }
+for (const lab of labs) {
+  if (lab.exercise) await publicFile(lab.exercise);
+}
 await publicFile(".nojekyll");
 assert.equal(await readFile(path.join(output, "CNAME"), "utf8"), "cloudsecuritycorner.com\n");
 console.log(`Combined export verified: ${routes.length} Elixir routes, React entry and lazy assets, 404, diagrams, downloads, and logos.`);

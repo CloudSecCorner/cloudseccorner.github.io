@@ -14,7 +14,7 @@ Add the tool to `src/data/security-entries.js`. Include a clear title, official 
 ## Add a lab
 
 1. Add the lab markdown file under `public/labs/`.
-2. Add its metadata to `public/data/labs.json`.
+2. Add its metadata to `priv/data/labs.json`, including an ISO `updated` date and an exercise download when applicable.
 3. Use a unique URL-safe `id` and make `path` point to the markdown file.
 
 See `public/labs/CONTRIBUTING.md` for the lab format and content guidelines.
@@ -22,7 +22,11 @@ See `public/labs/CONTRIBUTING.md` for the lab format and content guidelines.
 ## Add a blog post
 
 1. Add the markdown file under `public/blog/`.
-2. Add its metadata to `public/data/blog.json`.
+2. Add its metadata to `priv/data/blog.json`, including its original publication date and an ISO `updated` review date.
 3. Use a unique URL-safe `id` and make `file` point to the markdown file.
 
 Do not include credentials, private data, or instructions that require readers to use systems they do not own or have permission to test.
+
+Keep dated technical claims linked to primary documentation. Distinguish runnable local exercises from production integration references and document expected failure cases, prerequisites, evidence, and cleanup. Put downloadable exercises in `public/labs/examples/`.
+
+Run `npm run content:sync` after editing indexes or learning content. The build copies the canonical `public/blog` and `public/labs` content into `priv/static` and mirrors the canonical indexes for both React and Elixir. Regenerate diagrams with `node scripts/generate-lab-diagrams.mjs`, then run `npm run check`. Python 3.10+ and OpenSSL are required for the learning checks; Nmap enables the real loopback scan test.

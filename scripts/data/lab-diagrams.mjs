@@ -156,57 +156,44 @@ export const labDiagrams = {
   ],
   'ethical-hacker-easy-way.md': [
     `flowchart LR
-      scope[Written scope and isolated lab targets] --> discovery[Reconnaissance and service inventory]
-      discovery --> validation[Validate exposures with bounded tests]
-      validation --> exploit[Demonstrate impact only inside approved scope]
-      exploit --> evidence[Record evidence and affected prerequisites]
-      evidence --> remediate[Remove dangerous mounts and tighten permissions]
-      remediate --> retest[Retest exploit path and normal application behavior]`,
+      scope[Define owned environment and workload contract] --> inventory[Inventory identities, images, mounts and network paths]
+      inventory --> fixtures[Create baseline and prohibited configuration fixtures]
+      fixtures --> review[Run local policy regressions without executing workloads]
+      review --> evidence[Record expected and observed failure reasons]
+      evidence --> admission[Extend to disposable cluster admission tests]
+      admission --> runtime[Verify allowed and denied runtime behavior]`,
     `flowchart TB
-      tester[Authorized tester in isolated lab] -->|Approved test request| ingress[Lab application endpoint]
-      pod@{ icon: "logos:container-docker", label: "Intentionally vulnerable web container", h: 64 }
-      ingress --> pod
-      pod --> prerequisite{Host Docker socket exposed and usable?}
-      prerequisite -->|No| blocked[This breakout path is unavailable]
-      prerequisite -->|Yes| daemon[Host Docker daemon API]
-      daemon -->|If daemon permissions allow| host[Host filesystem exposure]
-      host --> scope[Impact limited by actual host and cloud permissions]
-      defense[Remove socket mount; restrict daemon access and container privileges] -.-> prerequisite`,
+      developer[Developer changes workload configuration] --> fixture[Local Pod configuration fixture]
+      fixture --> checks[Selected privilege, mount, identity and image checks]
+      checks -->|Prohibited fields| reject[Reject fixture; no workload starts]
+      checks -->|Selected checks pass| candidate[Candidate for environment verification]
+      runtime@{ icon: "logos:container-docker", label: "Actual runtime remains a separate test", h: 64 }
+      candidate -.-> runtime
+      note[Local checks do not implement full Kubernetes admission] -.-> checks`,
     `sequenceDiagram
       autonumber
-      actor Tester as Authorized lab tester
-      participant Container as Vulnerable lab container
-      participant Daemon as Host Docker daemon
-      participant Host as Lab host
-      participant Metadata as Optional metadata mock
-      Tester->>Container: Run approved exposure checks
-      Container->>Container: Inspect mount and socket access prerequisites
-      alt Socket absent or daemon denies access
-        Container-->>Tester: Breakout path blocked
-      else Socket is exposed to a privileged daemon
-        Container->>Daemon: Approved lab request demonstrating host mount exposure
-        Daemon->>Host: Expose filesystem according to daemon permissions
-        Host-->>Tester: Record scoped impact evidence
-        opt Metadata mock reachable and credentials exposed
-          Host->>Metadata: Test configured mock endpoint
-          Metadata-->>Host: Mock response, not proof of full cloud compromise
-        end
-      end`,
+      actor Tester as Lab author
+      participant Fixture as In-memory Pod specification
+      participant Policy as Local selected-field checker
+      Tester->>Fixture: Add privileged flag, host PID and hostPath
+      Fixture->>Policy: Review main and init container configuration
+      Policy-->>Tester: Report privilege, host namespace and mount violations
+      Tester->>Fixture: Restore baseline and add unsafe init container
+      Fixture->>Policy: Review all configured container types
+      Policy-->>Tester: Reject init-container bypass
+      Note over Tester,Policy: Fixtures are never submitted to a runtime`,
     `sequenceDiagram
-      participant Tester as Authorized L2 lab tester
-      participant Gateway as Lab bridge gateway
-      participant Client as Lab client
-      Note over Tester,Client: Requires a shared L2 segment, not a universal cloud VPC behavior
-      Tester->>Gateway: Test ARP update claiming client IP
-      Tester->>Client: Test ARP update claiming gateway IP
-      alt Peers accept updates and forwarding is configured
-        Client->>Tester: Traffic sent to substituted MAC
-        Tester->>Gateway: Forward packet to maintain connectivity
-        Note over Tester,Client: Properly validated TLS still protects application payloads
-      else Bindings or L2 protections reject changes
-        Client->>Gateway: Continue using legitimate neighbor binding
-      end
-      Note over Tester,Gateway: Restore neighbor state and verify connectivity after the test`
+      participant Tester as Authorized cluster owner
+      participant API as Kubernetes API and admission
+      participant CNI as Supporting network implementation
+      participant Pod as Disposable workload
+      Tester->>API: Submit configured admission test in owned namespace
+      API-->>Tester: Reject prohibited Pod or admit approved Pod
+      Tester->>CNI: Configure and verify supported network policy
+      Tester->>Pod: Test allowed destination and denied destination
+      Pod-->>Tester: Record actual reachability and identity evidence
+      Note over Tester,Pod: Production extension, not executed by local fixture
+      Tester->>API: Remove owned test workloads and namespace`
   ],
   'threat-modeling.md': [
     `flowchart LR

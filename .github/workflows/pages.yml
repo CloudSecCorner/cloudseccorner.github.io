@@ -37,6 +37,9 @@ jobs:
       - name: Install React dependencies
         run: npm ci
 
+      - name: Install lab test prerequisites
+        run: sudo apt-get update && sudo apt-get install -y nmap openssl
+
       - name: Cache dependencies
         uses: actions/cache@v5
         with:

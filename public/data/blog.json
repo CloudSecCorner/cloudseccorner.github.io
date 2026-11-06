@@ -1,0 +1,70 @@
+{
+  "blogs": [
+    {
+      "id": "MCP-Security-2026",
+      "title": "MCP Security After the July 2026 Protocol Revision",
+      "date": "November 6, 2026",
+      "updated": "2026-11-06",
+      "excerpt": "Review protocol migration, token audiences, tool authorization, downstream identity, and negative integration tests.",
+      "author": "CloudSecCorner",
+      "file": "/blog/mcp-security-2026.md",
+      "category": "Agentic Security",
+      "tags": ["MCP", "Workload Identity", "Agent Security"]
+    },
+    {
+      "id": "RAG-Data-Boundaries-2026",
+      "title": "RAG and Agent Memory: Keep Data Permissions Through the Whole Pipeline",
+      "date": "November 6, 2026",
+      "updated": "2026-11-06",
+      "excerpt": "Trace tenant permissions, document ACLs, cache isolation, revocation, and deletion across retrieval and agent memory.",
+      "author": "CloudSecCorner",
+      "file": "/blog/rag-data-boundaries-2026.md",
+      "category": "Data Security",
+      "tags": ["RAG", "Data Security", "Threat Modeling"]
+    },
+    {
+      "id": "Trusted-Artifacts-SLSA-2026",
+      "title": "Trusted Artifacts: SLSA 1.2, Attestations, and Deployment Identity",
+      "date": "November 6, 2026",
+      "updated": "2026-11-06",
+      "excerpt": "Separate artifact integrity, signer identity, build provenance, SBOM review, and cloud deployment authorization.",
+      "author": "CloudSecCorner",
+      "file": "/blog/trusted-artifacts-slsa-2026.md",
+      "category": "Supply Chain Security",
+      "tags": ["SLSA", "Supply Chain", "Workload Identity"]
+    },
+    {
+      "id": "Kubernetes-Agent-Isolation-2026",
+      "title": "Kubernetes Isolation for Agent and Build Workloads",
+      "date": "November 6, 2026",
+      "updated": "2026-11-06",
+      "excerpt": "Connect Pod admission, credential scope, filesystem limits, network enforcement, and task lifecycle tests.",
+      "author": "CloudSecCorner",
+      "file": "/blog/kubernetes-agent-isolation-2026.md",
+      "category": "Cloud Native Security",
+      "tags": ["Kubernetes", "Agent Security", "Workload Identity"]
+    },
+    {
+      "id": "Exposure-Prioritization-2026",
+      "title": "Prioritize Exposure with KEV, EPSS, and Asset Evidence",
+      "date": "November 6, 2026",
+      "updated": "2026-11-06",
+      "excerpt": "Use exploitation evidence and prediction alongside applicability, reachable attack paths, owners, and verified fixes.",
+      "author": "CloudSecCorner",
+      "file": "/blog/exposure-prioritization-2026.md",
+      "category": "Exposure Management",
+      "tags": ["KEV", "EPSS", "Network Security"]
+    },
+    {
+      "id": "Safeguarding-the-AI-Frontier",
+      "title": "Safeguarding the AI Frontier: Evaluate Agent Runtime Controls with Evidence",
+      "date": "April 23, 2025",
+      "updated": "2026-11-06",
+      "excerpt": "A revised, vendor-neutral evaluation guide for tool boundaries, action-bound approvals, tenant isolation, and runtime evidence.",
+      "author": "Sangam Biradar",
+      "file": "/blog/Straikers-Revouktionary-solution.md",
+      "category": "Agentic Security",
+      "tags": ["Agent Security", "Threat Modeling", "Data Security"]
+    }
+  ]
+}

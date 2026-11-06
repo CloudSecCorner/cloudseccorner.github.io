@@ -5,102 +5,48 @@ import MarkdownRenderer from "./MarkdownRenderer";
 import OpenGraph from "./OpenGraph";
 import PageHeader from './PageHeader';
 import { REPOSITORY_URL, SITE_URL } from "../utils/socialSharing";
+import labIndex from "../../priv/data/labs.json";
 
 // Fallback data in case the fetch fails
-const fallbackLabsData = [
-  {
-    id: "Agentic-Cloud-Security",
-    title: "Agentic Cloud Security Essentials",
-    description: "Architect enterprise-grade defenses for autonomous AI agents: Zero-Trust identity brokering, L7 MCP tool firewalls, Firecracker microVM sandboxing, eBPF telemetry, and NIST/ISO/OWASP governance.",
-    category: "Agentic Security",
-    path: "/labs/agentic-cloud-security.md",
-    contributors: ["Sangam Biradar"],
-    tags: ["Cloud AI Security", "Agentic Defense", "Zero Trust", "Firecracker", "MCP Firewall", "eBPF", "NIST AI RMF"]
-  },
-  {
-    id: "Zero-Trust-Architecture",
-    title: "Zero-Trust Architecture",
-    description: "Architect continuous workload identity with SPIFFE/SPIRE, dynamic Envoy mTLS with Secret Discovery Service (SDS), and OPA fine-grained authorization.",
-    category: "Security Engineering",
-    path: "/labs/Zero-Trust-Architecture.md",
-    contributors: ["Sangam Biradar"],
-    tags: ["Zero Trust", "SPIFFE", "SPIRE", "Envoy", "mTLS", "OPA Rego", "NIST SP 800-207"]
-  },
-  {
-    id: "Threat-Modeling",
-    title: "Threat Modeling Practical Guide",
-    description: "Architect enterprise threat models using STRIDE, DFD trust boundaries, DREAD/CVSS v4 scoring, and automated Threat-Model-as-Code with pytm.",
-    category: "Security Engineering",
-    path: "/labs/threat-modeling.md",
-    contributors: ["Sangam Biradar"],
-    tags: ["Threat Modeling", "STRIDE", "DREAD", "pytm", "MITRE ATLAS", "Policy as Code"]
-  },
-  {
-    id: "Security-Engineering-Fundamentals",
-    title: "Security Engineering Fundamentals",
-    description: "Master systems security engineering: hardware KMS envelope encryption (AES-256-GCM), SLSA Level 3 supply chain defense, and SBOM attestation.",
-    category: "Security Engineering",
-    path: "/labs/Security-Engineering-Fundamentals.md",
-    contributors: ["Sangam Biradar"],
-    tags: ["Security Engineering", "Envelope Encryption", "KMS", "SLSA", "SBOM", "Cosign", "Supply Chain"]
-  },
-  {
-    id: "Nmap-Practical-Labs",
-    title: "NMAP Practical Auditing Labs",
-    description: "Enterprise network reconnaissance: TCP packet bitmasks, stealth SYN and evasion scans, custom Lua NSE scripting, and kernel firewall defenses.",
-    category: "Network Security",
-    path: "/labs/NMAP-Practical-Labs.md",
-    contributors: ["Sangam Biradar"],
-    tags: ["Network Security", "Reconnaissance", "Nmap", "NSE Lua", "Packet Analysis", "iptables"]
-  },
-  {
-    id: "ethical-hacker-easy-way",
-    title: "Ethical Hacker Practical Lab",
-    description: "Hands-on cloud & container penetration testing: OSINT automation, Docker socket escape, hostPID breakout, and OPA admission defense.",
-    category: "Ethical Hacking",
-    path: "/labs/ethical-hacker-easy-way.md",
-    contributors: ["Sangam Biradar"],
-    tags: ["Ethical Hacking", "Penetration Testing", "Container Security", "Docker Breakout", "Kubernetes", "OPA Rego"]
-  }
-];
+const fallbackLabsData = labIndex.labs;
 
 // 4-Tier Cloud AI Security Engineer Career & Learning Roadmap
 const roadmapTiers = [
   {
     id: "tier-1",
     tier: "Tier 1",
-    level: "Foundations & Perimeter",
-    role: "Cloud Security Associate / SRE",
-    badge: "L1 - L2 Track",
-    title: "Cloud & Perimeter Security Fundamentals",
-    summary: "Establish uncompromising infrastructure baseline security. Master identity boundary definitions, network microsegmentation, IMDSv2 protections, and automated CIS Benchmark audit scanning.",
+    level: "Inventory & Evidence",
+    role: "Developers and platform engineers",
+    badge: "Foundation",
+    title: "Measure Exposure and Verify the Fix",
+    summary: "Build an evidence loop: identify the owned target, observe a reachable service, make a controlled change, and verify the result from the same vantage point.",
     topics: [
-      "AWS IAM & Azure Entra ID Least-Privilege Policies",
-      "Network ACLs, Security Groups & Transit Gateway Egress",
-      "Instance Metadata Service Hardening (IMDSv2 Hop Limit = 1)",
-      "Automated CSPM Auditing against CIS Cloud Benchmarks"
+      "Bounded loopback TCP connect scans",
+      "Before/after XML evidence and port-state interpretation",
+      "Asset applicability, KEV, EPSS, and remediation ownership",
+      "Artifact identity and digest verification"
     ],
-    regulations: ["CIS Cloud Benchmarks v3.0", "NIST SP 800-53 (AC/SC)"],
-    primaryLabId: "Security-Engineering-Fundamentals",
-    primaryLabTitle: "Security Engineering Fundamentals",
-    secondaryLabId: "Nmap-Practical-Labs",
-    secondaryLabTitle: "NMAP Practical Auditing Labs"
+    regulations: ["Nmap reference guide", "CISA KEV", "FIRST EPSS"],
+    primaryLabId: "Nmap-Practical-Labs",
+    primaryLabTitle: "NMAP Practical Auditing Labs",
+    secondaryLabId: "Security-Engineering-Fundamentals",
+    secondaryLabTitle: "Security Engineering Fundamentals"
   },
   {
     id: "tier-2",
     tier: "Tier 2",
     level: "Architecture & Verification",
-    role: "Senior Cloud Security Engineer",
-    badge: "L3 Track",
+    role: "Application and identity engineers",
+    badge: "Integration",
     title: "Zero-Trust Architecture & Threat Modeling",
-    summary: "Shift from implicit perimeter trust to continuous attestation. Perform rigorous STRIDE and LINDDUN threat modeling on microservices, enforce mTLS, and implement Open Policy Agent (OPA) guardrails.",
+    summary: "Separate workload authentication from request permission, then map retrieval, cache, and data-lifecycle boundaries to owners and executable regression tests.",
     topics: [
-      "BeyondCorp Zero-Trust Principles (Never Trust, Always Verify)",
-      "STRIDE & Data Flow Threat Modeling for Distributed Systems",
-      "SPIFFE/SPIRE Workload Attestation & Mutual TLS",
-      "Policy-as-Code Guardrails with Open Policy Agent (Rego)"
+      "Real local mutual TLS and certificate URI identities",
+      "Route authorization and forged-header rejection",
+      "RAG tenant and document permissions",
+      "Cache policy revisions, deletion, and threat ownership"
     ],
-    regulations: ["NIST SP 800-207 (Zero Trust)", "SOC 2 Type II Security Criteria"],
+    regulations: ["SPIFFE / SPIRE", "OWASP threat modeling", "OWASP GenAI data security v2"],
     primaryLabId: "Zero-Trust-Architecture",
     primaryLabTitle: "Zero-Trust Architecture",
     secondaryLabId: "Threat-Modeling",
@@ -109,41 +55,40 @@ const roadmapTiers = [
   {
     id: "tier-3",
     tier: "Tier 3",
-    level: "Agentic Systems & Isolation",
-    role: "Staff Cloud AI Security Engineer (Netflix/Cloudflare Caliber)",
-    badge: "L4 Core Specialist",
-    title: "Agentic AI Defense, MCP Firewalls & MicroVMs",
-    summary: "Architect enterprise defense envelopes for autonomous LLM agents. Implement L7 Model Guardrail Gateways, MCP Tool-Call Firewalls, Down-Scoped JIT Token Brokering, and Firecracker/eBPF runtime isolation.",
+    level: "Agent Authorization",
+    role: "Agent and tool developers",
+    badge: "Action boundaries",
+    title: "MCP Integration and Action-Bound Approvals",
+    summary: "Validate tool schemas, tenant scope, resource limits, approvals, expiry, and replay before side effects. Connect local checks to the versioned MCP authorization contract.",
     topics: [
-      "Multi-Tier LLM Gateway & Layer 7 Semantic Inspection",
-      "Model Context Protocol (MCP) Tool-Call Firewall & OPA Validation",
-      "Down-Scoped Just-In-Time (JIT) IAM Token Brokering",
-      "Hardware MicroVM Sandboxing (AWS Firecracker / gVisor runsc)",
-      "eBPF Tetragon Kernel Syscall Interception (Blocking IMDS SSRF)"
+      "Tool allowlists, argument schemas, and tenant boundaries",
+      "Action-bound approvals and atomic replay prevention",
+      "MCP token audiences, scopes, and downstream identity",
+      "Task budgets, cancellation, and correlated decision evidence"
     ],
-    regulations: ["OWASP Top 10 for LLMs / GenAI", "MITRE ATLAS Matrix (AML.T0051, AML.T0054)"],
+    regulations: ["MCP 2026-07-28", "OWASP Agentic Applications 2026"],
     primaryLabId: "Agentic-Cloud-Security",
-    primaryLabTitle: "Agentic Cloud Security & Defense",
+    primaryLabTitle: "Agentic Cloud Security Essentials",
     secondaryLabId: null,
     secondaryLabTitle: null
   },
   {
     id: "tier-4",
     tier: "Tier 4",
-    level: "Red Teaming & Governance",
-    role: "Principal AI Security Architect / Governance Lead",
-    badge: "L5 / Principal Track",
-    title: "Autonomous Red Teaming & Global AI Compliance",
-    summary: "Execute continuous adversarial evaluation and cryptographic governance. Automate prompt injection jailbreaks, deploy RAG canary tripwires, enforce WORM audit trails, and ensure multi-framework regulatory alignment.",
+    level: "Release & Runtime Verification",
+    role: "Release and runtime owners",
+    badge: "Deployment review",
+    title: "Trusted Artifacts and Container Boundaries",
+    summary: "Verify exact artifact bytes, signer and builder policy, source revision, and selected container controls. Extend local fixtures to real CI, admission, and network enforcement tests.",
     topics: [
-      "Automated Prompt Injection & Jailbreak Fuzzing (PyRIT / Garak)",
-      "Canary Token Tripwires for RAG Retrieval & Prompt Leakage",
-      "Tamper-Evident WORM Audit Ledgers & OpenTelemetry GenAI Spans",
-      "Cross-Framework Compliance (NIST AI RMF 1.0 & ISO/IEC 42001)"
+      "Signature, digest, approved-builder, and source checks",
+      "SLSA provenance, attestations, and constrained CI identity",
+      "Privilege, host access, credentials, and init-container policy",
+      "Admission results and actual allowed/denied runtime behavior"
     ],
-    regulations: ["NIST AI RMF 1.0 (GOVERN, MAP, MEASURE, MANAGE)", "ISO/IEC 42001:2023", "EU AI Act High-Risk Controls"],
-    primaryLabId: "Agentic-Cloud-Security",
-    primaryLabTitle: "Agentic Security & Compliance",
+    regulations: ["SLSA v1.2", "Sigstore verification", "Kubernetes Pod Security Standards"],
+    primaryLabId: "Security-Engineering-Fundamentals",
+    primaryLabTitle: "Security Engineering Fundamentals",
     secondaryLabId: "ethical-hacker-easy-way",
     secondaryLabTitle: "Ethical Hacker Practical Lab"
   }
@@ -277,6 +222,7 @@ function LabsList() {
                   <Link to={`/labs/${lab.id}`}>{lab.title}</Link>
                 </h3>
                 <p>{lab.description}</p>
+                {lab.updated && <p className="text-xs text-slate-500 dark:text-slate-400">{lab.duration} · Reviewed <time dateTime={lab.updated}>{lab.updated}</time></p>}
                 <div className="kube-lab-card-tags" aria-label="Topics">
                   {lab.tags && lab.tags.slice(0, 3).map((tag) => (
                     <span key={tag}>{tag}</span>
@@ -313,7 +259,7 @@ function LabsList() {
                 Cloud AI Security Engineer Curriculum
               </h2>
               <p className="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl">
-                A progressive 4-tier competency roadmap bridging cloud infrastructure defense, zero-trust attestation, autonomous agent sandboxing, and global AI governance.
+                Four connected tracks: exposure evidence, workload identity and data boundaries, agent authorization, and release/runtime verification.
               </p>
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
@@ -386,7 +332,7 @@ function LabsList() {
                 {/* Regulatory Tags */}
                 <div className="flex flex-wrap lg:flex-col lg:items-end gap-1.5 shrink-0">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    Frameworks &amp; Regulations
+                    Reference guidance
                   </span>
                   {activeTier.regulations.map((reg) => (
                     <span
@@ -407,7 +353,7 @@ function LabsList() {
                     <svg className="w-4 h-4 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    Production Defense Competencies
+                    Practice goals
                   </h4>
                   <ul className="space-y-2.5">
                     {activeTier.topics.map((topic, i) => (
@@ -1237,9 +1183,9 @@ function LabDetail() {
               </span>
               <div>
                 <strong className="text-slate-900 dark:text-white font-bold block mb-0.5">
-                  Production Safety Protocol
+                  Exercise scope
                 </strong>
-                Review all commands, security policies, and network sweeps before executing. Never run intrusive scans or automated agents against production VPCs without verified written authorization and change-window approval.
+                These exercises use local fixtures and owned loopback services. Each lab identifies its prerequisites, expected results, cleanup, and the additional verification needed for a real deployment.
               </div>
             </div>
 

@@ -1,150 +1,38 @@
 <header class="kube-library-header">
   <div class="kube-library-container">
-    <p class="kube-label">The CloudSecCorner workshop</p>
-    <h1>Less theory.<br /><span>More hands-on understanding.</span></h1>
-    <p class="kube-library-intro">Explore cloud and agentic security at your own pace. Start with AI agent security, learn zero-trust architectures, and practice practical defense engineering.</p>
-    <div class="kube-library-links"><a href="/labs/agentic-cloud-security/">Start with Agent Security →</a><a href="/blog/">Looking for field notes? Read the guides →</a></div>
+    <p class="kube-label">Reviewed 2026-11-06</p>
+    <h1>Hands-on Security Labs</h1>
+    <p class="kube-library-intro">Executable exercises for agent authorization, workload identity, RAG data boundaries, artifact verification, container policy, and network exposure. Each lab includes prerequisites, failure cases, evidence, and cleanup.</p>
+    <div class="kube-library-links"><a href="/blog/">Read the current field notes →</a></div>
   </div>
 </header>
 
-<section class="kube-library-container my-10" aria-label="Cloud AI Security Engineer Roadmap">
-  <div class="rounded-2xl border border-slate-200/90 dark:border-[#26203b] bg-white dark:bg-[#13111c] p-6 sm:p-8 shadow-sm">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-100 dark:border-[#26203b]">
-      <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-950/40 border border-purple-200/60 dark:border-purple-800/40 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider mb-3">
-          <span class="w-2 h-2 rounded-full bg-purple-600 dark:bg-purple-400 animate-pulse"></span>
-          Industry Roadmap • Cloudflare &amp; Netflix Engineering Caliber
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-          Cloud AI Security Engineer Curriculum
-        </h2>
-        <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl">
-          A progressive 4-tier competency roadmap bridging cloud infrastructure defense, zero-trust attestation, autonomous agent sandboxing, and global AI governance.
-        </p>
-      </div>
-      <div class="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
-        <span class="inline-block w-2.5 h-2.5 rounded-full bg-purple-600 dark:bg-purple-400"></span>
-        <span>4-Stage Competency Track</span>
-      </div>
+<section id="lab-library" class="kube-library-container kube-library-section">
+  <form action="/labs" method="get" class="flex flex-wrap gap-4 items-end mb-8">
+    <div class="flex-1">
+      <label for="lab-query" class="block mb-2 font-semibold">Search labs</label>
+      <input id="lab-query" type="search" name="q" value={@query} class="w-full rounded-lg border p-3 text-slate-900" />
     </div>
-
-    <!-- 4 Tiers Overview Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-      <!-- Tier 1 -->
-      <div class="rounded-xl border border-slate-200 dark:border-[#26203b] bg-slate-50/60 dark:bg-[#1a1726]/40 p-4 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between gap-1 mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Tier 1</span>
-            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">L1 - L2 Track</span>
-          </div>
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Foundations &amp; Perimeter</h3>
-          <p class="text-xs text-slate-600 dark:text-slate-400 mb-3">AWS IAM, network ACLs, IMDSv2 hardening, and CIS Benchmark audits.</p>
-          <div class="flex flex-wrap gap-1 mb-3">
-            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/40">CIS v3.0</span>
-            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/40">NIST SP 800-53</span>
-          </div>
-        </div>
-        <a href="/labs/Security-Engineering-Fundamentals/" class="inline-flex items-center text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline mt-2">
-          Start Tier 1 Lab →
-        </a>
-      </div>
-
-      <!-- Tier 2 -->
-      <div class="rounded-xl border border-slate-200 dark:border-[#26203b] bg-slate-50/60 dark:bg-[#1a1726]/40 p-4 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between gap-1 mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Tier 2</span>
-            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">L3 Track</span>
-          </div>
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Zero-Trust &amp; Threat Modeling</h3>
-          <p class="text-xs text-slate-600 dark:text-slate-400 mb-3">BeyondCorp principles, STRIDE modeling, SPIFFE attestation, and OPA Rego guardrails.</p>
-          <div class="flex flex-wrap gap-1 mb-3">
-            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/40">NIST 800-207</span>
-            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/40">SOC 2 Type II</span>
-          </div>
-        </div>
-        <a href="/labs/Zero-Trust-Architecture/" class="inline-flex items-center text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline mt-2">
-          Start Tier 2 Lab →
-        </a>
-      </div>
-
-      <!-- Tier 3 (Flagship) -->
-      <div class="rounded-xl border-2 border-purple-600 dark:border-purple-500 bg-purple-50/50 dark:bg-purple-950/20 p-4 flex flex-col justify-between shadow-xs">
-        <div>
-          <div class="flex items-center justify-between gap-1 mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-purple-700 dark:text-purple-300">Tier 3 • Flagship</span>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-600 text-white">L4 Core</span>
-          </div>
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Agentic Defense &amp; MCP Firewalls</h3>
-          <p class="text-xs text-slate-600 dark:text-slate-300 mb-3">L7 Model Gateway, MCP tool firewalls, JIT token brokering, Firecracker microVMs, and eBPF syscall intercept.</p>
-          <div class="flex flex-wrap gap-1 mb-3">
-            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-700">OWASP GenAI</span>
-            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-700">MITRE ATLAS</span>
-          </div>
-        </div>
-        <a href="/labs/agentic-cloud-security/" class="inline-flex items-center text-xs font-bold text-purple-700 dark:text-purple-300 hover:underline mt-2">
-          Launch Flagship Lab →
-        </a>
-      </div>
-
-      <!-- Tier 4 -->
-      <div class="rounded-xl border border-slate-200 dark:border-[#26203b] bg-slate-50/60 dark:bg-[#1a1726]/40 p-4 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between gap-1 mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Tier 4</span>
-            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">L5 / Principal</span>
-          </div>
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Red Teaming &amp; AI Governance</h3>
-          <p class="text-xs text-slate-600 dark:text-slate-400 mb-3">Automated prompt injection fuzzing (PyRIT), canary tripwires, WORM audit trails, and ISO 42001 conformity.</p>
-          <div class="flex flex-wrap gap-1 mb-3">
-            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/40">NIST AI RMF</span>
-            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/40">ISO 42001</span>
-          </div>
-        </div>
-        <a href="/labs/agentic-cloud-security/" class="inline-flex items-center text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline mt-2">
-          Start Governance Track →
-        </a>
-      </div>
+    <div>
+      <label for="lab-category" class="block mb-2 font-semibold">Category</label>
+      <select id="lab-category" name="category" class="rounded-lg border p-3 text-slate-900">
+        <option value="">All categories</option>
+        <option :for={category <- @categories} value={category} selected={@category == category}>{category}</option>
+      </select>
     </div>
-  </div>
-</section>
-
-<section id="lab-library" class="kube-library-container kube-library-section" data-content-library>
-  <div class="kube-library-toolbar">
-    <div><p class="kube-label">Practice &amp; explore</p><h2>Choose your next lab</h2></div>
-    <div class="kube-library-search" hidden data-library-controls>
-      <label for="lab-search">Find a lab</label>
-      <input id="lab-search" type="search" placeholder="Search Agentic, Zero Trust, Threat Modeling…" data-library-search />
-    </div>
-  </div>
-  <p class="kube-library-count" role="status" data-library-count>{length(@labs)} labs to explore</p>
+    <button type="submit" class="kube-button">Search</button>
+  </form>
+  <p class="kube-library-count">{length(@labs)} labs to explore</p>
+  <p :if={@labs == []}>No labs match that search. Try another query.</p>
   <div class="kube-labs-grid">
-    <%= for lab <- @labs do %>
-      <article class="kube-lab-card" data-library-card>
-        <div class="kube-lab-card-top"><span class="kube-lab-number" aria-hidden="true">&gt;_</span><p class="kube-label"><%= lab["category"] %></p></div>
-        <h3><a href={"/labs/#{lab["id"]}/"}><%= lab["title"] %></a></h3>
-        <p><%= lab["description"] %></p>
-        <div class="kube-lab-card-tags" aria-label="Topics">
-          <%= for tag <- Enum.take(lab["tags"] || [], 3) do %>
-            <span><%= tag %></span>
-          <% end %>
-        </div>
-      </article>
-    <% end %>
-  </div>
-  <p class="kube-library-empty" hidden data-library-empty>No labs matched that filter. Try a broader search term.</p>
-</section>
-
-<section class="kube-contribute">
-  <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-10 lg:py-14">
-    <div class="kube-contribute-copy">
-      <p class="kube-label">Grow the workshop</p>
-      <h2>Have a hands-on security exercise to share?</h2>
-      <p>Submit a reproducible scenario, improve a step-by-step guide, or contribute labs for newly discovered agentic vulnerabilities.</p>
-    </div>
-    <div class="kube-contribute-actions">
-      <a class="kube-contribute-primary" href="https://github.com/CloudSecCorner/cloudseccorner.github.io/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">Contribution guide ↗</a>
-      <a href="https://github.com/CloudSecCorner/cloudseccorner.github.io/issues/new?labels=new-lab" target="_blank" rel="noreferrer">Propose a lab ↗</a>
-    </div>
+    <article :for={lab <- @labs} class="kube-lab-card">
+      <p class="kube-label">{lab["category"]}</p>
+      <h2><a href={"/labs/" <> lab["id"]}>{lab["title"]}</a></h2>
+      <p>{lab["description"]}</p>
+      <p>{lab["duration"]} · Reviewed <time datetime={lab["updated"]}>{lab["updated"]}</time></p>
+      <div class="kube-lab-card-tags"><span :for={tag <- Enum.take(lab["tags"] || [], 3)}>{tag}</span></div>
+      <a class="kube-lab-card-link" href={"/labs/" <> lab["id"]}>Open lab →</a>
+      <a :if={lab["exercise"]} class="kube-lab-card-link" href={lab["exercise"]} download>Download exercise</a>
+    </article>
   </div>
 </section>

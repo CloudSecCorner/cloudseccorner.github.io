@@ -46,49 +46,79 @@
       "id": "Agentic-Cloud-Security",
       "title": "Agentic Cloud Security Essentials",
       "category": "Agentic Security",
-      "description": "Tool-call schemas, scoped credentials, external policy decisions, and audit evidence.",
+      "description": "Tool authorization, action-bound approvals, replay rejection, and MCP integration.",
       "route": "/labs/Agentic-Cloud-Security"
     },
     {
       "id": "Zero-Trust-Architecture",
       "title": "Zero-Trust Architecture",
       "category": "Security Engineering",
-      "description": "SPIFFE workload identity, mutual TLS, and request authorization.",
+      "description": "Real local mutual TLS, certificate URI identities, and request authorization.",
       "route": "/labs/Zero-Trust-Architecture"
     },
     {
       "id": "Threat-Modeling",
       "title": "Threat Modeling Practical Guide",
       "category": "Security Engineering",
-      "description": "Trust boundaries, data flows, threat scenarios, and verifiable mitigations.",
+      "description": "RAG tenant permissions, cache isolation, deletion, and owned regression tests.",
       "route": "/labs/Threat-Modeling"
     },
     {
       "id": "Security-Engineering-Fundamentals",
       "title": "Security Engineering Fundamentals",
       "category": "Security Engineering",
-      "description": "Envelope encryption, artifact signatures, and build provenance.",
+      "description": "Artifact signatures, digest checks, builder identity, and source policy.",
       "route": "/labs/Security-Engineering-Fundamentals"
     },
     {
       "id": "Nmap-Practical-Labs",
       "title": "NMAP Practical Auditing Labs",
       "category": "Network Security",
-      "description": "Port states, service discovery, and repeatable network audits.",
+      "description": "Bounded loopback scans, port-state evidence, and before/after verification.",
       "route": "/labs/Nmap-Practical-Labs"
     },
     {
       "id": "ethical-hacker-easy-way",
       "title": "Ethical Hacker Practical Lab",
       "category": "Ethical Hacking",
-      "description": "Isolated container testing and hardening validation.",
+      "description": "Container privilege, host access, credential, and init-container policy checks.",
       "route": "/labs/ethical-hacker-easy-way"
     }
   ],
   "blogs": [
     {
+      "id": "MCP-Security-2026",
+      "title": "MCP Security After the July 2026 Protocol Revision",
+      "category": "Agentic Security",
+      "route": "/blog/MCP-Security-2026"
+    },
+    {
+      "id": "RAG-Data-Boundaries-2026",
+      "title": "RAG and Agent Memory: Keep Data Permissions Through the Whole Pipeline",
+      "category": "Data Security",
+      "route": "/blog/RAG-Data-Boundaries-2026"
+    },
+    {
+      "id": "Trusted-Artifacts-SLSA-2026",
+      "title": "Trusted Artifacts: SLSA 1.2, Attestations, and Deployment Identity",
+      "category": "Supply Chain Security",
+      "route": "/blog/Trusted-Artifacts-SLSA-2026"
+    },
+    {
+      "id": "Kubernetes-Agent-Isolation-2026",
+      "title": "Kubernetes Isolation for Agent and Build Workloads",
+      "category": "Cloud Native Security",
+      "route": "/blog/Kubernetes-Agent-Isolation-2026"
+    },
+    {
+      "id": "Exposure-Prioritization-2026",
+      "title": "Prioritize Exposure with KEV, EPSS, and Asset Evidence",
+      "category": "Exposure Management",
+      "route": "/blog/Exposure-Prioritization-2026"
+    },
+    {
       "id": "Safeguarding-the-AI-Frontier",
-      "title": "Safeguarding the AI Frontier: An In-Depth Analysis of Straiker's Revolutionary Security Solutions",
+      "title": "Safeguarding the AI Frontier: Evaluate Agent Runtime Controls with Evidence",
       "category": "Agentic Security",
       "route": "/blog/Safeguarding-the-AI-Frontier"
     }

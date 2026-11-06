@@ -32,12 +32,12 @@ const providers = definitions.map(provider => {
   };
 });
 const labSummaries = {
-  'Agentic-Cloud-Security': 'Tool-call schemas, scoped credentials, external policy decisions, and audit evidence.',
-  'Zero-Trust-Architecture': 'SPIFFE workload identity, mutual TLS, and request authorization.',
-  'Threat-Modeling': 'Trust boundaries, data flows, threat scenarios, and verifiable mitigations.',
-  'Security-Engineering-Fundamentals': 'Envelope encryption, artifact signatures, and build provenance.',
-  'Nmap-Practical-Labs': 'Port states, service discovery, and repeatable network audits.',
-  'ethical-hacker-easy-way': 'Isolated container testing and hardening validation.'
+  'Agentic-Cloud-Security': 'Tool authorization, action-bound approvals, replay rejection, and MCP integration.',
+  'Zero-Trust-Architecture': 'Real local mutual TLS, certificate URI identities, and request authorization.',
+  'Threat-Modeling': 'RAG tenant permissions, cache isolation, deletion, and owned regression tests.',
+  'Security-Engineering-Fundamentals': 'Artifact signatures, digest checks, builder identity, and source policy.',
+  'Nmap-Practical-Labs': 'Bounded loopback scans, port-state evidence, and before/after verification.',
+  'ethical-hacker-easy-way': 'Container privilege, host access, credential, and init-container policy checks.'
 };
 const labs = readJson('public/data/labs.json').labs.map(lab => ({
   id: lab.id, title: lab.title, category: lab.category,

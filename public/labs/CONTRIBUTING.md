@@ -27,6 +27,8 @@ We use a standard structure for our lab markdown files to ensure consistency:
 ```markdown
 # Lab Title
 
+Reviewed: YYYY-MM-DD · Level · Estimated duration
+
 ## Overview
 Brief description of what this lab is about
 
@@ -34,20 +36,20 @@ Brief description of what this lab is about
 - Clear, bullet-pointed goals
 - What this lab aims to achieve
 
-## Methodology
-How the work is being approached
+## Prerequisites and scope
+Required versions, owned test targets, and the boundary the exercise verifies
 
-## Current Progress
-Status updates and findings
+## Exercises
+Runnable commands and downloadable source, positive cases, and negative cases
 
-## How to Contribute
-Specific ways others can contribute to this lab
+## Expected evidence
+Acceptance criteria and what the local exercise does not establish
 
-## Current Contributors
-List of contributors with their roles
+## Cleanup
+Remove only resources created by the exercise
 
 ## Resources
-Links to related resources
+Dated primary references and related field notes
 ```
 
 ### Creating a New Lab
@@ -57,7 +59,9 @@ To propose a new lab:
 1. **Create a new markdown file** in the `/public/labs/` directory
 2. **Name it descriptively** (e.g., `semantic-search-evaluation.md`)
 3. **Follow the standard structure** above
-4. **Submit a pull request** with a description of why this lab is valuable
+4. **Add metadata** to `priv/data/labs.json`; put exercise sources in `public/labs/examples/`
+5. **Synchronize and validate** with `npm run content:sync`, `node scripts/generate-lab-diagrams.mjs`, and `npm run check`
+6. **Submit a pull request** with a description of why this lab is valuable and which commands you actually ran
 
 ## Code Contributions
 

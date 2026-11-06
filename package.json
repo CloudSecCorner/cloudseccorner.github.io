@@ -6,11 +6,12 @@
   "homepage": "https://cloudsecuritycorner.com/",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-reference-architectures.mjs && node scripts/generate-lab-diagrams.mjs && node scripts/generate-home-catalog.mjs && vite build",
+    "build": "node scripts/sync-learning-content.mjs && node scripts/generate-reference-architectures.mjs && node scripts/generate-lab-diagrams.mjs && node scripts/generate-home-catalog.mjs && vite build",
     "diagrams:update": "node scripts/update-diagrams.mjs && node scripts/generate-reference-architectures.mjs && node scripts/generate-lab-diagrams.mjs && node scripts/generate-home-catalog.mjs",
     "generate:references": "node scripts/generate-reference-architectures.mjs",
+    "content:sync": "node scripts/sync-learning-content.mjs",
     "preview": "vite preview",
-    "test": "node scripts/validate-content.mjs && node scripts/validate-diagrams.mjs && node scripts/test-developer-architectures.mjs && node scripts/test-landing-page.mjs && node scripts/test-shared-ui.mjs",
+    "test": "node scripts/validate-content.mjs && node scripts/validate-diagrams.mjs && node scripts/test-developer-architectures.mjs && node scripts/test-landing-page.mjs && node scripts/test-shared-ui.mjs && node scripts/test-learning-content.mjs",
     "check": "npm test && npm run build",
     "test:export": "node scripts/validate-site-export.mjs"
   },

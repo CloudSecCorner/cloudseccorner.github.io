@@ -22,6 +22,7 @@
         <div class="kube-blog-card-top"><p class="kube-label">{post["category"] || "Field notes"}</p><time>{post["date"]}</time></div>
         <h3><a href={"/blog/#{post["id"]}/"}>{post["title"]}</a></h3>
         <p>{post["excerpt"]}</p>
+        <p :if={post["updated"]}>Reviewed <time datetime={post["updated"]}>{post["updated"]}</time></p>
         <div class="kube-blog-card-tags">
           <%= for tag <- Enum.take(post["tags"] || [], 3) do %>
             <span>{tag}</span>

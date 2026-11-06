@@ -60,6 +60,7 @@ jobs:
       - run: mix local.hex --force && mix local.rebar --force
       - run: mix deps.get
       - run: npm ci
+      - run: sudo apt-get update && sudo apt-get install -y nmap openssl
       - run: npm run check
       - run: mix compile --warnings-as-errors
       - run: mix test

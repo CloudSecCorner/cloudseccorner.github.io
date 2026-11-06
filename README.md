@@ -60,20 +60,27 @@ The interactive catalog on **[cloudsecuritycorner.com/azure-architectures](https
 
 | # | Learning Path | Core Domain & Focus | Level | Guide |
 | :-: | :--- | :--- | :-: | :-: |
-| 01 | **Agentic Cloud Security Essentials** | AI Agent Threat Modeling, MCP Security & Sandboxing | `Intermediate` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/Agentic-Cloud-Security) |
-| 02 | **Zero Trust Architecture** | Explicit Verification, Least Privilege & Micro-segmentation | `Foundational` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/Zero-Trust-Architecture) |
-| 03 | **Threat Modeling with STRIDE** | Distributed Systems Risk Analysis & Mitigation Playbooks | `Intermediate` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/Threat-Modeling) |
-| 04 | **Security Engineering Fundamentals** | Cryptography, Defense-in-Depth & Resilient Architecture | `Foundational` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/Security-Engineering-Fundamentals) |
-| 05 | **Ethical Hacker Practical Way** | Reconnaissance, Surface Mapping & Exploitation Basics | `Hands-on` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/ethical-hacker-easy-way) |
-| 06 | **Nmap Practical Defense** | Port Auditing, Service Fingerprinting & NSE Automation | `Hands-on` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/Nmap-Practical-Labs) |
+| 01 | **Agentic Cloud Security Essentials** | Tool Authorization, Tenant Scope, Approval Binding & Replay Tests | `Intermediate` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/Agentic-Cloud-Security) |
+| 02 | **Zero Trust Architecture** | Real Local mTLS, Certificate Identity & Request Permission | `Intermediate` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/Zero-Trust-Architecture) |
+| 03 | **Threat Modeling with STRIDE** | RAG Tenant Boundaries, Cache Isolation & Deletion Regressions | `Intermediate` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/Threat-Modeling) |
+| 04 | **Security Engineering Fundamentals** | Signatures, Artifact Digests, Builder Identity & Source Policy | `Intermediate` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/Security-Engineering-Fundamentals) |
+| 05 | **Ethical Hacker Practical Lab** | Container Privilege, Host Access, Tokens & Init-container Checks | `Intermediate` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/ethical-hacker-easy-way) |
+| 06 | **Nmap Practical Auditing** | Bounded Loopback Scan, Before/After Evidence & Exposure Triage | `Foundational` | [Start Lab ↗](https://cloudsecuritycorner.com/labs/Nmap-Practical-Labs) |
+
+All six labs were reviewed on **2026-11-06**. Downloadable Python exercises include positive and negative tests; Python 3.10+, OpenSSL, and Nmap are used as documented in each lab. Production integration diagrams are explicitly distinguished from the local exercises.
 
 ## 📝 Research & Field Notes
 
-- 📰 [**Safeguarding the AI Frontier: An In-Depth Analysis of Straiker's Revolutionary Security Solutions**](https://cloudsecuritycorner.com/blog/Safeguarding-the-AI-Frontier) — Exploring runtime guardrails, prompt injection barriers, and autonomous agent monitoring.
+- [MCP Security After the July 2026 Protocol Revision](https://cloudsecuritycorner.com/blog/MCP-Security-2026)
+- [RAG and Agent Memory: Data Permission Boundaries](https://cloudsecuritycorner.com/blog/RAG-Data-Boundaries-2026)
+- [Trusted Artifacts: SLSA 1.2, Attestations, and Deployment Identity](https://cloudsecuritycorner.com/blog/Trusted-Artifacts-SLSA-2026)
+- [Kubernetes Isolation for Agent and Build Workloads](https://cloudsecuritycorner.com/blog/Kubernetes-Agent-Isolation-2026)
+- [Prioritize Exposure with KEV, EPSS, and Asset Evidence](https://cloudsecuritycorner.com/blog/Exposure-Prioritization-2026)
+- [Safeguarding the AI Frontier: Evaluate Agent Runtime Controls with Evidence](https://cloudsecuritycorner.com/blog/Safeguarding-the-AI-Frontier) — Revised from the original 2025 article; the existing URL is preserved.
 
 ## 💻 Run Locally
 
-Prerequisites: Elixir/OTP (`>= 1.16`), Node.js 22, npm, and Python 3.
+Prerequisites: Elixir/OTP (`>= 1.16`), Node.js 22, npm, Python 3.10+, and OpenSSL 1.1.1+. Install Nmap to run the complete network-audit lab.
 
 Elixir/Phoenix renders each route, its metadata, and a readable HTML fallback.
 React supplies the shared developer UI, architecture controls, and interactive

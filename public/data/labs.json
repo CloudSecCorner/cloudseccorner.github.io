@@ -3,56 +3,74 @@
     {
       "id": "Agentic-Cloud-Security",
       "title": "Agentic Cloud Security Essentials",
-      "description": "Architect enterprise-grade defenses for autonomous AI agents: Zero-Trust identity brokering, L7 MCP tool firewalls, Firecracker microVM sandboxing, eBPF telemetry, and NIST/ISO/OWASP governance.",
+      "description": "Run tool-policy, tenant, schema, budget, approval-binding, expiry, and replay tests; connect the results to current MCP authorization guidance.",
+      "updated": "2026-11-06",
+      "duration": "45–60 minutes",
+      "exercise": "/labs/examples/agent-boundary.py",
       "category": "Agentic Security",
       "path": "/labs/agentic-cloud-security.md",
       "contributors": ["Sangam Biradar"],
-      "tags": ["Cloud AI Security", "Agentic Defense", "Zero Trust", "Firecracker", "MCP Firewall", "eBPF", "NIST AI RMF"]
+      "tags": ["Agent Security", "MCP", "Tool Authorization", "Approvals", "Python"]
     },
     {
       "id": "Zero-Trust-Architecture",
       "title": "Zero-Trust Architecture",
-      "description": "Architect continuous workload identity with SPIFFE/SPIRE, dynamic Envoy mTLS with Secret Discovery Service (SDS), and OPA fine-grained authorization.",
+      "description": "Establish real local mTLS, authorize certificate URI identities, and reject missing certificates, spoofed headers, and unauthorized routes.",
+      "updated": "2026-11-06",
+      "duration": "45–60 minutes",
+      "exercise": "/labs/examples/workload-identity.py",
       "category": "Security Engineering",
       "path": "/labs/Zero-Trust-Architecture.md",
       "contributors": ["Sangam Biradar"],
-      "tags": ["Zero Trust", "SPIFFE", "SPIRE", "Envoy", "mTLS", "OPA Rego", "NIST SP 800-207"]
+      "tags": ["Zero Trust", "Workload Identity", "SPIFFE", "mTLS", "OpenSSL"]
     },
     {
       "id": "Threat-Modeling",
       "title": "Threat Modeling Practical Guide",
-      "description": "Architect enterprise threat models using STRIDE, DFD trust boundaries, DREAD/CVSS v4 scoring, and automated Threat-Model-as-Code with pytm.",
+      "description": "Turn RAG tenant boundaries, document permissions, cache isolation, and deletion scenarios into an owned threat register and regression tests.",
+      "updated": "2026-11-06",
+      "duration": "60 minutes",
+      "exercise": "/labs/examples/threat-regression.py",
       "category": "Security Engineering",
       "path": "/labs/threat-modeling.md",
       "contributors": ["Sangam Biradar"],
-      "tags": ["Threat Modeling", "STRIDE", "DREAD", "pytm", "MITRE ATLAS", "Policy as Code"]
+      "tags": ["Threat Modeling", "STRIDE", "RAG", "Data Security", "Regression Testing"]
     },
     {
       "id": "Security-Engineering-Fundamentals",
       "title": "Security Engineering Fundamentals",
-      "description": "Master systems security engineering: hardware KMS envelope encryption (AES-256-GCM), SLSA Level 3 supply chain defense, and SBOM attestation.",
+      "description": "Verify real local signatures, artifact digests, approved builders, and source revisions; distinguish SBOMs and provenance from deployment permission.",
+      "updated": "2026-11-06",
+      "duration": "45–60 minutes",
+      "exercise": "/labs/examples/artifact-integrity.py",
       "category": "Security Engineering",
       "path": "/labs/Security-Engineering-Fundamentals.md",
       "contributors": ["Sangam Biradar"],
-      "tags": ["Security Engineering", "Envelope Encryption", "KMS", "SLSA", "SBOM", "Cosign", "Supply Chain"]
+      "tags": ["Security Engineering", "SLSA", "Provenance", "OpenSSL", "Supply Chain"]
     },
     {
       "id": "Nmap-Practical-Labs",
       "title": "NMAP Practical Auditing Labs",
-      "description": "Enterprise network reconnaissance: TCP packet bitmasks, stealth SYN and evasion scans, custom Lua NSE scripting, and kernel firewall defenses.",
+      "description": "Run a bounded Nmap audit against an owned loopback listener, compare before/after port states, and separate exposure from vulnerability evidence.",
+      "updated": "2026-11-06",
+      "duration": "30–45 minutes",
+      "exercise": "/labs/examples/exposure-audit.py",
       "category": "Network Security",
       "path": "/labs/NMAP-Practical-Labs.md",
       "contributors": ["Sangam Biradar"],
-      "tags": ["Network Security", "Reconnaissance", "Nmap", "NSE Lua", "Packet Analysis", "iptables"]
+      "tags": ["Network Security", "Nmap", "Exposure Management", "KEV", "EPSS"]
     },
     {
       "id": "ethical-hacker-easy-way",
       "title": "Ethical Hacker Practical Lab",
-      "description": "Hands-on cloud & container penetration testing: OSINT automation, Docker socket escape, hostPID breakout, and OPA admission defense.",
+      "description": "Catch privileged containers, host access, ambient tokens, mutable images, and unsafe init containers in local policy regressions before deployment.",
+      "updated": "2026-11-06",
+      "duration": "45–60 minutes",
+      "exercise": "/labs/examples/workload-hardening.py",
       "category": "Ethical Hacking",
       "path": "/labs/ethical-hacker-easy-way.md",
       "contributors": ["Sangam Biradar"],
-      "tags": ["Ethical Hacking", "Penetration Testing", "Container Security", "Docker Breakout", "Kubernetes", "OPA Rego"]
+      "tags": ["Ethical Hacking", "Container Security", "Kubernetes", "Admission", "Policy Testing"]
     }
   ]
 }

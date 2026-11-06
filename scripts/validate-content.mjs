@@ -95,4 +95,4 @@ for (const tool of securityEntries) {
   }
 }
 
-console.log(`Validated ${blogs.length} blog post, ${labs.length} labs, ${awsPractices.length} AWS architectures, ${azurePractices.length} Azure architectures, ${gcpPractices.length} GCP architectures, ${kspmPractices.length} KSPM architectures (Pele, OPA & K8s Manifests), and ${securityEntries.length} tools.`);
+console.log(`Validated ${blogs.length} blog posts, ${labs.length} labs, ${awsPractices.length} AWS architectures, ${azurePractices.length} Azure architectures, ${gcpPractices.length} GCP architectures, ${kspmPractices.length} KSPM architectures (Pele, OPA & K8s Manifests), and ${securityEntries.length} tools.`);

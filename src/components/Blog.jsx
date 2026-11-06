@@ -4,19 +4,9 @@ import MarkdownRenderer from "./MarkdownRenderer";
 import OpenGraph from "./OpenGraph";
 import PageHeader from './PageHeader';
 import { getAbsoluteUrl, REPOSITORY_URL, SITE_URL } from "../utils/socialSharing";
+import blogIndex from "../../priv/data/blog.json";
 
-const fallbackBlogData = [
-  {
-    id: "Safeguarding-the-AI-Frontier",
-    title: "Safeguarding the AI Frontier: An In-Depth Analysis of Enterprise Agentic Security",
-    date: "April 23, 2025",
-    excerpt: "An architectural deep-dive into protecting autonomous AI agents, toolchain isolation, and credential boundaries in production cloud systems.",
-    author: "Sangam Biradar",
-    file: "/blog/Straikers-Revouktionary-solution.md",
-    category: "Agentic Security",
-    tags: ["Agent Security", "AI Cloud", "Threat Modeling"]
-  }
-];
+const fallbackBlogData = blogIndex.blogs;
 
 // Blog List View (Matching KubeDaily Blog Library)
 export function BlogList({ blogPosts }) {
@@ -32,7 +22,7 @@ export function BlogList({ blogPosts }) {
     <>
       <PageHeader title="Field Notes" description="Engineering guides on application security, workload identity, agent boundaries, and cloud systems." stats={[{ label: "Published Guides", value: blogPosts.length }, { label: "Topics", value: allTags.length - 1 }]} >
             <div className="kube-blog-topics" aria-label="Popular topics">
-              {allTags.slice(0, 6).map((tag) => (
+              {allTags.map((tag) => (
                 <button
                   key={tag}
                   onClick={() => setSelectedTag(tag)}
@@ -70,6 +60,7 @@ export function BlogList({ blogPosts }) {
                 <Link to={`/blog/${post.id}`}>{post.title}</Link>
               </h2>
               <p>{post.excerpt}</p>
+              {post.updated && <p className="text-xs text-slate-500 dark:text-slate-400">Reviewed <time dateTime={post.updated}>{post.updated}</time></p>}
               <div className="kube-blog-card-tags">
                 {post.tags && post.tags.map((tag) => (
                   <span key={tag}>{tag}</span>
@@ -178,6 +169,7 @@ function BlogPostDetail({ post }) {
               <dt>Published</dt>
               <dd>{post.date}</dd>
             </div>
+            {post.updated && <div><dt>Reviewed</dt><dd><time dateTime={post.updated}>{post.updated}</time></dd></div>}
           </dl>
           <div className="kube-article-tags">
             {post.tags && post.tags.map((tag) => <span key={tag}>{tag}</span>)}
