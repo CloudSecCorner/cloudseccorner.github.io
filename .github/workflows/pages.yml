@@ -28,6 +28,15 @@ jobs:
           elixir-version: '1.18.4'
           otp-version: '27.3.4.1'
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install React dependencies
+        run: npm ci
+
       - name: Cache dependencies
         uses: actions/cache@v5
         with:
@@ -53,8 +62,14 @@ jobs:
       - name: Sync tool database & README tables
         run: python3 scripts/update_readme_tools.py
 
-      - name: Export static site via Elixir
-        run: mix site.export --output _site
+      - name: Test and build React UI
+        run: npm run check
+
+      - name: Export Elixir pages with React UI
+        run: mix site.export --require-frontend --output _site
+
+      - name: Verify combined Pages artifact
+        run: npm run test:export
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

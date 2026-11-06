@@ -5,9 +5,9 @@ defmodule CloudSecurityCornerWeb.KspmArchitectureController do
     count = CloudSecurityCorner.Content.kspm_best_practice_count()
 
     render(conn, :index,
-      page_title: "1,000+ KSPM Kubernetes Architecture Best Practices (Pele, OPA & Manifests)",
+      page_title: "Kubernetes Developer Architectures & Deployment Patterns",
       description:
-        "Comprehensive collection of 1,000+ Kubernetes Security Posture Management (KSPM) and pod-level defense blueprints rendered with Obsidian Pele, paired with production OPA Rego admission policies and hardened Kubernetes manifests.",
+        "Kubernetes workload integration and deployment diagrams with service logos, manifests, admission policy, and verification steps for developers.",
       count: count
     )
   end

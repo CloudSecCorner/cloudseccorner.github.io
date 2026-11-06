@@ -5,9 +5,9 @@ defmodule CloudSecurityCornerWeb.AwsArchitectureController do
     count = CloudSecurityCorner.Content.aws_best_practice_count()
 
     render(conn, :index,
-      page_title: "1,000+ AWS Best Practices Architecture Diagrams (Pele, OPA & Terraform)",
+      page_title: "AWS Developer Architectures & Integration Patterns",
       description:
-        "Comprehensive collection of 1,000+ AWS Well-Architected and CIS Benchmark architecture diagrams rendered with Obsidian Pele, paired with production OPA Rego policies and Terraform IaC.",
+        "AWS application integration and deployment diagrams with service logos, Terraform examples, OPA policy, and verification steps for developers.",
       count: count
     )
   end

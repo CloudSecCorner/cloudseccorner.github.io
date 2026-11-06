@@ -5,9 +5,9 @@ defmodule CloudSecurityCornerWeb.AzureArchitectureController do
     count = CloudSecurityCorner.Content.azure_best_practice_count()
 
     render(conn, :index,
-      page_title: "1,000+ Azure Best Practices Architecture Diagrams (Pele, OPA & Terraform)",
+      page_title: "Azure Developer Architectures & Integration Patterns",
       description:
-        "Comprehensive collection of 1,000+ Azure Architecture Best Practices and CIS Azure Benchmark diagrams rendered with Obsidian Pele, paired with production OPA Rego policies and hardened Terraform IaC.",
+        "Azure application integration and deployment diagrams with service logos, Terraform examples, OPA policy, and verification steps for developers.",
       count: count
     )
   end

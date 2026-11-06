@@ -21,17 +21,38 @@
   </div>
 
   <div id="kube-tools" class="mt-9">
-    <p class="text-slate-500 dark:text-slate-400">Loading the tool directory…</p>
+    <form action="/tools" method="get" class="flex flex-wrap items-end gap-3 mb-6">
+      <div class="flex-1">
+        <label for="server-tool-query" class="block mb-2 font-semibold">Search security tools</label>
+        <input id="server-tool-query" name="q" value={@query} type="search" class="w-full rounded-lg border p-3 text-slate-900" />
+      </div>
+      <input type="hidden" name="category" value={@category} />
+      <input type="hidden" name="sort" value={@sort} />
+      <button type="submit" class="kube-button">Search</button>
+    </form>
+    <p class="mb-4">{@result.total} matching tools · Page {@result.page} of {@result.page_count}</p>
+    <p :if={@result.total == 0}>No matching security tools. Try another search.</p>
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <li :for={tool <- @result.tools} class="rounded-xl border p-5">
+        <h3 class="font-bold text-lg">
+          <a href={tool["link"]} target="_blank" rel="noreferrer">{tool["title"]}</a>
+        </h3>
+        <p class="mt-2 text-sm">{tool["description"]}</p>
+      </li>
+    </ul>
+    <nav :if={@result.page_count > 1} aria-label="Tool results pagination" class="flex gap-6 mt-6">
+      <a :if={@result.page > 1} href={page_url(@query, @category, @sort, @result.page - 1)}>Previous page</a>
+      <a :if={@result.page < @result.page_count} href={page_url(@query, @category, @sort, @result.page + 1)}>Next page</a>
+    </nav>
   </div>
 
   <noscript>
     <div class="kube-tool-empty py-12 text-center">
-      <h2>Interactive Directory Requires JavaScript</h2>
-      <p>Enable JavaScript in your browser to search and filter 37,000+ security tools, or <a href="https://github.com/CloudSecCorner/cloudseccorner.github.io/blob/main/priv/data/security-entries.json" target="_blank" rel="noreferrer">browse the raw dataset on GitHub ↗</a>.</p>
+      <p>JavaScript adds instant filtering. The form above works on the Phoenix server; on GitHub Pages, <a href="https://github.com/CloudSecCorner/cloudseccorner.github.io/blob/main/priv/data/security-entries.json" target="_blank" rel="noreferrer">browse the full dataset on GitHub</a> without JavaScript.</p>
     </div>
   </noscript>
 
-  <script type="module" src="/tools.js"></script>
+  <script :if={!CloudSecurityCorner.Frontend.enabled?()} type="module" src="/tools.js"></script>
 </section>
 
 <section class="kube-contribute">

@@ -224,8 +224,8 @@
   </div>
 </article>
 
-<script src="/assets/pele.global.js"></script>
-<script>
+<script :if={!CloudSecurityCorner.Frontend.enabled?()} src="/assets/pele.global.js"></script>
+<script :if={!CloudSecurityCorner.Frontend.enabled?()}>
   document.addEventListener("DOMContentLoaded", function () {
     // 1. Copy link button handler
     var copyBtn = document.getElementById("copy-link-btn");

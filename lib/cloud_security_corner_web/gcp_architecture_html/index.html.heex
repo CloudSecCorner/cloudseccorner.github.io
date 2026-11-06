@@ -109,5 +109,5 @@
 </section>
 
 <!-- Include Pele and Client Controller -->
-<script src="/assets/pele.global.js"></script>
-<script defer src="/assets/gcp-architectures.js"></script>
+<script :if={!CloudSecurityCorner.Frontend.enabled?()} src="/assets/pele.global.js"></script>
+<script :if={!CloudSecurityCorner.Frontend.enabled?()} defer src="/assets/gcp-architectures.js"></script>

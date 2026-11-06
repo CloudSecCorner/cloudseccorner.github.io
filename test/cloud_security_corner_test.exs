@@ -22,8 +22,7 @@ defmodule CloudSecurityCornerTest do
     assert conn.status == 200
     assert conn.resp_body =~ "Obsidian Pele"
     assert conn.resp_body =~ "1,000+ AWS Architecture Best Practices"
-    assert conn.resp_body =~ "aws-architectures.js"
-    assert conn.resp_body =~ "pele.global.js"
+    assert_frontend_or_legacy(conn, "aws-architectures.js")
   end
 
   test "renders azure architectures route and loads best practices" do
@@ -34,8 +33,7 @@ defmodule CloudSecurityCornerTest do
     assert conn.status == 200
     assert conn.resp_body =~ "Obsidian Pele"
     assert conn.resp_body =~ "1,000+ Azure Architecture Best Practices"
-    assert conn.resp_body =~ "azure-architectures.js"
-    assert conn.resp_body =~ "pele.global.js"
+    assert_frontend_or_legacy(conn, "azure-architectures.js")
   end
 
   test "renders gcp architectures route and loads best practices" do
@@ -46,8 +44,7 @@ defmodule CloudSecurityCornerTest do
     assert conn.status == 200
     assert conn.resp_body =~ "Obsidian Pele"
     assert conn.resp_body =~ "1,000+ GCP Architecture Best Practices"
-    assert conn.resp_body =~ "gcp-architectures.js"
-    assert conn.resp_body =~ "pele.global.js"
+    assert_frontend_or_legacy(conn, "gcp-architectures.js")
   end
 
   test "renders kspm architectures route and loads best practices" do
@@ -58,8 +55,7 @@ defmodule CloudSecurityCornerTest do
     assert conn.status == 200
     assert conn.resp_body =~ "Obsidian Pele"
     assert conn.resp_body =~ "1,000+ KSPM Kubernetes Architecture"
-    assert conn.resp_body =~ "kspm-architectures.js"
-    assert conn.resp_body =~ "pele.global.js"
+    assert_frontend_or_legacy(conn, "kspm-architectures.js")
   end
 
   test "searches and paginates the tool directory" do
@@ -90,7 +86,8 @@ defmodule CloudSecurityCornerTest do
       |> Endpoint.call(Endpoint.init([]))
 
     assert conn.status == 200
-    assert conn.resp_body =~ "Make agentic cloud security"
+    assert conn.resp_body =~ "Build cloud integrations"
+    assert conn.resp_body =~ "4,132"
     assert conn.resp_body =~ "Cloud Security Corner"
   end
 
@@ -101,7 +98,7 @@ defmodule CloudSecurityCornerTest do
 
     assert conn.status == 200
     assert conn.resp_body =~ "kube-tools"
-    assert conn.resp_body =~ "tools.js"
+    assert_frontend_or_legacy(conn, "tools.js")
 
     result = Content.search_tools("cve-2026-106173", "", "default", 1)
     assert result.total > 0
@@ -116,5 +113,15 @@ defmodule CloudSecurityCornerTest do
 
     assert conn.status == 404
     assert conn.resp_body =~ "Page not found"
+  end
+
+  defp assert_frontend_or_legacy(conn, legacy_script) do
+    if assets = CloudSecurityCorner.Frontend.assets() do
+      assert conn.resp_body =~ ~s(src="#{assets.entry}")
+      refute conn.resp_body =~ ~s(src="/assets/pele.global.js")
+      refute conn.resp_body =~ ~s(src="/tools.js")
+    else
+      assert conn.resp_body =~ legacy_script
+    end
   end
 end

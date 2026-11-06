@@ -16,6 +16,7 @@ defmodule CloudSecurityCornerWeb.BlogController do
         render(conn, :show,
           page_title: post["title"],
           description: post["excerpt"],
+          canonical_path: "/blog/" <> post["id"],
           post: post,
           content_html: content_html
         )

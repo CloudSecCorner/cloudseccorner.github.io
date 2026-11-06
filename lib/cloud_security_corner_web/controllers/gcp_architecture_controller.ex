@@ -5,9 +5,9 @@ defmodule CloudSecurityCornerWeb.GcpArchitectureController do
     count = CloudSecurityCorner.Content.gcp_best_practice_count()
 
     render(conn, :index,
-      page_title: "1,000+ GCP Best Practices Architecture Diagrams (Pele, OPA & Terraform)",
+      page_title: "Google Cloud Developer Architectures & Integration Patterns",
       description:
-        "Comprehensive collection of 1,000+ Google Cloud Platform Architecture Best Practices and CIS GCP Benchmark diagrams rendered with Obsidian Pele, paired with production OPA Rego policies and hardened Terraform IaC.",
+        "Google Cloud application integration and deployment diagrams with service logos, Terraform examples, OPA policy, and verification steps for developers.",
       count: count
     )
   end

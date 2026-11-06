@@ -22,6 +22,7 @@ defmodule CloudSecurityCornerWeb.LabsController do
         render(conn, :show,
           page_title: lab["title"],
           description: lab["description"],
+          canonical_path: "/labs/" <> lab["id"],
           lab: lab,
           content_html: content_html
         )

@@ -1,33 +1,40 @@
+<% frontend = CloudSecurityCorner.Frontend.assets() %>
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
+    <meta data-react-helmet="true" name="description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
     <meta name="theme-color" content="#18131f" />
-    <meta name="keywords" content="cloud security, AI agent security, agentic AI, LLM security, MCP security, zero trust, threat modeling, DevSecOps, security tools" />
+    <meta data-react-helmet="true" name="keywords" content="cloud security, AI agent security, agentic AI, LLM security, MCP security, zero trust, threat modeling, DevSecOps, security tools" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Cloud Security Corner" />
-    <meta property="og:title" content={assigns[:page_title] || "Cloud Security Corner"} />
-    <meta property="og:description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
-    <meta property="og:url" content={"https://cloudsecuritycorner.com" <> @conn.request_path} />
-    <meta property="og:image" content="https://cloudsecuritycorner.com/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
-    <link rel="canonical" href={"https://cloudsecuritycorner.com" <> @conn.request_path} />
+    <meta data-react-helmet="true" property="og:type" content="website" />
+    <meta data-react-helmet="true" property="og:site_name" content="Cloud Security Corner" />
+    <meta data-react-helmet="true" property="og:title" content={assigns[:page_title] || "Cloud Security Corner"} />
+    <meta data-react-helmet="true" property="og:description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
+    <meta data-react-helmet="true" property="og:url" content={"https://cloudsecuritycorner.com" <> (assigns[:canonical_path] || @conn.request_path)} />
+    <meta data-react-helmet="true" property="og:image" content="https://cloudsecuritycorner.com/og-image.png" />
+    <meta data-react-helmet="true" property="og:image:width" content="1200" />
+    <meta data-react-helmet="true" property="og:image:height" content="630" />
+    <meta data-react-helmet="true" property="og:locale" content="en_US" />
+    <link data-react-helmet="true" rel="canonical" href={"https://cloudsecuritycorner.com" <> (assigns[:canonical_path] || @conn.request_path)} />
     <link rel="icon" href="/android-icon-192x192.png" type="image/png" />
-    <link rel="stylesheet" href="/assets/app.css?v=20261031_04" />
+    <link id="elixir-fallback-css" rel="stylesheet" href="/assets/app.css?v=20261031_04" />
     <script src="/assets/initialize-theme.js"></script>
-    <script defer src="/site.js?v=20261031_04"></script>
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={assigns[:page_title] || "Cloud Security Corner"} />
-    <meta name="twitter:description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
-    <meta name="twitter:image" content="https://cloudsecuritycorner.com/og-image.png" />
+    <script :if={!frontend} defer src="/site.js?v=20261031_04"></script>
+    <%= if frontend do %>
+      <link :for={href <- frontend.stylesheets} rel="stylesheet" crossorigin href={href} />
+      <link :for={href <- frontend.preloads} rel="modulepreload" crossorigin href={href} />
+      <script type="module" crossorigin src={frontend.entry}></script>
+    <% end %>
+    <meta data-react-helmet="true" name="twitter:card" content="summary_large_image" />
+    <meta data-react-helmet="true" name="twitter:title" content={assigns[:page_title] || "Cloud Security Corner"} />
+    <meta data-react-helmet="true" name="twitter:description" content={assigns[:description] || "Practical resources for securing AI agents and cloud infrastructure."} />
+    <meta data-react-helmet="true" name="twitter:image" content="https://cloudsecuritycorner.com/og-image.png" />
     <title>{assigns[:page_title] || "Cloud Security Corner"} · Cloud Security Corner</title>
   </head>
   <body class="bg-white text-slate-900 dark:bg-[#18131f] dark:text-white min-h-screen flex flex-col font-sans transition-colors duration-200">
+    <div id="root" class="min-h-screen flex flex-col" data-renderer="elixir">
     <a class="kube-skip-link" href="#main-content">Skip to content</a>
 
     <!-- Announcement Bar -->
@@ -452,9 +459,10 @@
       <div class="border-t border-brand-gray-700/60 py-6 text-center text-xs text-brand-gray-400">
         <div class="mx-auto flex max-w-screen-xl flex-col sm:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 gap-2">
           <p>© CloudSecCorner · Built for the security community.</p>
-          <p>Learn openly. Build securely. Built with Elixir &amp; Phoenix.</p>
+          <p>Learn openly. Build securely. Built with Elixir, Phoenix &amp; React.</p>
         </div>
       </div>
     </footer>
+    </div>
   </body>
 </html>

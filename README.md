@@ -73,21 +73,35 @@ The interactive catalog on **[cloudsecuritycorner.com/azure-architectures](https
 
 ## 💻 Run Locally
 
-Prerequisites: Elixir/OTP (`>= 1.16`) and Python 3.
+Prerequisites: Elixir/OTP (`>= 1.16`), Node.js 22, npm, and Python 3.
+
+Elixir/Phoenix renders each route, its metadata, and a readable HTML fallback.
+React supplies the shared developer UI, architecture controls, and interactive
+catalogues. The Pages workflow builds both into one `_site` artifact using
+Vite's asset manifest; GitHub Pages serves the result without an Elixir server.
 
 ```sh
-# 1. Install Elixir dependencies
+# 1. Install Elixir and React dependencies
 make setup
 
-# 2. Run local development server (http://localhost:4000)
+# 2. Build React, then serve the combined site (http://localhost:4000)
 make dev
 
 # 3. Regenerate README tool tables from priv/data/security-entries.json
 make readme
 
-# 4. Export static site for deployment
+# 4. Build both applications, export all routes, and verify deployment assets
 make export
+
+# Optional: React hot reload (http://localhost:5173)
+make react-dev
 ```
+
+For CI or a manual export after `npm run build`, use
+`mix site.export --require-frontend --output _site` followed by
+`npm run test:export`. The required flag prevents accidentally publishing the
+Elixir fallback alone. Plain `mix site.export` also supports content-only work
+when no Vite build exists.
 
 <!-- TOOLS_TABLE:START -->
 ## 🧰 Curated Security Tools Showcase

@@ -11,7 +11,8 @@
     "generate:references": "node scripts/generate-reference-architectures.mjs",
     "preview": "vite preview",
     "test": "node scripts/validate-content.mjs && node scripts/validate-diagrams.mjs && node scripts/test-developer-architectures.mjs && node scripts/test-landing-page.mjs && node scripts/test-shared-ui.mjs",
-    "check": "npm test && npm run build"
+    "check": "npm test && npm run build",
+    "test:export": "node scripts/validate-site-export.mjs"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.5.0",

@@ -5,16 +5,26 @@ defmodule Mix.Tasks.Site.Export do
 
   use Mix.Task
 
+  alias CloudSecurityCorner.Frontend
   alias CloudSecurityCornerWeb.Endpoint
 
   @shortdoc "Exports CloudSecurityCorner as a static site for GitHub Pages"
 
   @impl Mix.Task
   def run(args) do
-    {options, _, _} = OptionParser.parse(args, strict: [output: :string])
+    {options, _, _} =
+      OptionParser.parse(args, strict: [output: :string, require_frontend: :boolean])
+
     output = options[:output] || "_site"
 
     Mix.Task.run("app.start")
+    frontend = Frontend.assets()
+
+    if options[:require_frontend] && !frontend do
+      Mix.raise("React build missing. Run npm ci && npm run build before exporting the site.")
+    end
+
+    if frontend, do: Frontend.validate_build!()
     output = Path.expand(output)
 
     File.rm_rf!(output)
@@ -25,6 +35,19 @@ defmodule Mix.Tasks.Site.Export do
 
     if File.dir?(priv_static) do
       File.cp_r!(priv_static, output)
+    end
+
+    # Merge Vite's assets and public content, never its standalone HTML shell.
+    # Phoenix renders the canonical HTML for every route, including the 404.
+    if frontend do
+      Frontend.directory()
+      |> File.ls!()
+      |> Enum.reject(
+        &(&1 in ["index.html", ".vite", "404.html", "CNAME", "robots.txt", "sitemap.xml"])
+      )
+      |> Enum.each(fn name ->
+        File.cp_r!(Path.join(Frontend.directory(), name), Path.join(output, name))
+      end)
     end
 
     # 3. Ensure assets directory exists
