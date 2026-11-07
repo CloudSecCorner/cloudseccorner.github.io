@@ -7,8 +7,18 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 06 Nov 2026 19:10:27 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 07 Nov 2026 06:21:16 GMT</lastBuildDate>
     <item>
+  <title>Addressing protocol security gaps in multi-tenant Kubernetes</title>
+  <link>https://aws.amazon.com/blogs/security/addressing-protocol-security-gaps-in-multi-tenant-kubernetes/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/addressing-protocol-security-gaps-in-multi-tenant-kubernetes/</guid>
+  <pubDate>Fri, 06 Nov 2026 21:08:50 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
   <title>Integrate Aquasec and Jenkins to Stop Unsafe Images Before They Run</title>
   <link>https://www.aquasec.com/blog/integrate-aquasec-and-jenkins-to-stop-unsafe-images-before-they-run/</link>
   <guid isPermaLink="true">https://www.aquasec.com/blog/integrate-aquasec-and-jenkins-to-stop-unsafe-images-before-they-run/</guid>
@@ -1066,16 +1076,6 @@
   <category>Vulnerabilities &amp; Exposure</category>
   <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
   <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
-</item>
-
-<item>
-  <title>Improving SPIRE security and resiliency with AWS managed services</title>
-  <link>https://aws.amazon.com/blogs/security/improving-spire-security-and-resiliency-with-aws-managed-services/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/improving-spire-security-and-resiliency-with-aws-managed-services/</guid>
-  <pubDate>Tue, 06 Oct 2026 18:52:25 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
 </item>
 
 <item>
