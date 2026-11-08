@@ -7,7 +7,7 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 07 Nov 2026 06:21:16 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 08 Nov 2026 06:27:43 GMT</lastBuildDate>
     <item>
   <title>Addressing protocol security gaps in multi-tenant Kubernetes</title>
   <link>https://aws.amazon.com/blogs/security/addressing-protocol-security-gaps-in-multi-tenant-kubernetes/</link>
@@ -1406,16 +1406,6 @@
   <category>Threat Detection &amp; Response</category>
   <description>Cloud security research from Trail of Bits. Read the original article at the publisher.</description>
   <source url="https://blog.trailofbits.com/index.xml">Trail of Bits</source>
-</item>
-
-<item>
-  <title>Show, Don&#39;t Tell: What Evo Continuous Offensive Security Found in a Real Enterprise SaaS</title>
-  <link>https://snyk.io/blog/what-evo-cos-found-real-enterprise-saas/</link>
-  <guid isPermaLink="true">https://snyk.io/blog/what-evo-cos-found-real-enterprise-saas/</guid>
-  <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
-  <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from Snyk Security Research. Read the original article at the publisher.</description>
-  <source url="https://snyk.io/blog/feed/">Snyk Security Research</source>
 </item>
 
   </channel>
