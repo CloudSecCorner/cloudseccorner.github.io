@@ -7,7 +7,7 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sun, 08 Nov 2026 06:27:43 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 06:59:33 GMT</lastBuildDate>
     <item>
   <title>Addressing protocol security gaps in multi-tenant Kubernetes</title>
   <link>https://aws.amazon.com/blogs/security/addressing-protocol-security-gaps-in-multi-tenant-kubernetes/</link>
