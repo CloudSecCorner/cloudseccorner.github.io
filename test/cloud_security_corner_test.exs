@@ -121,6 +121,28 @@ defmodule CloudSecurityCornerTest do
     assert_frontend_or_legacy(conn, "alicloud-architectures.js")
   end
 
+  test "renders civo architectures route and loads best practices" do
+    conn =
+      Plug.Test.conn(:get, "/civo-architectures")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Obsidian Pele"
+    assert conn.resp_body =~ "1,000+ Civo Cloud Architecture Best Practices"
+    assert_frontend_or_legacy(conn, "civo-architectures.js")
+  end
+
+  test "renders hetzner architectures route and loads best practices" do
+    conn =
+      Plug.Test.conn(:get, "/hetzner-architectures")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Obsidian Pele"
+    assert conn.resp_body =~ "1,000+ Hetzner Cloud Architecture Best Practices"
+    assert_frontend_or_legacy(conn, "hetzner-architectures.js")
+  end
+
   test "searches and paginates the tool directory" do
     results = Content.search_tools("cve-2026-106173", "", "az", 1)
 

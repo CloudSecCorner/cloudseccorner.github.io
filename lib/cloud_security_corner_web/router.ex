@@ -19,6 +19,8 @@ defmodule CloudSecurityCornerWeb.Router do
     get("/oracle-architectures", OracleArchitectureController, :index)
     get("/digitalocean-architectures", DigitaloceanArchitectureController, :index)
     get("/alicloud-architectures", AlicloudArchitectureController, :index)
+    get("/civo-architectures", CivoArchitectureController, :index)
+    get("/hetzner-architectures", HetznerArchitectureController, :index)
     get("/tools", ToolsController, :index)
     get("/labs", LabsController, :index)
     get("/labs/:id", LabsController, :show)

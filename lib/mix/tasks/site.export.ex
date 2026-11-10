@@ -81,6 +81,8 @@ defmodule Mix.Tasks.Site.Export do
       "/oracle-architectures",
       "/digitalocean-architectures",
       "/alicloud-architectures",
+      "/civo-architectures",
+      "/hetzner-architectures",
       "/tools",
       "/labs",
       "/blog",
