@@ -46,6 +46,7 @@ function Footer() {
         <nav aria-label="Explore CloudSecCorner">
           <p className="kube-footer-heading">Explore</p>
           <Link to="/cross-cloud-matrix" className="text-purple-400 font-semibold">Cross-Cloud Rosetta Stone</Link>
+          <Link to="/compliance" className="text-emerald-400 font-semibold">Compliance Explorer</Link>
           <Link to="/tools">Security tools directory</Link>
           <Link to="/tools?category=agentic-ai">Agentic AI security tools</Link>
           <Link to="/aws-architectures">AWS defense architectures</Link>

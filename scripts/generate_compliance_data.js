@@ -1,0 +1,98 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const rootDir = path.resolve(__dirname, '..');
+
+const FRAMEWORKS = [
+  {
+    id: 'cis',
+    name: 'CIS Benchmarks',
+    version: 'v2.0 / v3.0 Multi-Cloud',
+    badge: 'Consensus Standard',
+    description: 'Center for Internet Security prescriptive configuration guidelines for hardening cloud identities, storage, networking, and compute.',
+    coverage: {
+      aws: 98, azure: 97, gcp: 97, kspm: 99, cnapp: 96, vultr: 94, oracle: 96, digitalocean: 95, alicloud: 95, civo: 94, hetzner: 94
+    },
+    requirements: [
+      { id: 'CIS-1.1', title: 'Maintain Root/Admin Account Access Restrictions & MFA', domain: 'Identity & Access', level: 'Level 1', mitigation: 'Hardware token MFA and root API key deletion' },
+      { id: 'CIS-2.1', title: 'Ensure All Object Storage Has Public Access Blocked', domain: 'Data Protection', level: 'Level 1', mitigation: 'Bucket-level public block and uniform access' },
+      { id: 'CIS-3.1', title: 'Ensure Multi-Zone Network Isolation with Zero 0.0.0.0/0 Ingress', domain: 'Networking', level: 'Level 1', mitigation: 'Strict stateful firewall security group rules' },
+      { id: 'CIS-4.1', title: 'Mandate Envelope KMS Encryption with Customer Keys', domain: 'Cryptography', level: 'Level 2', mitigation: 'AES-256 automated key rotation and HSM backing' },
+      { id: 'CIS-5.1', title: 'Enforce Continuous Audit Logging & Real-Time SIEM Streaming', domain: 'Logging & Auditing', level: 'Level 1', mitigation: 'Immutable multi-region audit event collection' }
+    ]
+  },
+  {
+    id: 'nist',
+    name: 'NIST SP 800-53 Rev 5',
+    version: 'Federal High Baseline',
+    badge: 'Federal Standard',
+    description: 'Security and Privacy Controls for Federal Information Systems and Organizations under FISMA / FedRAMP.',
+    coverage: {
+      aws: 96, azure: 95, gcp: 96, kspm: 94, cnapp: 98, vultr: 91, oracle: 94, digitalocean: 92, alicloud: 93, civo: 91, hetzner: 92
+    },
+    requirements: [
+      { id: 'AC-2', title: 'Account Management & Least Privilege', domain: 'Access Control', level: 'High', mitigation: 'Ephemeral workload identity and role-based credential issuance' },
+      { id: 'AC-4', title: 'Information Flow Enforcement', domain: 'Access Control', level: 'High', mitigation: 'Private network boundaries, VPC peering policies, and microsegmentation' },
+      { id: 'AU-2', title: 'Event Logging & Tamper-Resistant Storage', domain: 'Audit & Accountability', level: 'Moderate', mitigation: 'WORM retention logs, cryptographic digest hashing, and SIEM forwarding' },
+      { id: 'SC-7', title: 'Boundary Protection & Network Firewalls', domain: 'System & Comms', level: 'High', mitigation: 'Deny-all inbound firewall policies and inspected egress proxies' },
+      { id: 'SC-13', title: 'Cryptographic Protection at Rest and in Transit', domain: 'System & Comms', level: 'High', mitigation: 'FIPS 140-3 validated KMS keys and TLS 1.3 enforced transport' }
+    ]
+  },
+  {
+    id: 'pci',
+    name: 'PCI-DSS v4.0',
+    version: 'Payment Card Industry Standard',
+    badge: 'Cardholder Data Defense',
+    description: 'Global standard for organizations processing, storing, or transmitting cardholder data (CHD) and sensitive authentication data.',
+    coverage: {
+      aws: 97, azure: 96, gcp: 96, kspm: 95, cnapp: 97, vultr: 92, oracle: 95, digitalocean: 93, alicloud: 94, civo: 92, hetzner: 93
+    },
+    requirements: [
+      { id: 'Req-1.2', title: 'Restrict Traffic Between Cardholder Data Environment and Public Networks', domain: 'Network Security', level: 'Mandatory', mitigation: 'Strict DMZ firewall architecture and private VPC subnets' },
+      { id: 'Req-3.4', title: 'Render Cardholder Data Unreadable Anywhere It Is Stored', domain: 'Data Protection', level: 'Mandatory', mitigation: 'AES-256 GCM envelope encryption with dual-custody keys' },
+      { id: 'Req-6.4', title: 'Public-Facing Web Applications Protected Against Attacks', domain: 'Application Security', level: 'Mandatory', mitigation: 'Cloud WAF with managed OWASP Core Rule Set and bot mitigation' },
+      { id: 'Req-8.3', title: 'Strong Multi-Factor Authentication for All System Access', domain: 'Identification & Auth', level: 'Mandatory', mitigation: 'Phishing-resistant WebAuthn / FIDO2 MFA enforcement' },
+      { id: 'Req-10.2', title: 'Automated Audit Trails for All System Components', domain: 'Monitoring & Testing', level: 'Mandatory', mitigation: 'Centralized immutable logging with NTP time synchronization' }
+    ]
+  },
+  {
+    id: 'soc2',
+    name: 'SOC 2 Type II',
+    version: 'AICPA Trust Services Criteria',
+    badge: 'Enterprise Trust',
+    description: 'American Institute of CPAs framework evaluating Security, Availability, Processing Integrity, Confidentiality, and Privacy.',
+    coverage: {
+      aws: 99, azure: 98, gcp: 98, kspm: 96, cnapp: 99, vultr: 95, oracle: 96, digitalocean: 96, alicloud: 96, civo: 95, hetzner: 96
+    },
+    requirements: [
+      { id: 'CC6.1', title: 'Logical Access Security & Identity Governance', domain: 'Security', level: 'Common Criteria', mitigation: 'Automated credential deprovisioning and SSO integration' },
+      { id: 'CC6.6', title: 'Boundary Defense & Network Perimeter Protection', domain: 'Security', level: 'Common Criteria', mitigation: 'Stateful cloud firewalls, WAF inspection, and VPC isolation' },
+      { id: 'CC6.7', title: 'Data Transmission Protection (In-Transit Encryption)', domain: 'Security', level: 'Common Criteria', mitigation: 'Strict TLS 1.3 termination and mutual TLS (mTLS) service mesh' },
+      { id: 'CC7.2', title: 'Vulnerability Management & Anomaly Detection', domain: 'Security', level: 'Common Criteria', mitigation: 'Continuous container image scanning and runtime eBPF monitoring' },
+      { id: 'A1.2', title: 'Automated Disaster Recovery & Backup Replication', domain: 'Availability', level: 'Availability', mitigation: 'Multi-region point-in-time recovery and snapshot replication' }
+    ]
+  },
+  {
+    id: 'mitre',
+    name: 'MITRE ATT&CK for Cloud',
+    version: 'v15 Enterprise Cloud Matrix',
+    badge: 'Adversary Tactics',
+    description: 'Globally accessible knowledge base of adversary tactics, techniques, and procedures (TTPs) targeting cloud environments.',
+    coverage: {
+      aws: 98, azure: 97, gcp: 97, kspm: 98, cnapp: 100, vultr: 93, oracle: 95, digitalocean: 94, alicloud: 95, civo: 93, hetzner: 93
+    },
+    requirements: [
+      { id: 'T1078', title: 'Valid Accounts: Cloud Workload Hijacking', domain: 'Initial Access / PrivEsc', level: 'Critical', mitigation: 'Ephemeral IAM tokens, conditional access policies, and session bounds' },
+      { id: 'T1530', title: 'Data from Cloud Storage Object Stores', domain: 'Exfiltration', level: 'Critical', mitigation: 'Uniform Bucket Access, private ACLs, and DSPM anomaly detection' },
+      { id: 'T1611', title: 'Escape to Host (Container Breakout)', domain: 'Privilege Escalation', level: 'Critical', mitigation: 'Pod Security Standards (Restricted profile) and gVisor sandboxing' },
+      { id: 'T1046', title: 'Network Service Discovery & Lateral Movement', domain: 'Discovery', level: 'High', mitigation: 'Default-deny NetworkPolicy and VPC subnetwork microsegmentation' },
+      { id: 'T1498', title: 'Network Denial of Service (Terabit Floods)', domain: 'Impact', level: 'High', mitigation: 'Automated cloud DDoS shielding, Anycast scrubbing, and rate limiting' }
+    ]
+  }
+];
+
+const outputFile = path.join(rootDir, 'src', 'data', 'compliance-frameworks.json');
+fs.writeFileSync(outputFile, JSON.stringify(FRAMEWORKS, null, 2), 'utf8');
+console.log(`Generated Regulatory Compliance dataset with ${FRAMEWORKS.length} frameworks.`);

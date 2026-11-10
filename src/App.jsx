@@ -19,6 +19,7 @@ const AlicloudArchitectures = lazy(() => import("./components/AlicloudArchitectu
 const CivoArchitectures = lazy(() => import("./components/CivoArchitectures"));
 const HetznerArchitectures = lazy(() => import("./components/HetznerArchitectures"));
 const CrossCloudMatrix = lazy(() => import("./components/CrossCloudMatrix"));
+const ComplianceExplorer = lazy(() => import("./components/ComplianceExplorer"));
 const ToolsSection = lazy(() => import("./components/ToolsSection"));
 const Blog = lazy(() => import("./components/Blog"));
 const Labs = lazy(() => import("./components/Labs"));
@@ -80,6 +81,7 @@ function App() {
               <Route path="/civo-architectures" element={<CivoArchitectures />} />
               <Route path="/hetzner-architectures" element={<HetznerArchitectures />} />
               <Route path="/cross-cloud-matrix" element={<CrossCloudMatrix />} />
+              <Route path="/compliance" element={<ComplianceExplorer />} />
               <Route path="/tools" element={<ToolsSection />} />
               <Route path="/labs" element={<Labs />} />
               <Route path="/labs/:labId" element={<Labs />} />

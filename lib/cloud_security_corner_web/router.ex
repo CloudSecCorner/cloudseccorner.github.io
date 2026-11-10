@@ -22,6 +22,7 @@ defmodule CloudSecurityCornerWeb.Router do
     get("/civo-architectures", CivoArchitectureController, :index)
     get("/hetzner-architectures", HetznerArchitectureController, :index)
     get("/cross-cloud-matrix", MatrixController, :index)
+    get("/compliance", ComplianceController, :index)
     get("/tools", ToolsController, :index)
     get("/labs", LabsController, :index)
     get("/labs/:id", LabsController, :show)

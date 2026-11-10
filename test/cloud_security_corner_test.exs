@@ -152,6 +152,15 @@ defmodule CloudSecurityCornerTest do
     assert conn.resp_body =~ "Cross-Cloud Security Rosetta Stone"
   end
 
+  test "renders compliance explorer route" do
+    conn =
+      Plug.Test.conn(:get, "/compliance")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Regulatory Compliance"
+  end
+
   test "searches and paginates the tool directory" do
     results = Content.search_tools("cve-2026-106173", "", "az", 1)
 

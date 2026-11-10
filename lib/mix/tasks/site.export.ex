@@ -84,6 +84,7 @@ defmodule Mix.Tasks.Site.Export do
       "/civo-architectures",
       "/hetzner-architectures",
       "/cross-cloud-matrix",
+      "/compliance",
       "/tools",
       "/labs",
       "/blog",
