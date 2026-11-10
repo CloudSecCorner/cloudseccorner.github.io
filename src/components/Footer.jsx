@@ -51,6 +51,9 @@ function Footer() {
           <Link to="/azure-architectures">Azure defense architectures</Link>
           <Link to="/gcp-architectures">GCP defense architectures</Link>
           <Link to="/kspm-architectures">KSPM Kubernetes architectures</Link>
+          <Link to="/cnapp-architectures">CNAPP &amp; MITRE architectures</Link>
+          <Link to="/vultr-architectures">Vultr defense architectures</Link>
+          <Link to="/oracle-architectures">Oracle Cloud architectures</Link>
           <Link to="/labs">Hands-on security labs</Link>
           <Link to="/blog">Field notes &amp; guides</Link>
           <Link to="/about">About CloudSecCorner</Link>
