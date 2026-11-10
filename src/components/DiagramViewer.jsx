@@ -156,7 +156,7 @@ export default function DiagramViewer({ svg, title = 'Architecture diagram', fil
   };
 
   const modes = [
-    { id: 'runtime', label: 'Architecture', icon: Network },
+    { id: 'runtime', label: 'Integration', icon: Network },
     { id: 'stride', label: 'Threat Model (STRIDE)', icon: ShieldAlert },
     { id: 'mitre', label: 'MITRE ATT&CK®', icon: Target },
     ...(architecture?.deployment_svg ? [{ id: 'deployment', label: 'Deploy', icon: Workflow }] : []),

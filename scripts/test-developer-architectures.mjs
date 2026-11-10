@@ -48,7 +48,7 @@ const examples = JSON.parse(fs.readFileSync(path.join(root, 'src/data/reference-
 const sample = examples.aws[0];
 const Viewer = await component('src/components/DiagramViewer.jsx');
 const viewer = renderToStaticMarkup(React.createElement(Viewer, { svg: sample.svg, architecture: sample, title: sample.title }));
-assert.equal((viewer.match(/role="tab"/g) || []).length, 3, 'Integration, deployment and build views must be available');
+assert.equal((viewer.match(/role="tab"/g) || []).length, 5, 'Integration, deployment, build, STRIDE, and MITRE views must be available');
 assert.match(viewer, /aria-selected="true"/);
 assert.match(viewer, /Download Mermaid source/);
 assert.match(viewer, /data-service-logo="storage-s3"/);

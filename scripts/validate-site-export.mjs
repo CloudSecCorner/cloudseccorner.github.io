@@ -24,7 +24,7 @@ const sitemap = await readFile(path.join(output, "sitemap.xml"), "utf8");
 const routes = [...sitemap.matchAll(/<loc>https:\/\/cloudsecuritycorner\.com([^<]*)<\/loc>/g)]
   .map((match) => match[1] || "/");
 assert(routes.length >= 20, "Export is missing content routes");
-for (const route of ["/", "/tools", "/labs", "/blog", "/about", "/aws-architectures", "/azure-architectures", "/gcp-architectures", "/kspm-architectures", "/cnapp-architectures", "/vultr-architectures", "/oracle-architectures", "/digitalocean-architectures", "/alicloud-architectures"]) {
+for (const route of ["/", "/tools", "/labs", "/blog", "/about", "/aws-architectures", "/azure-architectures", "/gcp-architectures", "/kspm-architectures", "/cnapp-architectures", "/vultr-architectures", "/oracle-architectures", "/digitalocean-architectures", "/alicloud-architectures", "/civo-architectures", "/hetzner-architectures", "/cross-cloud-matrix", "/compliance"]) {
   assert(routes.includes(route), `Route absent from sitemap: ${route}`);
 }
 assert(routes.some((route) => route.startsWith("/labs/")), "Missing lab deep links");
@@ -45,7 +45,7 @@ for (const route of [...routes, "/404.html"]) {
   assert.match(html, /<site-visit-counter aria-live="polite">/, `${route}: missing visit counter fallback`);
   assert(!html.includes('src="https://hits.sh/'), `${route}: a fallback image would count again when React loads`);
   assert(!html.includes("/src/main.jsx"), `${route}: points at source instead of built React`);
-  assert(!/<script[^>]+src="(?:\/site\.js|\/tools\.js|\/assets\/(?:pele\.global|(?:aws|azure|gcp|kspm|cnapp|vultr|oracle|digitalocean|alicloud)-architectures)\.js)/.test(html), `${route}: legacy JavaScript competes with React`);
+  assert(!/<script[^>]+src="(?:\/site\.js|\/tools\.js|\/assets\/(?:pele\.global|(?:aws|azure|gcp|kspm|cnapp|vultr|oracle|digitalocean|alicloud|civo|hetzner)-architectures)\.js)/.test(html), `${route}: legacy JavaScript competes with React`);
   if (route !== "/404.html") {
     // Lab/blog aliases differ only in case and share their canonical content URL.
     const canonical = html.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/);
@@ -55,15 +55,15 @@ for (const route of [...routes, "/404.html"]) {
   }
 }
 
-for (const provider of ["aws", "azure", "gcp", "kspm", "cnapp", "vultr", "oracle", "digitalocean", "alicloud"]) {
+for (const provider of ["aws", "azure", "gcp", "kspm", "cnapp", "vultr", "oracle", "digitalocean", "alicloud", "civo", "hetzner"]) {
   for (const file of ["diagram.mmd", "policy.rego", ["kspm", "cnapp"].includes(provider) ? "workload.yaml" : "main.tf"]) {
     await publicFile(`reference-architectures/${provider}/${file}`);
   }
 }
-for (const provider of ["aws", "azure", "gcp", "kspm", "cnapp", "vultr", "oracle", "digitalocean", "alicloud"]) {
+for (const provider of ["aws", "azure", "gcp", "kspm", "cnapp", "vultr", "oracle", "digitalocean", "alicloud", "civo", "hetzner"]) {
   await publicFile(`images/provider-logos/${provider}.svg`);
 }
-for (const data of ["aws", "azure", "gcp", "kspm", "cnapp", "vultr", "oracle", "digitalocean", "alicloud"]) {
+for (const data of ["aws", "azure", "gcp", "kspm", "cnapp", "vultr", "oracle", "digitalocean", "alicloud", "civo", "hetzner"]) {
   await publicFile(`data/${data}-best-practices.json`);
 }
 await publicFile("assets/app.css");
