@@ -67,14 +67,14 @@ jobs:
       - name: Refresh cloud security feeds with Elixir
         run: mix feeds.refresh
 
+      - name: Test and build React UI
+        run: npm run check
+
       - name: Run Elixir tests
         run: mix test
 
       - name: Sync tool database & README tables
         run: python3 scripts/update_readme_tools.py
-
-      - name: Test and build React UI
-        run: npm run check
 
       - name: Export Elixir pages with React UI
         run: mix site.export --require-frontend --output _site

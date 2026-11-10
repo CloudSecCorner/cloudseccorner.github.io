@@ -102,3 +102,7 @@
     </div>
   </noscript>
 </section>
+
+<!-- Include Pele and Client Controller -->
+<script :if={!CloudSecurityCorner.Frontend.enabled?()} src="/assets/pele.global.js"></script>
+<script :if={!CloudSecurityCorner.Frontend.enabled?()} defer src="/assets/vultr-architectures.js"></script>
