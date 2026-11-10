@@ -1,0 +1,962 @@
+[
+  {
+    "id": "iam",
+    "title": "Identity & Access Management (IAM)",
+    "icon": "🔑",
+    "description": "Workload identity, scoped API tokens, role assumption, and least privilege governance.",
+    "providers": {
+      "aws": {
+        "service": "AWS Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on AWS",
+        "cli": "aws-cli audit --domain iam",
+        "tf": "resource \"aws_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on AWS\n  name = \"aws-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"aws_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "azure": {
+        "service": "AZURE Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on AZURE",
+        "cli": "azure-cli audit --domain iam",
+        "tf": "resource \"azure_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on AZURE\n  name = \"azure-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"azure_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "gcp": {
+        "service": "GCP Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on GCP",
+        "cli": "gcp-cli audit --domain iam",
+        "tf": "resource \"gcp_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on GCP\n  name = \"gcp-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"gcp_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "kspm": {
+        "service": "KSPM Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on KSPM",
+        "cli": "kspm-cli audit --domain iam",
+        "tf": "resource \"kspm_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on KSPM\n  name = \"kspm-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"kspm_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "cnapp": {
+        "service": "CNAPP Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on CNAPP",
+        "cli": "cnapp-cli audit --domain iam",
+        "tf": "resource \"cnapp_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on CNAPP\n  name = \"cnapp-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"cnapp_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "vultr": {
+        "service": "VULTR Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on VULTR",
+        "cli": "vultr-cli audit --domain iam",
+        "tf": "resource \"vultr_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on VULTR\n  name = \"vultr-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"vultr_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "oracle": {
+        "service": "ORACLE Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on ORACLE",
+        "cli": "oracle-cli audit --domain iam",
+        "tf": "resource \"oracle_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on ORACLE\n  name = \"oracle-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"oracle_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "digitalocean": {
+        "service": "DIGITALOCEAN Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on DIGITALOCEAN",
+        "cli": "digitalocean-cli audit --domain iam",
+        "tf": "resource \"digitalocean_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on DIGITALOCEAN\n  name = \"digitalocean-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"digitalocean_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "alicloud": {
+        "service": "ALICLOUD Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on ALICLOUD",
+        "cli": "alicloud-cli audit --domain iam",
+        "tf": "resource \"alicloud_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on ALICLOUD\n  name = \"alicloud-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"alicloud_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "civo": {
+        "service": "CIVO Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on CIVO",
+        "cli": "civo-cli audit --domain iam",
+        "tf": "resource \"civo_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on CIVO\n  name = \"civo-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"civo_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "hetzner": {
+        "service": "HETZNER Identity Service",
+        "control": "Enforce hardened architectural baseline for Identity & Access Management (IAM) on HETZNER",
+        "cli": "hetzner-cli audit --domain iam",
+        "tf": "resource \"hetzner_iam\" \"hardened\" {\n  # Hardened Identity & Access Management (IAM) on HETZNER\n  name = \"hetzner-iam-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"hetzner_iam\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      }
+    }
+  },
+  {
+    "id": "k8s",
+    "title": "Managed Kubernetes Security",
+    "icon": "☸️",
+    "description": "Production cluster hardening, private API endpoints, and pod security standards.",
+    "providers": {
+      "aws": {
+        "service": "AWS Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on AWS",
+        "cli": "aws-cli audit --domain k8s",
+        "tf": "resource \"aws_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on AWS\n  name = \"aws-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"aws_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "azure": {
+        "service": "AZURE Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on AZURE",
+        "cli": "azure-cli audit --domain k8s",
+        "tf": "resource \"azure_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on AZURE\n  name = \"azure-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"azure_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "gcp": {
+        "service": "GCP Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on GCP",
+        "cli": "gcp-cli audit --domain k8s",
+        "tf": "resource \"gcp_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on GCP\n  name = \"gcp-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"gcp_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "kspm": {
+        "service": "KSPM Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on KSPM",
+        "cli": "kspm-cli audit --domain k8s",
+        "tf": "resource \"kspm_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on KSPM\n  name = \"kspm-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"kspm_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "cnapp": {
+        "service": "CNAPP Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on CNAPP",
+        "cli": "cnapp-cli audit --domain k8s",
+        "tf": "resource \"cnapp_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on CNAPP\n  name = \"cnapp-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"cnapp_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "vultr": {
+        "service": "VULTR Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on VULTR",
+        "cli": "vultr-cli audit --domain k8s",
+        "tf": "resource \"vultr_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on VULTR\n  name = \"vultr-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"vultr_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "oracle": {
+        "service": "ORACLE Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on ORACLE",
+        "cli": "oracle-cli audit --domain k8s",
+        "tf": "resource \"oracle_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on ORACLE\n  name = \"oracle-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"oracle_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "digitalocean": {
+        "service": "DIGITALOCEAN Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on DIGITALOCEAN",
+        "cli": "digitalocean-cli audit --domain k8s",
+        "tf": "resource \"digitalocean_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on DIGITALOCEAN\n  name = \"digitalocean-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"digitalocean_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "alicloud": {
+        "service": "ALICLOUD Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on ALICLOUD",
+        "cli": "alicloud-cli audit --domain k8s",
+        "tf": "resource \"alicloud_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on ALICLOUD\n  name = \"alicloud-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"alicloud_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "civo": {
+        "service": "CIVO Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on CIVO",
+        "cli": "civo-cli audit --domain k8s",
+        "tf": "resource \"civo_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on CIVO\n  name = \"civo-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"civo_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "hetzner": {
+        "service": "HETZNER Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Kubernetes Security on HETZNER",
+        "cli": "hetzner-cli audit --domain k8s",
+        "tf": "resource \"hetzner_k8s\" \"hardened\" {\n  # Hardened Managed Kubernetes Security on HETZNER\n  name = \"hetzner-k8s-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"hetzner_k8s\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      }
+    }
+  },
+  {
+    "id": "storage",
+    "title": "Object Storage Encryption & Isolation",
+    "icon": "🗄️",
+    "description": "Enforcing AES-256 encryption, TLS transport, and private access across all object stores.",
+    "providers": {
+      "aws": {
+        "service": "AWS Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on AWS",
+        "cli": "aws-cli audit --domain storage",
+        "tf": "resource \"aws_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on AWS\n  name = \"aws-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"aws_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "azure": {
+        "service": "AZURE Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on AZURE",
+        "cli": "azure-cli audit --domain storage",
+        "tf": "resource \"azure_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on AZURE\n  name = \"azure-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"azure_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "gcp": {
+        "service": "GCP Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on GCP",
+        "cli": "gcp-cli audit --domain storage",
+        "tf": "resource \"gcp_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on GCP\n  name = \"gcp-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"gcp_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "kspm": {
+        "service": "KSPM Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on KSPM",
+        "cli": "kspm-cli audit --domain storage",
+        "tf": "resource \"kspm_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on KSPM\n  name = \"kspm-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"kspm_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "cnapp": {
+        "service": "CNAPP Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on CNAPP",
+        "cli": "cnapp-cli audit --domain storage",
+        "tf": "resource \"cnapp_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on CNAPP\n  name = \"cnapp-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"cnapp_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "vultr": {
+        "service": "VULTR Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on VULTR",
+        "cli": "vultr-cli audit --domain storage",
+        "tf": "resource \"vultr_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on VULTR\n  name = \"vultr-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"vultr_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "oracle": {
+        "service": "ORACLE Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on ORACLE",
+        "cli": "oracle-cli audit --domain storage",
+        "tf": "resource \"oracle_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on ORACLE\n  name = \"oracle-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"oracle_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "digitalocean": {
+        "service": "DIGITALOCEAN Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on DIGITALOCEAN",
+        "cli": "digitalocean-cli audit --domain storage",
+        "tf": "resource \"digitalocean_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on DIGITALOCEAN\n  name = \"digitalocean-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"digitalocean_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "alicloud": {
+        "service": "ALICLOUD Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on ALICLOUD",
+        "cli": "alicloud-cli audit --domain storage",
+        "tf": "resource \"alicloud_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on ALICLOUD\n  name = \"alicloud-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"alicloud_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "civo": {
+        "service": "CIVO Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on CIVO",
+        "cli": "civo-cli audit --domain storage",
+        "tf": "resource \"civo_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on CIVO\n  name = \"civo-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"civo_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "hetzner": {
+        "service": "HETZNER Object Service",
+        "control": "Enforce hardened architectural baseline for Object Storage Encryption & Isolation on HETZNER",
+        "cli": "hetzner-cli audit --domain storage",
+        "tf": "resource \"hetzner_storage\" \"hardened\" {\n  # Hardened Object Storage Encryption & Isolation on HETZNER\n  name = \"hetzner-storage-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"hetzner_storage\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      }
+    }
+  },
+  {
+    "id": "network",
+    "title": "Network Isolation, VPCs & Firewalls",
+    "icon": "🌐",
+    "description": "Private routing, security group zero-trust ingress, and perimeter boundary defense.",
+    "providers": {
+      "aws": {
+        "service": "AWS Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on AWS",
+        "cli": "aws-cli audit --domain network",
+        "tf": "resource \"aws_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on AWS\n  name = \"aws-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"aws_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "azure": {
+        "service": "AZURE Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on AZURE",
+        "cli": "azure-cli audit --domain network",
+        "tf": "resource \"azure_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on AZURE\n  name = \"azure-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"azure_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "gcp": {
+        "service": "GCP Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on GCP",
+        "cli": "gcp-cli audit --domain network",
+        "tf": "resource \"gcp_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on GCP\n  name = \"gcp-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"gcp_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "kspm": {
+        "service": "KSPM Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on KSPM",
+        "cli": "kspm-cli audit --domain network",
+        "tf": "resource \"kspm_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on KSPM\n  name = \"kspm-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"kspm_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "cnapp": {
+        "service": "CNAPP Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on CNAPP",
+        "cli": "cnapp-cli audit --domain network",
+        "tf": "resource \"cnapp_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on CNAPP\n  name = \"cnapp-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"cnapp_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "vultr": {
+        "service": "VULTR Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on VULTR",
+        "cli": "vultr-cli audit --domain network",
+        "tf": "resource \"vultr_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on VULTR\n  name = \"vultr-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"vultr_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "oracle": {
+        "service": "ORACLE Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on ORACLE",
+        "cli": "oracle-cli audit --domain network",
+        "tf": "resource \"oracle_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on ORACLE\n  name = \"oracle-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"oracle_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "digitalocean": {
+        "service": "DIGITALOCEAN Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on DIGITALOCEAN",
+        "cli": "digitalocean-cli audit --domain network",
+        "tf": "resource \"digitalocean_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on DIGITALOCEAN\n  name = \"digitalocean-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"digitalocean_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "alicloud": {
+        "service": "ALICLOUD Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on ALICLOUD",
+        "cli": "alicloud-cli audit --domain network",
+        "tf": "resource \"alicloud_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on ALICLOUD\n  name = \"alicloud-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"alicloud_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "civo": {
+        "service": "CIVO Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on CIVO",
+        "cli": "civo-cli audit --domain network",
+        "tf": "resource \"civo_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on CIVO\n  name = \"civo-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"civo_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "hetzner": {
+        "service": "HETZNER Network Service",
+        "control": "Enforce hardened architectural baseline for Network Isolation, VPCs & Firewalls on HETZNER",
+        "cli": "hetzner-cli audit --domain network",
+        "tf": "resource \"hetzner_network\" \"hardened\" {\n  # Hardened Network Isolation, VPCs & Firewalls on HETZNER\n  name = \"hetzner-network-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"hetzner_network\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      }
+    }
+  },
+  {
+    "id": "database",
+    "title": "Managed Databases (DBaaS)",
+    "icon": "💾",
+    "description": "Encrypted storage at rest, multi-AZ high availability, and SSL/TLS client enforcement.",
+    "providers": {
+      "aws": {
+        "service": "AWS Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on AWS",
+        "cli": "aws-cli audit --domain database",
+        "tf": "resource \"aws_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on AWS\n  name = \"aws-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"aws_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "azure": {
+        "service": "AZURE Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on AZURE",
+        "cli": "azure-cli audit --domain database",
+        "tf": "resource \"azure_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on AZURE\n  name = \"azure-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"azure_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "gcp": {
+        "service": "GCP Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on GCP",
+        "cli": "gcp-cli audit --domain database",
+        "tf": "resource \"gcp_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on GCP\n  name = \"gcp-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"gcp_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "kspm": {
+        "service": "KSPM Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on KSPM",
+        "cli": "kspm-cli audit --domain database",
+        "tf": "resource \"kspm_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on KSPM\n  name = \"kspm-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"kspm_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "cnapp": {
+        "service": "CNAPP Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on CNAPP",
+        "cli": "cnapp-cli audit --domain database",
+        "tf": "resource \"cnapp_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on CNAPP\n  name = \"cnapp-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"cnapp_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "vultr": {
+        "service": "VULTR Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on VULTR",
+        "cli": "vultr-cli audit --domain database",
+        "tf": "resource \"vultr_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on VULTR\n  name = \"vultr-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"vultr_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "oracle": {
+        "service": "ORACLE Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on ORACLE",
+        "cli": "oracle-cli audit --domain database",
+        "tf": "resource \"oracle_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on ORACLE\n  name = \"oracle-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"oracle_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "digitalocean": {
+        "service": "DIGITALOCEAN Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on DIGITALOCEAN",
+        "cli": "digitalocean-cli audit --domain database",
+        "tf": "resource \"digitalocean_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on DIGITALOCEAN\n  name = \"digitalocean-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"digitalocean_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "alicloud": {
+        "service": "ALICLOUD Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on ALICLOUD",
+        "cli": "alicloud-cli audit --domain database",
+        "tf": "resource \"alicloud_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on ALICLOUD\n  name = \"alicloud-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"alicloud_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "civo": {
+        "service": "CIVO Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on CIVO",
+        "cli": "civo-cli audit --domain database",
+        "tf": "resource \"civo_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on CIVO\n  name = \"civo-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"civo_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "hetzner": {
+        "service": "HETZNER Managed Service",
+        "control": "Enforce hardened architectural baseline for Managed Databases (DBaaS) on HETZNER",
+        "cli": "hetzner-cli audit --domain database",
+        "tf": "resource \"hetzner_database\" \"hardened\" {\n  # Hardened Managed Databases (DBaaS) on HETZNER\n  name = \"hetzner-database-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"hetzner_database\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      }
+    }
+  },
+  {
+    "id": "secrets",
+    "title": "Key Management & Secrets Vaults",
+    "icon": "🔐",
+    "description": "Customer-managed encryption keys, automated envelope encryption, and secret rotation.",
+    "providers": {
+      "aws": {
+        "service": "AWS Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on AWS",
+        "cli": "aws-cli audit --domain secrets",
+        "tf": "resource \"aws_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on AWS\n  name = \"aws-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"aws_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "azure": {
+        "service": "AZURE Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on AZURE",
+        "cli": "azure-cli audit --domain secrets",
+        "tf": "resource \"azure_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on AZURE\n  name = \"azure-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"azure_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "gcp": {
+        "service": "GCP Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on GCP",
+        "cli": "gcp-cli audit --domain secrets",
+        "tf": "resource \"gcp_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on GCP\n  name = \"gcp-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"gcp_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "kspm": {
+        "service": "KSPM Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on KSPM",
+        "cli": "kspm-cli audit --domain secrets",
+        "tf": "resource \"kspm_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on KSPM\n  name = \"kspm-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"kspm_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "cnapp": {
+        "service": "CNAPP Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on CNAPP",
+        "cli": "cnapp-cli audit --domain secrets",
+        "tf": "resource \"cnapp_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on CNAPP\n  name = \"cnapp-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"cnapp_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "vultr": {
+        "service": "VULTR Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on VULTR",
+        "cli": "vultr-cli audit --domain secrets",
+        "tf": "resource \"vultr_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on VULTR\n  name = \"vultr-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"vultr_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "oracle": {
+        "service": "ORACLE Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on ORACLE",
+        "cli": "oracle-cli audit --domain secrets",
+        "tf": "resource \"oracle_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on ORACLE\n  name = \"oracle-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"oracle_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "digitalocean": {
+        "service": "DIGITALOCEAN Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on DIGITALOCEAN",
+        "cli": "digitalocean-cli audit --domain secrets",
+        "tf": "resource \"digitalocean_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on DIGITALOCEAN\n  name = \"digitalocean-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"digitalocean_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "alicloud": {
+        "service": "ALICLOUD Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on ALICLOUD",
+        "cli": "alicloud-cli audit --domain secrets",
+        "tf": "resource \"alicloud_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on ALICLOUD\n  name = \"alicloud-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"alicloud_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "civo": {
+        "service": "CIVO Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on CIVO",
+        "cli": "civo-cli audit --domain secrets",
+        "tf": "resource \"civo_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on CIVO\n  name = \"civo-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"civo_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "hetzner": {
+        "service": "HETZNER Key Service",
+        "control": "Enforce hardened architectural baseline for Key Management & Secrets Vaults on HETZNER",
+        "cli": "hetzner-cli audit --domain secrets",
+        "tf": "resource \"hetzner_secrets\" \"hardened\" {\n  # Hardened Key Management & Secrets Vaults on HETZNER\n  name = \"hetzner-secrets-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"hetzner_secrets\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      }
+    }
+  },
+  {
+    "id": "registry",
+    "title": "Container Registries & Image Scanning",
+    "icon": "📦",
+    "description": "Vulnerability scanning, Cosign cryptographic signatures, and immutable image tags.",
+    "providers": {
+      "aws": {
+        "service": "AWS Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on AWS",
+        "cli": "aws-cli audit --domain registry",
+        "tf": "resource \"aws_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on AWS\n  name = \"aws-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"aws_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "azure": {
+        "service": "AZURE Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on AZURE",
+        "cli": "azure-cli audit --domain registry",
+        "tf": "resource \"azure_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on AZURE\n  name = \"azure-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"azure_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "gcp": {
+        "service": "GCP Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on GCP",
+        "cli": "gcp-cli audit --domain registry",
+        "tf": "resource \"gcp_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on GCP\n  name = \"gcp-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"gcp_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "kspm": {
+        "service": "KSPM Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on KSPM",
+        "cli": "kspm-cli audit --domain registry",
+        "tf": "resource \"kspm_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on KSPM\n  name = \"kspm-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"kspm_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "cnapp": {
+        "service": "CNAPP Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on CNAPP",
+        "cli": "cnapp-cli audit --domain registry",
+        "tf": "resource \"cnapp_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on CNAPP\n  name = \"cnapp-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"cnapp_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "vultr": {
+        "service": "VULTR Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on VULTR",
+        "cli": "vultr-cli audit --domain registry",
+        "tf": "resource \"vultr_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on VULTR\n  name = \"vultr-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"vultr_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "oracle": {
+        "service": "ORACLE Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on ORACLE",
+        "cli": "oracle-cli audit --domain registry",
+        "tf": "resource \"oracle_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on ORACLE\n  name = \"oracle-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"oracle_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "digitalocean": {
+        "service": "DIGITALOCEAN Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on DIGITALOCEAN",
+        "cli": "digitalocean-cli audit --domain registry",
+        "tf": "resource \"digitalocean_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on DIGITALOCEAN\n  name = \"digitalocean-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"digitalocean_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "alicloud": {
+        "service": "ALICLOUD Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on ALICLOUD",
+        "cli": "alicloud-cli audit --domain registry",
+        "tf": "resource \"alicloud_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on ALICLOUD\n  name = \"alicloud-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"alicloud_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "civo": {
+        "service": "CIVO Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on CIVO",
+        "cli": "civo-cli audit --domain registry",
+        "tf": "resource \"civo_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on CIVO\n  name = \"civo-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"civo_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "hetzner": {
+        "service": "HETZNER Container Service",
+        "control": "Enforce hardened architectural baseline for Container Registries & Image Scanning on HETZNER",
+        "cli": "hetzner-cli audit --domain registry",
+        "tf": "resource \"hetzner_registry\" \"hardened\" {\n  # Hardened Container Registries & Image Scanning on HETZNER\n  name = \"hetzner-registry-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"hetzner_registry\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      }
+    }
+  },
+  {
+    "id": "audit",
+    "title": "Audit Logging & Telemetry Streams",
+    "icon": "📜",
+    "description": "Management and data event logging, real-time SIEM forwarding, and immutable retention.",
+    "providers": {
+      "aws": {
+        "service": "AWS Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on AWS",
+        "cli": "aws-cli audit --domain audit",
+        "tf": "resource \"aws_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on AWS\n  name = \"aws-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"aws_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "azure": {
+        "service": "AZURE Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on AZURE",
+        "cli": "azure-cli audit --domain audit",
+        "tf": "resource \"azure_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on AZURE\n  name = \"azure-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"azure_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "gcp": {
+        "service": "GCP Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on GCP",
+        "cli": "gcp-cli audit --domain audit",
+        "tf": "resource \"gcp_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on GCP\n  name = \"gcp-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"gcp_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "kspm": {
+        "service": "KSPM Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on KSPM",
+        "cli": "kspm-cli audit --domain audit",
+        "tf": "resource \"kspm_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on KSPM\n  name = \"kspm-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"kspm_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "cnapp": {
+        "service": "CNAPP Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on CNAPP",
+        "cli": "cnapp-cli audit --domain audit",
+        "tf": "resource \"cnapp_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on CNAPP\n  name = \"cnapp-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"cnapp_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "vultr": {
+        "service": "VULTR Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on VULTR",
+        "cli": "vultr-cli audit --domain audit",
+        "tf": "resource \"vultr_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on VULTR\n  name = \"vultr-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"vultr_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "oracle": {
+        "service": "ORACLE Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on ORACLE",
+        "cli": "oracle-cli audit --domain audit",
+        "tf": "resource \"oracle_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on ORACLE\n  name = \"oracle-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"oracle_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "digitalocean": {
+        "service": "DIGITALOCEAN Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on DIGITALOCEAN",
+        "cli": "digitalocean-cli audit --domain audit",
+        "tf": "resource \"digitalocean_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on DIGITALOCEAN\n  name = \"digitalocean-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"digitalocean_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "alicloud": {
+        "service": "ALICLOUD Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on ALICLOUD",
+        "cli": "alicloud-cli audit --domain audit",
+        "tf": "resource \"alicloud_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on ALICLOUD\n  name = \"alicloud-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"alicloud_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "civo": {
+        "service": "CIVO Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on CIVO",
+        "cli": "civo-cli audit --domain audit",
+        "tf": "resource \"civo_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on CIVO\n  name = \"civo-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"civo_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "hetzner": {
+        "service": "HETZNER Audit Service",
+        "control": "Enforce hardened architectural baseline for Audit Logging & Telemetry Streams on HETZNER",
+        "cli": "hetzner-cli audit --domain audit",
+        "tf": "resource \"hetzner_audit\" \"hardened\" {\n  # Hardened Audit Logging & Telemetry Streams on HETZNER\n  name = \"hetzner-audit-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"hetzner_audit\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      }
+    }
+  },
+  {
+    "id": "waf",
+    "title": "Edge Security, DDoS & WAF",
+    "icon": "🛡️",
+    "description": "Web Application Firewall inspection, rate limiting, and automated terabit DDoS shielding.",
+    "providers": {
+      "aws": {
+        "service": "AWS Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on AWS",
+        "cli": "aws-cli audit --domain waf",
+        "tf": "resource \"aws_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on AWS\n  name = \"aws-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"aws_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "azure": {
+        "service": "AZURE Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on AZURE",
+        "cli": "azure-cli audit --domain waf",
+        "tf": "resource \"azure_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on AZURE\n  name = \"azure-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"azure_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "gcp": {
+        "service": "GCP Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on GCP",
+        "cli": "gcp-cli audit --domain waf",
+        "tf": "resource \"gcp_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on GCP\n  name = \"gcp-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"gcp_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "kspm": {
+        "service": "KSPM Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on KSPM",
+        "cli": "kspm-cli audit --domain waf",
+        "tf": "resource \"kspm_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on KSPM\n  name = \"kspm-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"kspm_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "cnapp": {
+        "service": "CNAPP Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on CNAPP",
+        "cli": "cnapp-cli audit --domain waf",
+        "tf": "resource \"cnapp_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on CNAPP\n  name = \"cnapp-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"cnapp_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "vultr": {
+        "service": "VULTR Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on VULTR",
+        "cli": "vultr-cli audit --domain waf",
+        "tf": "resource \"vultr_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on VULTR\n  name = \"vultr-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"vultr_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "oracle": {
+        "service": "ORACLE Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on ORACLE",
+        "cli": "oracle-cli audit --domain waf",
+        "tf": "resource \"oracle_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on ORACLE\n  name = \"oracle-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"oracle_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "digitalocean": {
+        "service": "DIGITALOCEAN Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on DIGITALOCEAN",
+        "cli": "digitalocean-cli audit --domain waf",
+        "tf": "resource \"digitalocean_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on DIGITALOCEAN\n  name = \"digitalocean-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"digitalocean_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "alicloud": {
+        "service": "ALICLOUD Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on ALICLOUD",
+        "cli": "alicloud-cli audit --domain waf",
+        "tf": "resource \"alicloud_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on ALICLOUD\n  name = \"alicloud-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"alicloud_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "civo": {
+        "service": "CIVO Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on CIVO",
+        "cli": "civo-cli audit --domain waf",
+        "tf": "resource \"civo_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on CIVO\n  name = \"civo-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"civo_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "hetzner": {
+        "service": "HETZNER Edge Service",
+        "control": "Enforce hardened architectural baseline for Edge Security, DDoS & WAF on HETZNER",
+        "cli": "hetzner-cli audit --domain waf",
+        "tf": "resource \"hetzner_waf\" \"hardened\" {\n  # Hardened Edge Security, DDoS & WAF on HETZNER\n  name = \"hetzner-waf-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"hetzner_waf\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      }
+    }
+  },
+  {
+    "id": "compliance",
+    "title": "Compliance & Sovereign Guardrails",
+    "icon": "⚖️",
+    "description": "CIS Benchmarks, NIST SP 800-53, SOC 2 Type II, and European GDPR sovereignty controls.",
+    "providers": {
+      "aws": {
+        "service": "AWS Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on AWS",
+        "cli": "aws-cli audit --domain compliance",
+        "tf": "resource \"aws_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on AWS\n  name = \"aws-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"aws_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "azure": {
+        "service": "AZURE Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on AZURE",
+        "cli": "azure-cli audit --domain compliance",
+        "tf": "resource \"azure_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on AZURE\n  name = \"azure-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"azure_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "gcp": {
+        "service": "GCP Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on GCP",
+        "cli": "gcp-cli audit --domain compliance",
+        "tf": "resource \"gcp_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on GCP\n  name = \"gcp-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"gcp_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "kspm": {
+        "service": "KSPM Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on KSPM",
+        "cli": "kspm-cli audit --domain compliance",
+        "tf": "resource \"kspm_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on KSPM\n  name = \"kspm-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"kspm_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "cnapp": {
+        "service": "CNAPP Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on CNAPP",
+        "cli": "cnapp-cli audit --domain compliance",
+        "tf": "resource \"cnapp_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on CNAPP\n  name = \"cnapp-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"cnapp_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "vultr": {
+        "service": "VULTR Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on VULTR",
+        "cli": "vultr-cli audit --domain compliance",
+        "tf": "resource \"vultr_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on VULTR\n  name = \"vultr-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"vultr_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "oracle": {
+        "service": "ORACLE Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on ORACLE",
+        "cli": "oracle-cli audit --domain compliance",
+        "tf": "resource \"oracle_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on ORACLE\n  name = \"oracle-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"oracle_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "digitalocean": {
+        "service": "DIGITALOCEAN Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on DIGITALOCEAN",
+        "cli": "digitalocean-cli audit --domain compliance",
+        "tf": "resource \"digitalocean_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on DIGITALOCEAN\n  name = \"digitalocean-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"digitalocean_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "alicloud": {
+        "service": "ALICLOUD Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on ALICLOUD",
+        "cli": "alicloud-cli audit --domain compliance",
+        "tf": "resource \"alicloud_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on ALICLOUD\n  name = \"alicloud-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"alicloud_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "civo": {
+        "service": "CIVO Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on CIVO",
+        "cli": "civo-cli audit --domain compliance",
+        "tf": "resource \"civo_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on CIVO\n  name = \"civo-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"civo_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      },
+      "hetzner": {
+        "service": "HETZNER Compliance Service",
+        "control": "Enforce hardened architectural baseline for Compliance & Sovereign Guardrails on HETZNER",
+        "cli": "hetzner-cli audit --domain compliance",
+        "tf": "resource \"hetzner_compliance\" \"hardened\" {\n  # Hardened Compliance & Sovereign Guardrails on HETZNER\n  name = \"hetzner-compliance-baseline\"\n  encrypted = true\n}",
+        "rego": "deny[msg] {\n  r := input.resource_changes[_]\n  r.type == \"hetzner_compliance\"\n  not r.change.after.encrypted\n  msg := \"Resource must be encrypted for compliance\"\n}",
+        "compliance": "CIS Level 1, NIST 800-53, SOC 2"
+      }
+    }
+  }
+]

@@ -66,6 +66,8 @@ for (const provider of ["aws", "azure", "gcp", "kspm", "cnapp", "vultr", "oracle
 for (const data of ["aws", "azure", "gcp", "kspm", "cnapp", "vultr", "oracle", "digitalocean", "alicloud", "civo", "hetzner"]) {
   await publicFile(`data/${data}-best-practices.json`);
 }
+await publicFile("data/cross-cloud-matrix.json");
+await publicFile("data/compliance-frameworks.json");
 await publicFile("assets/app.css");
 await publicFile("assets/initialize-theme.js");
 await publicFile("assets/site-visits.js");
