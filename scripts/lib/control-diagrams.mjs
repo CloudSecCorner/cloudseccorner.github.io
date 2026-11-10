@@ -12,7 +12,9 @@ const providers = {
   vultr: { name: 'Vultr', identity: 'vultr-iam', audit: 'vultr-logging', authorization: 'Vultr API key or subaccount permissions', evidence: 'Vultr system audit logs and resource readback', sources: ['https://www.vultr.com/docs/security/', 'https://www.vultr.com/api/'] },
   oracle: { name: 'Oracle Cloud', identity: 'oci-iam', audit: 'oci-audit', authorization: 'OCI IAM policy and compartment authorization', evidence: 'Supported OCI Audit events and Cloud Guard problems', sources: ['https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm', 'https://docs.oracle.com/en-us/iaas/Content/Audit/Concepts/auditoverview.htm'] },
   digitalocean: { name: 'DigitalOcean', identity: 'do-iam', audit: 'do-audit', authorization: 'DigitalOcean API token or team permissions', evidence: 'DigitalOcean audit logs and droplet activity', sources: ['https://docs.digitalocean.com/reference/api/', 'https://docs.digitalocean.com/products/security/'] },
-  alicloud: { name: 'Alibaba Cloud', identity: 'alicloud-ram', audit: 'alicloud-actiontrail', authorization: 'Alibaba Cloud RAM policy and Resource Directory', evidence: 'Supported ActionTrail management events and Security Center alerts', sources: ['https://www.alibabacloud.com/help/en/ram/', 'https://www.alibabacloud.com/help/en/actiontrail/'] }
+  alicloud: { name: 'Alibaba Cloud', identity: 'alicloud-ram', audit: 'alicloud-actiontrail', authorization: 'Alibaba Cloud RAM policy and Resource Directory', evidence: 'Supported ActionTrail management events and Security Center alerts', sources: ['https://www.alibabacloud.com/help/en/ram/', 'https://www.alibabacloud.com/help/en/actiontrail/'] },
+  civo: { name: 'Civo Cloud', identity: 'civo-iam', audit: 'civo-audit', authorization: 'Civo API key or team permissions', evidence: 'Civo audit events and cluster telemetry', sources: ['https://www.civo.com/learn', 'https://www.civo.com/docs'] },
+  hetzner: { name: 'Hetzner Cloud', identity: 'hetzner-iam', audit: 'hetzner-audit', authorization: 'Hetzner API token and project permissions', evidence: 'Hetzner Cloud action log and audit trail', sources: ['https://docs.hetzner.com/cloud/', 'https://docs.hetzner.com/general/general/security-privacy/'] }
 };
 
 const requirements = [
@@ -40,6 +42,8 @@ function inferProvider(entry, fallback) {
   if (entry.category.startsWith('oci-') || entry.category.startsWith('oracle-')) return 'oracle';
   if (entry.category.startsWith('do-')) return 'digitalocean';
   if (entry.category.startsWith('alicloud-')) return 'alicloud';
+  if (entry.category.startsWith('civo-')) return 'civo';
+  if (entry.category.startsWith('hetzner-')) return 'hetzner';
   if (entry.category.startsWith('container-') && !['container-eks', 'container-ecs'].includes(entry.category)) return 'container';
   return fallback === 'cnapp' ? 'aws' : fallback;
 }

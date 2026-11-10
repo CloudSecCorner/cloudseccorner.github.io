@@ -1,0 +1,8 @@
+flowchart TB
+      client@{ icon: "logos:hetzner-iam", label: "Hetzner API Token", h: 64, pos: "b" }
+      net@{ icon: "logos:hetzner-network", label: "Hetzner Private Network", h: 64, pos: "b" }
+      fw@{ icon: "logos:hetzner-firewall", label: "Hetzner Firewall", h: 64, pos: "b" }
+      srv@{ icon: "logos:hetzner-server", label: "Hetzner Server CX31", h: 64, pos: "b" }
+      client --> net
+      net --> fw
+      fw --> srv

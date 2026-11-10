@@ -1,0 +1,8 @@
+flowchart TB
+      client@{ icon: "logos:civo-iam", label: "Civo API Token", h: 64, pos: "b" }
+      net@{ icon: "logos:civo-network", label: "Private Civo Network", h: 64, pos: "b" }
+      fw@{ icon: "logos:civo-firewall", label: "Stateful Firewall", h: 64, pos: "b" }
+      cluster@{ icon: "logos:civo-k3s", label: "Civo K3s Cluster", h: 64, pos: "b" }
+      client --> net
+      net --> fw
+      fw --> cluster

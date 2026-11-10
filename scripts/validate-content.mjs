@@ -56,7 +56,7 @@ async function readJsonCandidates(relPath) {
   throw new Error(`Cannot find JSON at candidates: ${candidates.join(', ')}`);
 }
 
-const [{ blogs }, { labs }, awsPractices, azurePractices, gcpPractices, kspmPractices, vultrPractices, oraclePractices, digitaloceanPractices, alicloudPractices] = await Promise.all([
+const [{ blogs }, { labs }, awsPractices, azurePractices, gcpPractices, kspmPractices, vultrPractices, oraclePractices, digitaloceanPractices, alicloudPractices, civoPractices, hetznerPractices] = await Promise.all([
   readJsonCandidates('blog.json'),
   readJsonCandidates('labs.json'),
   readJsonCandidates('aws-best-practices.json'),
@@ -66,7 +66,9 @@ const [{ blogs }, { labs }, awsPractices, azurePractices, gcpPractices, kspmPrac
   readJsonCandidates('vultr-best-practices.json'),
   readJsonCandidates('oracle-best-practices.json'),
   readJsonCandidates('digitalocean-best-practices.json'),
-  readJsonCandidates('alicloud-best-practices.json')
+  readJsonCandidates('alicloud-best-practices.json'),
+  readJsonCandidates('civo-best-practices.json'),
+  readJsonCandidates('hetzner-best-practices.json')
 ]);
 
 await validateCollection('Blog index', blogs, 'file');
@@ -102,6 +104,14 @@ if (!Array.isArray(digitaloceanPractices) || digitaloceanPractices.length < 1000
 
 if (!Array.isArray(alicloudPractices) || alicloudPractices.length < 1000) {
   throw new Error(`Alibaba Cloud Best Practices dataset must have at least 1,000 entries; found ${alicloudPractices?.length}`);
+}
+
+if (!Array.isArray(civoPractices) || civoPractices.length < 1000) {
+  throw new Error(`Civo Best Practices dataset must have at least 1,000 entries; found ${civoPractices?.length}`);
+}
+
+if (!Array.isArray(hetznerPractices) || hetznerPractices.length < 1000) {
+  throw new Error(`Hetzner Best Practices dataset must have at least 1,000 entries; found ${hetznerPractices?.length}`);
 }
 
 for (const tool of securityEntries) {

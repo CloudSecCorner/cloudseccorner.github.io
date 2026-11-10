@@ -16,17 +16,19 @@ const definitions = [
   { id: 'vultr', name: 'Vultr', route: '/vultr-architectures', logo: 'vultr', scope: 'VPC 2.0, Bare Metal, VKE, Object Storage, and Anycast networking.' },
   { id: 'oracle', name: 'Oracle Cloud', route: '/oracle-architectures', logo: 'oracle', scope: 'VCN, OKE, Autonomous Database, OCI Vault, and Cloud Guard.' },
   { id: 'digitalocean', name: 'DigitalOcean', route: '/digitalocean-architectures', logo: 'digital-ocean', scope: 'Droplets, DOKS, Spaces, Cloud Firewalls, and VPC networking.' },
-  { id: 'alicloud', name: 'Alibaba Cloud', route: '/alicloud-architectures', logo: 'alicloud', scope: 'VPC, ACK, ApsaraDB, OSS, ActionTrail, and Security Center.' }
+  { id: 'alicloud', name: 'Alibaba Cloud', route: '/alicloud-architectures', logo: 'alicloud', scope: 'VPC, ACK, ApsaraDB, OSS, ActionTrail, and Security Center.' },
+  { id: 'civo', name: 'Civo Cloud', route: '/civo-architectures', logo: 'civo', scope: 'K3s Managed Kubernetes, GPU clusters, Deep Lake, Object Storage, and Private Networks.' },
+  { id: 'hetzner', name: 'Hetzner Cloud', route: '/hetzner-architectures', logo: 'hetzner', scope: 'CX/CPX Servers, Cloud Networks, Firewalls, Storage Box, and European Sovereign Cloud.' }
 ];
 const logoDirectory = path.join(root, 'public/images/provider-logos');
 fs.mkdirSync(logoDirectory, { recursive: true });
 const providers = definitions.map(provider => {
   const entries = readJson(`public/data/${provider.id}-best-practices.json`);
-  const logo = logos.icons[provider.logo] || {
-    body: '<path fill="#FF6A00" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.5 4.5h3v4.5h-3zm-6 6h15v3h-15zm3 4.5h9v4.5h-9z"/>',
-    width: 24,
-    height: 24
-  };
+  const logo = logos.icons[provider.logo] || (
+    provider.id === 'civo' ? { body: '<path fill="#2293EE" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>', width: 24, height: 24 } :
+    provider.id === 'hetzner' ? { body: '<path fill="#D50C2D" d="M2 3h4.5v7.5h11V3H22v18h-4.5v-7.5h-11V21H2V3z"/>', width: 24, height: 24 } :
+    { body: '<path fill="#FF6A00" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.5 4.5h3v4.5h-3zm-6 6h15v3h-15zm3 4.5h9v4.5h-9z"/>', width: 24, height: 24 }
+  );
   const width = logo.width ?? logos.width ?? 16;
   const height = logo.height ?? logos.height ?? 16;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${logo.body}</svg>\n`;

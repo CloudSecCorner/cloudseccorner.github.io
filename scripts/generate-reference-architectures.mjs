@@ -198,6 +198,42 @@ const references = {
     expected: 'Alibaba Cloud OSS bucket provisioned with private ACL and server-side encryption.',
     sources: ['https://www.alibabacloud.com/help/en/oss/', 'https://www.alibabacloud.com/help/en/ram/'],
     checks: { alicloud_oss_bucket: { acl: "private" } }
+  },
+  civo: {
+    category: 'civo-k3s', service: 'Civo Kubernetes (K3s)', icon: 'civo-k3s',
+    title: 'Reference: Hardened Civo K3s cluster with private network and firewall',
+    description: 'Deploys a Civo K3s Kubernetes cluster in an isolated private network protected by a stateful cloud firewall with strictly whitelisted CIDRs.',
+    flow: `flowchart TB
+      client@{ icon: "logos:civo-iam", label: "Civo API Token", h: 64, pos: "b" }
+      net@{ icon: "logos:civo-network", label: "Private Civo Network", h: 64, pos: "b" }
+      fw@{ icon: "logos:civo-firewall", label: "Stateful Firewall", h: 64, pos: "b" }
+      cluster@{ icon: "logos:civo-k3s", label: "Civo K3s Cluster", h: 64, pos: "b" }
+      client --> net
+      net --> fw
+      fw --> cluster`,
+    prerequisites: 'Terraform 1.5+, Civo API key with cluster permissions.',
+    commands: 'civo apikey current\nterraform init\nterraform plan -out=tfplan\nterraform show -json tfplan > tfplan.json\nopa eval --data policy.rego --input tfplan.json "data.reference.civo.allow"',
+    expected: 'Civo K3s cluster provisioned inside private network with firewall rules.',
+    sources: ['https://www.civo.com/learn', 'https://www.civo.com/docs'],
+    checks: { civo_kubernetes_cluster: { name: "civo-prod-k3s" } }
+  },
+  hetzner: {
+    category: 'hetzner-server', service: 'Hetzner Cloud Server', icon: 'hetzner-server',
+    title: 'Reference: Private Hetzner Cloud CX31 server with firewall and automated backups',
+    description: 'Deploys an isolated Hetzner Cloud Server with disabled public networking, attached to a private Hetzner Cloud Network, protected by a Cloud Firewall, with automated backups enabled.',
+    flow: `flowchart TB
+      client@{ icon: "logos:hetzner-iam", label: "Hetzner API Token", h: 64, pos: "b" }
+      net@{ icon: "logos:hetzner-network", label: "Hetzner Private Network", h: 64, pos: "b" }
+      fw@{ icon: "logos:hetzner-firewall", label: "Hetzner Firewall", h: 64, pos: "b" }
+      srv@{ icon: "logos:hetzner-server", label: "Hetzner Server CX31", h: 64, pos: "b" }
+      client --> net
+      net --> fw
+      fw --> srv`,
+    prerequisites: 'Terraform 1.5+, Hetzner Cloud API token (hcloud).',
+    commands: 'hcloud context active\nterraform init\nterraform plan -out=tfplan\nterraform show -json tfplan > tfplan.json\nopa eval --data policy.rego --input tfplan.json "data.reference.hetzner.allow"',
+    expected: 'Hetzner Server provisioned with backups enabled and private network attached.',
+    sources: ['https://docs.hetzner.com/cloud/', 'https://community.hetzner.com/'],
+    checks: { hcloud_server: { backups: true } }
   }
 };
 
