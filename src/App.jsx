@@ -51,12 +51,16 @@ function NotFound() {
   );
 }
 
+import { StackBuilderProvider } from "./context/StackBuilderContext";
+import StackBuilderDrawer from "./components/StackBuilderDrawer";
+
 function App() {
   return (
     <Router>
-      <div className="developer-shell min-h-screen flex flex-col transition-colors duration-200">
-        <Nav />
-        <div className="flex-1">
+      <StackBuilderProvider>
+        <div className="developer-shell min-h-screen flex flex-col transition-colors duration-200">
+          <Nav />
+          <div className="flex-1">
           <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={
@@ -94,7 +98,9 @@ function App() {
         </div>
         <Footer />
         <JoinCommunityPopup />
+        <StackBuilderDrawer />
       </div>
+      </StackBuilderProvider>
     </Router>
   );
 }

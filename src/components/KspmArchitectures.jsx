@@ -4,8 +4,10 @@ import referenceArchitectures from "../data/reference-architectures.json";
 import DiagramViewer from "./DiagramViewer";
 import React, { useEffect, useState, useMemo } from "react";
 import OpenGraph from "./OpenGraph";
+import { useStackBuilder } from "../context/StackBuilderContext";
 
 export default function KspmArchitectures() {
+  const { addToStack, removeFromStack, isInStack } = useStackBuilder();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
@@ -606,6 +608,24 @@ export default function KspmArchitectures() {
 
                       {/* Quick Actions on Card */}
                       <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (isInStack(item.id)) {
+                              removeFromStack(item.id);
+                            } else {
+                              addToStack(item);
+                            }
+                          }}
+                          className={`px-2 py-0.5 rounded text-[11px] font-semibold transition ${
+                            isInStack(item.id)
+                              ? "bg-purple-600 text-white"
+                              : "bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-500/20"
+                          }`}
+                          title={isInStack(item.id) ? "Remove from IaC Stack" : "Add to IaC Stack"}
+                        >
+                          {isInStack(item.id) ? "✓ Stack" : "+ Stack"}
+                        </button>
                         {activeTab === "diagram" && (
                           <button
                             onClick={() => downloadSvg(item.svg, item.id)}
@@ -793,14 +813,32 @@ export default function KspmArchitectures() {
                 </div>
               </div>
 
-              <button
-                onClick={() => setModalItem(null)}
-                className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition"
-              >
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    if (isInStack(modalItem.id)) {
+                      removeFromStack(modalItem.id);
+                    } else {
+                      addToStack(modalItem);
+                    }
+                  }}
+                  className={`px-3 py-1 rounded text-xs font-bold transition ${
+                    isInStack(modalItem.id)
+                      ? "bg-purple-600 text-white"
+                      : "bg-purple-600/20 text-purple-400 hover:bg-purple-600/30 border border-purple-500/30"
+                  }`}
+                >
+                  {isInStack(modalItem.id) ? "✓ In Stack" : "+ Add to Stack"}
+                </button>
+                <button
+                  onClick={() => setModalItem(null)}
+                  className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition"
+                >
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             {/* Modal Description */}

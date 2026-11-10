@@ -4,8 +4,10 @@ import referenceArchitectures from "../data/reference-architectures.json";
 import DiagramViewer from "./DiagramViewer";
 import React, { useEffect, useState, useMemo } from "react";
 import OpenGraph from "./OpenGraph";
+import { useStackBuilder } from "../context/StackBuilderContext";
 
 export default function VultrArchitectures() {
+  const { addToStack, removeFromStack, isInStack } = useStackBuilder();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
@@ -664,6 +666,23 @@ export default function VultrArchitectures() {
                       </span>
                       <div className="flex items-center gap-2">
                         <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (isInStack(item.id)) {
+                              removeFromStack(item.id);
+                            } else {
+                              addToStack(item);
+                            }
+                          }}
+                          className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition ${
+                            isInStack(item.id)
+                              ? "bg-purple-600 text-white"
+                              : "bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-200 hover:bg-purple-600 hover:text-white"
+                          }`}
+                        >
+                          {isInStack(item.id) ? "✓ Stack" : "+ Stack"}
+                        </button>
+                        <button
                           onClick={() => downloadSvgFile(item.svg, item.id)}
                           className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-200 hover:bg-blue-600 hover:text-white transition flex items-center gap-1"
                           title="Download SVG"
@@ -787,12 +806,30 @@ export default function VultrArchitectures() {
                 Pillar: <strong className="text-slate-900 dark:text-white">{modalItem.pillar}</strong> • Severity:{" "}
                 <strong className="text-rose-600 dark:text-rose-400">{modalItem.severity}</strong>
               </span>
-              <button
-                onClick={() => downloadSvgFile(modalItem.svg, modalItem.id)}
-                className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-500 transition flex items-center gap-1.5"
-              >
-                <span>Download Vector SVG</span> ⭳
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    if (isInStack(modalItem.id)) {
+                      removeFromStack(modalItem.id);
+                    } else {
+                      addToStack(modalItem);
+                    }
+                  }}
+                  className={`px-3 py-2 rounded-xl text-xs font-semibold transition ${
+                    isInStack(modalItem.id)
+                      ? "bg-purple-600 text-white"
+                      : "bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 border border-purple-500/30"
+                  }`}
+                >
+                  {isInStack(modalItem.id) ? "✓ In Stack" : "+ Add to Stack"}
+                </button>
+                <button
+                  onClick={() => downloadSvgFile(modalItem.svg, modalItem.id)}
+                  className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-500 transition flex items-center gap-1.5"
+                >
+                  <span>Download Vector SVG</span> ⭳
+                </button>
+              </div>
             </div>
           </div>
         </div>

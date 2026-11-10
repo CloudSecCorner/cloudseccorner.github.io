@@ -4,8 +4,10 @@ import referenceArchitectures from "../data/reference-architectures.json";
 import DiagramViewer from "./DiagramViewer";
 import React, { useEffect, useState, useMemo } from "react";
 import OpenGraph from "./OpenGraph";
+import { useStackBuilder } from "../context/StackBuilderContext";
 
 export default function HetznerArchitectures() {
+  const { addToStack, removeFromStack, isInStack } = useStackBuilder();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
@@ -313,11 +315,30 @@ export default function HetznerArchitectures() {
                       onClick={() => setModalItem(item)}
                       className="text-red-400 hover:text-red-300 font-semibold"
                     >
-                      View Blueprint Details →
+                      View Details →
                     </button>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300">
-                      {item.severity}
-                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (isInStack(item.id)) {
+                            removeFromStack(item.id);
+                          } else {
+                            addToStack(item);
+                          }
+                        }}
+                        className={`px-2 py-0.5 rounded text-[10px] font-bold transition ${
+                          isInStack(item.id)
+                            ? "bg-purple-600 text-white"
+                            : "bg-slate-700 hover:bg-slate-600 text-slate-300"
+                        }`}
+                      >
+                        {isInStack(item.id) ? "✓ In Stack" : "+ Stack"}
+                      </button>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300">
+                        {item.severity}
+                      </span>
+                    </div>
                   </div>
                 </div>
               );
@@ -359,12 +380,30 @@ export default function HetznerArchitectures() {
                 <span className="text-xs font-mono text-red-400">{modalItem.id}</span>
                 <h2 className="text-xl font-bold">{modalItem.title}</h2>
               </div>
-              <button
-                onClick={() => setModalItem(null)}
-                className="text-slate-400 hover:text-white text-lg font-bold"
-              >
-                ✕
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    if (isInStack(modalItem.id)) {
+                      removeFromStack(modalItem.id);
+                    } else {
+                      addToStack(modalItem);
+                    }
+                  }}
+                  className={`px-3 py-1 rounded text-xs font-bold transition ${
+                    isInStack(modalItem.id)
+                      ? "bg-purple-600 text-white"
+                      : "bg-purple-600/20 text-purple-400 hover:bg-purple-600/30 border border-purple-500/30"
+                  }`}
+                >
+                  {isInStack(modalItem.id) ? "✓ In Stack" : "+ Add to Stack"}
+                </button>
+                <button
+                  onClick={() => setModalItem(null)}
+                  className="text-slate-400 hover:text-white text-lg font-bold"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
             <p className="text-sm text-slate-300 mb-6">{modalItem.description}</p>

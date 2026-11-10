@@ -4,8 +4,10 @@ import referenceArchitectures from "../data/reference-architectures.json";
 import DiagramViewer from "./DiagramViewer";
 import React, { useEffect, useState, useMemo } from "react";
 import OpenGraph from "./OpenGraph";
+import { useStackBuilder } from "../context/StackBuilderContext";
 
 export default function AzureArchitectures() {
+  const { addToStack, removeFromStack, isInStack } = useStackBuilder();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
@@ -587,6 +589,24 @@ export default function AzureArchitectures() {
 
                     <div className="flex items-center gap-2">
                       <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (isInStack(item.id)) {
+                            removeFromStack(item.id);
+                          } else {
+                            addToStack(item);
+                          }
+                        }}
+                        className={`px-2 py-0.5 rounded text-[11px] font-semibold transition ${
+                          isInStack(item.id)
+                            ? "bg-purple-600 text-white"
+                            : "bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-500/20"
+                        }`}
+                        title={isInStack(item.id) ? "Remove from IaC Stack" : "Add to IaC Stack"}
+                      >
+                        {isInStack(item.id) ? "✓ Stack" : "+ Stack"}
+                      </button>
+                      <button
                         onClick={() => downloadSvgFile(item.svg, item.id)}
                         className="text-[11px] font-medium text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-300 flex items-center gap-1 transition"
                         title="Download Vector SVG"
@@ -745,12 +765,30 @@ export default function AzureArchitectures() {
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">{modalItem.title}</h3>
                 </div>
               </div>
-              <button
-                onClick={() => setModalItem(null)}
-                className="rounded-lg p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition"
-              >
-                ✕
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    if (isInStack(modalItem.id)) {
+                      removeFromStack(modalItem.id);
+                    } else {
+                      addToStack(modalItem);
+                    }
+                  }}
+                  className={`px-3 py-1 rounded text-xs font-bold transition ${
+                    isInStack(modalItem.id)
+                      ? "bg-purple-600 text-white"
+                      : "bg-purple-600/20 text-purple-400 hover:bg-purple-600/30 border border-purple-500/30"
+                  }`}
+                >
+                  {isInStack(modalItem.id) ? "✓ In Stack" : "+ Add to Stack"}
+                </button>
+                <button
+                  onClick={() => setModalItem(null)}
+                  className="rounded-lg p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
             {/* Modal Content */}

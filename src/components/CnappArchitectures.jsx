@@ -6,8 +6,10 @@ import ReferenceRunbook from "./ReferenceRunbook";
 import DeveloperGuide from "./DeveloperGuide";
 import React, { useEffect, useState, useMemo } from "react";
 import OpenGraph from "./OpenGraph";
+import { useStackBuilder } from "../context/StackBuilderContext";
 
 export default function CnappArchitectures() {
+  const { addToStack, removeFromStack, isInStack } = useStackBuilder();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
@@ -382,6 +384,24 @@ export default function CnappArchitectures() {
                         </button>
                       )}
                     </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (isInStack(item.id)) {
+                          removeFromStack(item.id);
+                        } else {
+                          addToStack(item);
+                        }
+                      }}
+                      className={`px-2 py-0.5 rounded text-[11px] font-semibold transition ${
+                        isInStack(item.id)
+                          ? "bg-purple-600 text-white"
+                          : "bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-500/20"
+                      }`}
+                      title={isInStack(item.id) ? "Remove from IaC Stack" : "Add to IaC Stack"}
+                    >
+                      {isInStack(item.id) ? "✓ Stack" : "+ Stack"}
+                    </button>
                   </div>
 
                   {/* Tab Body */}
@@ -463,12 +483,30 @@ export default function CnappArchitectures() {
       {modalItem && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
           <div className="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 shadow-2xl">
-            <button
-              onClick={() => setModalItem(null)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold p-1 rounded-lg"
-            >
-              ✕
-            </button>
+            <div className="absolute top-4 right-4 flex items-center gap-2">
+              <button
+                onClick={() => {
+                  if (isInStack(modalItem.id)) {
+                    removeFromStack(modalItem.id);
+                  } else {
+                    addToStack(modalItem);
+                  }
+                }}
+                className={`px-3 py-1 rounded text-xs font-bold transition ${
+                  isInStack(modalItem.id)
+                    ? "bg-purple-600 text-white"
+                    : "bg-purple-600/20 text-purple-400 hover:bg-purple-600/30 border border-purple-500/30"
+                }`}
+              >
+                {isInStack(modalItem.id) ? "✓ In Stack" : "+ Add to Stack"}
+              </button>
+              <button
+                onClick={() => setModalItem(null)}
+                className="text-slate-400 hover:text-white text-lg font-bold p-1 rounded-lg"
+              >
+                ✕
+              </button>
+            </div>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-mono text-red-500 font-bold uppercase">{modalItem.id}</span>
               <span className="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-medium">{modalItem.service}</span>
