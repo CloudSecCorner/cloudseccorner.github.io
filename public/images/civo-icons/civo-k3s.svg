@@ -1,0 +1,12 @@
+<svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="civo-k3s-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2293EE" />
+      <stop offset="100%" stop-color="#0C5999" />
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="10" fill="url(#civo-k3s-grad)"/>
+  <g transform="translate(12, 12)" fill="#FFFFFF">
+    <path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm0 2.24L18.66 8 12 11.76 5.34 8 12 4.24zM4.8 9.38l6.4 3.66v6.92L4.8 16.3V9.38zm8 10.58v-6.92l6.4-3.66v6.92l-6.4 3.66z"/>
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+<svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hetzner-robot-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#D50C2D" />
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="10" fill="url(#hetzner-robot-grad)"/>
+  <g transform="translate(12, 12)" fill="#FFFFFF">
+    <path d="M12 2a2 2 0 012 2v2h4a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h4V4a2 2 0 012-2zm-4 8a2 2 0 100 4 2 2 0 000-4zm8 0a2 2 0 100 4 2 2 0 000-4z"/>
+  </g>
+</svg>

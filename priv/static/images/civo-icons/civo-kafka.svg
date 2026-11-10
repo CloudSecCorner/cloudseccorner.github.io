@@ -1,0 +1,12 @@
+<svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="civo-kafka-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#2293EE" />
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="10" fill="url(#civo-kafka-grad)"/>
+  <g transform="translate(12, 12)" fill="#FFFFFF">
+    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5v-9l6 4.5-6 4.5z"/>
+  </g>
+</svg>

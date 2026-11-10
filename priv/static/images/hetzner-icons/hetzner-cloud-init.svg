@@ -1,0 +1,12 @@
+<svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hetzner-cloud-init-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D50C2D" />
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="10" fill="url(#hetzner-cloud-init-grad)"/>
+  <g transform="translate(12, 12)" fill="#FFFFFF">
+    <path d="M7 2v11h3v9l7-12h-4l4-8H7z"/>
+  </g>
+</svg>

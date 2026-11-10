@@ -1,0 +1,12 @@
+<svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hetzner-vswitch-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D50C2D" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="10" fill="url(#hetzner-vswitch-grad)"/>
+  <g transform="translate(12, 12)" fill="#FFFFFF">
+    <path d="M4 6h16v12H4zM2 4v16h20V4H2zm4 4h2v2H6zm0 4h2v2H6zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"/>
+  </g>
+</svg>
