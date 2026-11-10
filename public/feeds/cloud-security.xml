@@ -7,8 +7,88 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Mon, 09 Nov 2026 06:59:33 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 10 Nov 2026 07:36:37 GMT</lastBuildDate>
     <item>
+  <title>N-able Takes N-central Cloud Offline After Researcher Discloses 33 Zero-Days with PoC Exploits</title>
+  <link>https://thehackernews.com/2026/11/n-able-takes-hosted-n-central-offline.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/n-able-takes-hosted-n-central-offline.html</guid>
+  <pubDate>Tue, 10 Nov 2026 06:44:36 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>Help defend against memory poisoning in Amazon Bedrock AgentCore with multi-layer write validation</title>
+  <link>https://aws.amazon.com/blogs/security/help-defend-against-memory-poisoning-in-amazon-bedrock-agentcore-with-multi-layer-write-validation/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/help-defend-against-memory-poisoning-in-amazon-bedrock-agentcore-with-multi-layer-write-validation/</guid>
+  <pubDate>Mon, 09 Nov 2026 19:05:52 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Hackers Exploit Qubole&#39;s Trusted AWS Access to Breach Customer Accounts and Steal Data</title>
+  <link>https://thehackernews.com/2026/11/hackers-exploit-quboles-trusted-aws.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/hackers-exploit-quboles-trusted-aws.html</guid>
+  <pubDate>Mon, 09 Nov 2026 17:51:21 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>Simplify cross-partition access with AWS IAM outbound identity federation</title>
+  <link>https://aws.amazon.com/blogs/security/simplify-cross-partition-access-with-aws-iam-outbound-identity-federation/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/simplify-cross-partition-access-with-aws-iam-outbound-identity-federation/</guid>
+  <pubDate>Mon, 09 Nov 2026 16:08:30 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Cloud CISO Perspectives: Our security forecast for 2027</title>
+  <link>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-our-security-forecast-2027/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-our-security-forecast-2027/</guid>
+  <pubDate>Mon, 09 Nov 2026 16:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Trusted by Default: Qubole Cross-Account Access Abused in the Wild</title>
+  <link>https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild</guid>
+  <pubDate>Mon, 09 Nov 2026 14:56:32 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Iris Plaza Breach May Have Exposed Data of 7.7 Million Customers</title>
+  <link>https://www.securityweek.com/iris-plaza-breach-may-have-exposed-data-of-7-7-million-customers/</link>
+  <guid isPermaLink="true">https://www.securityweek.com/iris-plaza-breach-may-have-exposed-data-of-7-7-million-customers/</guid>
+  <pubDate>Mon, 09 Nov 2026 12:41:27 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from SecurityWeek. Read the original article at the publisher.</description>
+  <source url="https://www.securityweek.com/feed/">SecurityWeek</source>
+</item>
+
+<item>
+  <title>On the hunt for ARTEX: understanding agentic attacks in AWS environments</title>
+  <link>https://securitylabs.datadoghq.com/articles/artex-agentic-attacks-aws-environments/</link>
+  <guid isPermaLink="true">https://securitylabs.datadoghq.com/articles/artex-agentic-attacks-aws-environments/</guid>
+  <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Datadog Security Labs. Read the original article at the publisher.</description>
+  <source url="https://securitylabs.datadoghq.com/rss/feed.xml">Datadog Security Labs</source>
+</item>
+
+<item>
   <title>Addressing protocol security gaps in multi-tenant Kubernetes</title>
   <link>https://aws.amazon.com/blogs/security/addressing-protocol-security-gaps-in-multi-tenant-kubernetes/</link>
   <guid isPermaLink="true">https://aws.amazon.com/blogs/security/addressing-protocol-security-gaps-in-multi-tenant-kubernetes/</guid>
@@ -99,7 +179,7 @@
 </item>
 
 <item>
-  <title>See the agents, set the terms: new visibility and control for personal agents</title>
+  <title>See the agents, set the terms: New visibility and control for personal agents</title>
   <link>https://blog.cloudflare.com/personal-agents-visibility-control/</link>
   <guid isPermaLink="true">https://blog.cloudflare.com/personal-agents-visibility-control/</guid>
   <pubDate>Wed, 04 Nov 2026 14:00:00 GMT</pubDate>
@@ -319,7 +399,7 @@
 </item>
 
 <item>
-  <title>AWS becomes first CSP to complete the Cloud High profile assessment with 172 services and features in scope</title>
+  <title>AWS becomes first CSP in Canada to complete the Cloud High profile assessment with 172 services and features in scope</title>
   <link>https://aws.amazon.com/blogs/security/aws-becomes-first-csp-to-complete-the-cloud-high-profile-assessment-with-172-services-and-features-in-scope/</link>
   <guid isPermaLink="true">https://aws.amazon.com/blogs/security/aws-becomes-first-csp-to-complete-the-cloud-high-profile-assessment-with-172-services-and-features-in-scope/</guid>
   <pubDate>Tue, 27 Oct 2026 17:50:05 GMT</pubDate>
@@ -509,7 +589,7 @@
 </item>
 
 <item>
-  <title>Localizing compliance at scale: achieving South Korea’s ISMS certification</title>
+  <title>Localizing compliance at scale: Achieving South Korea’s ISMS certification</title>
   <link>https://blog.cloudflare.com/k-isms/</link>
   <guid isPermaLink="true">https://blog.cloudflare.com/k-isms/</guid>
   <pubDate>Thu, 22 Oct 2026 13:00:00 GMT</pubDate>
@@ -536,6 +616,16 @@
   <category>Vulnerabilities &amp; Exposure</category>
   <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
   <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>What Replaces the Network Perimeter in Kubernetes</title>
+  <link>https://cloudsecurityalliance.org/articles/what-replaces-the-network-perimeter-in-kubernetes</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/what-replaces-the-network-perimeter-in-kubernetes</guid>
+  <pubDate>Wed, 21 Oct 2026 20:53:06 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -1019,16 +1109,6 @@
 </item>
 
 <item>
-  <title>Cloud Observability Has Never Had More Data. It Still Can’t Tell You What Actually Broke.</title>
-  <link>https://cloudsecurityalliance.org/articles/cloud-observability-has-never-had-more-data-it-still-can-t-tell-you-what-actually-broke</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/cloud-observability-has-never-had-more-data-it-still-can-t-tell-you-what-actually-broke</guid>
-  <pubDate>Thu, 08 Oct 2026 22:30:01 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
   <title>Evolution of Web3 in Cloud Supply Chain Attacks</title>
   <link>https://unit42.paloaltonetworks.com/web3-cloud-supply-chain-attacks/</link>
   <guid isPermaLink="true">https://unit42.paloaltonetworks.com/web3-cloud-supply-chain-attacks/</guid>
@@ -1046,36 +1126,6 @@
   <category>Vulnerabilities &amp; Exposure</category>
   <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
   <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
-  <title>Building your AI vulnerability harness, Part 1</title>
-  <link>https://aws.amazon.com/blogs/security/building-your-ai-vulnerability-harness-part-1/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/building-your-ai-vulnerability-harness-part-1/</guid>
-  <pubDate>Wed, 07 Oct 2026 21:49:43 GMT</pubDate>
-  <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
-  <title>Part 1 – Cybersecurity journeys: I didn’t plan this</title>
-  <link>https://aws.amazon.com/blogs/security/part-1-cybersecurity-journeys-i-didnt-plan-this/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/part-1-cybersecurity-journeys-i-didnt-plan-this/</guid>
-  <pubDate>Wed, 07 Oct 2026 16:21:19 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
-  <title>How the Wiz Red Agent caught a Fortune 500 firm’s data exposure (that other tools missed)</title>
-  <link>https://www.wiz.io/blog/red-agent-financial-services-data-exposure</link>
-  <guid isPermaLink="true">https://www.wiz.io/blog/red-agent-financial-services-data-exposure</guid>
-  <pubDate>Wed, 07 Oct 2026 14:53:27 GMT</pubDate>
-  <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
 </item>
 
 <item>
@@ -1386,26 +1436,6 @@
   <category>Kubernetes &amp; Containers</category>
   <description>Cloud security research from Sysdig Threat Research. Read the original article at the publisher.</description>
   <source url="https://www.sysdig.com/blog/rss.xml">Sysdig Threat Research</source>
-</item>
-
-<item>
-  <title>Empowering autonomous agents with advanced security governance</title>
-  <link>https://cloud.google.com/blog/topics/ai-infrastructure/state-of-ai-infrastructure-report-agent-governance-and-security/</link>
-  <guid isPermaLink="true">https://cloud.google.com/blog/topics/ai-infrastructure/state-of-ai-infrastructure-report-agent-governance-and-security/</guid>
-  <pubDate>Mon, 24 Aug 2026 16:00:00 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
-</item>
-
-<item>
-  <title>How Trail of Bits helps verify the integrity of your Signal chats</title>
-  <link>https://blog.trailofbits.com/2026/08/11/how-trail-of-bits-helps-verify-the-integrity-of-your-signal-chats/</link>
-  <guid isPermaLink="true">https://blog.trailofbits.com/2026/08/11/how-trail-of-bits-helps-verify-the-integrity-of-your-signal-chats/</guid>
-  <pubDate>Tue, 11 Aug 2026 17:30:00 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Trail of Bits. Read the original article at the publisher.</description>
-  <source url="https://blog.trailofbits.com/index.xml">Trail of Bits</source>
 </item>
 
   </channel>

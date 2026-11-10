@@ -1,6 +1,78 @@
 {
-  "attempted_at": "2026-11-09T06:59:33Z",
+  "attempted_at": "2026-11-10T07:36:37Z",
   "items": [
+    {
+      "id": "f0d40b6eb5cac62ee86c",
+      "published_at": "2026-11-10T06:44:36Z",
+      "source_id": "hackernews",
+      "source_name": "The Hacker News",
+      "title": "N-able Takes N-central Cloud Offline After Researcher Discloses 33 Zero-Days with PoC Exploits",
+      "topic": "Identity & Access",
+      "url": "https://thehackernews.com/2026/11/n-able-takes-hosted-n-central-offline.html"
+    },
+    {
+      "id": "559d3be17a7a9b0b7f83",
+      "published_at": "2026-11-09T19:05:52Z",
+      "source_id": "aws",
+      "source_name": "AWS Security Blog",
+      "title": "Help defend against memory poisoning in Amazon Bedrock AgentCore with multi-layer write validation",
+      "topic": "Cloud Security",
+      "url": "https://aws.amazon.com/blogs/security/help-defend-against-memory-poisoning-in-amazon-bedrock-agentcore-with-multi-layer-write-validation/"
+    },
+    {
+      "id": "ee5e2ceda03abe1e3e50",
+      "published_at": "2026-11-09T17:51:21Z",
+      "source_id": "hackernews",
+      "source_name": "The Hacker News",
+      "title": "Hackers Exploit Qubole's Trusted AWS Access to Breach Customer Accounts and Steal Data",
+      "topic": "Identity & Access",
+      "url": "https://thehackernews.com/2026/11/hackers-exploit-quboles-trusted-aws.html"
+    },
+    {
+      "id": "02970bea606f1edaccfb",
+      "published_at": "2026-11-09T16:08:30Z",
+      "source_id": "aws",
+      "source_name": "AWS Security Blog",
+      "title": "Simplify cross-partition access with AWS IAM outbound identity federation",
+      "topic": "Identity & Access",
+      "url": "https://aws.amazon.com/blogs/security/simplify-cross-partition-access-with-aws-iam-outbound-identity-federation/"
+    },
+    {
+      "id": "eb25aaef376a9a0f68c7",
+      "published_at": "2026-11-09T16:00:00Z",
+      "source_id": "google",
+      "source_name": "Google Cloud Security",
+      "title": "Cloud CISO Perspectives: Our security forecast for 2027",
+      "topic": "Identity & Access",
+      "url": "https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-our-security-forecast-2027/"
+    },
+    {
+      "id": "ee49f6e1570520e7a120",
+      "published_at": "2026-11-09T14:56:32Z",
+      "source_id": "wiz",
+      "source_name": "Wiz Cloud Security",
+      "title": "Trusted by Default: Qubole Cross-Account Access Abused in the Wild",
+      "topic": "Identity & Access",
+      "url": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild"
+    },
+    {
+      "id": "b475f3facfdceb204b26",
+      "published_at": "2026-11-09T12:41:27Z",
+      "source_id": "securityweek",
+      "source_name": "SecurityWeek",
+      "title": "Iris Plaza Breach May Have Exposed Data of 7.7 Million Customers",
+      "topic": "Cloud Security",
+      "url": "https://www.securityweek.com/iris-plaza-breach-may-have-exposed-data-of-7-7-million-customers/"
+    },
+    {
+      "id": "45ae1b4b0f08d9c521dc",
+      "published_at": "2026-11-09T00:00:00Z",
+      "source_id": "datadog",
+      "source_name": "Datadog Security Labs",
+      "title": "On the hunt for ARTEX: understanding agentic attacks in AWS environments",
+      "topic": "Threat Detection & Response",
+      "url": "https://securitylabs.datadoghq.com/articles/artex-agentic-attacks-aws-environments/"
+    },
     {
       "id": "2bc104a8bd9ecaab6a6e",
       "published_at": "2026-11-06T21:08:50Z",
@@ -87,7 +159,7 @@
       "published_at": "2026-11-04T14:00:00Z",
       "source_id": "cloudflare",
       "source_name": "Cloudflare Security",
-      "title": "See the agents, set the terms: new visibility and control for personal agents",
+      "title": "See the agents, set the terms: New visibility and control for personal agents",
       "topic": "Cloud Security",
       "url": "https://blog.cloudflare.com/personal-agents-visibility-control/"
     },
@@ -285,7 +357,7 @@
       "published_at": "2026-10-27T17:50:05Z",
       "source_id": "aws",
       "source_name": "AWS Security Blog",
-      "title": "AWS becomes first CSP to complete the Cloud High profile assessment with 172 services and features in scope",
+      "title": "AWS becomes first CSP in Canada to complete the Cloud High profile assessment with 172 services and features in scope",
       "topic": "Cloud Security",
       "url": "https://aws.amazon.com/blogs/security/aws-becomes-first-csp-to-complete-the-cloud-high-profile-assessment-with-172-services-and-features-in-scope/"
     },
@@ -456,7 +528,7 @@
       "published_at": "2026-10-22T13:00:00Z",
       "source_id": "cloudflare",
       "source_name": "Cloudflare Security",
-      "title": "Localizing compliance at scale: achieving South Korea’s ISMS certification",
+      "title": "Localizing compliance at scale: Achieving South Korea’s ISMS certification",
       "topic": "Cloud Security",
       "url": "https://blog.cloudflare.com/k-isms/"
     },
@@ -477,6 +549,15 @@
       "title": "Amazon Threat Intelligence identifies PHP2Shell exploitation prior to public disclosure in MadPot",
       "topic": "Vulnerabilities & Exposure",
       "url": "https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/"
+    },
+    {
+      "id": "f05f09f2b34bbafa0321",
+      "published_at": "2026-10-21T20:53:06Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "What Replaces the Network Perimeter in Kubernetes",
+      "topic": "Kubernetes & Containers",
+      "url": "https://cloudsecurityalliance.org/articles/what-replaces-the-network-perimeter-in-kubernetes"
     },
     {
       "id": "630277014af03c424887",
@@ -911,15 +992,6 @@
       "url": "https://cloudsecurityalliance.org/articles/why-hybrid-environments-need-unified-visibility"
     },
     {
-      "id": "5bb6f798914c73768831",
-      "published_at": "2026-10-08T22:30:01Z",
-      "source_id": "csa",
-      "source_name": "Cloud Security Alliance",
-      "title": "Cloud Observability Has Never Had More Data. It Still Can’t Tell You What Actually Broke.",
-      "topic": "Threat Detection & Response",
-      "url": "https://cloudsecurityalliance.org/articles/cloud-observability-has-never-had-more-data-it-still-can-t-tell-you-what-actually-broke"
-    },
-    {
       "id": "157b397d74a55ee57a84",
       "published_at": "2026-10-07T22:00:16Z",
       "source_id": "unit42",
@@ -936,33 +1008,6 @@
       "title": "Configuring your AI vulnerability harness, Part 2: The steering file",
       "topic": "Vulnerabilities & Exposure",
       "url": "https://aws.amazon.com/blogs/security/configuring-your-ai-vulnerability-harness-part-2-the-steering-file/"
-    },
-    {
-      "id": "049527df767fea235512",
-      "published_at": "2026-10-07T21:49:43Z",
-      "source_id": "aws",
-      "source_name": "AWS Security Blog",
-      "title": "Building your AI vulnerability harness, Part 1",
-      "topic": "Vulnerabilities & Exposure",
-      "url": "https://aws.amazon.com/blogs/security/building-your-ai-vulnerability-harness-part-1/"
-    },
-    {
-      "id": "88dd0c0e4cc92b6032eb",
-      "published_at": "2026-10-07T16:21:19Z",
-      "source_id": "aws",
-      "source_name": "AWS Security Blog",
-      "title": "Part 1 – Cybersecurity journeys: I didn’t plan this",
-      "topic": "Cloud Security",
-      "url": "https://aws.amazon.com/blogs/security/part-1-cybersecurity-journeys-i-didnt-plan-this/"
-    },
-    {
-      "id": "591195a5ba6f2a3143b4",
-      "published_at": "2026-10-07T14:53:27Z",
-      "source_id": "wiz",
-      "source_name": "Wiz Cloud Security",
-      "title": "How the Wiz Red Agent caught a Fortune 500 firm’s data exposure (that other tools missed)",
-      "topic": "Vulnerabilities & Exposure",
-      "url": "https://www.wiz.io/blog/red-agent-financial-services-data-exposure"
     },
     {
       "id": "f9ee1e41e3b739177582",
@@ -1242,24 +1287,6 @@
       "title": "Kubernetes 1.37 - New security features",
       "topic": "Kubernetes & Containers",
       "url": "https://www.sysdig.com/blog/kubernetes-1-37-new-security-features"
-    },
-    {
-      "id": "dbf2352def934d7346c1",
-      "published_at": "2026-08-24T16:00:00Z",
-      "source_id": "google",
-      "source_name": "Google Cloud Security",
-      "title": "Empowering autonomous agents with advanced security governance",
-      "topic": "Identity & Access",
-      "url": "https://cloud.google.com/blog/topics/ai-infrastructure/state-of-ai-infrastructure-report-agent-governance-and-security/"
-    },
-    {
-      "id": "9c3475e7851dc7c08d17",
-      "published_at": "2026-08-11T17:30:00Z",
-      "source_id": "trailofbits",
-      "source_name": "Trail of Bits",
-      "title": "How Trail of Bits helps verify the integrity of your Signal chats",
-      "topic": "Threat Detection & Response",
-      "url": "https://blog.trailofbits.com/2026/08/11/how-trail-of-bits-helps-verify-the-integrity-of-your-signal-chats/"
     }
   ],
   "refresh_interval_hours": 24,
@@ -1268,7 +1295,7 @@
       "error": null,
       "feed_url": "https://aws.amazon.com/blogs/security/feed/",
       "id": "aws",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "AWS Security Blog",
       "site_url": "https://aws.amazon.com/blogs/security/",
       "status": "ok"
@@ -1277,7 +1304,7 @@
       "error": null,
       "feed_url": "https://cloudblog.withgoogle.com/products/identity-security/rss/",
       "id": "google",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Google Cloud Security",
       "site_url": "https://cloud.google.com/blog/products/identity-security/",
       "status": "ok"
@@ -1286,7 +1313,7 @@
       "error": null,
       "feed_url": "https://www.microsoft.com/en-us/security/blog/feed/",
       "id": "microsoft",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Microsoft Security",
       "site_url": "https://www.microsoft.com/en-us/security/blog/",
       "status": "ok"
@@ -1295,7 +1322,7 @@
       "error": null,
       "feed_url": "https://www.wiz.io/feed/rss.xml",
       "id": "wiz",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Wiz Cloud Security",
       "site_url": "https://www.wiz.io/blog",
       "status": "ok"
@@ -1304,7 +1331,7 @@
       "error": null,
       "feed_url": "https://securitylabs.datadoghq.com/rss/feed.xml",
       "id": "datadog",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Datadog Security Labs",
       "site_url": "https://securitylabs.datadoghq.com/",
       "status": "ok"
@@ -1313,7 +1340,7 @@
       "error": null,
       "feed_url": "https://www.aquasec.com/feed/",
       "id": "aqua",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Aqua Security",
       "site_url": "https://www.aquasec.com/blog/",
       "status": "ok"
@@ -1322,7 +1349,7 @@
       "error": null,
       "feed_url": "https://www.sysdig.com/blog/rss.xml",
       "id": "sysdig",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Sysdig Threat Research",
       "site_url": "https://www.sysdig.com/blog",
       "status": "ok"
@@ -1331,7 +1358,7 @@
       "error": null,
       "feed_url": "https://unit42.paloaltonetworks.com/feed/",
       "id": "unit42",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Palo Alto Networks Unit 42",
       "site_url": "https://unit42.paloaltonetworks.com/",
       "status": "ok"
@@ -1340,7 +1367,7 @@
       "error": null,
       "feed_url": "https://blog.cloudflare.com/rss/",
       "id": "cloudflare",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Cloudflare Security",
       "site_url": "https://blog.cloudflare.com/",
       "status": "ok"
@@ -1349,7 +1376,7 @@
       "error": null,
       "feed_url": "https://www.sentinelone.com/labs/feed/",
       "id": "sentinellabs",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "SentinelLabs",
       "site_url": "https://www.sentinelone.com/labs/",
       "status": "ok"
@@ -1358,7 +1385,7 @@
       "error": null,
       "feed_url": "https://snyk.io/blog/feed/",
       "id": "snyk",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Snyk Security Research",
       "site_url": "https://snyk.io/blog/",
       "status": "ok"
@@ -1367,7 +1394,7 @@
       "error": null,
       "feed_url": "https://sonraisecurity.com/feed/",
       "id": "sonrai",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Sonrai Security",
       "site_url": "https://sonraisecurity.com/blog/",
       "status": "ok"
@@ -1376,7 +1403,7 @@
       "error": null,
       "feed_url": "https://www.tenable.com/blog/feed",
       "id": "tenable",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Tenable Research",
       "site_url": "https://www.tenable.com/blog",
       "status": "ok"
@@ -1385,7 +1412,7 @@
       "error": null,
       "feed_url": "https://www.crowdstrike.com/en-us/blog/feed",
       "id": "crowdstrike",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "CrowdStrike",
       "site_url": "https://www.crowdstrike.com/en-us/blog/",
       "status": "ok"
@@ -1394,7 +1421,7 @@
       "error": null,
       "feed_url": "https://blog.trailofbits.com/index.xml",
       "id": "trailofbits",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Trail of Bits",
       "site_url": "https://blog.trailofbits.com/",
       "status": "ok"
@@ -1403,7 +1430,7 @@
       "error": null,
       "feed_url": "https://cloudsecurityalliance.org/feed/",
       "id": "csa",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "Cloud Security Alliance",
       "site_url": "https://cloudsecurityalliance.org/blog",
       "status": "ok"
@@ -1412,7 +1439,7 @@
       "error": null,
       "feed_url": "https://www.securityweek.com/feed/",
       "id": "securityweek",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "SecurityWeek",
       "site_url": "https://www.securityweek.com/",
       "status": "ok"
@@ -1421,12 +1448,12 @@
       "error": null,
       "feed_url": "https://feeds.feedburner.com/TheHackersNews",
       "id": "hackernews",
-      "last_success_at": "2026-11-09T06:59:33Z",
+      "last_success_at": "2026-11-10T07:36:37Z",
       "name": "The Hacker News",
       "site_url": "https://thehackernews.com/",
       "status": "ok"
     }
   ],
-  "updated_at": "2026-11-09T06:59:33Z",
+  "updated_at": "2026-11-10T07:36:37Z",
   "version": 1
 }
