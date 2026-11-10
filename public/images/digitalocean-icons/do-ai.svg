@@ -1,0 +1,15 @@
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>DigitalOcean Gradient AI & GPUs</title>
+  <defs>
+    <linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="do-do-ai-grad">
+      <stop stop-color="#8B5CF6" offset="0%"></stop>
+      <stop stop-color="#6D28D9" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <rect fill="url(#do-do-ai-grad)" x="0" y="0" width="40" height="40" rx="8"></rect>
+    <g transform="translate(8, 8)" fill="#FFFFFF">
+      <path d="M12 2a10 10 0 00-7.07 17.07l1.41-1.41A8 8 0 1112 20v2a10 10 0 000-20zm1 5h-2v6h6v-2h-4V7z"/>
+    </g>
+  </g>
+</svg>

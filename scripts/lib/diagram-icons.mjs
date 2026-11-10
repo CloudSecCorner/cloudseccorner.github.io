@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 export function createIconResolver(provider) {
-  const directories = [...new Set([provider === 'kspm' ? 'k8s' : provider, 'cnapp', 'aws', 'azure', 'gcp', 'k8s', 'vultr', 'oracle'])];
+  const directories = [...new Set([provider === 'kspm' ? 'k8s' : provider, 'cnapp', 'aws', 'azure', 'gcp', 'k8s', 'vultr', 'oracle', 'digitalocean', 'alicloud'])];
   const cache = new Map();
   let instance = 0;
   return name => {

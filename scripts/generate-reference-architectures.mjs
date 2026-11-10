@@ -159,6 +159,45 @@ const references = {
     expected: 'OCI Object Storage bucket provisioned with access_type NoPublicAccess and versioning Enabled.',
     sources: ['https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm', 'https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/managingbuckets.htm'],
     checks: { oci_objectstorage_bucket: { access_type: "NoPublicAccess", versioning: "Enabled" } }
+  },
+  digitalocean: {
+    category: 'do-spaces', service: 'DigitalOcean Spaces', icon: 'do-spaces',
+    title: 'Reference: S3-compatible DigitalOcean Spaces bucket with private ACL & TLS',
+    description: 'Deploys a DigitalOcean Spaces bucket with private ACL, TLS 1.3 transport, and automated versioning. Anonymous public access is denied by policy.',
+    flow: `flowchart TB
+      client@{ icon: "logos:do-iam", label: "Authenticated API Client", h: 64, pos: "b" }
+      storage@{ icon: "logos:do-spaces", label: "Private DigitalOcean Spaces", h: 64, pos: "b" }
+      client[Authenticated API Client] -->|HTTPS S3 API| auth{Valid API Token?}
+      auth -->|Yes| tls{TLS 1.3 Transport?}
+      auth -->|No| denied[Access Denied]
+      tls -->|No| denied
+      tls -->|Yes| storage[Private DigitalOcean Spaces]
+      public[Anonymous Internet Request] -->|Private ACL enforced| denied
+      storage -->|Encrypted at Rest| sse[AES-256 Storage Engine]`,
+    prerequisites: 'Terraform 1.5+, DigitalOcean personal access token with storage permissions.',
+    commands: 'doctl account get\nterraform init\nterraform plan -out=tfplan\nterraform show -json tfplan > tfplan.json\nopa eval --data policy.rego --input tfplan.json "data.reference.digitalocean.allow"',
+    expected: 'DigitalOcean Spaces bucket provisioned with private ACL. Anonymous requests fail with 403 Forbidden; authenticated S3 API calls succeed.',
+    sources: ['https://docs.digitalocean.com/products/spaces/', 'https://docs.digitalocean.com/reference/api/'],
+    checks: { digitalocean_spaces_bucket: { acl: "private" } }
+  },
+  alicloud: {
+    category: 'alicloud-oss', service: 'Alibaba Cloud OSS', icon: 'alicloud-oss',
+    title: 'Reference: Private Alibaba Cloud OSS bucket with KMS encryption & TLS',
+    description: 'Deploys an Alibaba Cloud OSS bucket with private ACL, server-side KMS encryption, and ActionTrail audit logging.',
+    flow: `flowchart TB
+      workload@{ icon: "logos:alicloud-ram", label: "RAM Workload Principal", h: 64, pos: "b" }
+      bucket@{ icon: "logos:alicloud-oss", label: "Private Alibaba Cloud OSS", h: 64, pos: "b" }
+      workload[RAM Workload Principal] -->|HTTPS REST API| auth{RAM Policy Permits?}
+      auth -->|Yes| bucket[Private Alibaba Cloud OSS]
+      auth -->|No| denied[Access Denied]
+      public[Anonymous Public Request] -->|Private ACL enforced| denied
+      bucket -->|KMS Key Encryption| kms@{ icon: "logos:alicloud-kms", label: "Alibaba Cloud KMS", h: 64, pos: "b" }
+      bucket -->|Audit Events Streamed| audit@{ icon: "logos:alicloud-actiontrail", label: "ActionTrail Audit", h: 64, pos: "b" }`,
+    prerequisites: 'Terraform 1.5+, Alibaba Cloud credentials configured. Supply region and bucket_name.',
+    commands: 'aliyun sts GetCallerIdentity\nterraform init\nterraform plan -out=tfplan\nterraform show -json tfplan > tfplan.json\nopa eval --data policy.rego --input tfplan.json "data.reference.alicloud.allow"',
+    expected: 'Alibaba Cloud OSS bucket provisioned with private ACL and server-side encryption.',
+    sources: ['https://www.alibabacloud.com/help/en/oss/', 'https://www.alibabacloud.com/help/en/ram/'],
+    checks: { alicloud_oss_bucket: { acl: "private" } }
   }
 };
 

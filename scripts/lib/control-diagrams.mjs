@@ -10,7 +10,9 @@ const providers = {
   kspm: { name: 'Kubernetes', identity: 'k8s-role', audit: 'k8s-apiserver', authorization: 'RBAC for the requested resource and verb', evidence: 'API readback and configured audit events', sources: ['https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/', 'https://kubernetes.io/docs/concepts/security/security-checklist/'] },
   container: { name: 'Container', identity: 'container-cosign', audit: 'container-sbom', authorization: 'Authorized build or runtime operator', evidence: 'Digest-linked build and runtime evidence', sources: ['https://docs.sigstore.dev/cosign/verifying/verify/', 'https://docs.docker.com/engine/security/'] },
   vultr: { name: 'Vultr', identity: 'vultr-iam', audit: 'vultr-logging', authorization: 'Vultr API key or subaccount permissions', evidence: 'Vultr system audit logs and resource readback', sources: ['https://www.vultr.com/docs/security/', 'https://www.vultr.com/api/'] },
-  oracle: { name: 'Oracle Cloud', identity: 'oci-iam', audit: 'oci-audit', authorization: 'OCI IAM policy and compartment authorization', evidence: 'Supported OCI Audit events and Cloud Guard problems', sources: ['https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm', 'https://docs.oracle.com/en-us/iaas/Content/Audit/Concepts/auditoverview.htm'] }
+  oracle: { name: 'Oracle Cloud', identity: 'oci-iam', audit: 'oci-audit', authorization: 'OCI IAM policy and compartment authorization', evidence: 'Supported OCI Audit events and Cloud Guard problems', sources: ['https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm', 'https://docs.oracle.com/en-us/iaas/Content/Audit/Concepts/auditoverview.htm'] },
+  digitalocean: { name: 'DigitalOcean', identity: 'do-iam', audit: 'do-audit', authorization: 'DigitalOcean API token or team permissions', evidence: 'DigitalOcean audit logs and droplet activity', sources: ['https://docs.digitalocean.com/reference/api/', 'https://docs.digitalocean.com/products/security/'] },
+  alicloud: { name: 'Alibaba Cloud', identity: 'alicloud-ram', audit: 'alicloud-actiontrail', authorization: 'Alibaba Cloud RAM policy and Resource Directory', evidence: 'Supported ActionTrail management events and Security Center alerts', sources: ['https://www.alibabacloud.com/help/en/ram/', 'https://www.alibabacloud.com/help/en/actiontrail/'] }
 };
 
 const requirements = [
@@ -36,6 +38,8 @@ function inferProvider(entry, fallback) {
   if (entry.category.startsWith('k8s-')) return 'kspm';
   if (entry.category.startsWith('vultr-')) return 'vultr';
   if (entry.category.startsWith('oci-') || entry.category.startsWith('oracle-')) return 'oracle';
+  if (entry.category.startsWith('do-')) return 'digitalocean';
+  if (entry.category.startsWith('alicloud-')) return 'alicloud';
   if (entry.category.startsWith('container-') && !['container-eks', 'container-ecs'].includes(entry.category)) return 'container';
   return fallback === 'cnapp' ? 'aws' : fallback;
 }

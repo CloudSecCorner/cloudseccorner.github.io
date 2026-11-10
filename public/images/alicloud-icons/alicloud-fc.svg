@@ -1,0 +1,15 @@
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Alibaba Cloud Function Compute (FC)</title>
+  <defs>
+    <linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="alicloud-alicloud-fc-grad">
+      <stop stop-color="#F59E0B" offset="0%"></stop>
+      <stop stop-color="#D97706" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <rect fill="url(#alicloud-alicloud-fc-grad)" x="0" y="0" width="40" height="40" rx="8"></rect>
+    <g transform="translate(8, 8)" fill="#FFFFFF">
+      <path d="M7 2v11h3v9l7-12h-4l4-8H7z"/>
+    </g>
+  </g>
+</svg>

@@ -142,6 +142,18 @@ function Nav() {
       badge: "1,000+",
       badgeClass: "bg-red-500/15 text-red-600 dark:text-red-300 border border-red-500/30"
     },
+    {
+      path: "/digitalocean-architectures",
+      label: "DigitalOcean",
+      badge: "1,000+",
+      badgeClass: "bg-sky-500/15 text-sky-600 dark:text-sky-300 border border-sky-500/30"
+    },
+    {
+      path: "/alicloud-architectures",
+      label: "Alibaba Cloud",
+      badge: "1,000+",
+      badgeClass: "bg-orange-500/15 text-orange-600 dark:text-orange-300 border border-orange-500/30"
+    },
     { path: "/tools", label: "Tools" },
     { path: "/labs", label: "Labs" },
     { path: "/blog", label: "Blog" },

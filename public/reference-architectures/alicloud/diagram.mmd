@@ -1,0 +1,9 @@
+flowchart TB
+      workload@{ icon: "logos:alicloud-ram", label: "RAM Workload Principal", h: 64, pos: "b" }
+      bucket@{ icon: "logos:alicloud-oss", label: "Private Alibaba Cloud OSS", h: 64, pos: "b" }
+      workload[RAM Workload Principal] -->|HTTPS REST API| auth{RAM Policy Permits?}
+      auth -->|Yes| bucket[Private Alibaba Cloud OSS]
+      auth -->|No| denied[Access Denied]
+      public[Anonymous Public Request] -->|Private ACL enforced| denied
+      bucket -->|KMS Key Encryption| kms@{ icon: "logos:alicloud-kms", label: "Alibaba Cloud KMS", h: 64, pos: "b" }
+      bucket -->|Audit Events Streamed| audit@{ icon: "logos:alicloud-actiontrail", label: "ActionTrail Audit", h: 64, pos: "b" }

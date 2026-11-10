@@ -1,0 +1,10 @@
+flowchart TB
+      client@{ icon: "logos:do-iam", label: "Authenticated API Client", h: 64, pos: "b" }
+      storage@{ icon: "logos:do-spaces", label: "Private DigitalOcean Spaces", h: 64, pos: "b" }
+      client[Authenticated API Client] -->|HTTPS S3 API| auth{Valid API Token?}
+      auth -->|Yes| tls{TLS 1.3 Transport?}
+      auth -->|No| denied[Access Denied]
+      tls -->|No| denied
+      tls -->|Yes| storage[Private DigitalOcean Spaces]
+      public[Anonymous Internet Request] -->|Private ACL enforced| denied
+      storage -->|Encrypted at Rest| sse[AES-256 Storage Engine]

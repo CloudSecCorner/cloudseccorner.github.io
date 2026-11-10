@@ -56,7 +56,7 @@ async function readJsonCandidates(relPath) {
   throw new Error(`Cannot find JSON at candidates: ${candidates.join(', ')}`);
 }
 
-const [{ blogs }, { labs }, awsPractices, azurePractices, gcpPractices, kspmPractices, vultrPractices, oraclePractices] = await Promise.all([
+const [{ blogs }, { labs }, awsPractices, azurePractices, gcpPractices, kspmPractices, vultrPractices, oraclePractices, digitaloceanPractices, alicloudPractices] = await Promise.all([
   readJsonCandidates('blog.json'),
   readJsonCandidates('labs.json'),
   readJsonCandidates('aws-best-practices.json'),
@@ -64,7 +64,9 @@ const [{ blogs }, { labs }, awsPractices, azurePractices, gcpPractices, kspmPrac
   readJsonCandidates('gcp-best-practices.json'),
   readJsonCandidates('kspm-best-practices.json'),
   readJsonCandidates('vultr-best-practices.json'),
-  readJsonCandidates('oracle-best-practices.json')
+  readJsonCandidates('oracle-best-practices.json'),
+  readJsonCandidates('digitalocean-best-practices.json'),
+  readJsonCandidates('alicloud-best-practices.json')
 ]);
 
 await validateCollection('Blog index', blogs, 'file');
@@ -94,6 +96,14 @@ if (!Array.isArray(oraclePractices) || oraclePractices.length < 1000) {
   throw new Error(`Oracle Best Practices dataset must have at least 1,000 entries; found ${oraclePractices?.length}`);
 }
 
+if (!Array.isArray(digitaloceanPractices) || digitaloceanPractices.length < 1000) {
+  throw new Error(`DigitalOcean Best Practices dataset must have at least 1,000 entries; found ${digitaloceanPractices?.length}`);
+}
+
+if (!Array.isArray(alicloudPractices) || alicloudPractices.length < 1000) {
+  throw new Error(`Alibaba Cloud Best Practices dataset must have at least 1,000 entries; found ${alicloudPractices?.length}`);
+}
+
 for (const tool of securityEntries) {
   if (!tool.title || !tool.link || !tool.description || !tool.tag) {
     throw new Error(`Tool entry is missing title, link, description, or tag: ${JSON.stringify(tool)}`);
@@ -105,4 +115,4 @@ for (const tool of securityEntries) {
   }
 }
 
-console.log(`Validated ${blogs.length} blog posts, ${labs.length} labs, ${awsPractices.length} AWS, ${azurePractices.length} Azure, ${gcpPractices.length} GCP, ${kspmPractices.length} KSPM, ${vultrPractices.length} Vultr, ${oraclePractices.length} Oracle architectures, and ${securityEntries.length} tools.`);
+console.log(`Validated ${blogs.length} blog posts, ${labs.length} labs, ${awsPractices.length} AWS, ${azurePractices.length} Azure, ${gcpPractices.length} GCP, ${kspmPractices.length} KSPM, ${vultrPractices.length} Vultr, ${oraclePractices.length} Oracle, ${digitaloceanPractices.length} DigitalOcean, ${alicloudPractices.length} Alibaba Cloud architectures, and ${securityEntries.length} tools.`);

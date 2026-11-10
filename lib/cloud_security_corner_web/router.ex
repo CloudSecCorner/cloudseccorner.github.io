@@ -17,6 +17,8 @@ defmodule CloudSecurityCornerWeb.Router do
     get("/cnapp-architectures", CnappArchitectureController, :index)
     get("/vultr-architectures", VultrArchitectureController, :index)
     get("/oracle-architectures", OracleArchitectureController, :index)
+    get("/digitalocean-architectures", DigitaloceanArchitectureController, :index)
+    get("/alicloud-architectures", AlicloudArchitectureController, :index)
     get("/tools", ToolsController, :index)
     get("/labs", LabsController, :index)
     get("/labs/:id", LabsController, :show)

@@ -54,6 +54,8 @@ function Footer() {
           <Link to="/cnapp-architectures">CNAPP &amp; MITRE architectures</Link>
           <Link to="/vultr-architectures">Vultr defense architectures</Link>
           <Link to="/oracle-architectures">Oracle Cloud architectures</Link>
+          <Link to="/digitalocean-architectures">DigitalOcean architectures</Link>
+          <Link to="/alicloud-architectures">Alibaba Cloud architectures</Link>
           <Link to="/labs">Hands-on security labs</Link>
           <Link to="/blog">Field notes &amp; guides</Link>
           <Link to="/about">About CloudSecCorner</Link>

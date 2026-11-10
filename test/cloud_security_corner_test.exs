@@ -99,6 +99,28 @@ defmodule CloudSecurityCornerTest do
     assert_frontend_or_legacy(conn, "oracle-architectures.js")
   end
 
+  test "renders digitalocean architectures route and loads best practices" do
+    conn =
+      Plug.Test.conn(:get, "/digitalocean-architectures")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Obsidian Pele"
+    assert conn.resp_body =~ "1,000+ DigitalOcean Architecture Best Practices"
+    assert_frontend_or_legacy(conn, "digitalocean-architectures.js")
+  end
+
+  test "renders alicloud architectures route and loads best practices" do
+    conn =
+      Plug.Test.conn(:get, "/alicloud-architectures")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Obsidian Pele"
+    assert conn.resp_body =~ "1,000+ Alibaba Cloud Architecture Best Practices"
+    assert_frontend_or_legacy(conn, "alicloud-architectures.js")
+  end
+
   test "searches and paginates the tool directory" do
     results = Content.search_tools("cve-2026-106173", "", "az", 1)
 

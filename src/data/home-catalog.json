@@ -69,6 +69,26 @@
       "profileCount": 1033,
       "serviceCount": 24,
       "exampleCount": 1
+    },
+    {
+      "id": "digitalocean",
+      "name": "DigitalOcean",
+      "route": "/digitalocean-architectures",
+      "logo": "/images/provider-logos/digitalocean.svg",
+      "scope": "Droplets, DOKS, Spaces, Cloud Firewalls, and VPC networking.",
+      "profileCount": 1033,
+      "serviceCount": 24,
+      "exampleCount": 1
+    },
+    {
+      "id": "alicloud",
+      "name": "Alibaba Cloud",
+      "route": "/alicloud-architectures",
+      "logo": "/images/provider-logos/alicloud.svg",
+      "scope": "VPC, ACK, ApsaraDB, OSS, ActionTrail, and Security Center.",
+      "profileCount": 1033,
+      "serviceCount": 24,
+      "exampleCount": 1
     }
   ],
   "labs": [
@@ -206,8 +226,8 @@
     }
   ],
   "counts": {
-    "profiles": 7714,
-    "examples": 7,
+    "profiles": 9780,
+    "examples": 9,
     "labs": 10,
     "tools": 37750
   }

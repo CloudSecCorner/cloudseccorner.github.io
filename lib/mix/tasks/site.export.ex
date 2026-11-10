@@ -79,6 +79,8 @@ defmodule Mix.Tasks.Site.Export do
       "/cnapp-architectures",
       "/vultr-architectures",
       "/oracle-architectures",
+      "/digitalocean-architectures",
+      "/alicloud-architectures",
       "/tools",
       "/labs",
       "/blog",
