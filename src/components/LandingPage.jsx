@@ -96,7 +96,7 @@ export default function LandingPage() {
         <div id={`${tabId}-example`} role="tabpanel" aria-labelledby={`${tabId}-${provider.id}`}>
           <DiagramViewer key={example.id} svg={example.svg} title={example.title} filename={example.id} reference={example.reference} details={example.diagram_details} architecture={example} fitToViewport />
         </div>
-        <div className="home-example-assets"><a href={example.reference.asset} download><FileCode size={15} />{provider.id === 'kspm' ? 'workload.yaml' : 'main.tf'}</a><a href={example.reference.policy} download><FileCode size={15} />policy.rego</a></div>
+        <div className="home-example-assets"><a href={example.reference.asset} download><FileCode size={15} />{['kspm', 'cnapp'].includes(provider.id) ? 'workload.yaml' : 'main.tf'}</a><a href={example.reference.policy} download><FileCode size={15} />policy.rego</a></div>
       </section>
 
       <section className="home-lab-band" aria-labelledby="home-labs-title">

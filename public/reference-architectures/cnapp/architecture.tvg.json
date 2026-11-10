@@ -1,0 +1,48 @@
+{
+  "tv_aws_internet.adversary": ["aws_wafv2_web_acl.perimeter_waf"],
+  "aws_wafv2_web_acl.perimeter_waf": ["aws_alb.ingress"],
+  "aws_alb.ingress": ["tv_aws_generic_application.workload_app"],
+
+  "tv_aws_users.devops": ["tv_aws_git_repository.source_repo"],
+  "tv_aws_git_repository.source_repo": ["aws_codebuild_project.ci_cd_pipeline"],
+  "aws_codebuild_project.ci_cd_pipeline": ["aws_eks_service.cluster"],
+
+  "aws_vpc.production": ["tv_aws_az.az_a"],
+  "tv_aws_az.az_a": ["aws_subnet.public~1", "aws_subnet.private~1"],
+  "aws_subnet.public~1": ["aws_alb.ingress"],
+  "aws_subnet.private~1": [
+    "aws_eks_service.cluster",
+    "aws_eks_node_group.workers",
+    "tv_aws_generic_application.workload_app",
+    "tv_aws_shield.opa_gatekeeper",
+    "tv_aws_firewall.k8s_network_policy"
+  ],
+
+  "tv_aws_shield.opa_gatekeeper": ["tv_aws_generic_application.workload_app"],
+  "tv_aws_firewall.k8s_network_policy": ["tv_aws_generic_application.workload_app"],
+  "tv_aws_generic_application.workload_app": [
+    "aws_secretsmanager_secret.db_credentials",
+    "aws_s3_bucket.sensitive_data"
+  ],
+
+  "aws_group.cnapp_platform": [
+    "aws_securityhub_account.cnapp_dashboard",
+    "aws_guardduty_detector.runtime_threats",
+    "aws_cloudwatch_event_rule.threat_event_bridge",
+    "aws_lambda_function.opa_auto_remediator"
+  ],
+  "aws_guardduty_detector.runtime_threats": ["aws_cloudwatch_event_rule.threat_event_bridge"],
+  "aws_cloudwatch_event_rule.threat_event_bridge": ["aws_lambda_function.opa_auto_remediator"],
+  "aws_lambda_function.opa_auto_remediator": [
+    "tv_aws_shield.opa_gatekeeper",
+    "tv_aws_firewall.k8s_network_policy",
+    "aws_securityhub_account.cnapp_dashboard"
+  ],
+
+  "aws_group.shared_services": [
+    "aws_ecr_repository.container_registry",
+    "aws_kms_key.s3_cmk",
+    "aws_cloudtrail.management_trail",
+    "aws_cloudwatch_log_group.security_audit"
+  ]
+}

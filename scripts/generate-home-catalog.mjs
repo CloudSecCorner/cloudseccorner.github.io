@@ -11,7 +11,10 @@ const definitions = [
   { id: 'aws', name: 'AWS', route: '/aws-architectures', logo: 'aws', scope: 'S3, Lambda, SQS, IAM, and VPC integration patterns.' },
   { id: 'azure', name: 'Azure', route: '/azure-architectures', logo: 'microsoft-azure', scope: 'Blob Storage, Functions, Service Bus, identity, and networking.' },
   { id: 'gcp', name: 'Google Cloud', route: '/gcp-architectures', logo: 'google-cloud', scope: 'Cloud Storage, Cloud Run, Pub/Sub, IAM, and GKE.' },
-  { id: 'kspm', name: 'Kubernetes', route: '/kspm-architectures', logo: 'kubernetes', scope: 'Workloads, Services, admission, RBAC, and network policy.' }
+  { id: 'kspm', name: 'Kubernetes', route: '/kspm-architectures', logo: 'kubernetes', scope: 'Workloads, Services, admission, RBAC, and network policy.' },
+  { id: 'cnapp', name: 'CNAPP & MITRE', route: '/cnapp-architectures', logo: 'aws-shield', scope: 'MITRE ATT&CK mitigation, KSPM, CSPM, CWPP, and OPA auto-remediation.' },
+  { id: 'vultr', name: 'Vultr', route: '/vultr-architectures', logo: 'vultr', scope: 'VPC 2.0, Bare Metal, VKE, Object Storage, and Anycast networking.' },
+  { id: 'oracle', name: 'Oracle Cloud', route: '/oracle-architectures', logo: 'oracle', scope: 'VCN, OKE, Autonomous Database, OCI Vault, and Cloud Guard.' }
 ];
 const logoDirectory = path.join(root, 'public/images/provider-logos');
 fs.mkdirSync(logoDirectory, { recursive: true });

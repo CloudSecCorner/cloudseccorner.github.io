@@ -1,0 +1,65 @@
+title: "CloudSecCorner Hardened CNAPP with OPA & KSPM Remediation"
+
+update:
+  aws_subnet.public~1:
+    cidr_block: "10.0.1.0/24"
+  aws_subnet.private~1:
+    cidr_block: "10.0.2.0/24"
+
+connect:
+  tv_aws_internet.adversary:
+    - aws_wafv2_web_acl.perimeter_waf: "T1190 Initial Access Probe"
+  aws_wafv2_web_acl.perimeter_waf:
+    - aws_alb.ingress: "Filtered Ingress"
+  aws_alb.ingress:
+    - tv_aws_generic_application.workload_app: "Forward Request"
+  tv_aws_shield.opa_gatekeeper:
+    - tv_aws_generic_application.workload_app: "KSPM: Non-Root / Drop Caps"
+  tv_aws_firewall.k8s_network_policy:
+    - tv_aws_generic_application.workload_app: "Default-Deny Ingress/Egress"
+  tv_aws_generic_application.workload_app:
+    - aws_secretsmanager_secret.db_credentials: "T1552 Credential Access"
+    - aws_s3_bucket.sensitive_data: "T1530 Exfiltration Attempt"
+  aws_guardduty_detector.runtime_threats:
+    - aws_cloudwatch_event_rule.threat_event_bridge: "Threat Finding"
+  aws_cloudwatch_event_rule.threat_event_bridge:
+    - aws_lambda_function.opa_auto_remediator: "Trigger Remediation"
+  aws_lambda_function.opa_auto_remediator:
+    - tv_aws_shield.opa_gatekeeper: "Enforce Pod Isolation Constraint"
+    - tv_aws_firewall.k8s_network_policy: "Apply Quarantine Egress Block"
+    - aws_securityhub_account.cnapp_dashboard: "Incident Resolved"
+  tv_aws_users.devops:
+    - tv_aws_git_repository.source_repo: "Push Code & Rego Policies"
+  tv_aws_git_repository.source_repo:
+    - aws_codebuild_project.ci_cd_pipeline: "CI/CD Trigger"
+  aws_codebuild_project.ci_cd_pipeline:
+    - aws_eks_service.cluster: "Conftest Pre-deployment Scan"
+
+flows:
+  cloudseccorner_cnapp_remediation:
+    description: "CloudSecCorner Zero-Trust CNAPP Defense & OPA Auto-Remediation"
+    steps:
+      - resource: "tv_aws_internet.adversary"
+        detail: "1. T1190 / Initial Access: Adversary probes public entry point"
+      - resource: "aws_wafv2_web_acl.perimeter_waf -> aws_alb.ingress"
+        detail: "2. WAF inspects traffic and routes to Public ALB"
+      - resource: "aws_alb.ingress -> tv_aws_generic_application.workload_app"
+        detail: "3. Execution: Traffic routed to container pod in hardened private subnet"
+      - resource: "tv_aws_shield.opa_gatekeeper -> tv_aws_generic_application.workload_app"
+        detail: "4. KSPM Admission: OPA Gatekeeper enforces non-root, read-only rootfs, and dropped Linux capabilities"
+      - resource: "tv_aws_firewall.k8s_network_policy -> tv_aws_generic_application.workload_app"
+        detail: "5. CNI Defense: Kubernetes NetworkPolicy restricts ingress and egress paths"
+      - resource: "tv_aws_generic_application.workload_app -> aws_secretsmanager_secret.db_credentials"
+        detail: "6. T1552 / Credential Access: Compromised pod attempts credential harvesting"
+      - resource: "tv_aws_generic_application.workload_app -> aws_s3_bucket.sensitive_data"
+        detail: "7. T1530 / Exfiltration Attempt: Attacker attempts unauthorized S3 exfiltration"
+      - resource: "aws_guardduty_detector.runtime_threats -> aws_cloudwatch_event_rule.threat_event_bridge"
+        detail: "8. CWPP Anomaly Detection: GuardDuty & CloudTrail flag abnormal S3/IMDS activity"
+      - resource: "aws_cloudwatch_event_rule.threat_event_bridge -> aws_lambda_function.opa_auto_remediator"
+        detail: "9. Orchestration: EventBridge captures high-severity finding and triggers remediation"
+      - resource: "aws_lambda_function.opa_auto_remediator -> tv_aws_shield.opa_gatekeeper"
+        detail: "10. Dynamic Isolation: Lambda pushes OPA quarantine constraint"
+      - resource: "aws_lambda_function.opa_auto_remediator -> tv_aws_firewall.k8s_network_policy"
+        detail: "11. Network Containment: Lambda locks pod egress via NetworkPolicy"
+      - resource: "aws_lambda_function.opa_auto_remediator -> aws_securityhub_account.cnapp_dashboard"
+        detail: "12. Posture & Compliance: Security Hub and CloudSecCorner CNAPP dashboard record remediation"

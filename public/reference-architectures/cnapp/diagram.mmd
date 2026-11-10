@@ -1,0 +1,19 @@
+flowchart TB
+      adversary@{ icon: "logos:iam-access", label: "External Adversary (T1190)", h: 64, pos: "b" }
+      waf@{ icon: "logos:waf-shield", label: "WAF & Perimeter ALB", h: 64, pos: "b" }
+      pod@{ icon: "logos:k8s-pod", label: "EKS Workload Pod", h: 64, pos: "b" }
+      opa@{ icon: "logos:k8s-admission", label: "OPA Gatekeeper (KSPM)", h: 64, pos: "b" }
+      cni@{ icon: "logos:k8s-networkpolicy", label: "CNI NetworkPolicy (Default-Deny)", h: 64, pos: "b" }
+      s3@{ icon: "logos:storage-s3", label: "KMS Encrypted S3 Bucket", h: 64, pos: "b" }
+      guardduty@{ icon: "logos:threat-guardduty", label: "Runtime GuardDuty Anomaly Detection", h: 64, pos: "b" }
+      eventbridge@{ icon: "logos:decoupled-eventbridge", label: "EventBridge Remediation Rule", h: 64, pos: "b" }
+      remediator@{ icon: "logos:serverless-lambda", label: "OPA Auto-Remediator Lambda", h: 64, pos: "b" }
+      adversary -->|T1190 Probe| waf
+      waf -->|Filtered Ingress| pod
+      opa -.->|Enforce Non-Root, Drop Caps| pod
+      cni -.->|Microsegmentation| pod
+      pod -->|T1530 Exfiltration Attempt| s3
+      s3 -.->|API Audit Log| guardduty
+      guardduty -->|Threat Finding Event| eventbridge
+      eventbridge -->|Trigger Quarantine| remediator
+      remediator -->|Lockout Egress & Contain| cni

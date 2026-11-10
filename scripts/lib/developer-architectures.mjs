@@ -1,23 +1,23 @@
 const families = {
-  storage: ['storage-s3', 'azure-blob', 'gcp-gcs'],
-  identity: ['iam-access', 'azure-ad', 'gcp-iam'],
-  network: ['network-vpc', 'azure-vnet', 'azure-firewall', 'gcp-vpc', 'gcp-psc'],
-  compute: ['compute-ec2', 'azure-vm', 'gcp-gce', 'container-ecs', 'azure-container-apps'],
-  sql: ['database-rds', 'azure-sql', 'gcp-sql'],
-  document: ['nosql-dynamodb', 'azure-cosmosdb', 'azure-synapse', 'gcp-spanner', 'gcp-bigquery'],
-  cluster: ['container-eks', 'azure-aks', 'gcp-gke'],
-  http: ['serverless-lambda', 'perimeter-apigateway', 'azure-functions', 'gcp-cloudrun', 'gcp-functions'],
-  edge: ['edge-cloudfront', 'waf-shield', 'azure-appgateway', 'azure-frontdoor', 'gcp-armor', 'gcp-iap'],
-  keys: ['security-kms', 'azure-keyvault', 'gcp-kms', 'gcp-secrets'],
-  audit: ['logging-cloudtrail', 'azure-activity-log', 'gcp-logging'],
-  observability: ['observability-cloudwatch', 'analytics-opensearch', 'azure-monitor', 'gcp-monitoring', 'gcp-chronicle'],
-  detection: ['threat-guardduty', 'compliance-sechub', 'azure-defender', 'azure-sentinel', 'gcp-scc', 'gcp-dlp'],
-  backup: ['backup-resilience', 'azure-backup'],
-  messaging: ['messaging-sns-sqs', 'decoupled-eventbridge', 'azure-servicebus', 'azure-eventgrid', 'gcp-pubsub'],
-  ai: ['aiml-sagemaker', 'azure-openai', 'gcp-vertex'],
-  governance: ['governance-org', 'azure-policy', 'gcp-org-policy'],
-  dns: ['dns-route53', 'azure-dns', 'gcp-dns'],
-  supply: ['gcp-artifact', 'container-cosign', 'container-trivy', 'container-distroless', 'container-docker', 'container-registry', 'container-sbom', 'container-secrets'],
+  storage: ['storage-s3', 'azure-blob', 'gcp-gcs', 'vultr-storage', 'vultr-block-storage', 'oci-storage'],
+  identity: ['iam-access', 'azure-ad', 'gcp-iam', 'vultr-iam', 'oci-iam'],
+  network: ['network-vpc', 'azure-vnet', 'azure-firewall', 'gcp-vpc', 'gcp-psc', 'vultr-vpc', 'vultr-firewall', 'vultr-direct-connect', 'oci-vcn', 'oci-firewall', 'oci-fastconnect', 'oci-bastion'],
+  compute: ['compute-ec2', 'azure-vm', 'gcp-gce', 'container-ecs', 'azure-container-apps', 'vultr-instance', 'vultr-edge-compute', 'oci-compute'],
+  sql: ['database-rds', 'azure-sql', 'gcp-sql', 'vultr-database', 'oci-database'],
+  document: ['nosql-dynamodb', 'azure-cosmosdb', 'azure-synapse', 'gcp-spanner', 'gcp-bigquery', 'vultr-redis', 'oci-nosql'],
+  cluster: ['container-eks', 'azure-aks', 'gcp-gke', 'vultr-kubernetes', 'oci-oke'],
+  http: ['serverless-lambda', 'perimeter-apigateway', 'azure-functions', 'gcp-cloudrun', 'gcp-functions', 'vultr-serverless', 'oci-functions'],
+  edge: ['edge-cloudfront', 'waf-shield', 'azure-appgateway', 'azure-frontdoor', 'gcp-armor', 'gcp-iap', 'vultr-loadbalancer', 'vultr-waf', 'oci-waf', 'oci-loadbalancer'],
+  keys: ['security-kms', 'azure-keyvault', 'gcp-kms', 'gcp-secrets', 'vultr-keys', 'oci-kms'],
+  audit: ['logging-cloudtrail', 'azure-activity-log', 'gcp-logging', 'vultr-logging', 'oci-audit', 'oci-logging'],
+  observability: ['observability-cloudwatch', 'analytics-opensearch', 'azure-monitor', 'gcp-monitoring', 'gcp-chronicle', 'vultr-monitoring', 'oci-monitoring'],
+  detection: ['threat-guardduty', 'compliance-sechub', 'azure-defender', 'azure-sentinel', 'gcp-scc', 'gcp-dlp', 'vultr-security', 'vultr-compliance', 'oci-cloudguard', 'oci-vulnerability'],
+  backup: ['backup-resilience', 'azure-backup', 'vultr-backup', 'vultr-dr', 'oci-backup'],
+  messaging: ['messaging-sns-sqs', 'decoupled-eventbridge', 'azure-servicebus', 'azure-eventgrid', 'gcp-pubsub', 'vultr-kafka', 'oci-streaming'],
+  ai: ['aiml-sagemaker', 'azure-openai', 'gcp-vertex', 'oci-ai'],
+  governance: ['governance-org', 'azure-policy', 'gcp-org-policy', 'oci-governance'],
+  dns: ['dns-route53', 'azure-dns', 'gcp-dns', 'vultr-dns', 'oci-dns'],
+  supply: ['gcp-artifact', 'container-cosign', 'container-trivy', 'container-distroless', 'container-docker', 'container-registry', 'container-sbom', 'container-secrets', 'vultr-container-registry', 'oci-devops'],
   workload: ['k8s-pod', 'k8s-deployment', 'k8s-daemonset', 'k8s-statefulset', 'k8s-service', 'k8s-ingress', 'k8s-gateway', 'k8s-servicemesh'],
   netpol: ['k8s-networkpolicy'],
   admission: ['k8s-psa', 'k8s-webhook', 'k8s-quota', 'k8s-admission'],
@@ -35,7 +35,9 @@ const platforms = {
   azure: { identity: 'azure-ad', storage: 'azure-blob', worker: 'azure-functions', keys: 'azure-keyvault', logs: 'azure-monitor', registry: 'azure-acr', auth: 'Managed identity with a scoped data-plane role', cli: 'az account show --output table', storageApi: 'Blob Put Blob / Get Blob over HTTPS with Entra token' },
   gcp: { identity: 'gcp-iam', storage: 'gcp-gcs', worker: 'gcp-cloudrun', keys: 'gcp-kms', logs: 'gcp-logging', registry: 'gcp-artifact', auth: 'Workload identity with a scoped IAM grant', cli: 'gcloud config get-value project', storageApi: 'Cloud Storage objects.insert / objects.get with OAuth token' },
   kspm: { identity: 'k8s-serviceaccount', storage: 'k8s-pvc', worker: 'k8s-pod', keys: 'k8s-secret', logs: 'k8s-apiserver', registry: 'container-registry', auth: 'ServiceAccount and namespace-scoped RBAC', cli: 'kubectl config current-context', storageApi: 'CSI volume mount' },
-  container: { identity: 'container-cosign', storage: 'container-registry', worker: 'container-docker', keys: 'container-secrets', logs: 'container-ebpf', registry: 'container-registry', auth: 'Separate CI publisher and runtime pull identities', cli: 'docker version', storageApi: 'OCI registry API' }
+  container: { identity: 'container-cosign', storage: 'container-registry', worker: 'container-docker', keys: 'container-secrets', logs: 'container-ebpf', registry: 'container-registry', auth: 'Separate CI publisher and runtime pull identities', cli: 'docker version', storageApi: 'OCI registry API' },
+  vultr: { identity: 'vultr-iam', storage: 'vultr-storage', worker: 'vultr-instance', keys: 'vultr-keys', logs: 'vultr-logging', registry: 'container-registry', auth: 'Vultr API key or scoped subaccount token', cli: 'vultr-cli account info', storageApi: 'Vultr Object Storage S3-compatible API' },
+  oracle: { identity: 'oci-iam', storage: 'oci-storage', worker: 'oci-compute', keys: 'oci-kms', logs: 'oci-audit', registry: 'container-registry', auth: 'OCI instance principal or scoped IAM policy', cli: 'oci iam user get', storageApi: 'OCI Object Storage native REST API over HTTPS' }
 };
 
 const guides = {
@@ -200,6 +202,8 @@ export function buildDeveloperArchitecture(platform, entry) {
   else if (platform === 'azure') diagnostics.push(': "${RESOURCE_GROUP:?Set RESOURCE_GROUP to your test resource group}"', 'az resource list --resource-group "$RESOURCE_GROUP" --output table');
   else if (platform === 'gcp') diagnostics.push(': "${PROJECT_ID:?Set PROJECT_ID to your test project}"', 'gcloud logging read \'severity>=ERROR\' --project="$PROJECT_ID" --limit=10 --format=json');
   else if (platform === 'container') diagnostics.push(': "${IMAGE_REF:?Set IMAGE_REF to a local image tag or digest}"', 'docker image inspect "$IMAGE_REF"');
+  else if (platform === 'vultr') diagnostics.push(': "${SUB_ID:?Set SUB_ID to an active Vultr subscription ID}"', 'vultr-cli instance list');
+  else if (platform === 'oracle') diagnostics.push(': "${COMPARTMENT_OCID:?Set COMPARTMENT_OCID to target compartment}"', 'oci compute instance list --compartment-id "$COMPARTMENT_OCID" --output table');
   else diagnostics.push('aws configure list');
   return {
     mermaid: source,

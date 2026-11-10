@@ -1,0 +1,10 @@
+flowchart TB
+      client@{ icon: "logos:vultr-iam", label: "Authenticated API Client", h: 64, pos: "b" }
+      storage@{ icon: "logos:vultr-storage", label: "Private Vultr Object Storage", h: 64, pos: "b" }
+      client[Authenticated API Client] -->|HTTPS S3 API| auth{Valid API Key?}
+      auth -->|Yes| tls{TLS 1.3 Transport?}
+      auth -->|No| denied[Access Denied]
+      tls -->|No| denied
+      tls -->|Yes| storage[Private Vultr Object Storage]
+      public[Anonymous Internet Request] -->|NoPublicAccess enforced| denied
+      storage -->|Encrypted at Rest| sse[AES-256 Storage Engine]

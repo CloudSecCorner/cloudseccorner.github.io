@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Vultr Security Posture</title>
+  <defs>
+    <linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="vultr-vultr-compliance-grad">
+      <stop stop-color="#059669" offset="0%"></stop>
+      <stop stop-color="#047857" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <rect fill="url(#vultr-vultr-compliance-grad)" x="0" y="0" width="40" height="40" rx="8"></rect>
+    <g transform="translate(8, 8)" fill="#FFFFFF">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+    </g>
+  </g>
+</svg>

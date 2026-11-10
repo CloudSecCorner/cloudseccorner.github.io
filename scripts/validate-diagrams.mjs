@@ -24,7 +24,7 @@ function validateSvg(svg, label, requireLogos = true) {
 
 let catalogCount = 0;
 const diagnostics = new Set();
-for (const provider of ['aws', 'azure', 'gcp', 'kspm', 'cnapp']) {
+for (const provider of ['aws', 'azure', 'gcp', 'kspm', 'cnapp', 'vultr', 'oracle']) {
   const filename = `${provider}-best-practices.json`;
   const source = read(`public/data/${filename}`);
   const sourceHash = hash(source);

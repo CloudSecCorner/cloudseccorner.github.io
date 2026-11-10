@@ -92,6 +92,73 @@ const references = {
     commands: 'kubectl apply --dry-run=client -f workload.yaml\n# After review:\nkubectl apply -f workload.yaml\nkubectl -n csc-reference rollout status deployment/web --timeout=120s\nkubectl -n csc-reference get networkpolicy\n# Allowed: same namespace and matching label, numeric Service IP avoids DNS egress\nWEB_IP=$(kubectl -n csc-reference get svc web -o jsonpath="{.spec.clusterIP}")\nkubectl -n csc-reference run allowed --restart=Never --image=busybox:1.37 --labels=role=client --overrides=\'{"spec":{"securityContext":{"runAsNonRoot":true,"runAsUser":1000,"seccompProfile":{"type":"RuntimeDefault"}},"containers":[{"name":"allowed","image":"busybox:1.37","command":["wget","-T","5","-qO-","http://\'"$WEB_IP"\'"],"securityContext":{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]}}}]}}\'\nkubectl -n csc-reference logs allowed\n# Repeat with name denied and without the role=client label: expect a timeout.\n# Remove the disposable example namespace after testing:\nkubectl delete namespace csc-reference',
     expected: 'Deployment available replicas = 2; allowed client receives the nginx page. An unlabeled client times out despite matching egress permission, demonstrating ingress isolation. If both succeed, verify CNI policy enforcement; port-forward is not a valid NetworkPolicy test. Egress is limited to same-namespace web pods on TCP 8080; DNS remains blocked. Replies to allowed ingress remain permitted.',
     sources: ['https://kubernetes.io/docs/concepts/services-networking/network-policies/', 'https://kubernetes.io/docs/tasks/configure-pod-container/security-context/']
+  },
+  cnapp: {
+    category: 'compliance-sechub', service: 'AWS Security Hub', icon: 'compliance-sechub',
+    title: 'Reference: CNAPP Defense & MITRE ATT&CK Auto-Remediation with OPA',
+    description: 'A multi-tier CNAPP defense-in-depth architecture mapping MITRE ATT&CK techniques across perimeter WAF, KSPM admission controls, CNI microsegmentation, GuardDuty runtime detection, and EventBridge Lambda auto-containment.',
+    flow: `flowchart TB
+      adversary@{ icon: "logos:iam-access", label: "External Adversary (T1190)", h: 64, pos: "b" }
+      waf@{ icon: "logos:waf-shield", label: "WAF & Perimeter ALB", h: 64, pos: "b" }
+      pod@{ icon: "logos:k8s-pod", label: "EKS Workload Pod", h: 64, pos: "b" }
+      opa@{ icon: "logos:k8s-admission", label: "OPA Gatekeeper (KSPM)", h: 64, pos: "b" }
+      cni@{ icon: "logos:k8s-networkpolicy", label: "CNI NetworkPolicy (Default-Deny)", h: 64, pos: "b" }
+      s3@{ icon: "logos:storage-s3", label: "KMS Encrypted S3 Bucket", h: 64, pos: "b" }
+      guardduty@{ icon: "logos:threat-guardduty", label: "Runtime GuardDuty Anomaly Detection", h: 64, pos: "b" }
+      eventbridge@{ icon: "logos:decoupled-eventbridge", label: "EventBridge Remediation Rule", h: 64, pos: "b" }
+      remediator@{ icon: "logos:serverless-lambda", label: "OPA Auto-Remediator Lambda", h: 64, pos: "b" }
+      adversary -->|T1190 Probe| waf
+      waf -->|Filtered Ingress| pod
+      opa -.->|Enforce Non-Root, Drop Caps| pod
+      cni -.->|Microsegmentation| pod
+      pod -->|T1530 Exfiltration Attempt| s3
+      s3 -.->|API Audit Log| guardduty
+      guardduty -->|Threat Finding Event| eventbridge
+      eventbridge -->|Trigger Quarantine| remediator
+      remediator -->|Lockout Egress & Contain| cni`,
+    prerequisites: 'Kubernetes 1.28+, OPA Gatekeeper, AWS CLI with SecurityHub, GuardDuty, and EventBridge permissions. NetworkPolicy capable CNI (Amazon VPC CNI with NetworkPolicy support or Cilium).',
+    commands: 'kubectl apply -f workload.yaml\nopa eval --data policy.rego --input workload.yaml "data.reference.kspm.allow"\naws guardduty get-detector\naws events list-rules --name-prefix csc-cnapp',
+    expected: 'Admission webhook validates pod non-root status; CNI blocks unauthorized egress; GuardDuty flags anomalous API behavior; Lambda updates quarantine NetworkPolicy.',
+    sources: ['https://kubernetes.io/docs/concepts/services-networking/network-policies/', 'https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html']
+  },
+  vultr: {
+    category: 'vultr-storage', service: 'Vultr Object Storage', icon: 'vultr-storage',
+    title: 'Reference: S3-compatible Vultr Object Storage with private ACL & TLS',
+    description: 'Deploys a Vultr Object Storage subscription with TLS transport, private access permissions, and automated lifecycle rules. Data access requires valid S3 API keys; anonymous public access is completely restricted.',
+    flow: `flowchart TB
+      client@{ icon: "logos:vultr-iam", label: "Authenticated API Client", h: 64, pos: "b" }
+      storage@{ icon: "logos:vultr-storage", label: "Private Vultr Object Storage", h: 64, pos: "b" }
+      client[Authenticated API Client] -->|HTTPS S3 API| auth{Valid API Key?}
+      auth -->|Yes| tls{TLS 1.3 Transport?}
+      auth -->|No| denied[Access Denied]
+      tls -->|No| denied
+      tls -->|Yes| storage[Private Vultr Object Storage]
+      public[Anonymous Internet Request] -->|NoPublicAccess enforced| denied
+      storage -->|Encrypted at Rest| sse[AES-256 Storage Engine]`,
+    prerequisites: 'Terraform 1.5+, Vultr API key with storage permissions. Supply label for resource identification.',
+    commands: 'vultr-cli account info\nterraform init\nterraform plan -out=tfplan\nterraform show -json tfplan > tfplan.json\nopa eval --data policy.rego --input tfplan.json "data.reference.vultr.allow"',
+    expected: 'Vultr Object Storage provisioned with private access. Anonymous requests fail with 403 Forbidden; authenticated S3 API calls succeed.',
+    sources: ['https://www.vultr.com/docs/vultr-object-storage/', 'https://www.vultr.com/api/#operation/create-object-storage'],
+    checks: { vultr_object_storage: { cluster_id: 1 } }
+  },
+  oracle: {
+    category: 'oci-storage', service: 'OCI Object Storage', icon: 'oci-storage',
+    title: 'Reference: Encrypted OCI Object Storage bucket with public access disabled',
+    description: 'Deploys an OCI Object Storage bucket with NoPublicAccess, customer-managed KMS encryption, and object versioning enabled. Workload access is restricted to authenticated IAM principals.',
+    flow: `flowchart TB
+      workload@{ icon: "logos:oci-iam", label: "OCI Workload Principal", h: 64, pos: "b" }
+      bucket@{ icon: "logos:oci-storage", label: "Encrypted OCI Object Storage", h: 64, pos: "b" }
+      workload[OCI Workload Principal] -->|HTTPS REST with SigV4| auth{IAM Policy Permits?}
+      auth -->|Yes| bucket[Encrypted OCI Object Storage]
+      auth -->|No| denied[Access Denied]
+      public[Anonymous Public Request] -->|NoPublicAccess enforced| denied
+      bucket -->|KMS Key Encryption| kms@{ icon: "logos:oci-kms", label: "OCI Vault KMS Key", h: 64, pos: "b" }
+      bucket -->|Audit Events Streamed| audit@{ icon: "logos:oci-audit", label: "OCI Audit Service", h: 64, pos: "b" }`,
+    prerequisites: 'Terraform 1.5+, OCI CLI configured with tenancy and user credentials. Supply compartment_ocid and bucket_name.',
+    commands: 'oci iam user get\nterraform init\nterraform plan -var="compartment_ocid=YOUR_COMPARTMENT_OCID" -out=tfplan\nterraform show -json tfplan > tfplan.json\nopa eval --data policy.rego --input tfplan.json "data.reference.oracle.allow"',
+    expected: 'OCI Object Storage bucket provisioned with access_type NoPublicAccess and versioning Enabled.',
+    sources: ['https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm', 'https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/managingbuckets.htm'],
+    checks: { oci_objectstorage_bucket: { access_type: "NoPublicAccess", versioning: "Enabled" } }
   }
 };
 
@@ -108,7 +175,7 @@ function planPolicy(provider, checks) {
 
 const output = {};
 for (const [provider, entry] of Object.entries(references)) {
-  const asset = `/reference-architectures/${provider}/${provider === 'kspm' ? 'workload.yaml' : 'main.tf'}`;
+  const asset = `/reference-architectures/${provider}/${['kspm', 'cnapp'].includes(provider) ? 'workload.yaml' : 'main.tf'}`;
   const code = fs.readFileSync(path.join(root, 'public', asset), 'utf8');
   const policy = provider === 'kspm' ? `package reference.kspm
 import rego.v1
@@ -126,7 +193,7 @@ allow if {
     "ALL" in c.securityContext.capabilities.drop
   }
 }
-` : planPolicy(provider, entry.checks);
+` : provider === 'cnapp' ? fs.readFileSync(path.join(root, 'public', 'reference-architectures', 'cnapp', 'policy.rego'), 'utf8') : planPolicy(provider, entry.checks);
   fs.writeFileSync(path.join(root, 'public', 'reference-architectures', provider, 'policy.rego'), policy);
   fs.writeFileSync(path.join(root, 'public', 'reference-architectures', provider, 'diagram.mmd'), entry.flow + '\n');
   output[provider] = [{
@@ -136,7 +203,7 @@ allow if {
     pillar: 'Security', severity: 'High', compliance: [],
     description: entry.description, mermaid: entry.flow,
     svg: render(entry.flow, { icons: createIconResolver(provider) }).svg, opa_policy: policy,
-    [provider === 'kspm' ? 'manifest' : 'terraform']: code,
+    [['kspm', 'cnapp'].includes(provider) ? 'manifest' : 'terraform']: code,
     remediation: entry.expected,
     reference: { asset, policy: `/reference-architectures/${provider}/policy.rego`, prerequisites: entry.prerequisites, commands: entry.commands, expected: entry.expected, sources: entry.sources }
   }];

@@ -39,6 +39,36 @@
       "profileCount": 1033,
       "serviceCount": 24,
       "exampleCount": 1
+    },
+    {
+      "id": "cnapp",
+      "name": "CNAPP & MITRE",
+      "route": "/cnapp-architectures",
+      "logo": "/images/provider-logos/cnapp.svg",
+      "scope": "MITRE ATT&CK mitigation, KSPM, CSPM, CWPP, and OPA auto-remediation.",
+      "profileCount": 1516,
+      "serviceCount": 62,
+      "exampleCount": 1
+    },
+    {
+      "id": "vultr",
+      "name": "Vultr",
+      "route": "/vultr-architectures",
+      "logo": "/images/provider-logos/vultr.svg",
+      "scope": "VPC 2.0, Bare Metal, VKE, Object Storage, and Anycast networking.",
+      "profileCount": 1033,
+      "serviceCount": 24,
+      "exampleCount": 1
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle Cloud",
+      "route": "/oracle-architectures",
+      "logo": "/images/provider-logos/oracle.svg",
+      "scope": "VCN, OKE, Autonomous Database, OCI Vault, and Cloud Guard.",
+      "profileCount": 1033,
+      "serviceCount": 24,
+      "exampleCount": 1
     }
   ],
   "labs": [
@@ -176,8 +206,8 @@
     }
   ],
   "counts": {
-    "profiles": 4132,
-    "examples": 4,
+    "profiles": 7714,
+    "examples": 7,
     "labs": 10,
     "tools": 37750
   }

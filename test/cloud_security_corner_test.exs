@@ -12,6 +12,8 @@ defmodule CloudSecurityCornerTest do
     assert Content.azure_best_practice_count() >= 1000
     assert Content.gcp_best_practice_count() >= 1000
     assert Content.kspm_best_practice_count() >= 1000
+    assert Content.vultr_best_practice_count() >= 1000
+    assert Content.oracle_best_practice_count() >= 1000
   end
 
   test "renders the AWS Defender path, paired field notes, and downloadable examples" do
@@ -73,6 +75,28 @@ defmodule CloudSecurityCornerTest do
     assert conn.resp_body =~ "Obsidian Pele"
     assert conn.resp_body =~ "1,000+ KSPM Kubernetes Architecture"
     assert_frontend_or_legacy(conn, "kspm-architectures.js")
+  end
+
+  test "renders vultr architectures route and loads best practices" do
+    conn =
+      Plug.Test.conn(:get, "/vultr-architectures")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Obsidian Pele"
+    assert conn.resp_body =~ "1,000+ Vultr Architecture Best Practices"
+    assert_frontend_or_legacy(conn, "vultr-architectures.js")
+  end
+
+  test "renders oracle architectures route and loads best practices" do
+    conn =
+      Plug.Test.conn(:get, "/oracle-architectures")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Obsidian Pele"
+    assert conn.resp_body =~ "1,000+ Oracle Cloud Architecture Best Practices"
+    assert_frontend_or_legacy(conn, "oracle-architectures.js")
   end
 
   test "searches and paginates the tool directory" do

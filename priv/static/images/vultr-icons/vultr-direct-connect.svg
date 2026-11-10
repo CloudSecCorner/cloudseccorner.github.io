@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Vultr Direct Connect</title>
+  <defs>
+    <linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="vultr-vultr-direct-connect-grad">
+      <stop stop-color="#0D9488" offset="0%"></stop>
+      <stop stop-color="#0056B3" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <rect fill="url(#vultr-vultr-direct-connect-grad)" x="0" y="0" width="40" height="40" rx="8"></rect>
+    <g transform="translate(8, 8)" fill="#FFFFFF">
+      <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM7 7l-5 5 5 5 1.41-1.41L5.83 13H16v-2H5.83l2.58-2.59L7 7z"/>
+    </g>
+  </g>
+</svg>

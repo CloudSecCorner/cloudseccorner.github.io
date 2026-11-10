@@ -8,7 +8,9 @@ const providers = {
   azure: { name: 'Azure', identity: 'azure-ad', audit: 'azure-activity-log', authorization: 'Microsoft Entra identity and applicable roles', evidence: 'Activity Log or supported diagnostic logs', sources: ['https://learn.microsoft.com/en-us/azure/role-based-access-control/overview', 'https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log'] },
   gcp: { name: 'Google Cloud', identity: 'gcp-iam', audit: 'gcp-logging', authorization: 'Applicable IAM and organization controls', evidence: 'Supported Cloud Audit Logs', sources: ['https://cloud.google.com/iam/docs/overview', 'https://cloud.google.com/logging/docs/audit'] },
   kspm: { name: 'Kubernetes', identity: 'k8s-role', audit: 'k8s-apiserver', authorization: 'RBAC for the requested resource and verb', evidence: 'API readback and configured audit events', sources: ['https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/', 'https://kubernetes.io/docs/concepts/security/security-checklist/'] },
-  container: { name: 'Container', identity: 'container-cosign', audit: 'container-sbom', authorization: 'Authorized build or runtime operator', evidence: 'Digest-linked build and runtime evidence', sources: ['https://docs.sigstore.dev/cosign/verifying/verify/', 'https://docs.docker.com/engine/security/'] }
+  container: { name: 'Container', identity: 'container-cosign', audit: 'container-sbom', authorization: 'Authorized build or runtime operator', evidence: 'Digest-linked build and runtime evidence', sources: ['https://docs.sigstore.dev/cosign/verifying/verify/', 'https://docs.docker.com/engine/security/'] },
+  vultr: { name: 'Vultr', identity: 'vultr-iam', audit: 'vultr-logging', authorization: 'Vultr API key or subaccount permissions', evidence: 'Vultr system audit logs and resource readback', sources: ['https://www.vultr.com/docs/security/', 'https://www.vultr.com/api/'] },
+  oracle: { name: 'Oracle Cloud', identity: 'oci-iam', audit: 'oci-audit', authorization: 'OCI IAM policy and compartment authorization', evidence: 'Supported OCI Audit events and Cloud Guard problems', sources: ['https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm', 'https://docs.oracle.com/en-us/iaas/Content/Audit/Concepts/auditoverview.htm'] }
 };
 
 const requirements = [
@@ -32,6 +34,8 @@ function inferProvider(entry, fallback) {
   if (entry.category.startsWith('azure-')) return 'azure';
   if (entry.category.startsWith('gcp-')) return 'gcp';
   if (entry.category.startsWith('k8s-')) return 'kspm';
+  if (entry.category.startsWith('vultr-')) return 'vultr';
+  if (entry.category.startsWith('oci-') || entry.category.startsWith('oracle-')) return 'oracle';
   if (entry.category.startsWith('container-') && !['container-eks', 'container-ecs'].includes(entry.category)) return 'container';
   return fallback === 'cnapp' ? 'aws' : fallback;
 }

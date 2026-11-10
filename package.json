@@ -8,6 +8,8 @@
     "dev": "vite",
     "build": "node scripts/sync-learning-content.mjs && node scripts/generate-reference-architectures.mjs && node scripts/generate-lab-diagrams.mjs && node scripts/generate-home-catalog.mjs && vite build",
     "diagrams:update": "node scripts/update-diagrams.mjs && node scripts/generate-reference-architectures.mjs && node scripts/generate-lab-diagrams.mjs && node scripts/generate-home-catalog.mjs",
+    "diagrams:render": "node scripts/terravision-render.mjs",
+    "terravision:render": "node scripts/terravision-render.mjs",
     "generate:references": "node scripts/generate-reference-architectures.mjs",
     "content:sync": "node scripts/sync-learning-content.mjs",
     "preview": "vite preview",

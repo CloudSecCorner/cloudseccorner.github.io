@@ -16,7 +16,10 @@ defmodule CloudSecurityCorner.Content do
       aws_best_practices: read_json!("aws-best-practices.json"),
       azure_best_practices: read_json!("azure-best-practices.json"),
       gcp_best_practices: read_json!("gcp-best-practices.json"),
-      kspm_best_practices: read_json!("kspm-best-practices.json")
+      kspm_best_practices: read_json!("kspm-best-practices.json"),
+      cnapp_best_practices: read_json!("cnapp-best-practices.json"),
+      vultr_best_practices: read_json!("vultr-best-practices.json"),
+      oracle_best_practices: read_json!("oracle-best-practices.json")
     }
 
     {:ok, data}
@@ -29,11 +32,17 @@ defmodule CloudSecurityCorner.Content do
   def azure_best_practices, do: GenServer.call(__MODULE__, :azure_best_practices)
   def gcp_best_practices, do: GenServer.call(__MODULE__, :gcp_best_practices)
   def kspm_best_practices, do: GenServer.call(__MODULE__, :kspm_best_practices)
+  def cnapp_best_practices, do: GenServer.call(__MODULE__, :cnapp_best_practices)
+  def vultr_best_practices, do: GenServer.call(__MODULE__, :vultr_best_practices)
+  def oracle_best_practices, do: GenServer.call(__MODULE__, :oracle_best_practices)
   def tool_count, do: length(tools())
   def aws_best_practice_count, do: length(aws_best_practices())
   def azure_best_practice_count, do: length(azure_best_practices())
   def gcp_best_practice_count, do: length(gcp_best_practices())
   def kspm_best_practice_count, do: length(kspm_best_practices())
+  def cnapp_best_practice_count, do: length(cnapp_best_practices())
+  def vultr_best_practice_count, do: length(vultr_best_practices())
+  def oracle_best_practice_count, do: length(oracle_best_practices())
 
   def lab_categories do
     labs()
@@ -265,6 +274,15 @@ defmodule CloudSecurityCorner.Content do
 
   def handle_call(:kspm_best_practices, _from, state),
     do: {:reply, state.kspm_best_practices, state}
+
+  def handle_call(:cnapp_best_practices, _from, state),
+    do: {:reply, state.cnapp_best_practices, state}
+
+  def handle_call(:vultr_best_practices, _from, state),
+    do: {:reply, state.vultr_best_practices, state}
+
+  def handle_call(:oracle_best_practices, _from, state),
+    do: {:reply, state.oracle_best_practices, state}
 
   defp read_json!(filename) do
     filename

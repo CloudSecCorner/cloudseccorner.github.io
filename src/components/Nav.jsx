@@ -124,6 +124,24 @@ function Nav() {
       badge: "1,000+",
       badgeClass: "bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30"
     },
+    {
+      path: "/cnapp-architectures",
+      label: "CNAPP & MITRE",
+      badge: "1,500+",
+      badgeClass: "bg-red-500/15 text-red-600 dark:text-red-300 border border-red-500/30"
+    },
+    {
+      path: "/vultr-architectures",
+      label: "Vultr Architectures",
+      badge: "1,000+",
+      badgeClass: "bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30"
+    },
+    {
+      path: "/oracle-architectures",
+      label: "Oracle Architectures",
+      badge: "1,000+",
+      badgeClass: "bg-red-500/15 text-red-600 dark:text-red-300 border border-red-500/30"
+    },
     { path: "/tools", label: "Tools" },
     { path: "/labs", label: "Labs" },
     { path: "/blog", label: "Blog" },

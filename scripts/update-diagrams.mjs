@@ -5,7 +5,7 @@ import { refreshDiagramCollection } from './lib/control-diagrams.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 let total = 0;
-for (const provider of ['aws', 'azure', 'gcp', 'kspm', 'cnapp']) {
+for (const provider of ['aws', 'azure', 'gcp', 'kspm', 'cnapp', 'vultr', 'oracle']) {
   const name = `${provider}-best-practices.json`;
   const entries = JSON.parse(fs.readFileSync(path.join(root, 'public/data', name), 'utf8'));
   refreshDiagramCollection(provider, entries);

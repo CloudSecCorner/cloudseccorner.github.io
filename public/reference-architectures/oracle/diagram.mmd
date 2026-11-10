@@ -1,0 +1,9 @@
+flowchart TB
+      workload@{ icon: "logos:oci-iam", label: "OCI Workload Principal", h: 64, pos: "b" }
+      bucket@{ icon: "logos:oci-storage", label: "Encrypted OCI Object Storage", h: 64, pos: "b" }
+      workload[OCI Workload Principal] -->|HTTPS REST with SigV4| auth{IAM Policy Permits?}
+      auth -->|Yes| bucket[Encrypted OCI Object Storage]
+      auth -->|No| denied[Access Denied]
+      public[Anonymous Public Request] -->|NoPublicAccess enforced| denied
+      bucket -->|KMS Key Encryption| kms@{ icon: "logos:oci-kms", label: "OCI Vault KMS Key", h: 64, pos: "b" }
+      bucket -->|Audit Events Streamed| audit@{ icon: "logos:oci-audit", label: "OCI Audit Service", h: 64, pos: "b" }
