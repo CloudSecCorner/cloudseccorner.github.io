@@ -143,6 +143,15 @@ defmodule CloudSecurityCornerTest do
     assert_frontend_or_legacy(conn, "hetzner-architectures.js")
   end
 
+  test "renders cross-cloud matrix route" do
+    conn =
+      Plug.Test.conn(:get, "/cross-cloud-matrix")
+      |> Endpoint.call(Endpoint.init([]))
+
+    assert conn.status == 200
+    assert conn.resp_body =~ "Cross-Cloud Security Rosetta Stone"
+  end
+
   test "searches and paginates the tool directory" do
     results = Content.search_tools("cve-2026-106173", "", "az", 1)
 

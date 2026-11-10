@@ -83,6 +83,7 @@ defmodule Mix.Tasks.Site.Export do
       "/alicloud-architectures",
       "/civo-architectures",
       "/hetzner-architectures",
+      "/cross-cloud-matrix",
       "/tools",
       "/labs",
       "/blog",
