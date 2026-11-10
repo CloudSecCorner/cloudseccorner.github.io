@@ -89,6 +89,26 @@
       "profileCount": 1033,
       "serviceCount": 24,
       "exampleCount": 1
+    },
+    {
+      "id": "civo",
+      "name": "Civo Cloud",
+      "route": "/civo-architectures",
+      "logo": "/images/provider-logos/civo.svg",
+      "scope": "K3s Managed Kubernetes, GPU clusters, Deep Lake, Object Storage, and Private Networks.",
+      "profileCount": 1033,
+      "serviceCount": 24,
+      "exampleCount": 1
+    },
+    {
+      "id": "hetzner",
+      "name": "Hetzner Cloud",
+      "route": "/hetzner-architectures",
+      "logo": "/images/provider-logos/hetzner.svg",
+      "scope": "CX/CPX Servers, Cloud Networks, Firewalls, Storage Box, and European Sovereign Cloud.",
+      "profileCount": 1033,
+      "serviceCount": 24,
+      "exampleCount": 1
     }
   ],
   "labs": [
@@ -226,8 +246,8 @@
     }
   ],
   "counts": {
-    "profiles": 9780,
-    "examples": 9,
+    "profiles": 11846,
+    "examples": 11,
     "labs": 10,
     "tools": 37750
   }

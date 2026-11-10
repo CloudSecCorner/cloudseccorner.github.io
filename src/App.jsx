@@ -16,6 +16,8 @@ const VultrArchitectures = lazy(() => import("./components/VultrArchitectures"))
 const OracleArchitectures = lazy(() => import("./components/OracleArchitectures"));
 const DigitaloceanArchitectures = lazy(() => import("./components/DigitaloceanArchitectures"));
 const AlicloudArchitectures = lazy(() => import("./components/AlicloudArchitectures"));
+const CivoArchitectures = lazy(() => import("./components/CivoArchitectures"));
+const HetznerArchitectures = lazy(() => import("./components/HetznerArchitectures"));
 const ToolsSection = lazy(() => import("./components/ToolsSection"));
 const Blog = lazy(() => import("./components/Blog"));
 const Labs = lazy(() => import("./components/Labs"));
@@ -74,6 +76,8 @@ function App() {
               <Route path="/oracle-architectures" element={<OracleArchitectures />} />
               <Route path="/digitalocean-architectures" element={<DigitaloceanArchitectures />} />
               <Route path="/alicloud-architectures" element={<AlicloudArchitectures />} />
+              <Route path="/civo-architectures" element={<CivoArchitectures />} />
+              <Route path="/hetzner-architectures" element={<HetznerArchitectures />} />
               <Route path="/tools" element={<ToolsSection />} />
               <Route path="/labs" element={<Labs />} />
               <Route path="/labs/:labId" element={<Labs />} />

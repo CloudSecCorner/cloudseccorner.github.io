@@ -56,6 +56,8 @@ function Footer() {
           <Link to="/oracle-architectures">Oracle Cloud architectures</Link>
           <Link to="/digitalocean-architectures">DigitalOcean architectures</Link>
           <Link to="/alicloud-architectures">Alibaba Cloud architectures</Link>
+          <Link to="/civo-architectures">Civo Cloud architectures</Link>
+          <Link to="/hetzner-architectures">Hetzner Cloud architectures</Link>
           <Link to="/labs">Hands-on security labs</Link>
           <Link to="/blog">Field notes &amp; guides</Link>
           <Link to="/about">About CloudSecCorner</Link>
