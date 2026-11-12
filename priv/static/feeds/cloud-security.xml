@@ -7,8 +7,68 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Wed, 11 Nov 2026 06:54:45 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 07:30:23 GMT</lastBuildDate>
     <item>
+  <title>Attacker Used 4,837 Hijacked GitHub Accounts to Run a CI Secret Stealer in 1,806+ Repositories</title>
+  <link>https://thehackernews.com/2026/11/4837-hijacked-github-accounts-ran-ci.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/4837-hijacked-github-accounts-ran-ci.html</guid>
+  <pubDate>Thu, 12 Nov 2026 06:42:47 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>Ease of use and secure defaults in the new AWS experience</title>
+  <link>https://aws.amazon.com/blogs/security/ease-of-use-and-secure-defaults-in-the-new-aws-experience/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/ease-of-use-and-secure-defaults-in-the-new-aws-experience/</guid>
+  <pubDate>Wed, 11 Nov 2026 19:57:21 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Critical RCE Vulnerability in Apache HTTP Server: Everything You Need To Know</title>
+  <link>https://www.wiz.io/blog/cve-2026-119618-rce-apache-http-server-vulnerability</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/cve-2026-119618-rce-apache-http-server-vulnerability</guid>
+  <pubDate>Wed, 11 Nov 2026 19:49:10 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Part 4 – Cybersecurity journeys: What I’d tell my younger self</title>
+  <link>https://aws.amazon.com/blogs/security/part-4-cybersecurity-journeys-what-id-tell-my-younger-self/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/part-4-cybersecurity-journeys-what-id-tell-my-younger-self/</guid>
+  <pubDate>Wed, 11 Nov 2026 18:21:01 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>AntiFox AI Pentesting Platform Linked to Attacks That Accessed AWS Production Secrets</title>
+  <link>https://thehackernews.com/2026/11/antifox-ai-pentesting-platform-linked.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/antifox-ai-pentesting-platform-linked.html</guid>
+  <pubDate>Wed, 11 Nov 2026 15:34:27 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>Dreeze Emerges From Stealth With $33M to Rebuild Cloud Apps After Cyberattacks</title>
+  <link>https://www.securityweek.com/dreeze-emerges-from-stealth-with-33m-to-rebuild-cloud-apps-after-cyberattacks/</link>
+  <guid isPermaLink="true">https://www.securityweek.com/dreeze-emerges-from-stealth-with-33m-to-rebuild-cloud-apps-after-cyberattacks/</guid>
+  <pubDate>Wed, 11 Nov 2026 11:16:40 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from SecurityWeek. Read the original article at the publisher.</description>
+  <source url="https://www.securityweek.com/feed/">SecurityWeek</source>
+</item>
+
+<item>
   <title>Able2Shell: Frequently asked questions for reported N-able N-central zero-day vulnerabilities</title>
   <link>https://www.tenable.com/blog/able2shell-frequently-asked-questions-for-reported-n-able-n-central-zero-day-vulnerabilities</link>
   <guid isPermaLink="true">https://www.tenable.com/blog/able2shell-frequently-asked-questions-for-reported-n-able-n-central-zero-day-vulnerabilities</guid>
@@ -739,6 +799,16 @@
 </item>
 
 <item>
+  <title>Agentic Memory and the Next Security Boundary</title>
+  <link>https://cloudsecurityalliance.org/articles/agentic-memory-and-the-next-security-boundary</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/agentic-memory-and-the-next-security-boundary</guid>
+  <pubDate>Wed, 21 Oct 2026 20:52:02 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
+</item>
+
+<item>
   <title>Always On, Always Defending: Inside the AI-Driven SOC</title>
   <link>https://cloudsecurityalliance.org/articles/always-on-always-defending-inside-the-ai-driven-soc</link>
   <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/always-on-always-defending-inside-the-ai-driven-soc</guid>
@@ -989,16 +1059,6 @@
 </item>
 
 <item>
-  <title>Loud, Fast, and Everywhere: Anatomy of a Real AI-Driven Cloud Attack</title>
-  <link>https://www.wiz.io/blog/anatomy-of-ai-driven-cloud-attacks</link>
-  <guid isPermaLink="true">https://www.wiz.io/blog/anatomy-of-ai-driven-cloud-attacks</guid>
-  <pubDate>Mon, 19 Oct 2026 11:26:53 GMT</pubDate>
-  <category>Kubernetes &amp; Containers</category>
-  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
-</item>
-
-<item>
   <title>Announcing Wiz Runtime Sensor add-on for GKE: Turnkey threat detection for Kubernetes</title>
   <link>https://cloud.google.com/blog/products/identity-security/wiz-sensor-for-gke-turnkey-threat-detection-for-kubernetes/</link>
   <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/wiz-sensor-for-gke-turnkey-threat-detection-for-kubernetes/</guid>
@@ -1109,26 +1169,6 @@
 </item>
 
 <item>
-  <title>Part 2 – Cybersecurity journeys: What even is this job?</title>
-  <link>https://aws.amazon.com/blogs/security/part-2-cybersecurity-journeys-what-even-is-this-job/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/part-2-cybersecurity-journeys-what-even-is-this-job/</guid>
-  <pubDate>Tue, 13 Oct 2026 20:58:01 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
-  <title>GuardDuty Extended Threat Detection has added five new indicators to surface attack sequences</title>
-  <link>https://aws.amazon.com/blogs/security/guardduty-extended-threat-detection-has-added-five-new-indicators-to-surface-attack-sequences/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/guardduty-extended-threat-detection-has-added-five-new-indicators-to-surface-attack-sequences/</guid>
-  <pubDate>Mon, 12 Oct 2026 21:58:44 GMT</pubDate>
-  <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
   <title>New Cloud Security Alliance Survey Finds Data Loss Prevention (DLP) Often Detects Data Loss Only After It Happens</title>
   <link>https://cloudsecurityalliance.org/articles/new-cloud-security-alliance-survey-finds-data-loss-prevention-dlp-often-detects-data-loss-only-after-it-happens</link>
   <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/new-cloud-security-alliance-survey-finds-data-loss-prevention-dlp-often-detects-data-loss-only-after-it-happens</guid>
@@ -1154,16 +1194,6 @@
   <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/everyone-wants-spiffe-almost-no-one-can-afford-to-build-it-right</guid>
   <pubDate>Thu, 08 Oct 2026 22:31:23 GMT</pubDate>
   <category>Identity &amp; Access</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>The Enterprise Accountability Gap: Who Should Own AI Governance?</title>
-  <link>https://cloudsecurityalliance.org/articles/the-enterprise-accountability-gap-who-should-own-ai-governance</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/the-enterprise-accountability-gap-who-should-own-ai-governance</guid>
-  <pubDate>Thu, 08 Oct 2026 22:30:43 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
   <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
   <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
