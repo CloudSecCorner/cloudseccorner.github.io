@@ -7,8 +7,68 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Thu, 12 Nov 2026 07:30:23 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 13 Nov 2026 07:02:44 GMT</lastBuildDate>
     <item>
+  <title>ASPM in the AI Era Part 3: Fixing Risk at the Speed of Code</title>
+  <link>https://www.wiz.io/blog/aspm-ai-era-pt-3-fixing-risk-code-speed</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/aspm-ai-era-pt-3-fixing-risk-code-speed</guid>
+  <pubDate>Thu, 12 Nov 2026 18:32:24 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Autonomous defense at cloud speed with SentinelOne and Google Security Operations</title>
+  <link>https://cloud.google.com/blog/topics/partners/autonomous-defense-at-cloud-speed-with-sentinelone-and-google-security-operations/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/topics/partners/autonomous-defense-at-cloud-speed-with-sentinelone-and-google-security-operations/</guid>
+  <pubDate>Thu, 12 Nov 2026 17:00:00 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Powering agentic cloud governance: What&#39;s new in Organization Policy</title>
+  <link>https://cloud.google.com/blog/products/identity-security/ai-powered-cloud-governance-whats-new-in-organization-policy/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/ai-powered-cloud-governance-whats-new-in-organization-policy/</guid>
+  <pubDate>Thu, 12 Nov 2026 17:00:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Critical Red Hat Quay Flaw Lets Attackers Read and Overwrite All Private Container Images in a Registry</title>
+  <link>https://thehackernews.com/2026/11/critical-red-hat-quay-flaw-lets.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/critical-red-hat-quay-flaw-lets.html</guid>
+  <pubDate>Thu, 12 Nov 2026 16:27:01 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>Google Cloud Warns Three AMD Turin CPU Flaws Could Leak Data Across Processes in VMs</title>
+  <link>https://thehackernews.com/2026/11/google-cloud-warns-three-amd-turin-cpu.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/google-cloud-warns-three-amd-turin-cpu.html</guid>
+  <pubDate>Thu, 12 Nov 2026 12:09:14 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>Critical Red Hat Quay Vulnerability Could Expose Private Container Images</title>
+  <link>https://www.securityweek.com/critical-red-hat-quay-vulnerability-could-expose-private-container-images/</link>
+  <guid isPermaLink="true">https://www.securityweek.com/critical-red-hat-quay-vulnerability-could-expose-private-container-images/</guid>
+  <pubDate>Thu, 12 Nov 2026 09:23:21 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from SecurityWeek. Read the original article at the publisher.</description>
+  <source url="https://www.securityweek.com/feed/">SecurityWeek</source>
+</item>
+
+<item>
   <title>Attacker Used 4,837 Hijacked GitHub Accounts to Run a CI Secret Stealer in 1,806+ Repositories</title>
   <link>https://thehackernews.com/2026/11/4837-hijacked-github-accounts-ran-ci.html</link>
   <guid isPermaLink="true">https://thehackernews.com/2026/11/4837-hijacked-github-accounts-ran-ci.html</guid>
@@ -16,6 +76,16 @@
   <category>Identity &amp; Access</category>
   <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
   <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>Cloud Security Alliance Announces Winners of 2026 Pitchapalooza</title>
+  <link>https://cloudsecurityalliance.org/articles/cloud-security-alliance-announces-winners-of-2026-pitchapalooza</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/cloud-security-alliance-announces-winners-of-2026-pitchapalooza</guid>
+  <pubDate>Wed, 11 Nov 2026 23:37:01 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -106,6 +176,16 @@
   <category>Kubernetes &amp; Containers</category>
   <description>Cloud security research from Tenable Research. Read the original article at the publisher.</description>
   <source url="https://www.tenable.com/blog/feed">Tenable Research</source>
+</item>
+
+<item>
+  <title>The $6.3 Billion Binance Signing Compromise and Agentic AI Threat Analysis</title>
+  <link>https://cloudsecurityalliance.org/articles/the-6-3-billion-binance-signing-compromise-and-agentic-ai-threat-analysis</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/the-6-3-billion-binance-signing-compromise-and-agentic-ai-threat-analysis</guid>
+  <pubDate>Tue, 10 Nov 2026 18:50:35 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -819,6 +899,16 @@
 </item>
 
 <item>
+  <title>Zero Trust DNS Starts Before the Connection</title>
+  <link>https://cloudsecurityalliance.org/articles/zero-trust-dns-starts-before-the-connection</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/zero-trust-dns-starts-before-the-connection</guid>
+  <pubDate>Wed, 21 Oct 2026 20:51:45 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
+</item>
+
+<item>
   <title>Input Privacy vs. Output Privacy: Choosing a PET</title>
   <link>https://cloudsecurityalliance.org/articles/input-privacy-vs-output-privacy-choosing-a-pet</link>
   <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/input-privacy-vs-output-privacy-choosing-a-pet</guid>
@@ -1039,16 +1129,6 @@
 </item>
 
 <item>
-  <title>Supply Chain Zero Days: Closing the Gap Between Publication and Detection</title>
-  <link>https://www.wiz.io/blog/detect-supply-chain-zero-days-at-publication</link>
-  <guid isPermaLink="true">https://www.wiz.io/blog/detect-supply-chain-zero-days-at-publication</guid>
-  <pubDate>Mon, 19 Oct 2026 14:39:29 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
-</item>
-
-<item>
   <title>Unmasking the robots: Why it’s critical to discover AI agent identities and how Tenable helps you secure them</title>
   <link>https://www.tenable.com/blog/secure-ai-agent-identities-microsoft-entra-agent-id-tenable-one</link>
   <guid isPermaLink="true">https://www.tenable.com/blog/secure-ai-agent-identities-microsoft-entra-agent-id-tenable-one</guid>
@@ -1164,36 +1244,6 @@
   <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/i-love-google-s-agentic-ai-security-roadmap-adding-maestro-will-make-it-more-powerful-an-open-letter-to-google</guid>
   <pubDate>Tue, 13 Oct 2026 23:02:00 GMT</pubDate>
   <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>New Cloud Security Alliance Survey Finds Data Loss Prevention (DLP) Often Detects Data Loss Only After It Happens</title>
-  <link>https://cloudsecurityalliance.org/articles/new-cloud-security-alliance-survey-finds-data-loss-prevention-dlp-often-detects-data-loss-only-after-it-happens</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/new-cloud-security-alliance-survey-finds-data-loss-prevention-dlp-often-detects-data-loss-only-after-it-happens</guid>
-  <pubDate>Fri, 09 Oct 2026 22:25:52 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>Introducing The Builder Exchange: Inside Security Stories From the Companies Building Fastest With AI</title>
-  <link>https://cloudsecurityalliance.org/articles/introducing-the-builder-exchange-inside-security-stories-from-the-companies-building-fastest-with-ai</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/introducing-the-builder-exchange-inside-security-stories-from-the-companies-building-fastest-with-ai</guid>
-  <pubDate>Fri, 09 Oct 2026 10:43:19 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>Everyone Wants SPIFFE. Almost No One Can Afford to Build It Right.</title>
-  <link>https://cloudsecurityalliance.org/articles/everyone-wants-spiffe-almost-no-one-can-afford-to-build-it-right</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/everyone-wants-spiffe-almost-no-one-can-afford-to-build-it-right</guid>
-  <pubDate>Thu, 08 Oct 2026 22:31:23 GMT</pubDate>
-  <category>Identity &amp; Access</category>
   <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
   <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
@@ -1464,26 +1514,6 @@
   <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/getting-started-with-the-mantis-harness-to-find-and-fix-bugs/</guid>
   <pubDate>Wed, 02 Sep 2026 16:00:00 GMT</pubDate>
   <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
-</item>
-
-<item>
-  <title>How BlackLine simplifies perimeter policy intelligence with VPC Service Controls</title>
-  <link>https://cloud.google.com/blog/topics/customers/how-blackline-prevents-data-exfiltration-with-vpc-service-controls/</link>
-  <guid isPermaLink="true">https://cloud.google.com/blog/topics/customers/how-blackline-prevents-data-exfiltration-with-vpc-service-controls/</guid>
-  <pubDate>Tue, 01 Sep 2026 16:00:00 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
-</item>
-
-<item>
-  <title>Cloud CISO Perspectives: Tips on securing the water sector in the AI era</title>
-  <link>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-tips-on-securing-water-sector-ai-era/</link>
-  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-tips-on-securing-water-sector-ai-era/</guid>
-  <pubDate>Mon, 31 Aug 2026 16:00:00 GMT</pubDate>
-  <category>Identity &amp; Access</category>
   <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
   <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
 </item>
