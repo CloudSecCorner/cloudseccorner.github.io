@@ -7,8 +7,48 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 13 Nov 2026 07:02:44 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 14 Nov 2026 06:51:56 GMT</lastBuildDate>
     <item>
+  <title>Amazon Threat Intelligence observes threat actors running cybercrime campaigns with ARTEX AI agents</title>
+  <link>https://aws.amazon.com/blogs/security/amazon-threat-intelligence-observes-threat-actors-running-cybercrime-campaigns-with-artex-ai-agents/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/amazon-threat-intelligence-observes-threat-actors-running-cybercrime-campaigns-with-artex-ai-agents/</guid>
+  <pubDate>Fri, 13 Nov 2026 20:26:42 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>The Green Agent POV: Formulating the Fix for an Exposed Container with Sensitive Data Access</title>
+  <link>https://www.wiz.io/blog/inside-green-agent-investigation</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/inside-green-agent-investigation</guid>
+  <pubDate>Fri, 13 Nov 2026 17:05:02 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>New Mior and Skyfall Attacks Let Rogue Cloud Hosts Steal Secrets From AMD SEV-SNP VMs</title>
+  <link>https://thehackernews.com/2026/11/new-mior-and-skyfall-attacks-let-rogue.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/new-mior-and-skyfall-attacks-let-rogue.html</guid>
+  <pubDate>Fri, 13 Nov 2026 15:27:05 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>FBI Says North Korean Hackers Stole Over $400 Million in Crypto Using Deepfake Video Calls</title>
+  <link>https://thehackernews.com/2026/11/fbi-says-north-korean-hackers-stole.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/fbi-says-north-korean-hackers-stole.html</guid>
+  <pubDate>Fri, 13 Nov 2026 14:28:58 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
   <title>ASPM in the AI Era Part 3: Fixing Risk at the Speed of Code</title>
   <link>https://www.wiz.io/blog/aspm-ai-era-pt-3-fixing-risk-code-speed</link>
   <guid isPermaLink="true">https://www.wiz.io/blog/aspm-ai-era-pt-3-fixing-risk-code-speed</guid>
@@ -1089,16 +1129,6 @@
 </item>
 
 <item>
-  <title>From Phishing to LLMjacking: Threat Actors Targeting Cloud Billing Accounts for LLM Usage</title>
-  <link>https://www.wiz.io/blog/from-phishing-to-llmjacking</link>
-  <guid isPermaLink="true">https://www.wiz.io/blog/from-phishing-to-llmjacking</guid>
-  <pubDate>Tue, 20 Oct 2026 20:03:10 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
-</item>
-
-<item>
   <title>Managing identity source transition for AWS IAM Identity Center</title>
   <link>https://aws.amazon.com/blogs/security/managing-identity-source-transition-for-aws-iam-identity-center/</link>
   <guid isPermaLink="true">https://aws.amazon.com/blogs/security/managing-identity-source-transition-for-aws-iam-identity-center/</guid>
@@ -1186,16 +1216,6 @@
   <category>Cloud Security</category>
   <description>Cloud security research from Aqua Security. Read the original article at the publisher.</description>
   <source url="https://www.aquasec.com/feed/">Aqua Security</source>
-</item>
-
-<item>
-  <title>Penetration testing every deployment with AWS Continuum</title>
-  <link>https://aws.amazon.com/blogs/security/penetration-testing-every-deployment-with-aws-continuum/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/penetration-testing-every-deployment-with-aws-continuum/</guid>
-  <pubDate>Wed, 14 Oct 2026 20:21:52 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
 </item>
 
 <item>

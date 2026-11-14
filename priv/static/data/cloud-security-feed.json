@@ -1,6 +1,42 @@
 {
-  "attempted_at": "2026-11-13T07:02:44Z",
+  "attempted_at": "2026-11-14T06:51:56Z",
   "items": [
+    {
+      "id": "46ae3908161ccde7ba01",
+      "published_at": "2026-11-13T20:26:42Z",
+      "source_id": "aws",
+      "source_name": "AWS Security Blog",
+      "title": "Amazon Threat Intelligence observes threat actors running cybercrime campaigns with ARTEX AI agents",
+      "topic": "Threat Detection & Response",
+      "url": "https://aws.amazon.com/blogs/security/amazon-threat-intelligence-observes-threat-actors-running-cybercrime-campaigns-with-artex-ai-agents/"
+    },
+    {
+      "id": "43a4d55ac083b5352a50",
+      "published_at": "2026-11-13T17:05:02Z",
+      "source_id": "wiz",
+      "source_name": "Wiz Cloud Security",
+      "title": "The Green Agent POV: Formulating the Fix for an Exposed Container with Sensitive Data Access",
+      "topic": "Kubernetes & Containers",
+      "url": "https://www.wiz.io/blog/inside-green-agent-investigation"
+    },
+    {
+      "id": "d93f5e12f3c1794f971e",
+      "published_at": "2026-11-13T15:27:05Z",
+      "source_id": "hackernews",
+      "source_name": "The Hacker News",
+      "title": "New Mior and Skyfall Attacks Let Rogue Cloud Hosts Steal Secrets From AMD SEV-SNP VMs",
+      "topic": "Threat Detection & Response",
+      "url": "https://thehackernews.com/2026/11/new-mior-and-skyfall-attacks-let-rogue.html"
+    },
+    {
+      "id": "d32b5f97fc676bf8272f",
+      "published_at": "2026-11-13T14:28:58Z",
+      "source_id": "hackernews",
+      "source_name": "The Hacker News",
+      "title": "FBI Says North Korean Hackers Stole Over $400 Million in Crypto Using Deepfake Video Calls",
+      "topic": "Threat Detection & Response",
+      "url": "https://thehackernews.com/2026/11/fbi-says-north-korean-hackers-stole.html"
+    },
     {
       "id": "85c5a654f508c29f0850",
       "published_at": "2026-11-12T18:32:24Z",
@@ -974,15 +1010,6 @@
       "url": "https://www.wiz.io/blog/wiz-sensor-on-gke-1-click-runtime-protection-now-native"
     },
     {
-      "id": "011eb73686ffbc989849",
-      "published_at": "2026-10-20T20:03:10Z",
-      "source_id": "wiz",
-      "source_name": "Wiz Cloud Security",
-      "title": "From Phishing to LLMjacking: Threat Actors Targeting Cloud Billing Accounts for LLM Usage",
-      "topic": "Identity & Access",
-      "url": "https://www.wiz.io/blog/from-phishing-to-llmjacking"
-    },
-    {
       "id": "d80b2382abdcf7b8b555",
       "published_at": "2026-10-20T16:47:02Z",
       "source_id": "aws",
@@ -1062,15 +1089,6 @@
       "title": "Japan’s Cyber Emergency Is a Warning for the World",
       "topic": "Cloud Security",
       "url": "https://www.aquasec.com/blog/japans-cyber-emergency-is-a-warning-for-the-world/"
-    },
-    {
-      "id": "0a6437aaf9356b19e4be",
-      "published_at": "2026-10-14T20:21:52Z",
-      "source_id": "aws",
-      "source_name": "AWS Security Blog",
-      "title": "Penetration testing every deployment with AWS Continuum",
-      "topic": "Cloud Security",
-      "url": "https://aws.amazon.com/blogs/security/penetration-testing-every-deployment-with-aws-continuum/"
     },
     {
       "id": "dd9335316b900a4fa795",
@@ -1385,7 +1403,7 @@
       "error": null,
       "feed_url": "https://aws.amazon.com/blogs/security/feed/",
       "id": "aws",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "AWS Security Blog",
       "site_url": "https://aws.amazon.com/blogs/security/",
       "status": "ok"
@@ -1394,7 +1412,7 @@
       "error": null,
       "feed_url": "https://cloudblog.withgoogle.com/products/identity-security/rss/",
       "id": "google",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Google Cloud Security",
       "site_url": "https://cloud.google.com/blog/products/identity-security/",
       "status": "ok"
@@ -1403,7 +1421,7 @@
       "error": null,
       "feed_url": "https://www.microsoft.com/en-us/security/blog/feed/",
       "id": "microsoft",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Microsoft Security",
       "site_url": "https://www.microsoft.com/en-us/security/blog/",
       "status": "ok"
@@ -1412,7 +1430,7 @@
       "error": null,
       "feed_url": "https://www.wiz.io/feed/rss.xml",
       "id": "wiz",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Wiz Cloud Security",
       "site_url": "https://www.wiz.io/blog",
       "status": "ok"
@@ -1421,7 +1439,7 @@
       "error": null,
       "feed_url": "https://securitylabs.datadoghq.com/rss/feed.xml",
       "id": "datadog",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Datadog Security Labs",
       "site_url": "https://securitylabs.datadoghq.com/",
       "status": "ok"
@@ -1430,7 +1448,7 @@
       "error": null,
       "feed_url": "https://www.aquasec.com/feed/",
       "id": "aqua",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Aqua Security",
       "site_url": "https://www.aquasec.com/blog/",
       "status": "ok"
@@ -1439,7 +1457,7 @@
       "error": null,
       "feed_url": "https://www.sysdig.com/blog/rss.xml",
       "id": "sysdig",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Sysdig Threat Research",
       "site_url": "https://www.sysdig.com/blog",
       "status": "ok"
@@ -1448,7 +1466,7 @@
       "error": null,
       "feed_url": "https://unit42.paloaltonetworks.com/feed/",
       "id": "unit42",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Palo Alto Networks Unit 42",
       "site_url": "https://unit42.paloaltonetworks.com/",
       "status": "ok"
@@ -1457,7 +1475,7 @@
       "error": null,
       "feed_url": "https://blog.cloudflare.com/rss/",
       "id": "cloudflare",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Cloudflare Security",
       "site_url": "https://blog.cloudflare.com/",
       "status": "ok"
@@ -1466,7 +1484,7 @@
       "error": null,
       "feed_url": "https://www.sentinelone.com/labs/feed/",
       "id": "sentinellabs",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "SentinelLabs",
       "site_url": "https://www.sentinelone.com/labs/",
       "status": "ok"
@@ -1475,7 +1493,7 @@
       "error": null,
       "feed_url": "https://snyk.io/blog/feed/",
       "id": "snyk",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Snyk Security Research",
       "site_url": "https://snyk.io/blog/",
       "status": "ok"
@@ -1484,7 +1502,7 @@
       "error": null,
       "feed_url": "https://sonraisecurity.com/feed/",
       "id": "sonrai",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Sonrai Security",
       "site_url": "https://sonraisecurity.com/blog/",
       "status": "ok"
@@ -1493,7 +1511,7 @@
       "error": null,
       "feed_url": "https://www.tenable.com/blog/feed",
       "id": "tenable",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Tenable Research",
       "site_url": "https://www.tenable.com/blog",
       "status": "ok"
@@ -1502,7 +1520,7 @@
       "error": null,
       "feed_url": "https://www.crowdstrike.com/en-us/blog/feed",
       "id": "crowdstrike",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "CrowdStrike",
       "site_url": "https://www.crowdstrike.com/en-us/blog/",
       "status": "ok"
@@ -1511,7 +1529,7 @@
       "error": null,
       "feed_url": "https://blog.trailofbits.com/index.xml",
       "id": "trailofbits",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Trail of Bits",
       "site_url": "https://blog.trailofbits.com/",
       "status": "ok"
@@ -1520,7 +1538,7 @@
       "error": null,
       "feed_url": "https://cloudsecurityalliance.org/feed/",
       "id": "csa",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "Cloud Security Alliance",
       "site_url": "https://cloudsecurityalliance.org/blog",
       "status": "ok"
@@ -1529,7 +1547,7 @@
       "error": null,
       "feed_url": "https://www.securityweek.com/feed/",
       "id": "securityweek",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "SecurityWeek",
       "site_url": "https://www.securityweek.com/",
       "status": "ok"
@@ -1538,12 +1556,12 @@
       "error": null,
       "feed_url": "https://feeds.feedburner.com/TheHackersNews",
       "id": "hackernews",
-      "last_success_at": "2026-11-13T07:02:44Z",
+      "last_success_at": "2026-11-14T06:51:56Z",
       "name": "The Hacker News",
       "site_url": "https://thehackernews.com/",
       "status": "ok"
     }
   ],
-  "updated_at": "2026-11-13T07:02:44Z",
+  "updated_at": "2026-11-14T06:51:56Z",
   "version": 1
 }
