@@ -7,8 +7,58 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Mon, 16 Nov 2026 07:01:54 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 17 Nov 2026 08:16:16 GMT</lastBuildDate>
     <item>
+  <title>Sovereign AI in Europe: New ways to control your AI stack</title>
+  <link>https://cloud.google.com/blog/products/identity-security/sovereign-ai-on-your-terms-made-with-europe/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/sovereign-ai-on-your-terms-made-with-europe/</guid>
+  <pubDate>Tue, 17 Nov 2026 08:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Introducing the Wiz AI Security Agent</title>
+  <link>https://www.wiz.io/blog/introducing-wiz-ai-security-agent</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/introducing-wiz-ai-security-agent</guid>
+  <pubDate>Mon, 16 Nov 2026 17:02:41 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Inside the new Google Cloud Data Boundary experience</title>
+  <link>https://cloud.google.com/blog/products/identity-security/inside-the-new-data-boundary-experience/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/inside-the-new-data-boundary-experience/</guid>
+  <pubDate>Mon, 16 Nov 2026 08:05:00 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>How ISVs are unlocking European workloads using Google Cloud Dedicated technology</title>
+  <link>https://cloud.google.com/blog/products/identity-security/how-isvs-are-unlocking-european-workloads-on-google-cloud-dedicated/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/how-isvs-are-unlocking-european-workloads-on-google-cloud-dedicated/</guid>
+  <pubDate>Mon, 16 Nov 2026 08:05:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>Amazon Uncovers AI Agent Campaign Targeting LiteLLM, Dify, and Other Apps for API Keys</title>
+  <link>https://thehackernews.com/2026/11/amazon-uncovers-ai-agent-campaign.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/amazon-uncovers-ai-agent-campaign.html</guid>
+  <pubDate>Mon, 16 Nov 2026 07:34:21 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
   <title>Amazon Threat Intelligence observes threat actors running cybercrime campaigns with ARTEX AI agents</title>
   <link>https://aws.amazon.com/blogs/security/amazon-threat-intelligence-observes-threat-actors-running-cybercrime-campaigns-with-artex-ai-agents/</link>
   <guid isPermaLink="true">https://aws.amazon.com/blogs/security/amazon-threat-intelligence-observes-threat-actors-running-cybercrime-campaigns-with-artex-ai-agents/</guid>
@@ -206,6 +256,26 @@
   <category>Cloud Security</category>
   <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
   <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>AI Doesn’t Just Need Guardrails. It Actually Needs Independent Assurance.</title>
+  <link>https://cloudsecurityalliance.org/articles/ai-doesn-t-just-need-guardrails-it-actually-needs-independent-assurance</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/ai-doesn-t-just-need-guardrails-it-actually-needs-independent-assurance</guid>
+  <pubDate>Tue, 10 Nov 2026 19:56:26 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
+</item>
+
+<item>
+  <title>How to Contain Shadow AI, As It Takes on Multiple Forms and Spreads Throughout Your Environment</title>
+  <link>https://cloudsecurityalliance.org/articles/how-to-contain-shadow-ai-as-it-takes-on-multiple-forms-and-spreads-throughout-your-environment</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/how-to-contain-shadow-ai-as-it-takes-on-multiple-forms-and-spreads-throughout-your-environment</guid>
+  <pubDate>Tue, 10 Nov 2026 19:56:18 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -1119,16 +1189,6 @@
 </item>
 
 <item>
-  <title>Wiz Sensor on GKE. 1-Click Runtime Protection, Now Native.</title>
-  <link>https://www.wiz.io/blog/wiz-sensor-on-gke-1-click-runtime-protection-now-native</link>
-  <guid isPermaLink="true">https://www.wiz.io/blog/wiz-sensor-on-gke-1-click-runtime-protection-now-native</guid>
-  <pubDate>Tue, 20 Oct 2026 22:02:42 GMT</pubDate>
-  <category>Kubernetes &amp; Containers</category>
-  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
-</item>
-
-<item>
   <title>Managing identity source transition for AWS IAM Identity Center</title>
   <link>https://aws.amazon.com/blogs/security/managing-identity-source-transition-for-aws-iam-identity-center/</link>
   <guid isPermaLink="true">https://aws.amazon.com/blogs/security/managing-identity-source-transition-for-aws-iam-identity-center/</guid>
@@ -1229,16 +1289,6 @@
 </item>
 
 <item>
-  <title>AI Agents - You Can’t Govern What You Can’t Discover</title>
-  <link>https://cloudsecurityalliance.org/articles/ai-agents-you-can-t-govern-what-you-can-t-discover</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/ai-agents-you-can-t-govern-what-you-can-t-discover</guid>
-  <pubDate>Wed, 14 Oct 2026 18:51:28 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
   <title>Cloud CISO Perspectives: New Gemini Notebook can help CISOs and policymakers prepare for PQC</title>
   <link>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-new-gemini-notebook-can-help-cisos-policymakers-prepare-for-pqc/</link>
   <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-new-gemini-notebook-can-help-cisos-policymakers-prepare-for-pqc/</guid>
@@ -1256,16 +1306,6 @@
   <category>Kubernetes &amp; Containers</category>
   <description>Cloud security research from Trail of Bits. Read the original article at the publisher.</description>
   <source url="https://blog.trailofbits.com/index.xml">Trail of Bits</source>
-</item>
-
-<item>
-  <title>I Love Google’s Agentic AI Security Roadmap: Adding MAESTRO Will Make It More Powerful — An Open Letter to Google</title>
-  <link>https://cloudsecurityalliance.org/articles/i-love-google-s-agentic-ai-security-roadmap-adding-maestro-will-make-it-more-powerful-an-open-letter-to-google</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/i-love-google-s-agentic-ai-security-roadmap-adding-maestro-will-make-it-more-powerful-an-open-letter-to-google</guid>
-  <pubDate>Tue, 13 Oct 2026 23:02:00 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -1469,16 +1509,6 @@
 </item>
 
 <item>
-  <title>Cloud CISO Perspectives: How Google monitors AI threats and advances AI defenses</title>
-  <link>https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-how-google-monitors-ai-threats-advances-ai-defenses/</link>
-  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-how-google-monitors-ai-threats-advances-ai-defenses/</guid>
-  <pubDate>Wed, 16 Sep 2026 16:00:00 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
-</item>
-
-<item>
   <title>Closing the cloud security gap with runtime security</title>
   <link>https://www.sysdig.com/blog/closing-the-cloud-security-gap-with-runtime-security</link>
   <guid isPermaLink="true">https://www.sysdig.com/blog/closing-the-cloud-security-gap-with-runtime-security</guid>
@@ -1486,16 +1516,6 @@
   <category>Threat Detection &amp; Response</category>
   <description>Cloud security research from Sysdig Threat Research. Read the original article at the publisher.</description>
   <source url="https://www.sysdig.com/blog/rss.xml">Sysdig Threat Research</source>
-</item>
-
-<item>
-  <title>Introducing new session management tools with native, granular controls</title>
-  <link>https://cloud.google.com/blog/products/identity-security/introducing-new-session-management-tools-with-native-granular-controls/</link>
-  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/introducing-new-session-management-tools-with-native-granular-controls/</guid>
-  <pubDate>Tue, 15 Sep 2026 17:30:00 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
 </item>
 
 <item>
@@ -1526,16 +1546,6 @@
   <category>Cloud Security</category>
   <description>Cloud security research from Sysdig Threat Research. Read the original article at the publisher.</description>
   <source url="https://www.sysdig.com/blog/rss.xml">Sysdig Threat Research</source>
-</item>
-
-<item>
-  <title>Getting started with Mantis, our open-source bug finding-and-fixing harness</title>
-  <link>https://cloud.google.com/blog/products/identity-security/getting-started-with-the-mantis-harness-to-find-and-fix-bugs/</link>
-  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/getting-started-with-the-mantis-harness-to-find-and-fix-bugs/</guid>
-  <pubDate>Wed, 02 Sep 2026 16:00:00 GMT</pubDate>
-  <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
 </item>
 
 <item>
