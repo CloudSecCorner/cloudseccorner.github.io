@@ -1,6 +1,78 @@
 {
-  "attempted_at": "2026-11-18T07:49:28Z",
+  "attempted_at": "2026-11-19T07:46:06Z",
   "items": [
+    {
+      "id": "81380df21cffbf0d0b6a",
+      "published_at": "2026-11-19T00:18:05Z",
+      "source_id": "tenable",
+      "source_name": "Tenable Research",
+      "title": "NGINX2Root (CVE-2026-123007): Frequently asked questions about five critical NGINX vulnerabilities",
+      "topic": "Kubernetes & Containers",
+      "url": "https://www.tenable.com/blog/nginx2root-cve-2026-123007-frequently-asked-questions-about-five-critical-nginx"
+    },
+    {
+      "id": "d4671e4886574cb818b5",
+      "published_at": "2026-11-18T23:49:07Z",
+      "source_id": "aws",
+      "source_name": "AWS Security Blog",
+      "title": "Step-up authentication: how to right-size authentication to risk",
+      "topic": "Identity & Access",
+      "url": "https://aws.amazon.com/blogs/security/step-up-authentication-how-to-right-size-authentication-to-risk/"
+    },
+    {
+      "id": "be7c6c3580e44f83aa4f",
+      "published_at": "2026-11-18T23:43:24Z",
+      "source_id": "aqua",
+      "source_name": "Aqua Security",
+      "title": "NGINX HTTP/2 Vulnerabilities: How to Identify Affected Images and Apply Security Updates",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://www.aquasec.com/blog/nginx-http2-vulnerabilities-affected-images/"
+    },
+    {
+      "id": "5739ab8ab82d2e604bbe",
+      "published_at": "2026-11-18T22:28:45Z",
+      "source_id": "aws",
+      "source_name": "AWS Security Blog",
+      "title": "Detecting cross-cloud lateral movement with AWS Security Hub",
+      "topic": "Identity & Access",
+      "url": "https://aws.amazon.com/blogs/security/detecting-cross-cloud-lateral-movement-with-aws-security-hub/"
+    },
+    {
+      "id": "0c457241d113ed5afb20",
+      "published_at": "2026-11-18T15:13:20Z",
+      "source_id": "wiz",
+      "source_name": "Wiz Cloud Security",
+      "title": "Unauthenticated Remote Code Execution in NGINX: CVE-2026-123633 and CVE-2026-123007",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities"
+    },
+    {
+      "id": "a0792ea92321f1439be1",
+      "published_at": "2026-11-18T14:52:10Z",
+      "source_id": "cloudflare",
+      "source_name": "Cloudflare Security",
+      "title": "How Cloudflare WAF helps protect against Java4Shell (CVE-2026-114938)",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://blog.cloudflare.com/java4shell-waf-protection/"
+    },
+    {
+      "id": "2556201861a297449237",
+      "published_at": "2026-11-18T13:00:00Z",
+      "source_id": "tenable",
+      "source_name": "Tenable Research",
+      "title": "Fix Tenable One findings where developers work: Tenable and OpenAI Daybreak Defense Factory",
+      "topic": "Vulnerabilities & Exposure",
+      "url": "https://www.tenable.com/blog/openai-connector-tenable-one-codex-security"
+    },
+    {
+      "id": "6a6d4ba4fca41cb142bc",
+      "published_at": "2026-11-18T11:05:39Z",
+      "source_id": "securityweek",
+      "source_name": "SecurityWeek",
+      "title": "Microsoft Agent Framework Releases Poisoned With Credential Stealer",
+      "topic": "Identity & Access",
+      "url": "https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/"
+    },
     {
       "id": "533b590042a015080bb5",
       "published_at": "2026-11-18T06:45:26Z",
@@ -20,12 +92,21 @@
       "url": "https://thehackernews.com/2026/11/russian-cold-relic-hackers-use-stolen.html"
     },
     {
+      "id": "2dc7697bd472bbc8fe2d",
+      "published_at": "2026-11-18T03:30:40Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "ARTEX and Autonomous Offensive Frameworks",
+      "topic": "Threat Detection & Response",
+      "url": "https://cloudsecurityalliance.org/articles/artex-and-autonomous-offensive-frameworks"
+    },
+    {
       "id": "25a2c6d6c5744db7ca09",
       "published_at": "2026-11-18T02:49:16Z",
       "source_id": "tenable",
       "source_name": "Tenable Research",
       "title": "Java4Shell (CVE-2026-114938): Frequently asked questions about OpenJDK remote code execution vulnerability",
-      "topic": "Identity & Access",
+      "topic": "Kubernetes & Containers",
       "url": "https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability"
     },
     {
@@ -51,7 +132,7 @@
       "published_at": "2026-11-17T22:29:57Z",
       "source_id": "wiz",
       "source_name": "Wiz Cloud Security",
-      "title": "CVE-2026-114938 RCE in OpenJDK: Everything You Need to Know",
+      "title": "CVE-2026-114938 OpenJDK RCE (Java4Shell): Everything You Need to Know",
       "topic": "Vulnerabilities & Exposure",
       "url": "https://www.wiz.io/blog/cve-2026-114938-rce-java4shell-openjdk"
     },
@@ -126,6 +207,15 @@
       "title": "CSA STAR for AI Certifications: What are They?",
       "topic": "Cloud Security",
       "url": "https://cloudsecurityalliance.org/articles/csa-star-for-ai-certifications-what-are-they"
+    },
+    {
+      "id": "6d4503012c3cd1deda74",
+      "published_at": "2026-11-16T18:11:54Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "The AI Threat Landscape in 2026: What You Need to Know",
+      "topic": "Identity & Access",
+      "url": "https://cloudsecurityalliance.org/articles/the-ai-threat-landscape-in-2026-what-you-need-to-know"
     },
     {
       "id": "ca7ece9d7cb7dca51a34",
@@ -342,6 +432,15 @@
       "title": "AWS refreshes ProcessUnity Global Risk Exchange assessment to enhance customer’s third-party due diligence",
       "topic": "Cloud Security",
       "url": "https://aws.amazon.com/blogs/security/aws-refreshes-processunity-global-risk-exchange-assessment-to-enhance-customers-third-party-due-diligence/"
+    },
+    {
+      "id": "c309da32751ec951aaa3",
+      "published_at": "2026-11-10T19:57:39Z",
+      "source_id": "csa",
+      "source_name": "Cloud Security Alliance",
+      "title": "DLP and UEBA Are Asking the Wrong Insider Risk Questions",
+      "topic": "Cloud Security",
+      "url": "https://cloudsecurityalliance.org/articles/dlp-and-ueba-are-asking-the-wrong-insider-risk-questions"
     },
     {
       "id": "cfedc16cddb8ed7c74a3",
@@ -956,15 +1055,6 @@
       "url": "https://unit42.paloaltonetworks.com/current-landscape-oauth-attacks/"
     },
     {
-      "id": "50a6596df902bdb26468",
-      "published_at": "2026-10-22T13:05:31Z",
-      "source_id": "wiz",
-      "source_name": "Wiz Cloud Security",
-      "title": "ARTEX in the Wild: Storm-0940 Expands Targeting of IT and Software Vendors",
-      "topic": "Identity & Access",
-      "url": "https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors"
-    },
-    {
       "id": "fd5513dd5d436289be30",
       "published_at": "2026-10-22T13:00:00Z",
       "source_id": "tenable",
@@ -981,24 +1071,6 @@
       "title": "Localizing compliance at scale: Achieving South Korea’s ISMS certification",
       "topic": "Cloud Security",
       "url": "https://blog.cloudflare.com/k-isms/"
-    },
-    {
-      "id": "4b2d636a48551795a2af",
-      "published_at": "2026-10-22T00:50:04Z",
-      "source_id": "aws",
-      "source_name": "AWS Security Blog",
-      "title": "Using AWS WAF to apply mitigations for PHP2Shell RCE vulnerabilities (CVE-2026-109618 and CVE-2026-109619)",
-      "topic": "Vulnerabilities & Exposure",
-      "url": "https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/"
-    },
-    {
-      "id": "fe41f57c2bf5fe86caac",
-      "published_at": "2026-10-21T22:36:26Z",
-      "source_id": "aws",
-      "source_name": "AWS Security Blog",
-      "title": "Amazon Threat Intelligence identifies PHP2Shell exploitation prior to public disclosure in MadPot",
-      "topic": "Vulnerabilities & Exposure",
-      "url": "https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/"
     },
     {
       "id": "f05f09f2b34bbafa0321",
@@ -1044,33 +1116,6 @@
       "title": "Input Privacy vs. Output Privacy: Choosing a PET",
       "topic": "Vulnerabilities & Exposure",
       "url": "https://cloudsecurityalliance.org/articles/input-privacy-vs-output-privacy-choosing-a-pet"
-    },
-    {
-      "id": "bf16a49ae318373f9e06",
-      "published_at": "2026-10-21T20:50:49Z",
-      "source_id": "csa",
-      "source_name": "Cloud Security Alliance",
-      "title": "The CSA Triangle Chapter's Year of Innovation and Strategic Partnerships: 2026 Highlights",
-      "topic": "Cloud Security",
-      "url": "https://cloudsecurityalliance.org/articles/the-csa-triangle-chapter-s-year-of-innovation-and-strategic-partnerships-2026-highlights"
-    },
-    {
-      "id": "4071739a4311c5c9eb44",
-      "published_at": "2026-10-21T20:50:24Z",
-      "source_id": "csa",
-      "source_name": "Cloud Security Alliance",
-      "title": "7 DNS Security Lessons from the CubePilot Hijacking",
-      "topic": "Identity & Access",
-      "url": "https://cloudsecurityalliance.org/articles/7-dns-security-lessons-from-the-cubepilot-hijacking"
-    },
-    {
-      "id": "251a90eef8bbc3c7baae",
-      "published_at": "2026-10-21T20:49:34Z",
-      "source_id": "csa",
-      "source_name": "Cloud Security Alliance",
-      "title": "Identity-Defined Reachability: Reducing Exposure and Connectivity Friction in an Age of Machine-Speed Attack",
-      "topic": "Identity & Access",
-      "url": "https://cloudsecurityalliance.org/articles/identity-defined-reachability-reducing-exposure-and-connectivity-friction-in-an-age-of-machine-speed-attack"
     },
     {
       "id": "6c4b5839cc0081966304",
@@ -1457,7 +1502,7 @@
       "error": null,
       "feed_url": "https://aws.amazon.com/blogs/security/feed/",
       "id": "aws",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "AWS Security Blog",
       "site_url": "https://aws.amazon.com/blogs/security/",
       "status": "ok"
@@ -1466,7 +1511,7 @@
       "error": null,
       "feed_url": "https://cloudblog.withgoogle.com/products/identity-security/rss/",
       "id": "google",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Google Cloud Security",
       "site_url": "https://cloud.google.com/blog/products/identity-security/",
       "status": "ok"
@@ -1475,7 +1520,7 @@
       "error": null,
       "feed_url": "https://www.microsoft.com/en-us/security/blog/feed/",
       "id": "microsoft",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Microsoft Security",
       "site_url": "https://www.microsoft.com/en-us/security/blog/",
       "status": "ok"
@@ -1484,7 +1529,7 @@
       "error": null,
       "feed_url": "https://www.wiz.io/feed/rss.xml",
       "id": "wiz",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Wiz Cloud Security",
       "site_url": "https://www.wiz.io/blog",
       "status": "ok"
@@ -1493,7 +1538,7 @@
       "error": null,
       "feed_url": "https://securitylabs.datadoghq.com/rss/feed.xml",
       "id": "datadog",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Datadog Security Labs",
       "site_url": "https://securitylabs.datadoghq.com/",
       "status": "ok"
@@ -1502,7 +1547,7 @@
       "error": null,
       "feed_url": "https://www.aquasec.com/feed/",
       "id": "aqua",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Aqua Security",
       "site_url": "https://www.aquasec.com/blog/",
       "status": "ok"
@@ -1511,7 +1556,7 @@
       "error": null,
       "feed_url": "https://www.sysdig.com/blog/rss.xml",
       "id": "sysdig",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Sysdig Threat Research",
       "site_url": "https://www.sysdig.com/blog",
       "status": "ok"
@@ -1520,7 +1565,7 @@
       "error": null,
       "feed_url": "https://unit42.paloaltonetworks.com/feed/",
       "id": "unit42",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Palo Alto Networks Unit 42",
       "site_url": "https://unit42.paloaltonetworks.com/",
       "status": "ok"
@@ -1529,7 +1574,7 @@
       "error": null,
       "feed_url": "https://blog.cloudflare.com/rss/",
       "id": "cloudflare",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Cloudflare Security",
       "site_url": "https://blog.cloudflare.com/",
       "status": "ok"
@@ -1538,7 +1583,7 @@
       "error": null,
       "feed_url": "https://www.sentinelone.com/labs/feed/",
       "id": "sentinellabs",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "SentinelLabs",
       "site_url": "https://www.sentinelone.com/labs/",
       "status": "ok"
@@ -1547,7 +1592,7 @@
       "error": null,
       "feed_url": "https://snyk.io/blog/feed/",
       "id": "snyk",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Snyk Security Research",
       "site_url": "https://snyk.io/blog/",
       "status": "ok"
@@ -1556,7 +1601,7 @@
       "error": null,
       "feed_url": "https://sonraisecurity.com/feed/",
       "id": "sonrai",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Sonrai Security",
       "site_url": "https://sonraisecurity.com/blog/",
       "status": "ok"
@@ -1565,7 +1610,7 @@
       "error": null,
       "feed_url": "https://www.tenable.com/blog/feed",
       "id": "tenable",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Tenable Research",
       "site_url": "https://www.tenable.com/blog",
       "status": "ok"
@@ -1574,7 +1619,7 @@
       "error": null,
       "feed_url": "https://www.crowdstrike.com/en-us/blog/feed",
       "id": "crowdstrike",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "CrowdStrike",
       "site_url": "https://www.crowdstrike.com/en-us/blog/",
       "status": "ok"
@@ -1583,7 +1628,7 @@
       "error": null,
       "feed_url": "https://blog.trailofbits.com/index.xml",
       "id": "trailofbits",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Trail of Bits",
       "site_url": "https://blog.trailofbits.com/",
       "status": "ok"
@@ -1592,7 +1637,7 @@
       "error": null,
       "feed_url": "https://cloudsecurityalliance.org/feed/",
       "id": "csa",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "Cloud Security Alliance",
       "site_url": "https://cloudsecurityalliance.org/blog",
       "status": "ok"
@@ -1601,7 +1646,7 @@
       "error": null,
       "feed_url": "https://www.securityweek.com/feed/",
       "id": "securityweek",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "SecurityWeek",
       "site_url": "https://www.securityweek.com/",
       "status": "ok"
@@ -1610,12 +1655,12 @@
       "error": null,
       "feed_url": "https://feeds.feedburner.com/TheHackersNews",
       "id": "hackernews",
-      "last_success_at": "2026-11-18T07:49:28Z",
+      "last_success_at": "2026-11-19T07:46:06Z",
       "name": "The Hacker News",
       "site_url": "https://thehackernews.com/",
       "status": "ok"
     }
   ],
-  "updated_at": "2026-11-18T07:49:28Z",
+  "updated_at": "2026-11-19T07:46:06Z",
   "version": 1
 }

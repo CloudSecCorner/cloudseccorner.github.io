@@ -7,8 +7,88 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Wed, 18 Nov 2026 07:49:28 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2026 07:46:06 GMT</lastBuildDate>
     <item>
+  <title>NGINX2Root (CVE-2026-123007): Frequently asked questions about five critical NGINX vulnerabilities</title>
+  <link>https://www.tenable.com/blog/nginx2root-cve-2026-123007-frequently-asked-questions-about-five-critical-nginx</link>
+  <guid isPermaLink="true">https://www.tenable.com/blog/nginx2root-cve-2026-123007-frequently-asked-questions-about-five-critical-nginx</guid>
+  <pubDate>Thu, 19 Nov 2026 00:18:05 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Tenable Research. Read the original article at the publisher.</description>
+  <source url="https://www.tenable.com/blog/feed">Tenable Research</source>
+</item>
+
+<item>
+  <title>Step-up authentication: how to right-size authentication to risk</title>
+  <link>https://aws.amazon.com/blogs/security/step-up-authentication-how-to-right-size-authentication-to-risk/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/step-up-authentication-how-to-right-size-authentication-to-risk/</guid>
+  <pubDate>Wed, 18 Nov 2026 23:49:07 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>NGINX HTTP/2 Vulnerabilities: How to Identify Affected Images and Apply Security Updates</title>
+  <link>https://www.aquasec.com/blog/nginx-http2-vulnerabilities-affected-images/</link>
+  <guid isPermaLink="true">https://www.aquasec.com/blog/nginx-http2-vulnerabilities-affected-images/</guid>
+  <pubDate>Wed, 18 Nov 2026 23:43:24 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Aqua Security. Read the original article at the publisher.</description>
+  <source url="https://www.aquasec.com/feed/">Aqua Security</source>
+</item>
+
+<item>
+  <title>Detecting cross-cloud lateral movement with AWS Security Hub</title>
+  <link>https://aws.amazon.com/blogs/security/detecting-cross-cloud-lateral-movement-with-aws-security-hub/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/detecting-cross-cloud-lateral-movement-with-aws-security-hub/</guid>
+  <pubDate>Wed, 18 Nov 2026 22:28:45 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Unauthenticated Remote Code Execution in NGINX: CVE-2026-123633 and CVE-2026-123007</title>
+  <link>https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities</guid>
+  <pubDate>Wed, 18 Nov 2026 15:13:20 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>How Cloudflare WAF helps protect against Java4Shell (CVE-2026-114938)</title>
+  <link>https://blog.cloudflare.com/java4shell-waf-protection/</link>
+  <guid isPermaLink="true">https://blog.cloudflare.com/java4shell-waf-protection/</guid>
+  <pubDate>Wed, 18 Nov 2026 14:52:10 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Cloudflare Security. Read the original article at the publisher.</description>
+  <source url="https://blog.cloudflare.com/rss/">Cloudflare Security</source>
+</item>
+
+<item>
+  <title>Fix Tenable One findings where developers work: Tenable and OpenAI Daybreak Defense Factory</title>
+  <link>https://www.tenable.com/blog/openai-connector-tenable-one-codex-security</link>
+  <guid isPermaLink="true">https://www.tenable.com/blog/openai-connector-tenable-one-codex-security</guid>
+  <pubDate>Wed, 18 Nov 2026 13:00:00 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Tenable Research. Read the original article at the publisher.</description>
+  <source url="https://www.tenable.com/blog/feed">Tenable Research</source>
+</item>
+
+<item>
+  <title>Microsoft Agent Framework Releases Poisoned With Credential Stealer</title>
+  <link>https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/</link>
+  <guid isPermaLink="true">https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/</guid>
+  <pubDate>Wed, 18 Nov 2026 11:05:39 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from SecurityWeek. Read the original article at the publisher.</description>
+  <source url="https://www.securityweek.com/feed/">SecurityWeek</source>
+</item>
+
+<item>
   <title>Attackers Compromise Microsoft&#39;s Agent Framework PyPI Package to Steal Cloud Credentials</title>
   <link>https://thehackernews.com/2026/11/attackers-compromise-microsofts-agent.html</link>
   <guid isPermaLink="true">https://thehackernews.com/2026/11/attackers-compromise-microsofts-agent.html</guid>
@@ -29,11 +109,21 @@
 </item>
 
 <item>
+  <title>ARTEX and Autonomous Offensive Frameworks</title>
+  <link>https://cloudsecurityalliance.org/articles/artex-and-autonomous-offensive-frameworks</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/artex-and-autonomous-offensive-frameworks</guid>
+  <pubDate>Wed, 18 Nov 2026 03:30:40 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
+</item>
+
+<item>
   <title>Java4Shell (CVE-2026-114938): Frequently asked questions about OpenJDK remote code execution vulnerability</title>
   <link>https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability</link>
   <guid isPermaLink="true">https://www.tenable.com/blog/java4shell-cve-2026-114938-frequently-asked-questions-about-openjdk-rce-vulnerability</guid>
   <pubDate>Wed, 18 Nov 2026 02:49:16 GMT</pubDate>
-  <category>Identity &amp; Access</category>
+  <category>Kubernetes &amp; Containers</category>
   <description>Cloud security research from Tenable Research. Read the original article at the publisher.</description>
   <source url="https://www.tenable.com/blog/feed">Tenable Research</source>
 </item>
@@ -59,7 +149,7 @@
 </item>
 
 <item>
-  <title>CVE-2026-114938 RCE in OpenJDK: Everything You Need to Know</title>
+  <title>CVE-2026-114938 OpenJDK RCE (Java4Shell): Everything You Need to Know</title>
   <link>https://www.wiz.io/blog/cve-2026-114938-rce-java4shell-openjdk</link>
   <guid isPermaLink="true">https://www.wiz.io/blog/cve-2026-114938-rce-java4shell-openjdk</guid>
   <pubDate>Tue, 17 Nov 2026 22:29:57 GMT</pubDate>
@@ -144,6 +234,16 @@
   <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/csa-star-for-ai-certifications-what-are-they</guid>
   <pubDate>Mon, 16 Nov 2026 18:39:05 GMT</pubDate>
   <category>Cloud Security</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
+</item>
+
+<item>
+  <title>The AI Threat Landscape in 2026: What You Need to Know</title>
+  <link>https://cloudsecurityalliance.org/articles/the-ai-threat-landscape-in-2026-what-you-need-to-know</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/the-ai-threat-landscape-in-2026-what-you-need-to-know</guid>
+  <pubDate>Mon, 16 Nov 2026 18:11:54 GMT</pubDate>
+  <category>Identity &amp; Access</category>
   <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
   <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
@@ -386,6 +486,16 @@
   <category>Cloud Security</category>
   <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
   <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>DLP and UEBA Are Asking the Wrong Insider Risk Questions</title>
+  <link>https://cloudsecurityalliance.org/articles/dlp-and-ueba-are-asking-the-wrong-insider-risk-questions</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/dlp-and-ueba-are-asking-the-wrong-insider-risk-questions</guid>
+  <pubDate>Tue, 10 Nov 2026 19:57:39 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -1069,16 +1179,6 @@
 </item>
 
 <item>
-  <title>ARTEX in the Wild: Storm-0940 Expands Targeting of IT and Software Vendors</title>
-  <link>https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors</link>
-  <guid isPermaLink="true">https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors</guid>
-  <pubDate>Thu, 22 Oct 2026 13:05:31 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
-</item>
-
-<item>
   <title>How to contain shadow AI, as it takes on multiple forms and spreads throughout your environment</title>
   <link>https://www.tenable.com/blog/how-to-contain-shadow-ai-as-it-takes-on-multiple-forms-and-spreads-throughout-your-environment</link>
   <guid isPermaLink="true">https://www.tenable.com/blog/how-to-contain-shadow-ai-as-it-takes-on-multiple-forms-and-spreads-throughout-your-environment</guid>
@@ -1096,26 +1196,6 @@
   <category>Cloud Security</category>
   <description>Cloud security research from Cloudflare Security. Read the original article at the publisher.</description>
   <source url="https://blog.cloudflare.com/rss/">Cloudflare Security</source>
-</item>
-
-<item>
-  <title>Using AWS WAF to apply mitigations for PHP2Shell RCE vulnerabilities (CVE-2026-109618 and CVE-2026-109619)</title>
-  <link>https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/</guid>
-  <pubDate>Thu, 22 Oct 2026 00:50:04 GMT</pubDate>
-  <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
-  <title>Amazon Threat Intelligence identifies PHP2Shell exploitation prior to public disclosure in MadPot</title>
-  <link>https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/</guid>
-  <pubDate>Wed, 21 Oct 2026 22:36:26 GMT</pubDate>
-  <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
 </item>
 
 <item>
@@ -1164,36 +1244,6 @@
   <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/input-privacy-vs-output-privacy-choosing-a-pet</guid>
   <pubDate>Wed, 21 Oct 2026 20:51:37 GMT</pubDate>
   <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>The CSA Triangle Chapter&#39;s Year of Innovation and Strategic Partnerships: 2026 Highlights</title>
-  <link>https://cloudsecurityalliance.org/articles/the-csa-triangle-chapter-s-year-of-innovation-and-strategic-partnerships-2026-highlights</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/the-csa-triangle-chapter-s-year-of-innovation-and-strategic-partnerships-2026-highlights</guid>
-  <pubDate>Wed, 21 Oct 2026 20:50:49 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>7 DNS Security Lessons from the CubePilot Hijacking</title>
-  <link>https://cloudsecurityalliance.org/articles/7-dns-security-lessons-from-the-cubepilot-hijacking</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/7-dns-security-lessons-from-the-cubepilot-hijacking</guid>
-  <pubDate>Wed, 21 Oct 2026 20:50:24 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>Identity-Defined Reachability: Reducing Exposure and Connectivity Friction in an Age of Machine-Speed Attack</title>
-  <link>https://cloudsecurityalliance.org/articles/identity-defined-reachability-reducing-exposure-and-connectivity-friction-in-an-age-of-machine-speed-attack</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/identity-defined-reachability-reducing-exposure-and-connectivity-friction-in-an-age-of-machine-speed-attack</guid>
-  <pubDate>Wed, 21 Oct 2026 20:49:34 GMT</pubDate>
-  <category>Identity &amp; Access</category>
   <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
   <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
