@@ -7,8 +7,98 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Thu, 19 Nov 2026 07:46:06 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 07:36:39 GMT</lastBuildDate>
     <item>
+  <title>nginx2root: Five new nginx vulnerabilities, and how Cloudflare protects origins from the worst of them</title>
+  <link>https://blog.cloudflare.com/nginx2root/</link>
+  <guid isPermaLink="true">https://blog.cloudflare.com/nginx2root/</guid>
+  <pubDate>Fri, 20 Nov 2026 01:58:29 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Cloudflare Security. Read the original article at the publisher.</description>
+  <source url="https://blog.cloudflare.com/rss/">Cloudflare Security</source>
+</item>
+
+<item>
+  <title>Your AWS Security, Identity, and Governance guide to re:Invent 2026</title>
+  <link>https://aws.amazon.com/blogs/security/your-aws-security-identity-and-governance-guide-to-reinvent-2026/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/your-aws-security-identity-and-governance-guide-to-reinvent-2026/</guid>
+  <pubDate>Thu, 19 Nov 2026 22:31:34 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>phpAfterShell and Critical PHP RCE Vulnerabilities: Everything You Need To Know</title>
+  <link>https://www.wiz.io/blog/phpaftershell-critical-php-rce-vulnerabilities-cve-2026-126714</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/phpaftershell-critical-php-rce-vulnerabilities-cve-2026-126714</guid>
+  <pubDate>Thu, 19 Nov 2026 21:46:23 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Introducing the new AWS WAF security analytics dashboard</title>
+  <link>https://aws.amazon.com/blogs/security/introducing-the-new-aws-waf-security-analytics-dashboard/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/introducing-the-new-aws-waf-security-analytics-dashboard/</guid>
+  <pubDate>Thu, 19 Nov 2026 21:10:43 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>How AWS Security Incident Response triages your security findings</title>
+  <link>https://aws.amazon.com/blogs/security/how-aws-security-incident-response-triages-your-security-findings/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/how-aws-security-incident-response-triages-your-security-findings/</guid>
+  <pubDate>Thu, 19 Nov 2026 19:20:58 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Identity context is essential for exposure management: Tenable One adds ways to bring in identity security data</title>
+  <link>https://www.tenable.com/blog/identity-context-is-essential-for-exposure-management-tenable-one-adds-ways-to-bring-in</link>
+  <guid isPermaLink="true">https://www.tenable.com/blog/identity-context-is-essential-for-exposure-management-tenable-one-adds-ways-to-bring-in</guid>
+  <pubDate>Thu, 19 Nov 2026 16:15:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Tenable Research. Read the original article at the publisher.</description>
+  <source url="https://www.tenable.com/blog/feed">Tenable Research</source>
+</item>
+
+<item>
+  <title>Internet traffic and attacks during the 2026 U.S. midterm elections</title>
+  <link>https://blog.cloudflare.com/internet-traffic-2026-us-election/</link>
+  <guid isPermaLink="true">https://blog.cloudflare.com/internet-traffic-2026-us-election/</guid>
+  <pubDate>Thu, 19 Nov 2026 14:00:00 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Cloudflare Security. Read the original article at the publisher.</description>
+  <source url="https://blog.cloudflare.com/rss/">Cloudflare Security</source>
+</item>
+
+<item>
+  <title>Hackers Breach N-able Cloud Server, Disrupting Email Security Management Across 3 Regions</title>
+  <link>https://thehackernews.com/2026/11/n-able-confirms-hackers-accessed-cloud.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/n-able-confirms-hackers-accessed-cloud.html</guid>
+  <pubDate>Thu, 19 Nov 2026 09:31:26 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>Java4Shell Exploitation Attempts Begin as Vendors Rush Out Advisories</title>
+  <link>https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/</link>
+  <guid isPermaLink="true">https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/</guid>
+  <pubDate>Thu, 19 Nov 2026 09:10:58 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from SecurityWeek. Read the original article at the publisher.</description>
+  <source url="https://www.securityweek.com/feed/">SecurityWeek</source>
+</item>
+
+<item>
   <title>NGINX2Root (CVE-2026-123007): Frequently asked questions about five critical NGINX vulnerabilities</title>
   <link>https://www.tenable.com/blog/nginx2root-cve-2026-123007-frequently-asked-questions-about-five-critical-nginx</link>
   <guid isPermaLink="true">https://www.tenable.com/blog/nginx2root-cve-2026-123007-frequently-asked-questions-about-five-critical-nginx</guid>
@@ -16,6 +106,26 @@
   <category>Kubernetes &amp; Containers</category>
   <description>Cloud security research from Tenable Research. Read the original article at the publisher.</description>
   <source url="https://www.tenable.com/blog/feed">Tenable Research</source>
+</item>
+
+<item>
+  <title>Runtime security for Amazon EKS Auto Mode with Sysdig</title>
+  <link>https://www.sysdig.com/blog/runtime-security-for-amazon-eks-auto-mode</link>
+  <guid isPermaLink="true">https://www.sysdig.com/blog/runtime-security-for-amazon-eks-auto-mode</guid>
+  <pubDate>Thu, 19 Nov 2026 00:00:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Sysdig Threat Research. Read the original article at the publisher.</description>
+  <source url="https://www.sysdig.com/blog/rss.xml">Sysdig Threat Research</source>
+</item>
+
+<item>
+  <title>Age of Entitlement: Privileges in Entra&#39;s access packages</title>
+  <link>https://securitylabs.datadoghq.com/articles/entra-access-packages-part-1-privileges/</link>
+  <guid isPermaLink="true">https://securitylabs.datadoghq.com/articles/entra-access-packages-part-1-privileges/</guid>
+  <pubDate>Thu, 19 Nov 2026 00:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Datadog Security Labs. Read the original article at the publisher.</description>
+  <source url="https://securitylabs.datadoghq.com/rss/feed.xml">Datadog Security Labs</source>
 </item>
 
 <item>
@@ -486,6 +596,16 @@
   <category>Cloud Security</category>
   <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
   <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Human-in-the-Loop: When Should a Human Approve an AI Action?</title>
+  <link>https://cloudsecurityalliance.org/articles/human-in-the-loop-when-should-a-human-approve-an-ai-action</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/human-in-the-loop-when-should-a-human-approve-an-ai-action</guid>
+  <pubDate>Tue, 10 Nov 2026 19:57:41 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -999,36 +1119,6 @@
 </item>
 
 <item>
-  <title>Introducing Route 53 Resolved IP Validation for AWS Network Firewall</title>
-  <link>https://aws.amazon.com/blogs/security/introducing-route-53-resolved-ip-validation-for-aws-network-firewall/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/introducing-route-53-resolved-ip-validation-for-aws-network-firewall/</guid>
-  <pubDate>Tue, 27 Oct 2026 23:46:13 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
-  <title>AWS becomes first CSP in Canada to complete the Cloud High profile assessment with 172 services and features in scope</title>
-  <link>https://aws.amazon.com/blogs/security/aws-becomes-first-csp-to-complete-the-cloud-high-profile-assessment-with-172-services-and-features-in-scope/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/aws-becomes-first-csp-to-complete-the-cloud-high-profile-assessment-with-172-services-and-features-in-scope/</guid>
-  <pubDate>Tue, 27 Oct 2026 17:50:05 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
-  <title>Part 3 – Cybersecurity journeys: The work behind the work</title>
-  <link>https://aws.amazon.com/blogs/security/part-3-cybersecurity-journeys-the-work-behind-the-work/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/part-3-cybersecurity-journeys-the-work-behind-the-work/</guid>
-  <pubDate>Tue, 27 Oct 2026 17:00:07 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
   <title>Scale agents securely with IAM Helper Agent Skills and MCP Tools</title>
   <link>https://cloud.google.com/blog/products/identity-security/scale-agents-securely-with-iam-helper-agent-skills-and-mcp-tools/</link>
   <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/scale-agents-securely-with-iam-helper-agent-skills-and-mcp-tools/</guid>
@@ -1159,16 +1249,6 @@
 </item>
 
 <item>
-  <title>ASPM in the AI Era Part 2: Prioritize Exploitable Risks with Code-to-Cloud Context</title>
-  <link>https://www.wiz.io/blog/aspm-ai-era-pt-2-prioritize-appsec-risk</link>
-  <guid isPermaLink="true">https://www.wiz.io/blog/aspm-ai-era-pt-2-prioritize-appsec-risk</guid>
-  <pubDate>Thu, 22 Oct 2026 22:51:55 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
-</item>
-
-<item>
   <title>The Current Landscape of OAuth Attacks</title>
   <link>https://unit42.paloaltonetworks.com/current-landscape-oauth-attacks/</link>
   <guid isPermaLink="true">https://unit42.paloaltonetworks.com/current-landscape-oauth-attacks/</guid>
@@ -1234,16 +1314,6 @@
   <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/zero-trust-dns-starts-before-the-connection</guid>
   <pubDate>Wed, 21 Oct 2026 20:51:45 GMT</pubDate>
   <category>Identity &amp; Access</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>Input Privacy vs. Output Privacy: Choosing a PET</title>
-  <link>https://cloudsecurityalliance.org/articles/input-privacy-vs-output-privacy-choosing-a-pet</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/input-privacy-vs-output-privacy-choosing-a-pet</guid>
-  <pubDate>Wed, 21 Oct 2026 20:51:37 GMT</pubDate>
-  <category>Vulnerabilities &amp; Exposure</category>
   <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
   <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
