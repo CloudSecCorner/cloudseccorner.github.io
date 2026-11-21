@@ -7,8 +7,108 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 20 Nov 2026 07:36:39 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 21 Nov 2026 07:32:38 GMT</lastBuildDate>
     <item>
+  <title>Scope down permissions of existing sessions using AWS STS GetScopedCredentials</title>
+  <link>https://aws.amazon.com/blogs/security/scope-down-permissions-of-existing-sessions-using-aws-sts-getscopedcredentials/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/scope-down-permissions-of-existing-sessions-using-aws-sts-getscopedcredentials/</guid>
+  <pubDate>Fri, 20 Nov 2026 22:57:22 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Dialing for Data: Inside the Com’s High-Profile Heists</title>
+  <link>https://unit42.paloaltonetworks.com/com-affiliate-vishing-attacks/</link>
+  <guid isPermaLink="true">https://unit42.paloaltonetworks.com/com-affiliate-vishing-attacks/</guid>
+  <pubDate>Fri, 20 Nov 2026 22:00:25 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Palo Alto Networks Unit 42. Read the original article at the publisher.</description>
+  <source url="https://unit42.paloaltonetworks.com/feed/">Palo Alto Networks Unit 42</source>
+</item>
+
+<item>
+  <title>How Cloudflare WAF protects against ruby2shell (CVE-2026-132825)</title>
+  <link>https://blog.cloudflare.com/ruby2shell-waf-protection/</link>
+  <guid isPermaLink="true">https://blog.cloudflare.com/ruby2shell-waf-protection/</guid>
+  <pubDate>Fri, 20 Nov 2026 20:24:38 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from Cloudflare Security. Read the original article at the publisher.</description>
+  <source url="https://blog.cloudflare.com/rss/">Cloudflare Security</source>
+</item>
+
+<item>
+  <title>How Cloudflare WAF helps protect against phpAfterShell and other critical PHP flaws</title>
+  <link>https://blog.cloudflare.com/phpaftershell-waf-protection/</link>
+  <guid isPermaLink="true">https://blog.cloudflare.com/phpaftershell-waf-protection/</guid>
+  <pubDate>Fri, 20 Nov 2026 20:00:45 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Cloudflare Security. Read the original article at the publisher.</description>
+  <source url="https://blog.cloudflare.com/rss/">Cloudflare Security</source>
+</item>
+
+<item>
+  <title>Chinese-nexus actor’s Cairn AI agents found a zero-day on their own</title>
+  <link>https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/</guid>
+  <pubDate>Fri, 20 Nov 2026 17:30:13 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>How to simplify cloud access with Unified Access Policies, now in preview</title>
+  <link>https://cloud.google.com/blog/products/identity-security/how-to-simplify-cloud-access-with-unified-access-policies/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/how-to-simplify-cloud-access-with-unified-access-policies/</guid>
+  <pubDate>Fri, 20 Nov 2026 17:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>How Spanner Graph detects ads fraud and abuse at Google at multi-billion node scale</title>
+  <link>https://cloud.google.com/blog/products/databases/how-spanner-graph-detects-google-ads-fraud-and-abuse/</link>
+  <guid isPermaLink="true">https://cloud.google.com/blog/products/databases/how-spanner-graph-detects-google-ads-fraud-and-abuse/</guid>
+  <pubDate>Fri, 20 Nov 2026 17:00:00 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
+</item>
+
+<item>
+  <title>How exposure management can help public sector prepare for PHP2Shell-like vulnerabilities</title>
+  <link>https://www.tenable.com/blog/public-sector-exposure-management-php2shell</link>
+  <guid isPermaLink="true">https://www.tenable.com/blog/public-sector-exposure-management-php2shell</guid>
+  <pubDate>Fri, 20 Nov 2026 14:00:00 GMT</pubDate>
+  <category>Kubernetes &amp; Containers</category>
+  <description>Cloud security research from Tenable Research. Read the original article at the publisher.</description>
+  <source url="https://www.tenable.com/blog/feed">Tenable Research</source>
+</item>
+
+<item>
+  <title>Linux KVM Flaw CVE-2026-99312 Lets Guest VMs Access Host Memory on AMD Hosts</title>
+  <link>https://thehackernews.com/2026/11/new-linux-kvm-flaw-cve-2026-99312-lets.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/new-linux-kvm-flaw-cve-2026-99312-lets.html</guid>
+  <pubDate>Fri, 20 Nov 2026 12:20:00 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>N-able Blames Service Disruption on Cyberattack</title>
+  <link>https://www.securityweek.com/n-able-blames-service-disruption-on-cyberattack/</link>
+  <guid isPermaLink="true">https://www.securityweek.com/n-able-blames-service-disruption-on-cyberattack/</guid>
+  <pubDate>Fri, 20 Nov 2026 09:08:35 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from SecurityWeek. Read the original article at the publisher.</description>
+  <source url="https://www.securityweek.com/feed/">SecurityWeek</source>
+</item>
+
+<item>
   <title>nginx2root: Five new nginx vulnerabilities, and how Cloudflare protects origins from the worst of them</title>
   <link>https://blog.cloudflare.com/nginx2root/</link>
   <guid isPermaLink="true">https://blog.cloudflare.com/nginx2root/</guid>
@@ -286,6 +386,16 @@
   <category>Cloud Security</category>
   <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
   <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>PQC for Defense Contractors Supporting the USA and Canadian Governments</title>
+  <link>https://cloudsecurityalliance.org/articles/pqc-for-defense-contractors-supporting-the-usa-and-canadian-governments</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/pqc-for-defense-contractors-supporting-the-usa-and-canadian-governments</guid>
+  <pubDate>Tue, 17 Nov 2026 18:24:13 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -596,6 +706,16 @@
   <category>Cloud Security</category>
   <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
   <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Minimum Viable AI Security: 9 Steps to Build Your Program in 90 Days</title>
+  <link>https://cloudsecurityalliance.org/articles/minimum-viable-ai-security-9-steps-to-build-your-program-in-90-days</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/minimum-viable-ai-security-9-steps-to-build-your-program-in-90-days</guid>
+  <pubDate>Tue, 10 Nov 2026 19:58:18 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -979,16 +1099,6 @@
 </item>
 
 <item>
-  <title>Beyond DKIM key rotation: understanding email replay attacks</title>
-  <link>https://aws.amazon.com/blogs/security/beyond-dkim-key-rotation-understanding-email-replay-attacks/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/beyond-dkim-key-rotation-understanding-email-replay-attacks/</guid>
-  <pubDate>Mon, 02 Nov 2026 18:06:28 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
   <title>DarkBlinders Compromises Israeli Target and Iraqi Kurdish Government Cloud Environment</title>
   <link>https://thehackernews.com/2026/11/darkblinders-compromises-israeli-target.html</link>
   <guid isPermaLink="true">https://thehackernews.com/2026/11/darkblinders-compromises-israeli-target.html</guid>
@@ -1016,16 +1126,6 @@
   <category>Vulnerabilities &amp; Exposure</category>
   <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
   <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>Inside a successful AWS European Sovereign Cloud exercise to demonstrate independent operation</title>
-  <link>https://aws.amazon.com/blogs/security/inside-a-successful-aws-european-sovereign-cloud-exercise-to-demonstrate-independent-operation/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/inside-a-successful-aws-european-sovereign-cloud-exercise-to-demonstrate-independent-operation/</guid>
-  <pubDate>Mon, 02 Nov 2026 03:37:30 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
 </item>
 
 <item>
@@ -1294,26 +1394,6 @@
   <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/agentic-memory-and-the-next-security-boundary</guid>
   <pubDate>Wed, 21 Oct 2026 20:52:02 GMT</pubDate>
   <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>Always On, Always Defending: Inside the AI-Driven SOC</title>
-  <link>https://cloudsecurityalliance.org/articles/always-on-always-defending-inside-the-ai-driven-soc</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/always-on-always-defending-inside-the-ai-driven-soc</guid>
-  <pubDate>Wed, 21 Oct 2026 20:51:57 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>Zero Trust DNS Starts Before the Connection</title>
-  <link>https://cloudsecurityalliance.org/articles/zero-trust-dns-starts-before-the-connection</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/zero-trust-dns-starts-before-the-connection</guid>
-  <pubDate>Wed, 21 Oct 2026 20:51:45 GMT</pubDate>
-  <category>Identity &amp; Access</category>
   <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
   <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
@@ -1609,16 +1689,6 @@
 </item>
 
 <item>
-  <title>Strengthen your CI/CD pipeline with new Secure Source Manager capabilities</title>
-  <link>https://cloud.google.com/blog/products/identity-security/strengthen-your-cicd-pipeline-with-new-secure-source-manager-capabilities/</link>
-  <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/strengthen-your-cicd-pipeline-with-new-secure-source-manager-capabilities/</guid>
-  <pubDate>Mon, 21 Sep 2026 16:00:00 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
-</item>
-
-<item>
   <title>SAML: A fractal of bad design</title>
   <link>https://blog.trailofbits.com/2026/09/21/saml-a-fractal-of-bad-design/</link>
   <guid isPermaLink="true">https://blog.trailofbits.com/2026/09/21/saml-a-fractal-of-bad-design/</guid>
@@ -1626,16 +1696,6 @@
   <category>Identity &amp; Access</category>
   <description>Cloud security research from Trail of Bits. Read the original article at the publisher.</description>
   <source url="https://blog.trailofbits.com/index.xml">Trail of Bits</source>
-</item>
-
-<item>
-  <title>Changing the game: Using agentic AI to secure infrastructure code</title>
-  <link>https://cloud.google.com/blog/topics/systems/using-ai-agents-to-secure-google-infrastructure/</link>
-  <guid isPermaLink="true">https://cloud.google.com/blog/topics/systems/using-ai-agents-to-secure-google-infrastructure/</guid>
-  <pubDate>Sat, 19 Sep 2026 01:00:00 GMT</pubDate>
-  <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
 </item>
 
 <item>
