@@ -7,8 +7,28 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 21 Nov 2026 07:32:38 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 22 Nov 2026 07:14:00 GMT</lastBuildDate>
     <item>
+  <title>Amazon: China-Linked Hackers’ AI Agents Exploited Medical Software Zero-Day</title>
+  <link>https://www.securityweek.com/amazon-china-linked-hackers-ai-agents-exploited-medical-software-zero-day/</link>
+  <guid isPermaLink="true">https://www.securityweek.com/amazon-china-linked-hackers-ai-agents-exploited-medical-software-zero-day/</guid>
+  <pubDate>Sat, 21 Nov 2026 12:08:50 GMT</pubDate>
+  <category>Vulnerabilities &amp; Exposure</category>
+  <description>Cloud security research from SecurityWeek. Read the original article at the publisher.</description>
+  <source url="https://www.securityweek.com/feed/">SecurityWeek</source>
+</item>
+
+<item>
+  <title>Attackers&#39; AI Agents Found a Zero-Day in Medical-Imaging Software and Gained Root Access</title>
+  <link>https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html</link>
+  <guid isPermaLink="true">https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html</guid>
+  <pubDate>Sat, 21 Nov 2026 11:03:17 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
+  <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
   <title>Scope down permissions of existing sessions using AWS STS GetScopedCredentials</title>
   <link>https://aws.amazon.com/blogs/security/scope-down-permissions-of-existing-sessions-using-aws-sts-getscopedcredentials/</link>
   <guid isPermaLink="true">https://aws.amazon.com/blogs/security/scope-down-permissions-of-existing-sessions-using-aws-sts-getscopedcredentials/</guid>
