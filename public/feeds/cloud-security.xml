@@ -7,8 +7,88 @@
     <language>en</language>
     <ttl>1440</ttl>
     <atom:link href="https://cloudsecuritycorner.com/feeds/cloud-security.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Wed, 25 Nov 2026 08:57:31 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2026 08:44:33 GMT</lastBuildDate>
     <item>
+  <title>Introducing Wiz ADR: Strengthening Cloud and AI Detection and Response with Application Context</title>
+  <link>https://www.wiz.io/blog/introducing-wiz-adr</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/introducing-wiz-adr</guid>
+  <pubDate>Thu, 26 Nov 2026 02:26:16 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>A Feast for AI: What Wiz Agents are Thankful For</title>
+  <link>https://www.wiz.io/blog/what-wiz-agents-are-thankful-for</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/what-wiz-agents-are-thankful-for</guid>
+  <pubDate>Thu, 26 Nov 2026 02:10:58 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
+  <title>Make post-quantum cryptography updates routine with AWS-LC</title>
+  <link>https://aws.amazon.com/blogs/security/make-post-quantum-cryptography-updates-routine-with-aws-lc/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/make-post-quantum-cryptography-updates-routine-with-aws-lc/</guid>
+  <pubDate>Thu, 26 Nov 2026 00:15:29 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>ICYMI: October 2026 @AWS Security</title>
+  <link>https://aws.amazon.com/blogs/security/icymi-october-2026-aws-security/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/icymi-october-2026-aws-security/</guid>
+  <pubDate>Wed, 25 Nov 2026 23:04:26 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Secure agentic access to AWS with Enterprise-Managed Authorization</title>
+  <link>https://aws.amazon.com/blogs/security/secure-agentic-access-to-aws-with-enterprise-managed-authorization/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/secure-agentic-access-to-aws-with-enterprise-managed-authorization/</guid>
+  <pubDate>Wed, 25 Nov 2026 21:00:37 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Reduce operational overhead by migrating from AWS CloudHSM to AWS KMS</title>
+  <link>https://aws.amazon.com/blogs/security/reduce-operational-overhead-by-migrating-from-aws-cloudhsm-to-aws-kms/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/reduce-operational-overhead-by-migrating-from-aws-cloudhsm-to-aws-kms/</guid>
+  <pubDate>Wed, 25 Nov 2026 19:54:52 GMT</pubDate>
+  <category>Cloud Security</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Planning for 99.99 percent availability with the Amazon Cognito Plus feature plan</title>
+  <link>https://aws.amazon.com/blogs/security/planning-for-99-99-percent-availability-with-the-amazon-cognito-plus-feature-plan/</link>
+  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/planning-for-99-99-percent-availability-with-the-amazon-cognito-plus-feature-plan/</guid>
+  <pubDate>Wed, 25 Nov 2026 17:50:39 GMT</pubDate>
+  <category>Identity &amp; Access</category>
+  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
+  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Inside Agentic Offensive Frameworks: Intent IDs</title>
+  <link>https://www.wiz.io/blog/agentic-offensive-frameworks-intent-ids-artex-cairn</link>
+  <guid isPermaLink="true">https://www.wiz.io/blog/agentic-offensive-frameworks-intent-ids-artex-cairn</guid>
+  <pubDate>Wed, 25 Nov 2026 14:27:03 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
+  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
+</item>
+
+<item>
   <title>Com-Affiliated Hackers Hijack Cloud Accounts via Vishing for Data Theft and Extortion</title>
   <link>https://thehackernews.com/2026/11/com-affiliated-hackers-hijack-cloud.html</link>
   <guid isPermaLink="true">https://thehackernews.com/2026/11/com-affiliated-hackers-hijack-cloud.html</guid>
@@ -16,6 +96,16 @@
   <category>Threat Detection &amp; Response</category>
   <description>Cloud security research from The Hacker News. Read the original article at the publisher.</description>
   <source url="https://feeds.feedburner.com/TheHackersNews">The Hacker News</source>
+</item>
+
+<item>
+  <title>After FBI Alert on ARTEX, CISOs Report What Worked Against AI-Run Attacks: Cloud Security Alliance CISO Community Releases “The Third Wave”</title>
+  <link>https://cloudsecurityalliance.org/articles/after-fbi-alert-on-artex-cloud-security-alliance-ciso-community-releases-the-third-wave</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/after-fbi-alert-on-artex-cloud-security-alliance-ciso-community-releases-the-third-wave</guid>
+  <pubDate>Wed, 25 Nov 2026 02:00:28 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -136,6 +226,16 @@
   <category>Identity &amp; Access</category>
   <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
   <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+</item>
+
+<item>
+  <title>Zero Trust or Zero Day: Rebalancing the Attacker–Defender Equation in the AI Era</title>
+  <link>https://cloudsecurityalliance.org/articles/zero-trust-or-zero-day-rebalancing-the-attacker-defender-equation-in-the-ai-era</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/zero-trust-or-zero-day-rebalancing-the-attacker-defender-equation-in-the-ai-era</guid>
+  <pubDate>Mon, 23 Nov 2026 21:25:20 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -479,16 +579,6 @@
 </item>
 
 <item>
-  <title>Step-up authentication: how to right-size authentication to risk</title>
-  <link>https://aws.amazon.com/blogs/security/step-up-authentication-how-to-right-size-authentication-to-risk/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/step-up-authentication-how-to-right-size-authentication-to-risk/</guid>
-  <pubDate>Wed, 18 Nov 2026 23:49:07 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
   <title>NGINX HTTP/2 Vulnerabilities: How to Identify Affected Images and Apply Security Updates</title>
   <link>https://www.aquasec.com/blog/nginx-http2-vulnerabilities-affected-images/</link>
   <guid isPermaLink="true">https://www.aquasec.com/blog/nginx-http2-vulnerabilities-affected-images/</guid>
@@ -496,16 +586,6 @@
   <category>Vulnerabilities &amp; Exposure</category>
   <description>Cloud security research from Aqua Security. Read the original article at the publisher.</description>
   <source url="https://www.aquasec.com/feed/">Aqua Security</source>
-</item>
-
-<item>
-  <title>Detecting cross-cloud lateral movement with AWS Security Hub</title>
-  <link>https://aws.amazon.com/blogs/security/detecting-cross-cloud-lateral-movement-with-aws-security-hub/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/detecting-cross-cloud-lateral-movement-with-aws-security-hub/</guid>
-  <pubDate>Wed, 18 Nov 2026 22:28:45 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
 </item>
 
 <item>
@@ -599,16 +679,6 @@
 </item>
 
 <item>
-  <title>Introducing simplified onboarding for AWS WAF Bot Control at the targeted inspection level</title>
-  <link>https://aws.amazon.com/blogs/security/introducing-simplified-onboarding-for-aws-waf-bot-control-at-the-targeted-inspection-level/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/introducing-simplified-onboarding-for-aws-waf-bot-control-at-the-targeted-inspection-level/</guid>
-  <pubDate>Tue, 17 Nov 2026 23:15:03 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
-</item>
-
-<item>
   <title>CVE-2026-114938 OpenJDK RCE (Java4Shell): Everything You Need to Know</title>
   <link>https://www.wiz.io/blog/cve-2026-114938-rce-java4shell-openjdk</link>
   <guid isPermaLink="true">https://www.wiz.io/blog/cve-2026-114938-rce-java4shell-openjdk</guid>
@@ -629,13 +699,13 @@
 </item>
 
 <item>
-  <title>Securely exposing Amazon Bedrock AgentCore Runtime</title>
-  <link>https://aws.amazon.com/blogs/security/securely-exposing-amazon-bedrock-agentcore-runtime/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/securely-exposing-amazon-bedrock-agentcore-runtime/</guid>
-  <pubDate>Tue, 17 Nov 2026 20:31:30 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
+  <title>When Valid Agent Actions Become a Security Incident: Governing AI Agents at Machine Speed</title>
+  <link>https://cloudsecurityalliance.org/articles/when-valid-agent-actions-become-a-security-incident-governing-ai-agents-at-machine-speed</link>
+  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/when-valid-agent-actions-become-a-security-incident-governing-ai-agents-at-machine-speed</guid>
+  <pubDate>Tue, 17 Nov 2026 20:08:24 GMT</pubDate>
+  <category>Threat Detection &amp; Response</category>
+  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
+  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
 </item>
 
 <item>
@@ -656,16 +726,6 @@
   <category>Cloud Security</category>
   <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
   <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>Using the AWS RMiT workbook and ISO Compliance Guides to support your BNM submissions</title>
-  <link>https://aws.amazon.com/blogs/security/using-the-aws-rmit-workbook-and-iso-compliance-guides-to-support-your-bnm-submissions/</link>
-  <guid isPermaLink="true">https://aws.amazon.com/blogs/security/using-the-aws-rmit-workbook-and-iso-compliance-guides-to-support-your-bnm-submissions/</guid>
-  <pubDate>Tue, 17 Nov 2026 17:12:08 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from AWS Security Blog. Read the original article at the publisher.</description>
-  <source url="https://aws.amazon.com/blogs/security/feed/">AWS Security Blog</source>
 </item>
 
 <item>
@@ -1019,16 +1079,6 @@
 </item>
 
 <item>
-  <title>The $6.3 Billion Binance Signing Compromise and Agentic AI Threat Analysis</title>
-  <link>https://cloudsecurityalliance.org/articles/the-6-3-billion-binance-signing-compromise-and-agentic-ai-threat-analysis</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/the-6-3-billion-binance-signing-compromise-and-agentic-ai-threat-analysis</guid>
-  <pubDate>Tue, 10 Nov 2026 18:50:35 GMT</pubDate>
-  <category>Identity &amp; Access</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
   <title>Don&#39;t just flag it, fix it: How to run CodeMender in your pull requests</title>
   <link>https://cloud.google.com/blog/products/identity-security/how-to-run-codemender-in-your-pull-requests/</link>
   <guid isPermaLink="true">https://cloud.google.com/blog/products/identity-security/how-to-run-codemender-in-your-pull-requests/</guid>
@@ -1179,26 +1229,6 @@
 </item>
 
 <item>
-  <title>AI Governance Isn&#39;t a Chore Problem. It&#39;s an Architecture Problem.</title>
-  <link>https://cloudsecurityalliance.org/articles/ai-governance-isn-t-a-chore-problem-it-s-an-architecture-problem</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/ai-governance-isn-t-a-chore-problem-it-s-an-architecture-problem</guid>
-  <pubDate>Thu, 05 Nov 2026 18:45:39 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
-  <title>Grok Bot, Dots, Muse and Instinct Now Act With Your Employees’ Access</title>
-  <link>https://cloudsecurityalliance.org/articles/grok-bot-dots-muse-and-instinct-now-act-with-your-employees-access</link>
-  <guid isPermaLink="true">https://cloudsecurityalliance.org/articles/grok-bot-dots-muse-and-instinct-now-act-with-your-employees-access</guid>
-  <pubDate>Thu, 05 Nov 2026 18:45:23 GMT</pubDate>
-  <category>Cloud Security</category>
-  <description>Cloud security research from Cloud Security Alliance. Read the original article at the publisher.</description>
-  <source url="https://cloudsecurityalliance.org/feed/">Cloud Security Alliance</source>
-</item>
-
-<item>
   <title>Refreshing the 555 Benchmark for Cloud Detection and Response in the AI era</title>
   <link>https://www.sysdig.com/blog/refreshing-the-555-benchmark-for-cloud-detection-and-response-in-the-ai-era</link>
   <guid isPermaLink="true">https://www.sysdig.com/blog/refreshing-the-555-benchmark-for-cloud-detection-and-response-in-the-ai-era</guid>
@@ -1339,16 +1369,6 @@
 </item>
 
 <item>
-  <title>Key Takeaways: AI Threat Readiness Survey Report 2026</title>
-  <link>https://www.wiz.io/blog/ai-threat-readiness-survey-report-2026</link>
-  <guid isPermaLink="true">https://www.wiz.io/blog/ai-threat-readiness-survey-report-2026</guid>
-  <pubDate>Fri, 30 Oct 2026 12:57:42 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
-</item>
-
-<item>
   <title>php2shell one week later: Why one exploit doesn’t work everywhere</title>
   <link>https://www.tenable.com/blog/php2shell-one-week-later-why-one-exploit-doesnt-work-everywhere</link>
   <guid isPermaLink="true">https://www.tenable.com/blog/php2shell-one-week-later-why-one-exploit-doesnt-work-everywhere</guid>
@@ -1366,16 +1386,6 @@
   <category>Kubernetes &amp; Containers</category>
   <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
   <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
-</item>
-
-<item>
-  <title>The Rise of Agentic Attacks: What They Look Like, and Where They&#39;re Headed</title>
-  <link>https://www.wiz.io/blog/the-rise-of-agentic-attacks</link>
-  <guid isPermaLink="true">https://www.wiz.io/blog/the-rise-of-agentic-attacks</guid>
-  <pubDate>Thu, 29 Oct 2026 14:26:22 GMT</pubDate>
-  <category>Threat Detection &amp; Response</category>
-  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
 </item>
 
 <item>
@@ -1406,16 +1416,6 @@
   <category>Identity &amp; Access</category>
   <description>Cloud security research from Google Cloud Security. Read the original article at the publisher.</description>
   <source url="https://cloudblog.withgoogle.com/products/identity-security/rss/">Google Cloud Security</source>
-</item>
-
-<item>
-  <title>PHP2Shell: Exploitation Attempts and Remediation Trends</title>
-  <link>https://www.wiz.io/blog/php2shell-exploitation-so-far</link>
-  <guid isPermaLink="true">https://www.wiz.io/blog/php2shell-exploitation-so-far</guid>
-  <pubDate>Tue, 27 Oct 2026 13:21:45 GMT</pubDate>
-  <category>Vulnerabilities &amp; Exposure</category>
-  <description>Cloud security research from Wiz Cloud Security. Read the original article at the publisher.</description>
-  <source url="https://www.wiz.io/feed/rss.xml">Wiz Cloud Security</source>
 </item>
 
 <item>
